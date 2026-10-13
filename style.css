@@ -22,3 +22,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .collections button,.filters button{min-height:44px}
 @media(max-width:750px){.site-header{padding:16px 20px}.site-header nav{gap:10px 18px}.section{padding:48px 20px}.hero{padding:42px 20px}.catalog-hint{max-width:100%}.book-card .amazon-cta{width:100%}}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
+
+/* Optional analytics consent UI */
+.eb-consent-banner[hidden]{display:none!important}
+.eb-consent-banner{position:fixed;z-index:9999;left:0;right:0;bottom:0;background:#fffaf4;color:#29312f;border-top:2px solid #dfcbb6;box-shadow:0 -6px 25px #0002;padding:18px max(18px,calc((100vw - 1120px)/2));font-family:inherit}
+.eb-consent-content{display:flex;gap:24px;align-items:center;justify-content:space-between}
+.eb-consent-content p{margin:7px 0 0;font-size:14px;line-height:1.5;max-width:700px}
+.eb-consent-content a{color:#365b63;text-decoration:underline}
+.eb-consent-actions{display:flex;gap:10px;flex-shrink:0}
+.eb-consent-actions button,.eb-privacy-button{font:inherit;cursor:pointer;border:1px solid #526c70;background:white;color:#29312f;border-radius:12px;padding:12px 15px;min-height:44px}
+.eb-consent-actions .eb-accept{background:#315c62;color:white}
+.eb-privacy-button{background:transparent;border:0;text-decoration:underline;padding:5px 8px;font-size:13px}
+@media(max-width:750px){.eb-consent-content{flex-direction:column;align-items:stretch}.eb-consent-actions{display:grid;grid-template-columns:1fr 1fr}.eb-consent-banner{padding:16px}}

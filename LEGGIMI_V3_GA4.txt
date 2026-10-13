@@ -1,0 +1,12 @@
+EMMA BELLORI BOOKS — V3 GA4 + CONSENT
+
+1. Upload the CONTENTS of this folder to the ROOT of your GitHub repository (main branch). Do not delete your Google Search Console verification file.
+2. Keep the books/ and images/ folders at the root.
+3. Test the homepage and all six book pages in a private browser window: banner appears; Reject does not load googletagmanager.com/gtag/js; Accept does.
+4. Test footer Privacy settings, including changing Accept to Reject.
+5. In GA4, check Realtime after accepting and clicking an Amazon link. Event name: amazon_click. GA4 may take time to show data; browser blockers may prevent it.
+6. To analyze book_id in reports, create a GA4 event-scoped custom dimension named book_id (Admin > Custom definitions). The event also sends link_type and link_host.
+7. Consider disabling GA4 Enhanced Measurement outbound-click tracking to avoid counting both the automatic click and custom amazon_click event as two distinct click metrics.
+8. PRIVACY IMPORTANT: privacy.html is an explanatory DRAFT, not a complete legal notice. Before treating this as a compliant public site, add the data controller's identity, contact details, legal bases, retention, recipients, cross-border transfer details and rights as applicable; consult qualified guidance for EU/Italy compliance. Consent alone does not guarantee compliance.
+9. No analytics script is loaded before consent. Consent stored in localStorage on this domain. GitHub Pages and Amazon are separate providers with their own data processing.
+10. This update does not change book Amazon URLs or cover images.
