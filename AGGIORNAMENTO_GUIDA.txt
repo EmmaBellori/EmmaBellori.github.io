@@ -1,0 +1,29 @@
+EMMA BELLORI BOOKS — VERSIONE AGGIORNATA
+
+COSA CAMBIA
+- Sei libri e copertine originali conservati.
+- Link Amazon individuali conservati.
+- Pulsante diretto “View on Amazon” su ogni scheda.
+- Descrizione breve visibile nelle schede; dettagli ancora disponibili.
+- Migliore navigazione da tastiera e layout mobile.
+- Meta tag per condivisione e descrizione sui motori di ricerca.
+
+COME AGGIORNARE GITHUB (SENZA CANCELLARE IL REPOSITORY)
+1. Estrai questo ZIP sul computer.
+2. Apri https://github.com/emmabellori/emma-bellori-books
+3. Seleziona Add file > Upload files.
+4. Trascina SOLO i tre file app.js, style.css e index.html dalla cartella estratta.
+5. Conferma la sostituzione dei file esistenti e clicca Commit changes.
+6. Attendi qualche minuto, poi apri il sito e premi Ctrl+F5.
+
+NOTA: gli altri file (books.js e immagini) sono già corretti e non occorre sostituirli.
+
+PER AGGIUNGERE UN LIBRO
+1. Carica la copertina JPG nella cartella images su GitHub.
+2. Apri books.js, clicca la matita e copia una riga libro esistente.
+3. Modifica id (unico), title, category, format, price, theme, description, cover e amazonUrl.
+4. Aggiungi una virgola tra gli oggetti; non aggiungerla dopo l’ultimo.
+5. Commit changes, attendi e aggiorna il sito.
+
+ATTENZIONE: il prezzo mostrato è manuale; aggiornarlo quando cambia su Amazon.
+Non sono state aggiunte età consigliate perché non sono state confermate.

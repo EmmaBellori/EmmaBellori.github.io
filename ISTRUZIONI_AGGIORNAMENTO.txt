@@ -1,0 +1,17 @@
+EMMA BELLORI BOOKS — AGGIORNAMENTO PAGINE LIBRI
+
+1. Apri https://github.com/emmabellori/emma-bellori-books
+2. Carica tutti i file di questo ZIP mantenendo la struttura delle cartelle (inclusa books/ e images/).
+3. Conferma le sostituzioni di index.html e app.js; aggiungi book-pages.css, sitemap.xml, robots.txt e la cartella books/.
+4. Attendi GitHub Pages e visita https://emmabellori.github.io/emma-bellori-books/books/mistakes.html
+5. Controlla che copertine e pulsanti Amazon funzionino.
+6. In Pinterest usa gli URL delle singole pagine, riportati sotto.
+
+I Hate Making Mistakes : https://emmabellori.github.io/emma-bellori-books/books/mistakes.html
+Nobody Wants to Play With Me! : https://emmabellori.github.io/emma-bellori-books/books/play.html
+The Amazing Bug Detective : https://emmabellori.github.io/emma-bellori-books/books/bugs.html
+When I Lose, I Get REALLY Mad : https://emmabellori.github.io/emma-bellori-books/books/mad.html
+Christmas Kawaii : https://emmabellori.github.io/emma-bellori-books/books/christmas.html
+Halloween Kawaii : https://emmabellori.github.io/emma-bellori-books/books/halloween.html
+
+Nota: il file sitemap.xml include homepage + 6 pagine. Dopo la pubblicazione, Google Search Console potrà rileggerlo.

@@ -4,7 +4,7 @@ const books=window.EMMA_BOOKS||[];const grid=document.querySelector('#book-grid'
  grid.innerHTML=filtered.map(b=>{
   const url=b.amazonUrl||authorUrl;
   const cta=b.amazonUrl?'View on Amazon ↗':'Browse on Amazon ↗';
-  return `<article class="book-card"><div class="cover-frame">${cover(b)}</div><div class="book-meta"><span>${escapeHTML(labels[b.category]||b.category)}</span><span>${escapeHTML(b.format)}</span></div><h3>${escapeHTML(b.title)}</h3><p class="book-theme">${escapeHTML(b.theme)}</p><p class="book-description">${escapeHTML(b.description)}</p><div class="book-bottom"><span class="book-price">${escapeHTML(b.price||'')}</span><a class="amazon-cta" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(cta+' — '+b.title)}">${cta}</a></div><button class="details-link" type="button" data-detail="${escapeHTML(b.id)}">Read book details →</button></article>`;
+  return `<article class="book-card"><div class="cover-frame">${cover(b)}</div><div class="book-meta"><span>${escapeHTML(labels[b.category]||b.category)}</span><span>${escapeHTML(b.format)}</span></div><h3>${escapeHTML(b.title)}</h3><p class="book-theme">${escapeHTML(b.theme)}</p><p class="book-description">${escapeHTML(b.description)}</p><div class="book-bottom"><span class="book-price">${escapeHTML(b.price||'')}</span><a class="amazon-cta" href="${escapeHTML(url)}" target="_blank" rel="noopener noreferrer" aria-label="${escapeHTML(cta+' — '+b.title)}">${cta}</a></div><a class="details-link" href="books/${escapeHTML(b.id)}.html">Explore this book →</a></article>`;
  }).join('');
  empty.hidden=filtered.length>0;
  document.querySelectorAll('[data-filter]').forEach(el=>el.classList.toggle('active',el.dataset.filter===filter));

@@ -1,6 +1,10 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>https://emmabellori.github.io/emma-bellori-books/</loc>
-  </url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/mistakes.html</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/play.html</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/bugs.html</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/mad.html</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/christmas.html</loc></url>
+  <url><loc>https://emmabellori.github.io/emma-bellori-books/books/halloween.html</loc></url>
 </urlset>
