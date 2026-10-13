@@ -1,0 +1,20 @@
+EMMA BELLORI BOOKS — AGGIORNAMENTO V2
+
+MODIFICHE
+- Homepage: metadati social per anteprime, accessibilita, collegamento principale alle schede libro.
+- Sei pagine: metadati social, navigazione da tastiera, pulsante Amazon piu leggibile su smartphone.
+- Dati strutturati: rimossa affermazione non verificata sulla disponibilita dei libri.
+- Prezzi: non mostrati nella griglia homepage per evitare prezzi non aggiornati; il prezzo corrente si verifica su Amazon.
+- Nessun servizio di analytics, cookie di tracciamento o banner aggiunto. Non e possibile misurare clic reali con sole pagine statiche senza un servizio esterno.
+
+COME PUBBLICARE
+1. Apri il repository GitHub emma-bellori/emma-bellori-books.
+2. Add file > Upload files. Trascina il CONTENUTO di questo ZIP estratto, non la cartella esterna.
+3. Verifica che le cartelle books/ e images/ siano nella radice.
+4. Commit changes. Aspetta qualche minuto per GitHub Pages.
+5. Controlla homepage e tutte e sei le pagine.
+
+NOTA IMPORTANTE
+Non eliminare il file Google Search Console gia presente nel repository.
+Il pacchetto non contiene il file di verifica Google: il caricamento dei file non lo rimuove.
+Per un futuro tracciamento dei clic servira scegliere e configurare un servizio esterno e valutare gli adempimenti privacy.
