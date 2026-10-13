@@ -34,3 +34,13 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .eb-consent-actions .eb-accept{background:#315c62;color:white}
 .eb-privacy-button{background:transparent;border:0;text-decoration:underline;padding:5px 8px;font-size:13px}
 @media(max-width:750px){.eb-consent-content{flex-direction:column;align-items:stretch}.eb-consent-actions{display:grid;grid-template-columns:1fr 1fr}.eb-consent-banner{padding:16px}}
+
+/* Emma Bellori visual identity */
+.site-header .brand{display:inline-flex;align-items:center;gap:12px;letter-spacing:normal;min-width:0}
+.site-header .brand-logo{display:block;width:66px;height:66px;object-fit:contain;flex-shrink:0}
+.site-header .brand-label{display:block;font:700 27px/1.15 Georgia,serif;letter-spacing:-.8px}
+.site-header .brand-label>span{display:block;font:600 9px/1.6 system-ui,sans-serif;letter-spacing:1.6px;margin-top:3px}
+.about-logo{display:flex;align-items:center;justify-content:center}
+.about-logo img{display:block;width:min(100%,350px);height:auto;aspect-ratio:1/1;object-fit:contain}
+@media(max-width:750px){.site-header .brand-logo{width:58px;height:58px}.site-header .brand-label{font-size:24px}}
+@media(max-width:360px){.site-header .brand-label{font-size:21px}.site-header .brand-label>span{font-size:8px;letter-spacing:1px}}

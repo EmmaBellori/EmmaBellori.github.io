@@ -1,0 +1,7 @@
+Emma Bellori Books V4 — Logo update
+
+Upload all files in this folder to the root of the GitHub repository, preserving folders. This update is based on the published V4 (not the unpublished V4.1 privacy draft).
+
+Changes: branded logo in header of homepage and all six book pages; large logo in About section; favicon; optimized WebP image. Analytics consent, Amazon links and existing privacy page are unchanged.
+
+After publishing, hard-refresh browser and check desktop/mobile. Keep the Google verification file already in GitHub; do not delete it.
