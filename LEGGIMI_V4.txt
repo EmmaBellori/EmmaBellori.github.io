@@ -1,0 +1,21 @@
+EMMA BELLORI BOOKS — V4
+
+Base: V3 GA4 e consenso, mantenuti invariati.
+
+NOVITÀ
+- Migliorata la disposizione mobile: titolo, descrizione e CTA Amazon prima della copertina.
+- Aggiunte sezioni Inside this book / Who is this book for? su tutte le sei pagine.
+- Aggiunte tre idee educative/creative pratiche per ciascun libro.
+- Aggiunte FAQ brevi, senza inventare recensioni o specifiche non verificate.
+- CTA Amazon aggiuntiva in fondo a ogni pagina (il tracking esistente intercetta entrambi i link).
+- Accessibilità e leggibilità migliorate; SEO Book JSON-LD arricchito con descrizione.
+- File privacy.html V3 conservato: il testo resta una BOZZA e richiede identità/contatto del titolare e verifica legale.
+
+PUBBLICAZIONE SU GITHUB
+1. Estrai il file ZIP.
+2. Carica il CONTENUTO della cartella estratta nella radice del repository emma-bellori-books, sostituendo i file omonimi.
+3. Non eliminare il file di verifica Google Search Console google422d7e9199d3e705.html, se già presente nel repository.
+4. Controlla homepage, le 6 pagine libri, CTA Amazon, consenso GA4, privacy e navigazione mobile.
+5. Mantieni i vecchi URL: gli UTM Pinterest non richiedono modifiche.
+
+Nota: il pacchetto include i file della V3 di partenza; l'eventuale file Google Search Console presente solo sul sito online non è incluso nel pacchetto.
