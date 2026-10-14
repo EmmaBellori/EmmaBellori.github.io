@@ -1,0 +1,7 @@
+V7 — Collection cards emozionali
+
+Modificata solo la sezione Explore our collections: quattro immagini ritagliate dall’anteprima approvata, titoli e sottotitoli HTML leggibili, navigazione filtri invariata.
+
+Pubblicazione: estrarre ZIP e caricare tutti i file/cartelle nel repository GitHub Pages, sovrascrivendo i file esistenti.
+
+Conservare una copia della V6 prima dell’aggiornamento.

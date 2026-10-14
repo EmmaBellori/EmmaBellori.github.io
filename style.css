@@ -75,3 +75,33 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 @media(max-width:750px){.site-header nav{width:100%;display:flex;justify-content:space-between;gap:5px}.site-header nav a{font-size:12px}.hero-books{min-height:245px}.hero-cover{height:185px}.hero-cover-two{height:235px}}
 @media(max-width:520px){.guide-cards{grid-template-columns:1fr}.collections button{padding:17px 9px;min-height:135px}.collections strong{font-size:17px}.hero-copy .button{margin-top:12px}.hero-books{min-height:225px}.hero-cover{height:160px}.hero-cover-two{height:210px}}
 @media(prefers-reduced-motion:reduce){.cover-link img,.collections button{transition:none}.cover-link:hover img{transform:none}}
+
+/* V7 — editorial illustrated collection cards. All other site sections unchanged. */
+#collections .collections-editorial{gap:16px}
+#collections .collection-card{display:flex;flex-direction:column;min-width:0;min-height:0;padding:0;overflow:hidden;text-align:left;border-radius:19px;border:1px solid #e9ded2;background:#eef5eb;box-shadow:0 8px 22px #344b4010;transition:transform .2s ease,box-shadow .2s ease}
+#collections .collection-card:nth-child(2){background:#fff0f0}
+#collections .collection-card:nth-child(3){background:#e8f5fb}
+#collections .collection-card:nth-child(4){background:#fff1e3}
+#collections .collection-photo{display:block;width:100%;aspect-ratio:1.83 / 1;background-size:cover;background-position:center;flex:none}
+#collections .collection-feelings .collection-photo{background-image:url('images/collection-feelings.webp')}
+#collections .collection-friendship .collection-photo{background-image:url('images/collection-friendship.webp')}
+#collections .collection-explorers .collection-photo{background-image:url('images/collection-explorers.webp')}
+#collections .collection-activity .collection-photo{background-image:url('images/collection-create.webp')}
+#collections .collection-info{display:flex;align-items:center;gap:9px;padding:15px 12px 17px;min-height:88px;width:100%}
+#collections .collection-icon{font-size:28px;line-height:1;color:#6a9d77;flex:none;width:26px;text-align:center}
+#collections .collection-friendship .collection-icon{color:#ca7889}
+#collections .collection-explorers .collection-icon{color:#5b9fc4}
+#collections .collection-activity .collection-icon{color:#e88a51}
+#collections .collection-copy{min-width:0;flex:1}
+#collections .collection-copy strong{font:normal clamp(16px,1.55vw,21px)/1.18 Georgia,serif;color:#123d4c;white-space:normal}
+#collections .collection-copy small{font:400 11px/1.35 system-ui,-apple-system,Segoe UI,sans-serif;color:#35545c;margin-top:5px}
+#collections .collection-arrow{display:grid;place-items:center;flex:none;width:29px;height:29px;border-radius:50%;background:#6a9d77;color:white;font:25px/1 system-ui}
+#collections .collection-friendship .collection-arrow{background:#ca7889}
+#collections .collection-explorers .collection-arrow{background:#5b9fc4}
+#collections .collection-activity .collection-arrow{background:#e88a51}
+#collections .collection-card:hover{transform:translateY(-3px);box-shadow:0 14px 27px #344b4023}
+#collections .collection-card:focus-visible{outline:3px solid #204f64;outline-offset:3px}
+@media(max-width:850px){#collections .collections-editorial{grid-template-columns:repeat(2,minmax(0,1fr))}}
+@media(max-width:520px){#collections .collections-editorial{gap:12px}#collections .collection-info{padding:11px 9px;gap:5px;min-height:91px}#collections .collection-icon{width:19px;font-size:21px}#collections .collection-copy strong{font-size:15px}#collections .collection-copy small{font-size:10px}#collections .collection-arrow{width:23px;height:23px;font-size:21px}}
+@media(max-width:360px){#collections .collections-editorial{grid-template-columns:1fr}}
+@media(prefers-reduced-motion:reduce){#collections .collection-card{transition:none}}
