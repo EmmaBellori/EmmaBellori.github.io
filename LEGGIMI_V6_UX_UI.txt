@@ -1,0 +1,30 @@
+EMMA BELLORI BOOKS — V6 UX/UI
+
+Versione evolutiva basata sui file V5 forniti.
+
+NOVITÀ
+- Hero con tre copertine REALI, pulsanti Books e Free guides.
+- Navigazione più chiara con accesso diretto alle guide gratuite.
+- Scelta per esigenze: Big Feelings, Friendship, Little Explorers, Color & Create.
+- Rimossa dal filtro la categoria Adult Coloring priva di titoli attuali.
+- Ricerca e filtri con conteggio risultati e stato aria-pressed.
+- Copertine e titoli cliccabili verso le schede dei libri.
+- Card delle guide riprogettate, layout mobile e focus migliorati.
+- Migliorata l'ancora Skip to content.
+
+INVARIATI
+- Sei schede libri e tre guide, SEO e sitemap, immagini, logo e favicon.
+- Amazon URLs, script analytics-consent.js e GA4 amazon_click.
+- Privacy e contenuto delle pagine interne.
+
+PUBBLICAZIONE
+Estrarre lo ZIP e caricare i file nella ROOT del repository GitHub Pages,
+sovrascrivendo i file omonimi, conservando la struttura delle cartelle.
+
+TEST CONSIGLIATI
+1. Mobile e desktop: homepage, filtri, ricerca e apertura dei libri.
+2. Apertura delle tre guide.
+3. Consenso analytics rifiutato/accettato e evento amazon_click.
+4. Controllo sitemap.xml e robots.txt.
+
+NOTA: Le modifiche sono state effettuate localmente, non pubblicate su GitHub.
