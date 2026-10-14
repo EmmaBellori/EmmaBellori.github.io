@@ -1,41 +1,32 @@
-
-name: Update Book Catalog
-
+name: Update book catalog
 on:
   push:
-    branches:
-      - main
+    branches: [main]
     paths:
-      - "books.json"
-      - "scripts/**"
-      - ".github/workflows/update-catalog.yml"
+      - 'books.json'
+      - 'images/books/**'
+      - 'scripts/build_catalog.py'
   workflow_dispatch:
-
 permissions:
   contents: write
-
 jobs:
-  update-catalog:
+  update:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
-        uses: actions/checkout@v4
-
-      - name: Set up Python
-        uses: actions/setup-python@v5
+      - uses: actions/checkout@v4
         with:
-          python-version: "3.11"
-
-      - name: Generate book pages and sitemap
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Generate catalog and pages
         run: python scripts/build_catalog.py
-
       - name: Commit generated files
         run: |
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add -A
+          git add books.js sitemap.xml books/
           if ! git diff --cached --quiet; then
-            git commit -m "Update generated book catalog"
+            git commit -m "Update catalog and book pages"
             git push
           fi
