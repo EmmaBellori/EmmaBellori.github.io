@@ -1,0 +1,7 @@
+// Uses the same generated catalog as the book grid; no duplicate book data.
+(()=>{const topic=document.querySelector('#finder-topic'),go=document.querySelector('#finder-submit'),out=document.querySelector('#finder-results');if(!topic||!go||!out)return;
+const rules={confidence:b=>/mistake|confidence|try again/i.test([b.title,b.theme,b.description,...(b.topics||[])].join(' ')),friendship:b=>/friend|belong|connection/i.test([b.title,b.theme,b.description,...(b.topics||[])].join(' ')),emotions:b=>/losing|lose|frustrat|big emotion/i.test([b.title,b.theme,b.description,...(b.topics||[])].join(' ')),nature:b=>/nature|bug|discover|explor/i.test([b.title,b.theme,b.description,...(b.topics||[])].join(' ')),creativity:b=>b.category==='activity'||/color|creativ/i.test([b.title,b.theme,b.description,...(b.topics||[])].join(' '))};
+const esc=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+function show(){if(!topic.value){out.textContent='Choose a topic to see matching books.';return;}const matches=(window.EMMA_BOOKS||[]).filter(rules[topic.value]).slice(0,3);out.innerHTML=matches.length?'<h3>Books you may like</h3><div class="finder-matches">'+matches.map(b=>`<article><strong>${esc(b.title)}</strong><p>${esc(b.theme)}</p><a href="books/${encodeURIComponent(b.id)}.html">Explore this book →</a></article>`).join('')+'</div>':'<p>We don’t have a close match yet. <a href="#books">Browse all books →</a></p>';}
+go.addEventListener('click',show);topic.addEventListener('change',show);
+})();
