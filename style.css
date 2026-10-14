@@ -105,3 +105,35 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 @media(max-width:520px){#collections .collections-editorial{gap:12px}#collections .collection-info{padding:11px 9px;gap:5px;min-height:91px}#collections .collection-icon{width:19px;font-size:21px}#collections .collection-copy strong{font-size:15px}#collections .collection-copy small{font-size:10px}#collections .collection-arrow{width:23px;height:23px;font-size:21px}}
 @media(max-width:360px){#collections .collections-editorial{grid-template-columns:1fr}}
 @media(prefers-reduced-motion:reduce){#collections .collection-card{transition:none}}
+
+/* V7.1 — Collection cards: balanced image and text, responsive without compression */
+#collections .collections-editorial{grid-template-columns:repeat(4,minmax(0,1fr));gap:18px;align-items:stretch}
+#collections .collection-card{height:100%;border-radius:18px}
+#collections .collection-photo{aspect-ratio:1.55/1;background-position:center center}
+#collections .collection-info{padding:16px 15px 18px;gap:10px;min-height:96px}
+#collections .collection-copy strong{font-size:clamp(17px,1.65vw,21px);line-height:1.18;letter-spacing:-.2px}
+#collections .collection-copy small{font-size:11px;line-height:1.4;margin-top:5px}
+#collections .collection-arrow{margin-left:auto;width:30px;height:30px}
+@media(max-width:1100px){
+ #collections .collections-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+ #collections .collection-photo{aspect-ratio:2.25/1}
+ #collections .collection-info{min-height:88px;padding:16px 18px}
+ #collections .collection-copy strong{font-size:21px}
+ #collections .collection-copy small{font-size:12px}
+}
+@media(max-width:600px){
+ #collections .collections-editorial{grid-template-columns:repeat(2,minmax(0,1fr));gap:12px}
+ #collections .collection-photo{aspect-ratio:1.35/1}
+ #collections .collection-info{min-height:100px;padding:12px 10px;gap:6px}
+ #collections .collection-icon{display:none}
+ #collections .collection-copy strong{font-size:clamp(15px,3.6vw,18px)}
+ #collections .collection-copy small{font-size:11px}
+ #collections .collection-arrow{width:26px;height:26px;font-size:21px}
+}
+@media(max-width:390px){
+ #collections .collections-editorial{grid-template-columns:1fr}
+ #collections .collection-photo{aspect-ratio:2/1}
+ #collections .collection-info{min-height:82px;padding:14px 16px}
+ #collections .collection-icon{display:block}
+ #collections .collection-copy strong{font-size:20px}
+}
