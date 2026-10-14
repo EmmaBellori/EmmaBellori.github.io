@@ -1,6 +1,6 @@
 const books=window.EMMA_BOOKS||[];const grid=document.querySelector('#book-grid');const empty=document.querySelector('#empty');const search=document.querySelector('#search');const authorUrl='https://www.amazon.com/author/emmabellori';let filter='all';const labels={feelings:'Big Feelings',activity:'Color & Create',explorers:'Little Explorers',adult:'Adult Coloring',friendship:'Friendship'};const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));function cover(b){return b.cover?`<img loading="lazy" src="${escapeHTML(b.cover)}" alt="Cover of ${escapeHTML(b.title)}">`:`<div class="cover-placeholder ${escapeHTML(b.category)}"><span class="cover-star">✦</span><strong>${escapeHTML(b.title)}</strong><small>Emma Bellori</small></div>`}function render(){
  const q=search.value.trim().toLowerCase();
- const filtered=books.filter(b=>(filter==='all'||b.category===filter||(filter==='friendship'&&b.id==='play'))&&[b.title,b.theme,b.description,b.format].join(' ').toLowerCase().includes(q));
+ const filtered=books.filter(b=>(filter==='all'||b.category===filter||(filter==='friendship'&&/friend|belong|connection/i.test([b.theme,b.description,b.title].join(' '))))&&[b.title,b.theme,b.description,b.format].join(' ').toLowerCase().includes(q));
  grid.innerHTML=filtered.map(b=>{
   const url=b.amazonUrl||authorUrl;
   const cta='Explore this book →';

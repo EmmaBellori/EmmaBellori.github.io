@@ -1,0 +1,62 @@
+EMMA BELLORI BOOKS — V8 | AGGIORNAMENTO SETTIMANALE
+====================================================
+
+PRIMA INSTALLAZIONE
+1. Fai una copia di sicurezza del repository.
+2. Estrai questo ZIP e carica TUTTI i file e le cartelle nella radice del repository
+   https://github.com/emmabellori/emma-bellori-books (branch main).
+   IMPORTANTE: includi anche la cartella nascosta .github/workflows.
+3. In GitHub > Settings > Actions > General > Workflow permissions, seleziona
+   "Read and write permissions" se disponibile, poi Save.
+4. Verifica che GitHub Pages continui a pubblicare dal branch main (Settings > Pages).
+5. Apri Actions > Update book catalog. Puoi usare "Run workflow" per un test.
+
+PER AGGIUNGERE UN NUOVO LIBRO (DOPO LA PUBBLICAZIONE SU AMAZON)
+1. Carica la copertina, per esempio images/books/my-new-book.jpg.
+2. Apri books.json in GitHub, clicca la matita (Edit) e aggiungi un nuovo
+   oggetto prima della parentesi quadra finale. Ricorda la virgola tra oggetti.
+3. Imposta i campi:
+   id: identificatore unico minuscolo, senza spazi, es. my-new-book
+   title: titolo esatto
+   category: feelings | friendship | explorers | activity | adult
+   format: es. Paperback
+   price: opzionale, es. $12.99 (non mostrato come prezzo corrente)
+   theme: breve tema, es. Counting and numbers
+   description: 1-2 frasi in inglese
+   cover: images/books/my-new-book.jpg
+   amazonUrl: link verificato, es. https://www.amazon.com/dp/XXXXXXXXXX
+   featured: true o false
+4. Premi Commit changes.
+5. Apri Actions > Update book catalog e aspetta il segno verde.
+   Il workflow aggiorna automaticamente books.js, la pagina books/ID.html
+   e sitemap.xml e salva un nuovo commit. GitHub Pages pubblica il risultato.
+6. Controlla homepage, pagina del libro, copertina e pulsante Amazon.
+
+ATTENZIONE
+- NON modificare books.js: viene rigenerato automaticamente.
+- NON modificare manualmente le nuove pagine books/ID.html: saranno rigenerate.
+- Le sei pagine originali restano intatte, con i contenuti editoriali esistenti.
+- Usa un ID definitivo: cambiarlo cambia l'URL e può interrompere vecchi link.
+- Il file books.json deve essere JSON valido: doppi apici, virgole corrette.
+- Se Actions mostra un errore, controlla il messaggio e correggi books.json.
+- Per prezzi, disponibilità e formati aggiornati fa fede Amazon.
+- Le pagine vengono generate dopo il commit tramite GitHub Actions: il semplice
+  salvataggio di books.json NON rende immediatamente visibile il libro.
+- Il workflow richiede permesso di scrittura al repository. Se il repository
+  blocca i push del bot, occorre adeguare le impostazioni del branch.
+
+ESEMPIO DI NUOVO OGGETTO (DA INSERIRE IN books.json):
+{
+  "id": "my-new-book",
+  "title": "My New Book",
+  "category": "activity",
+  "format": "Paperback",
+  "price": "",
+  "theme": "Early learning",
+  "description": "A playful learning experience for curious young minds.",
+  "cover": "images/books/my-new-book.jpg",
+  "amazonUrl": "https://www.amazon.com/dp/XXXXXXXXXX",
+  "featured": false
+}
+
+NOTA: l'esempio è illustrativo, non è stato aggiunto al catalogo.
