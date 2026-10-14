@@ -1,0 +1,13 @@
+EMMA BELLORI BOOKS V5 — SEO CONTENT HUB
+
+Base: V4 con logo, NON la bozza V4.1 privacy.
+
+Aggiunti 3 articoli in inglese in guides/, collegamenti dalla homepage e da 3 pagine libro, sitemap aggiornata.
+
+Invariati: GA4, analytics-consent.js, Amazon, privacy.html, immagini e logo.
+
+PUBBLICAZIONE: estrarre lo ZIP e caricare il CONTENUTO nella root del repository GitHub, mantenendo le cartelle books/, guides/, images/. NON eliminare il file di verifica Google gia presente nel repository.
+
+DOPO: aprire i 3 URL /guides/..., controllare i link e inviare nuovamente sitemap.xml tramite Google Search Console se necessario. Indicizzazione e traffico non sono garantiti.
+
+NOTA: Privacy Policy ancora da completare.
