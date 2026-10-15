@@ -206,3 +206,33 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .series-jump-nav a{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border-radius:999px;border:1px solid #d7ddd7;background:#fffdf9;color:var(--ink);font-size:12px;font-weight:650;text-decoration:none;line-height:1.25}
 .series-jump-nav a:hover,.series-jump-nav a:focus-visible{background:#e9f1eb;border-color:#a5c1b3}
 @media(max-width:600px){.series-jump-nav{gap:7px;margin-bottom:22px}.series-jump-nav a{font-size:11px;padding:8px 11px}}
+
+/* Fix bookshelf heading collisions and keep series shortcuts visible while browsing. */
+#books .section-heading{align-items:flex-end;gap:24px}
+#books .section-heading>div{min-width:0;flex:1 1 0}
+#books .section-heading h2{margin:8px 0 18px;line-height:1.2}
+#books .series-intro{display:block;margin:0;max-width:700px;line-height:1.65}
+#books .search-label{flex:0 0 auto;margin-bottom:2px}
+#books .results-count{position:relative;display:block;margin:20px 0 8px;line-height:1.5;clear:both}
+#books .series-catalog{margin-top:0;gap:38px}
+#books .series-jump-nav{
+ position:sticky;top:0;z-index:30;align-self:stretch;
+ display:flex;align-items:center;flex-wrap:wrap;gap:8px;
+ margin:0 0 12px;padding:12px 14px;
+ background:rgba(255,250,243,.97);border:1px solid #e9e2d8;
+ border-radius:14px;box-shadow:0 6px 18px rgba(38,61,64,.09);
+ backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px);
+}
+#books .series-section{scroll-margin-top:115px}
+@media(max-width:750px){
+ #books .section-heading{align-items:stretch;flex-direction:column;gap:18px}
+ #books .section-heading>div{flex:auto}
+ #books .section-heading h2{margin-bottom:12px}
+ #books .search-label{align-self:stretch}
+ #books .search-label input{width:100%;max-width:none}
+ #books .results-count{margin-top:16px}
+ #books .series-jump-nav{flex-wrap:nowrap;overflow-x:auto;overscroll-behavior-x:contain;scrollbar-width:thin;gap:8px;padding:10px;white-space:nowrap}
+ #books .series-jump-nav a{flex:0 0 auto}
+ #books .series-jump-label{flex:0 0 auto}
+ #books .series-section{scroll-margin-top:95px}
+}
