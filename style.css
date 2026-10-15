@@ -236,3 +236,25 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
  #books .series-jump-label{flex:0 0 auto}
  #books .series-section{scroll-margin-top:95px}
 }
+
+/* Accessibility and layout safeguards: keyboard, motion, contrast and mobile. */
+#books .section-heading{align-items:flex-start}
+#books .section-heading>div{min-width:0}
+#books .section-heading .series-intro{margin:0;line-height:1.65}
+#books .results-count{margin:22px 0 12px;min-height:1.5em}
+#books .series-jump-nav a:focus-visible,
+#books .book-card a:focus-visible,
+.eb-consent-banner button:focus-visible,
+.eb-privacy-button:focus-visible{
+ outline:3px solid #146d78;outline-offset:3px;
+}
+#books .series-jump-nav a{color:#263d40}
+#books .series-jump-nav{scroll-padding-inline:12px}
+#books .series-jump-nav a{scroll-margin-inline:12px}
+@media(max-width:750px){
+ #books .section-heading{display:flex;flex-direction:column;align-items:stretch}
+ #books .section-heading>div{width:100%}
+}
+@media(prefers-reduced-motion:reduce){
+ #books .series-jump-nav{scroll-behavior:auto}
+}
