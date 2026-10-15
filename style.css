@@ -161,3 +161,15 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .book-card-upcoming .book-meta{margin-top:14px}
 .book-card-upcoming .upcoming-status{align-self:flex-start;margin:10px 0 3px}
 .book-card-upcoming .book-description{margin-top:auto;padding-top:12px}
+
+/* Editorial series-based bookshelf */
+.series-intro{max-width:760px;margin:12px 0 0;color:var(--muted)}
+.series-catalog{display:flex;flex-direction:column;gap:48px;margin-top:18px}
+.series-section{scroll-margin-top:90px}
+.series-section+.series-section{padding-top:36px;border-top:1px solid #e4ddd3}
+.series-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:16px;margin-bottom:20px}
+.series-heading h3{font:normal clamp(25px,3vw,36px)/1.15 Georgia,serif;margin:5px 0 9px;color:var(--ink)}
+.series-heading p:not(.eyebrow){margin:0;color:var(--muted);line-height:1.6}
+.series-count{white-space:nowrap;font-size:12px;font-weight:700;color:#49665f;background:#e9f1eb;border-radius:999px;padding:8px 13px}
+.series-section .book-grid{margin-top:0}
+@media(max-width:600px){.series-catalog{gap:32px}.series-section+.series-section{padding-top:25px}.series-heading{align-items:flex-start;flex-direction:column;gap:10px}.series-heading h3{font-size:26px}}
