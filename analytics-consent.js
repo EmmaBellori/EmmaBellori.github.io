@@ -22,6 +22,7 @@
     s.onerror=()=>{loading=false;};
     document.head.appendChild(s);
   }
+  window.ebTrack=function(name,params){if(loading && typeof window.gtag==='function')window.gtag('event',name,params||{});};
   function hideBanner(){const el=document.getElementById('eb-consent-banner');if(el)el.hidden=true;}
   function showBanner(){const el=document.getElementById('eb-consent-banner');if(el)el.hidden=false;}
   function choose(accept) {
@@ -52,7 +53,7 @@
     if(!/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname))return;
     const slug=location.pathname.match(/\/books\/([a-z-]+)\.html$/);
     window.gtag('event','amazon_click',{
-      book_id:slug?slug[1]:'homepage',
+      book_id:a.dataset.bookId|| (slug?slug[1]:'homepage'),
       link_host:u.hostname,
       link_type:/\/dp\//.test(u.pathname)?'book_product':'author_page',
       transport_type:'beacon'
