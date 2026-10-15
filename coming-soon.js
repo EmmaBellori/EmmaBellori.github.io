@@ -23,5 +23,9 @@ window.EMMA_COMING_SOON=[
  {id:"letters-with-me-home",title:"Letters With Me at Home",cover:"images/coming-soon/Letters_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
  {id:"five-senses-home",title:"My Five Senses at Home",cover:"images/coming-soon/My_Five_Senses_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
  {id:"shapes-with-me-home",title:"Shapes With Me at Home",cover:"images/coming-soon/Shapes_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
- {id:"colors-with-me-home",title:"Colors With Me at Home",cover:"images/coming-soon/Colors_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"}
+ {id:"colors-with-me-home",title:"Colors With Me at Home",cover:"images/coming-soon/Colors_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
+ {id:"weather-detective",title:"Weather Detective",cover:"images/coming-soon/Weather_Detective_Front_800px.jpg",series:"Junior Detectives"},
+ {id:"junior-archaeologist-egypt",title:"Junior Archaeologist: Ancient Egypt",cover:"images/coming-soon/Junior_Archaeologist_Ancient_Egypt_Front_800px.jpg",series:"Junior Detectives"},
+ {id:"deep-sea-detective",title:"Deep Sea Detective",cover:"images/coming-soon/Deep_Sea_Detective_Front_800px.jpg",series:"Junior Detectives"},
+ {id:"human-body-detective",title:"Human Body Detective",cover:"images/coming-soon/Human_Body_Detective_Front_800px.jpg",series:"Junior Detectives"}
 ];
