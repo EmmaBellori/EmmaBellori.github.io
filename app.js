@@ -25,8 +25,8 @@ function bookCard(b){
 function render(){
  const q=search.value.trim().toLocaleLowerCase();
  const filtered=books.filter(b=>[b.title,b.series,b.theme,b.description,b.format,b.ageRange||'',...(b.topics||[])].join(' ').toLocaleLowerCase().includes(q));
- const groups=seriesOrder.map(([name,description])=>({name,description,items:filtered.filter(b=>b.series===name)})).filter(g=>g.items.length);
- catalog.innerHTML=groups.map((g,i)=>'<section class="series-section" aria-labelledby="series-title-'+i+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+i+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+g.items.map(bookCard).join('')+'</div></section>').join('');
+ const groups=seriesOrder.map(([name,description],index)=>({name,description,index,items:filtered.filter(b=>b.series===name),publishedCount:books.filter(b=>b.series===name&&b.status!=='coming_soon').length,totalCount:books.filter(b=>b.series===name).length})).filter(g=>g.items.length).sort((a,b)=>b.publishedCount-a.publishedCount||b.totalCount-a.totalCount||a.index-b.index);
+ catalog.innerHTML='<nav class="series-jump-nav" aria-label="Jump to a book series"><span class="series-jump-label">Jump to a series:</span>'+groups.map((g,i)=>'<a href="#series-'+i+'">'+escapeHTML(g.name)+'</a>').join('')+'</nav>'+groups.map((g,i)=>'<section id="series-'+i+'" class="series-section" aria-labelledby="series-title-'+i+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+i+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+g.items.map(bookCard).join('')+'</div></section>').join('');
  empty.hidden=filtered.length>0;
  const count=document.querySelector('#results-count');if(count)count.textContent=filtered.length===1?'Showing 1 book': 'Showing '+filtered.length+' books across '+groups.length+' collections';
 }
