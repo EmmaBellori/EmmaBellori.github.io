@@ -173,3 +173,29 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .series-count{white-space:nowrap;font-size:12px;font-weight:700;color:#49665f;background:#e9f1eb;border-radius:999px;padding:8px 13px}
 .series-section .book-grid{margin-top:0}
 @media(max-width:600px){.series-catalog{gap:32px}.series-section+.series-section{padding-top:25px}.series-heading{align-items:flex-start;flex-direction:column;gap:10px}.series-heading h3{font-size:26px}}
+
+/* Consistent cover stage across every series: originals are never cropped. */
+.series-section .book-card{min-width:0}
+.series-section .book-card .cover-frame,
+.series-section .book-card-upcoming .upcoming-cover-frame{
+ box-sizing:border-box;width:100%;height:clamp(190px,26vw,320px);min-height:0;
+ display:flex;align-items:center;justify-content:center;padding:12px;
+ background:#fff9f0;overflow:hidden;flex:0 0 auto;
+}
+.series-section .book-card .cover-frame img,
+.series-section .book-card-upcoming .upcoming-cover-frame img{
+ display:block;width:100%;height:100%;max-height:none;aspect-ratio:auto;
+ object-fit:contain;object-position:center;border-radius:6px;
+}
+.series-section .book-card .book-meta{margin-top:14px}
+.series-section .book-card-upcoming .upcoming-status{margin-top:10px}
+.series-section .book-card h3{margin-top:12px;min-height:2.5em}
+.series-section .book-card .book-description{margin-top:auto}
+@media(max-width:750px){
+ .series-section .book-card .cover-frame,
+ .series-section .book-card-upcoming .upcoming-cover-frame{height:clamp(185px,40vw,285px);padding:9px}
+}
+@media(max-width:460px){
+ .series-section .book-card .cover-frame,
+ .series-section .book-card-upcoming .upcoming-cover-frame{height:clamp(185px,62vw,290px);padding:10px}
+}
