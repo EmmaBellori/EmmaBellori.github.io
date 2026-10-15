@@ -6,10 +6,11 @@
   const consentVersion = '2026-10-13';
   let enabled = false;
   let loading = false;
+  let consentGranted = false;
   const read = () => { try { return localStorage.getItem(storageKey); } catch (_) { return null; } };
   const save = (v) => { try { localStorage.setItem(storageKey,v); } catch (_) {} };
   function loadAnalytics() {
-    if (enabled || loading) return;
+    if (!consentGranted || enabled || loading) return;
     loading = true;
     window.dataLayer = window.dataLayer || [];
     window.gtag = function(){ window.dataLayer.push(arguments); };
@@ -22,14 +23,16 @@
     s.onerror=()=>{loading=false;};
     document.head.appendChild(s);
   }
-  window.ebTrack=function(name,params){if(loading && typeof window.gtag==='function')window.gtag('event',name,params||{});};
+  window.ebTrack=function(name,params){if(consentGranted && (loading || enabled) && typeof window.gtag==='function')window.gtag('event',name,params||{});};
   function hideBanner(){const el=document.getElementById('eb-consent-banner');if(el)el.hidden=true;}
   function showBanner(){const el=document.getElementById('eb-consent-banner');if(el)el.hidden=false;}
   function choose(accept) {
+    const wasActive=loading || enabled;
+    consentGranted=accept;
     save((accept?'yes':'no')+'|'+consentVersion);
     hideBanner();
     if(accept) loadAnalytics();
-    else if (loading) { // GA was already loaded in this page view; reload to ensure no further tracking.
+    else if (wasActive) { // GA was already loaded in this page view; reload to ensure no further tracking.
       location.reload();
     }
   }
@@ -43,12 +46,12 @@
     const footer=document.querySelector('footer');
     if(footer){const b=document.createElement('button');b.type='button';b.className='eb-privacy-button';b.textContent='Privacy settings';b.addEventListener('click',showBanner);footer.appendChild(b);}
     const saved=read();
-    if(saved==='yes|'+consentVersion)loadAnalytics();
+    if(saved==='yes|'+consentVersion){consentGranted=true;loadAnalytics();}
     else if(saved!=='no|'+consentVersion)showBanner();
   }
   document.addEventListener('click',function(e){
     const a=e.target.closest('a[href]');
-    if(!a || !loading || typeof window.gtag!=='function')return;
+    if(!a || !consentGranted || !(loading || enabled) || typeof window.gtag!=='function')return;
     let u;try{u=new URL(a.href,location.href);}catch(_){return;}
     if(!/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname))return;
     const slug=location.pathname.match(/\/books\/([a-z-]+)\.html$/);
