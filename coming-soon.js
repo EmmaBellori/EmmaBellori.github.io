@@ -8,5 +8,10 @@ window.EMMA_COMING_SOON=[
  ,{id:"bakery-before-breakfast",title:"The Bakery Before Breakfast",cover:"images/coming-soon/The_Bakery_Before_Breakfast_Front_800px.jpg",series:"Small Town, Many Hands"}
  ,{id:"dont-like-changes",title:"I Don’t Like Changes!",cover:"images/coming-soon/I_Dont_Like_Changes_Front_800px.jpg",series:"Big Feelings, Real Problems"}
  ,{id:"those-words-hurt",title:"Those Words Hurt!",cover:"images/coming-soon/Those_Words_Hurt_Front_800px.jpg",series:"Big Feelings, Real Problems"}
- ,{id:"dont-want-school",title:"I Don’t Want to Go to School!",cover:"images/coming-soon/I_Dont_Want_To_Go_To_School_Front_800px.jpg",series:"Big Feelings, Real Problems"}
+ ,{id:"dont-want-school",title:"I Don’t Want to Go to School!",cover:"images/coming-soon/I_Dont_Want_To_Go_To_School_Front_800px.jpg",series:"Big Feelings, Real Problems"},
+ {id:"staircase-seashell",title:"The Staircase Inside the Seashell",cover:"images/coming-soon/The_Staircase_Inside_the_Seashell_Front_800px.jpg",series:"Tiny Doors, Big Adventures"},
+ {id:"want-it-now",title:"I Want It NOW!",cover:"images/coming-soon/I_Want_It_NOW_Front_800px.jpg",series:"Big Feelings, Real Problems"},
+ {id:"garden-fed-town",title:"The Garden That Fed the Town",cover:"images/coming-soon/The_Garden_That_Fed_the_Town_Front_800px.jpg",series:"Small Town, Many Hands"},
+ {id:"repair-shop",title:"A Day at the Repair Shop",cover:"images/coming-soon/A_Day_at_the_Repair_Shop_Front_800px.jpg",series:"Small Town, Many Hands"},
+ {id:"parcel-crossed-town",title:"The Parcel That Crossed Town",cover:"images/coming-soon/The_Parcel_That_Crossed_Town_Front_800px.jpg",series:"Small Town, Many Hands"}
 ];
