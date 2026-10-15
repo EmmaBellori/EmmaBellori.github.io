@@ -144,14 +144,5 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .book-details-link{flex:1 1 100px;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 12px;border:1px solid #a7b6b2;border-radius:25px;text-decoration:none;color:var(--ink);font-size:12px;font-weight:700;text-align:center}
 .book-details-link:hover{text-decoration:underline}
 .book-meta{flex-wrap:wrap;letter-spacing:.5px}
-.finder-section{padding-top:45px}.finder-section>p:not(.eyebrow){color:var(--muted);max-width:650px}
-.finder-panel{background:#f5eee5;border:1px solid var(--line);border-radius:20px;padding:26px;max-width:850px}
-.finder-panel label{display:block;font-weight:700;margin-bottom:8px}
-.finder-panel select{display:block;width:100%;max-width:460px;min-height:46px;background:white;border:1px solid #849792;border-radius:10px;padding:10px;color:var(--ink);font:inherit}
-.finder-panel .button{border:0;min-height:44px}
-.finder-matches{display:grid;grid-template-columns:repeat(auto-fit,minmax(175px,1fr));gap:12px;margin-top:12px}
-.finder-matches article{background:white;padding:16px;border-radius:12px;border:1px solid var(--line)}
-.finder-matches p{font-size:13px;color:var(--muted)}.finder-matches a{font-weight:700;font-size:13px}
-#finder-results:not(:empty){margin-top:20px}
 :where(a,button,input,select):focus-visible{outline:3px solid #146d78;outline-offset:3px}
 @media(prefers-reduced-motion:reduce){html{scroll-behavior:auto}}
