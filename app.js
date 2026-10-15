@@ -11,7 +11,7 @@ const seriesOrder=[
  ['Kawaii Coloring & Activities','Cheerful coloring books and creative activities.'],
  ['More Books by Emma Bellori','Explore more standalone stories and discoveries.']
 ];
-const publishedSeries=b=>b.category==='feelings'?'Big Feelings, Real Problems':b.category==='activity'?'Kawaii Coloring & Activities':'More Books by Emma Bellori';
+const publishedSeries=b=>b.id==='bugs'?'Junior Detectives':b.category==='feelings'?'Big Feelings, Real Problems':b.category==='activity'?'Kawaii Coloring & Activities':'More Books by Emma Bellori';
 const books=[...published.map(b=>({...b,series:b.series||publishedSeries(b)})),...upcoming];
 const catalog=document.querySelector('#series-catalog'),search=document.querySelector('#search'),empty=document.querySelector('#empty');
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
