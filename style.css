@@ -199,3 +199,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
  .series-section .book-card .cover-frame,
  .series-section .book-card-upcoming .upcoming-cover-frame{height:clamp(185px,62vw,290px);padding:10px}
 }
+
+/* Compact shortcuts to book series, sorted by published availability. */
+.series-jump-nav{display:flex;align-items:center;flex-wrap:wrap;gap:9px;margin:6px 0 30px}
+.series-jump-label{font-size:12px;font-weight:700;color:var(--muted);margin-right:5px}
+.series-jump-nav a{display:inline-flex;align-items:center;min-height:38px;padding:8px 13px;border-radius:999px;border:1px solid #d7ddd7;background:#fffdf9;color:var(--ink);font-size:12px;font-weight:650;text-decoration:none;line-height:1.25}
+.series-jump-nav a:hover,.series-jump-nav a:focus-visible{background:#e9f1eb;border-color:#a5c1b3}
+@media(max-width:600px){.series-jump-nav{gap:7px;margin-bottom:22px}.series-jump-nav a{font-size:11px;padding:8px 11px}}
