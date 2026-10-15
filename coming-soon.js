@@ -18,5 +18,10 @@ window.EMMA_COMING_SOON=[
  {id:"umbrella-forest",title:"The Umbrella That Grew a Forest",cover:"images/coming-soon/The_Umbrella_That_Grew_a_Forest_Front_800px.jpg",series:"Tiny Doors, Big Adventures"},
  {id:"library-after-closing",title:"The Library After Closing",cover:"images/coming-soon/The_Library_After_Closing_Front_800px.jpg",series:"Small Town, Many Hands"},
  {id:"midnight-sock-parade",title:"The Midnight Sock Parade",cover:"images/coming-soon/The_Midnight_Sock_Parade_Kindle_Cover.jpg",series:"Tiny Doors, Big Adventures"},
- {id:"pocket-sized-moon",title:"The Pocket-Sized Moon",cover:"images/coming-soon/The_Pocket_Sized_Moon_Front_800px.jpg",series:"Tiny Doors, Big Adventures"}
+ {id:"pocket-sized-moon",title:"The Pocket-Sized Moon",cover:"images/coming-soon/The_Pocket_Sized_Moon_Front_800px.jpg",series:"Tiny Doors, Big Adventures"},
+ {id:"count-with-me-home",title:"Count With Me at Home",cover:"images/coming-soon/Count_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
+ {id:"letters-with-me-home",title:"Letters With Me at Home",cover:"images/coming-soon/Letters_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
+ {id:"five-senses-home",title:"My Five Senses at Home",cover:"images/coming-soon/My_Five_Senses_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
+ {id:"shapes-with-me-home",title:"Shapes With Me at Home",cover:"images/coming-soon/Shapes_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"},
+ {id:"colors-with-me-home",title:"Colors With Me at Home",cover:"images/coming-soon/Colors_With_Me_at_Home_Front_800px.jpg",series:"Little Steps, Big Discoveries"}
 ];
