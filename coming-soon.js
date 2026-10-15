@@ -13,5 +13,10 @@ window.EMMA_COMING_SOON=[
  {id:"want-it-now",title:"I Want It NOW!",cover:"images/coming-soon/I_Want_It_NOW_Front_800px.jpg",series:"Big Feelings, Real Problems"},
  {id:"garden-fed-town",title:"The Garden That Fed the Town",cover:"images/coming-soon/The_Garden_That_Fed_the_Town_Front_800px.jpg",series:"Small Town, Many Hands"},
  {id:"repair-shop",title:"A Day at the Repair Shop",cover:"images/coming-soon/A_Day_at_the_Repair_Shop_Front_800px.jpg",series:"Small Town, Many Hands"},
- {id:"parcel-crossed-town",title:"The Parcel That Crossed Town",cover:"images/coming-soon/The_Parcel_That_Crossed_Town_Front_800px.jpg",series:"Small Town, Many Hands"}
+ {id:"parcel-crossed-town",title:"The Parcel That Crossed Town",cover:"images/coming-soon/The_Parcel_That_Crossed_Town_Front_800px.jpg",series:"Small Town, Many Hands"},
+ {id:"door-teapot",title:"The Door Inside the Teapot",cover:"images/coming-soon/The_Door_Inside_the_Teapot_Front_800px.jpg",series:"Tiny Doors, Big Adventures"},
+ {id:"umbrella-forest",title:"The Umbrella That Grew a Forest",cover:"images/coming-soon/The_Umbrella_That_Grew_a_Forest_Front_800px.jpg",series:"Tiny Doors, Big Adventures"},
+ {id:"library-after-closing",title:"The Library After Closing",cover:"images/coming-soon/The_Library_After_Closing_Front_800px.jpg",series:"Small Town, Many Hands"},
+ {id:"midnight-sock-parade",title:"The Midnight Sock Parade",cover:"images/coming-soon/The_Midnight_Sock_Parade_Kindle_Cover.jpg",series:"Tiny Doors, Big Adventures"},
+ {id:"pocket-sized-moon",title:"The Pocket-Sized Moon",cover:"images/coming-soon/The_Pocket_Sized_Moon_Front_800px.jpg",series:"Tiny Doors, Big Adventures"}
 ];
