@@ -267,3 +267,45 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .text-link{color:#765046}
 
 .contact p:not(.eyebrow), .contact .fineprint { color: #344b40 !important; }
+
+/* V10: compact persistent catalog discovery and optional heart preferences */
+#books .section-heading{display:block!important;width:100%}
+#books .section-heading>div{width:100%!important;max-width:none!important;flex:none!important}
+#books .section-heading .series-intro{max-width:none!important;width:100%}
+#books .vote-intro{display:flex;align-items:center;gap:11px;margin:10px 0 0;color:#4b625e;line-height:1.5}
+#books .vote-intro-heart{font:700 28px/1 Georgia,serif;color:#c43e59;flex:none}
+#books .vote-intro strong{color:#233e43}
+#books .catalog-tools-slot{position:relative;margin:25px 0 13px;min-height:70px}
+#books .catalog-tools{display:flex;gap:12px;align-items:center;padding:11px 13px;border:1px solid #e7ddd2;border-radius:15px;background:rgba(255,250,245,.97);box-shadow:0 6px 20px rgba(35,62,67,.10);backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
+#books .catalog-tools.is-fixed{position:fixed;top:0;left:50%;transform:translateX(-50%);width:calc(100% - 40px);max-width:1064px;z-index:9998;border-radius:0 0 15px 15px;box-shadow:0 10px 30px rgba(35,62,67,.18)}
+#books .catalog-search{position:relative;display:flex;align-items:center;flex:1 1 auto;min-width:0}
+#books .catalog-search input{width:100%;height:46px;border:1px solid #d5ded8;border-radius:11px;background:#fff;color:#233e43;padding:10px 13px 10px 41px;font:inherit;font-size:14px}
+#books .tool-icon{position:absolute;left:14px;font-size:23px;color:#61716f;line-height:1;pointer-events:none}
+#books .catalog-select{position:relative;flex:0 0 min(260px,35%);min-width:0}
+#books .catalog-select select{appearance:none;-webkit-appearance:none;width:100%;height:46px;border:1px solid #c8d5d0;border-radius:11px;background:#fff;color:#233e43;font:650 13px system-ui,sans-serif;padding:10px 35px 10px 14px;cursor:pointer;text-overflow:ellipsis}
+#books .select-chevron{position:absolute;right:13px;top:5px;font-size:25px;pointer-events:none}
+#books .series-section{scroll-margin-top:95px}
+.sr-only{position:absolute!important;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);white-space:nowrap;border:0}
+.vote-cover-wrap{position:relative}
+.vote-heart{position:absolute;right:12px;top:12px;width:46px;height:46px;display:grid;place-items:center;border:1px solid #d5e0db;border-radius:50%;background:#fff;color:#5a7370;box-shadow:0 3px 12px #233e4326;cursor:pointer;z-index:1}
+.vote-heart svg{width:25px;height:25px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.vote-heart.is-active{color:#bf274b;background:#fff6f8;border-color:#edb7c3}
+.vote-heart.is-active svg{fill:currentColor}
+.vote-heart:hover{transform:scale(1.05)}
+.vote-heart:focus-visible{outline:3px solid #146d78;outline-offset:3px}
+.vote-dialog{max-width:530px;width:calc(100% - 32px);border:0;border-radius:22px;padding:32px;background:#fff;color:#233e43;font:inherit}
+.vote-dialog::backdrop{background:rgba(18,36,39,.64)}
+.vote-dialog h2{font:normal clamp(27px,4vw,34px)/1.15 Georgia,serif;margin:0 0 16px}
+.vote-dialog p{color:#526560;font-size:15px;line-height:1.6}
+.vote-dialog .vote-book{font-weight:750;color:#233e43;font-size:16px}
+.vote-dialog .vote-rule{font-size:13px}
+.vote-turnstile{margin:16px 0}
+.vote-error{color:#a12742!important;font-weight:650}
+.vote-actions{display:grid;grid-template-columns:1fr 1fr;gap:14px;margin-top:20px}
+.vote-actions button{min-height:50px;padding:10px 12px;border-radius:30px;font-weight:750;font-size:13px}
+#vote-cancel{border:1px solid #b9cbc3;background:#f3f6f4;color:#2d5d60}
+#vote-confirm{border:1px solid #233e43;background:#233e43;color:#fff}
+#vote-confirm:disabled{opacity:.6;cursor:wait}
+.vote-toast{position:fixed;bottom:24px;right:24px;max-width:min(390px,calc(100% - 32px));z-index:9999;border:1px solid #a4c7b0;border-radius:14px;padding:14px 18px;background:#edf7ef;color:#20533a;font-weight:700;box-shadow:0 10px 25px #233e4326}
+.vote-toast[hidden],.vote-error[hidden]{display:none!important}
+@media(max-width:650px){#books .catalog-tools{gap:8px;padding:8px}#books .catalog-tools.is-fixed{width:calc(100% - 24px)}#books .catalog-select{flex-basis:40%}#books .catalog-search input{font-size:12px}#books .catalog-select select{font-size:12px;padding-left:9px}#books .vote-intro{align-items:flex-start}.vote-dialog{padding:24px}.vote-actions{gap:8px}}
