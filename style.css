@@ -258,3 +258,10 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 @media(prefers-reduced-motion:reduce){
  #books .series-jump-nav{scroll-behavior:auto}
 }
+
+/* WCAG AA: strengthen small muted labels against warm and white backgrounds.
+   Preserve the editorial palette, cover artwork and large display typography. */
+.eyebrow{color:#815349}
+.book-meta{color:#76564c}
+.book-bottom button{color:#795047}
+.text-link{color:#765046}
