@@ -1,0 +1,24 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Book details | Emma Bellori Books</title><meta name="robots" content="index,follow"><link rel="icon" href="favicon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book-pages.css"><link rel="stylesheet" href="v91-book.css"></head>
+<body><a class="skip-link" href="#book-content">Skip to book details</a><header class="site-header"><a class="brand" href="index.html"><img class="brand-logo" alt="" src="images/emma-bellori-logo.webp" width="66" height="66"><span class="brand-label">Emma Bellori<span>BOOKS FOR CURIOUS MINDS</span></span></a><nav aria-label="Main navigation"><a href="index.html#books">All books</a></nav></header>
+<main class="detail-main" id="book-content"><a class="back-link" href="index.html#books">← Back to all books</a><section class="detail-hero"><div class="detail-cover-art v4-cover"><img id="book-cover" alt="" decoding="async" width="400" height="600"></div><div class="detail-copy"><p class="eyebrow">EMMA BELLORI BOOKS</p><h1 id="book-title">Loading book…</h1><p class="detail-subtitle" id="book-theme"></p><p class="lead" id="book-description"></p><p class="detail-fact" id="book-format"></p><a class="button primary-book-cta" id="book-amazon" href="#" target="_blank" rel="noopener noreferrer sponsored" hidden>View on Amazon ↗</a><p class="fineprint">Amazon.com displays current prices, available editions and any available preview.</p></div></section><section class="v4-info"><p class="eyebrow">EXPLORE THE BOOK</p><h2>About this book</h2><p id="book-about"></p></section></main><footer><span>© Emma Bellori Books</span><span><a href="index.html">Home</a> · <a href="https://www.amazon.com/author/emmabellori">Amazon Author Page</a></span></footer>
+<script>
+(async()=>{
+ const id=new URLSearchParams(location.search).get('id');
+ const fail=()=>{document.querySelector('#book-title').textContent='Book not found';document.querySelector('#book-description').textContent='Return to the catalog to explore available books.';document.querySelector('#book-cover').hidden=true;};
+ if(!id||!/^[a-z0-9-]{1,80}$/.test(id)){fail();return;}
+ try{
+  const r=await fetch('catalog.json',{cache:'no-store'});if(!r.ok)throw Error();
+  const entries=await r.json();const b=entries.find(x=>x.id===id&&x.status==='published');
+  if(!b||!/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl||''))throw Error();
+  document.title=b.title+' | Emma Bellori Books';
+  document.querySelector('#book-title').textContent=b.title;
+  document.querySelector('#book-theme').textContent=b.theme||b.series||'';
+  document.querySelector('#book-description').textContent=b.description||'';
+  document.querySelector('#book-about').textContent=b.description||'';
+  document.querySelector('#book-format').textContent='Available formats: '+(b.format||'See Amazon');
+  const cover=document.querySelector('#book-cover');cover.src=b.cover;cover.alt='Cover of '+b.title+' by Emma Bellori';
+  const amazon=document.querySelector('#book-amazon');amazon.href=b.amazonUrl;amazon.dataset.bookId=b.id;amazon.hidden=false;
+ }catch{fail();}
+})();
+</script><script defer src="analytics-consent.js"></script></body></html>
