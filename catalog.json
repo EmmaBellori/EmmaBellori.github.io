@@ -496,5 +496,125 @@
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
     "status": "coming_soon"
+  },
+  {
+    "id": "my-first-baseball-adventure",
+    "title": "My First Baseball Adventure",
+    "cover": "images/coming-soon/My_First_Baseball_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-basketball-adventure",
+    "title": "My First Basketball Adventure",
+    "cover": "images/coming-soon/My_First_Basketball_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-cheerleading-adventure",
+    "title": "My First Cheerleading Adventure",
+    "cover": "images/coming-soon/My_First_Cheerleading_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-flag-football-adventure",
+    "title": "My First Flag Football Adventure",
+    "cover": "images/coming-soon/My_First_Flag_Football_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-golf-adventure",
+    "title": "My First Golf Adventure",
+    "cover": "images/coming-soon/My_First_Golf_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-gymnastics-adventure",
+    "title": "My First Gymnastics Adventure",
+    "cover": "images/coming-soon/My_First_Gymnastics_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-ice-hockey-adventure",
+    "title": "My First Ice Hockey Adventure",
+    "cover": "images/coming-soon/My_First_Ice_Hockey_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-lacrosse-adventure",
+    "title": "My First Lacrosse Adventure",
+    "cover": "images/coming-soon/My_First_Lacrosse_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-pickleball-adventure",
+    "title": "My First Pickleball Adventure",
+    "cover": "images/coming-soon/My_First_Pickleball_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-soccer-adventure",
+    "title": "My First Soccer Adventure",
+    "cover": "images/coming-soon/My_First_Soccer_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-softball-adventure",
+    "title": "My First Softball Adventure",
+    "cover": "images/coming-soon/My_First_Softball_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-swimming-adventure",
+    "title": "My First Swimming Adventure",
+    "cover": "images/coming-soon/My_First_Swimming_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-tennis-adventure",
+    "title": "My First Tennis Adventure",
+    "cover": "images/coming-soon/My_First_Tennis_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-track-and-field-adventure",
+    "title": "My First Track and Field Adventure",
+    "cover": "images/coming-soon/My_First_Track_and_Field_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-volleyball-adventure",
+    "title": "My First Volleyball Adventure",
+    "cover": "images/coming-soon/My_First_Volleyball_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
   }
 ]
