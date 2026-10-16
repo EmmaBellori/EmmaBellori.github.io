@@ -7,6 +7,7 @@ let seriesOrder=[
  ['Small Town, Many Hands','Stories of community, kindness and everyday work.'],
  ['Little Steps, Big Discoveries','Playful first learning experiences at home.'],
  ['Junior Detectives','Curiosity, science and discovery for young explorers.'],
+ ['My First Sports Adventures','Fun first introductions to sports, teamwork and trying something new.'],
  ['Kawaii Coloring & Activities','Cheerful coloring books and creative activities.'],
  ['More Books by Emma Bellori','Explore more standalone stories and discoveries.']
 ];
