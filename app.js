@@ -1,7 +1,6 @@
 /* One editorial bookshelf: published titles first, then Coming Soon within each series. */
-const published=window.EMMA_BOOKS||[];
-const upcoming=(window.EMMA_COMING_SOON||[]).filter(b=>!published.some(p=>p.id===b.id)).map(b=>({...b,status:'coming_soon'}));
-const seriesOrder=[
+let published=[],upcoming=[],books=[];
+let seriesOrder=[
  ['Big Feelings, Real Problems','Stories about emotions, confidence and growing up.'],
  ['Little Christmas Wonders','Heartwarming stories filled with holiday magic.'],
  ['Tiny Doors, Big Adventures','Imaginative journeys into extraordinary worlds.'],
@@ -12,7 +11,7 @@ const seriesOrder=[
  ['More Books by Emma Bellori','Explore more standalone stories and discoveries.']
 ];
 const publishedSeries=b=>b.id==='bugs'?'Junior Detectives':b.category==='feelings'?'Big Feelings, Real Problems':b.category==='activity'?'Kawaii Coloring & Activities':'More Books by Emma Bellori';
-const books=[...published.map(b=>({...b,series:b.series||publishedSeries(b)})),...upcoming];
+
 const catalog=document.querySelector('#series-catalog'),search=document.querySelector('#search'),empty=document.querySelector('#empty');
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
 function formatLabel(value){const s=String(value??'').replace(/\bedition\b/gi,'');const k=/kindle/i.test(s),p=/paperback/i.test(s);return k&&p?'Kindle + Paperback':k?'Kindle':p?'Paperback':s.trim();}
@@ -95,7 +94,7 @@ voteConfirm.addEventListener('click',async()=>{
  finally{submitting=false;voteConfirm.textContent='♥ Vote for this book';voteConfirm.disabled=!verifiedToken;}
 });
 const picker=document.querySelector('#series-picker');
-picker.innerHTML='<option value="">Jump to a series…</option>'+seriesOrder.map(([name])=>'<option value="'+escapeHTML(name)+'">'+escapeHTML(name)+'</option>').join('');
+// The options are populated after the canonical catalog loads.
 picker.addEventListener('change',()=>{
  const name=picker.value;picker.selectedIndex=0;
  if(!name)return;
@@ -114,4 +113,18 @@ window.addEventListener('resize',syncToolsBar);
 syncToolsBar();
 
 document.querySelector('#year').textContent=new Date().getFullYear();
-render();
+fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(entries=>{
+ if(!Array.isArray(entries))throw Error('Invalid catalog');
+ const valid=entries.filter(b=>b&&typeof b.id==='string'&&typeof b.title==='string'&&typeof b.series==='string'&&(b.status==='published'||b.status==='coming_soon'));
+ if(valid.length!==entries.length||new Set(valid.map(b=>b.id)).size!==valid.length)throw Error('Invalid catalog entries');
+ published=valid.filter(b=>b.status==='published').map(b=>({...b,legacyDetail:['mistakes','play','bugs','mad','christmas','halloween'].includes(b.id)}));
+ upcoming=valid.filter(b=>b.status==='coming_soon');
+ books=[...published,...upcoming];
+ const known=new Set(seriesOrder.map(s=>s[0]));
+ for(const b of valid)if(!known.has(b.series)){seriesOrder.push([b.series,b.seriesDescription||'Explore stories in this collection.']);known.add(b.series);}
+ picker.innerHTML='<option value="">Jump to a series…</option>'+seriesOrder.filter(([name])=>valid.some(b=>b.series===name)).map(([name])=>'<option value="'+escapeHTML(name)+'">'+escapeHTML(name)+'</option>').join('');
+ render();
+}).catch(error=>{
+ console.error('Catalog could not be loaded',error);
+ document.querySelector('#results-count').textContent='The book catalog is temporarily unavailable. Please refresh the page.';
+});
