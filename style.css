@@ -309,3 +309,6 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .vote-toast{position:fixed;bottom:24px;right:24px;max-width:min(390px,calc(100% - 32px));z-index:9999;border:1px solid #a4c7b0;border-radius:14px;padding:14px 18px;background:#edf7ef;color:#20533a;font-weight:700;box-shadow:0 10px 25px #233e4326}
 .vote-toast[hidden],.vote-error[hidden]{display:none!important}
 @media(max-width:650px){#books .catalog-tools{gap:8px;padding:8px}#books .catalog-tools.is-fixed{width:calc(100% - 24px)}#books .catalog-select{flex-basis:40%}#books .catalog-search input{font-size:12px}#books .catalog-select select{font-size:12px;padding-left:9px}#books .vote-intro{align-items:flex-start}.vote-dialog{padding:24px}.vote-actions{gap:8px}}
+
+/* Align the Jump to a series chevron vertically with the select field. */
+#books .catalog-select .select-chevron{top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;height:24px;line-height:1;right:13px}
