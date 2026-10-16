@@ -312,5 +312,69 @@
     "series": "Junior Detectives",
     "seriesSlug": "junior-detectives",
     "status": "coming_soon"
+  },
+  {
+    "id": "i-cant-sleep-without-you",
+    "title": "I Can't Sleep Without You",
+    "cover": "images/coming-soon/i-cant-sleep-without-you.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-new-baby-is-taking-everyone",
+    "title": "My New Baby Is Taking Everyone!",
+    "cover": "images/coming-soon/my-new-baby-is-taking-everyone.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "cut-with-me-home",
+    "title": "Cut With Me at Home",
+    "cover": "images/coming-soon/cut-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "measure-with-me-home",
+    "title": "Measure With Me at Home",
+    "cover": "images/coming-soon/measure-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "nature-with-me-home",
+    "title": "Nature With Me at Home",
+    "cover": "images/coming-soon/nature-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "opposites-with-me-home",
+    "title": "Opposites With Me at Home",
+    "cover": "images/coming-soon/opposites-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "patterns-with-me-home",
+    "title": "Patterns With Me at Home",
+    "cover": "images/coming-soon/patterns-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "sort-with-me-home",
+    "title": "Sort With Me at Home",
+    "cover": "images/coming-soon/sort-with-me-home.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
   }
 ]
