@@ -1,0 +1,316 @@
+[
+  {
+    "id": "mistakes",
+    "title": "I Hate Making Mistakes",
+    "category": "feelings",
+    "format": "Kindle Edition",
+    "price": "$6.99",
+    "theme": "Learning from mistakes",
+    "description": "A thoughtful story for children navigating the fear of getting things wrong.",
+    "cover": "images/mistakes.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0HMNZJPYS",
+    "featured": true,
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "published"
+  },
+  {
+    "id": "play",
+    "title": "Nobody Wants to Play With Me!",
+    "category": "feelings",
+    "format": "Kindle Edition",
+    "price": "$6.99",
+    "theme": "Friendship and belonging",
+    "description": "A story about friendship, feeling left out, and finding connection.",
+    "cover": "images/play.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0HGPHSPML",
+    "featured": true,
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "published"
+  },
+  {
+    "id": "bugs",
+    "title": "The Amazing Bug Detective",
+    "category": "explorers",
+    "format": "Paperback+Kindle Edition",
+    "price": "$6.99",
+    "theme": "Nature and discovery",
+    "description": "A curious adventure that invites young readers to notice the tiny wonders of nature.",
+    "cover": "images/bugs.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0HDHDFDZD",
+    "featured": false,
+    "series": "Junior Detectives",
+    "seriesSlug": "junior-detectives",
+    "status": "published"
+  },
+  {
+    "id": "mad",
+    "title": "When I Lose, I Get REALLY Mad",
+    "category": "feelings",
+    "format": "Paperback+Kindle Edition",
+    "price": "$6.99",
+    "theme": "Handling big emotions",
+    "description": "A relatable story about frustration, losing, and big feelings.",
+    "cover": "images/mad.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0H63ZBHLC",
+    "featured": true,
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "published"
+  },
+  {
+    "id": "christmas",
+    "title": "Christmas Kawaii",
+    "category": "activity",
+    "format": "Paperback",
+    "price": "$15.99",
+    "theme": "Christmas coloring and activities",
+    "description": "Festive coloring and activity fun with cheerful holiday characters.",
+    "cover": "images/christmas.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0HM4WNZZ4",
+    "featured": true,
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "published"
+  },
+  {
+    "id": "halloween",
+    "title": "Halloween Kawaii",
+    "category": "activity",
+    "format": "Paperback",
+    "price": "$15.99",
+    "theme": "Halloween coloring and activities",
+    "description": "Cute and playful Halloween coloring and activities for creative kids.",
+    "cover": "images/halloween.jpg",
+    "amazonUrl": "https://www.amazon.com/dp/B0HM47B9GM",
+    "featured": true,
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "published"
+  },
+  {
+    "id": "christmas-wish",
+    "title": "The Christmas Wish That Got Lost",
+    "cover": "images/coming-soon/The_Christmas_Wish_That_Got_Lost_Front_800px.jpg",
+    "series": "Little Christmas Wonders",
+    "seriesSlug": "little-christmas-wonders",
+    "status": "coming_soon"
+  },
+  {
+    "id": "gingerbread-house",
+    "title": "The Gingerbread House Next Door",
+    "cover": "images/coming-soon/The_Gingerbread_House_Next_Door_Front_800px.jpg",
+    "series": "Little Christmas Wonders",
+    "seriesSlug": "little-christmas-wonders",
+    "status": "coming_soon"
+  },
+  {
+    "id": "reindeer",
+    "title": "The Reindeer Who Couldn’t Fly Yet",
+    "cover": "images/coming-soon/The_Reindeer_Who_Couldnt_Fly_Yet_Front_800px.jpg",
+    "series": "Little Christmas Wonders",
+    "seriesSlug": "little-christmas-wonders",
+    "status": "coming_soon"
+  },
+  {
+    "id": "snowman",
+    "title": "The Snowman Who Wanted to Stay",
+    "cover": "images/coming-soon/The_Snowman_Who_Wanted_to_Stay_Front_800px.jpg",
+    "series": "Little Christmas Wonders",
+    "seriesSlug": "little-christmas-wonders",
+    "status": "coming_soon"
+  },
+  {
+    "id": "dont-want-to-share",
+    "title": "I Don’t Want to Share!",
+    "cover": "images/coming-soon/I_Dont_Want_To_Share_Front_800px.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "bakery-before-breakfast",
+    "title": "The Bakery Before Breakfast",
+    "cover": "images/coming-soon/The_Bakery_Before_Breakfast_Front_800px.jpg",
+    "series": "Small Town, Many Hands",
+    "seriesSlug": "small-town-many-hands",
+    "status": "coming_soon"
+  },
+  {
+    "id": "dont-like-changes",
+    "title": "I Don’t Like Changes!",
+    "cover": "images/coming-soon/I_Dont_Like_Changes_Front_800px.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "those-words-hurt",
+    "title": "Those Words Hurt!",
+    "cover": "images/coming-soon/Those_Words_Hurt_Front_800px.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "dont-want-school",
+    "title": "I Don’t Want to Go to School!",
+    "cover": "images/coming-soon/I_Dont_Want_To_Go_To_School_Front_800px.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "staircase-seashell",
+    "title": "The Staircase Inside the Seashell",
+    "cover": "images/coming-soon/The_Staircase_Inside_the_Seashell_Front_800px.jpg",
+    "series": "Tiny Doors, Big Adventures",
+    "seriesSlug": "tiny-doors-big-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "want-it-now",
+    "title": "I Want It NOW!",
+    "cover": "images/coming-soon/I_Want_It_NOW_Front_800px.jpg",
+    "series": "Big Feelings, Real Problems",
+    "seriesSlug": "big-feelings-real-problems",
+    "status": "coming_soon"
+  },
+  {
+    "id": "garden-fed-town",
+    "title": "The Garden That Fed the Town",
+    "cover": "images/coming-soon/The_Garden_That_Fed_the_Town_Front_800px.jpg",
+    "series": "Small Town, Many Hands",
+    "seriesSlug": "small-town-many-hands",
+    "status": "coming_soon"
+  },
+  {
+    "id": "repair-shop",
+    "title": "A Day at the Repair Shop",
+    "cover": "images/coming-soon/A_Day_at_the_Repair_Shop_Front_800px.jpg",
+    "series": "Small Town, Many Hands",
+    "seriesSlug": "small-town-many-hands",
+    "status": "coming_soon"
+  },
+  {
+    "id": "parcel-crossed-town",
+    "title": "The Parcel That Crossed Town",
+    "cover": "images/coming-soon/The_Parcel_That_Crossed_Town_Front_800px.jpg",
+    "series": "Small Town, Many Hands",
+    "seriesSlug": "small-town-many-hands",
+    "status": "coming_soon"
+  },
+  {
+    "id": "door-teapot",
+    "title": "The Door Inside the Teapot",
+    "cover": "images/coming-soon/The_Door_Inside_the_Teapot_Front_800px.jpg",
+    "series": "Tiny Doors, Big Adventures",
+    "seriesSlug": "tiny-doors-big-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "umbrella-forest",
+    "title": "The Umbrella That Grew a Forest",
+    "cover": "images/coming-soon/The_Umbrella_That_Grew_a_Forest_Front_800px.jpg",
+    "series": "Tiny Doors, Big Adventures",
+    "seriesSlug": "tiny-doors-big-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "library-after-closing",
+    "title": "The Library After Closing",
+    "cover": "images/coming-soon/The_Library_After_Closing_Front_800px.jpg",
+    "series": "Small Town, Many Hands",
+    "seriesSlug": "small-town-many-hands",
+    "status": "coming_soon"
+  },
+  {
+    "id": "midnight-sock-parade",
+    "title": "The Midnight Sock Parade",
+    "cover": "images/coming-soon/The_Midnight_Sock_Parade_Kindle_Cover.jpg",
+    "series": "Tiny Doors, Big Adventures",
+    "seriesSlug": "tiny-doors-big-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "pocket-sized-moon",
+    "title": "The Pocket-Sized Moon",
+    "cover": "images/coming-soon/The_Pocket_Sized_Moon_Front_800px.jpg",
+    "series": "Tiny Doors, Big Adventures",
+    "seriesSlug": "tiny-doors-big-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "count-with-me-home",
+    "title": "Count With Me at Home",
+    "cover": "images/coming-soon/Count_With_Me_at_Home_Front_800px.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "letters-with-me-home",
+    "title": "Letters With Me at Home",
+    "cover": "images/coming-soon/Letters_With_Me_at_Home_Front_800px.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "five-senses-home",
+    "title": "My Five Senses at Home",
+    "cover": "images/coming-soon/My_Five_Senses_at_Home_Front_800px.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "shapes-with-me-home",
+    "title": "Shapes With Me at Home",
+    "cover": "images/coming-soon/Shapes_With_Me_at_Home_Front_800px.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "colors-with-me-home",
+    "title": "Colors With Me at Home",
+    "cover": "images/coming-soon/Colors_With_Me_at_Home_Front_800px.jpg",
+    "series": "Little Steps, Big Discoveries",
+    "seriesSlug": "little-steps-big-discoveries",
+    "status": "coming_soon"
+  },
+  {
+    "id": "weather-detective",
+    "title": "Weather Detective",
+    "cover": "images/coming-soon/Weather_Detective_Front_800px.jpg",
+    "series": "Junior Detectives",
+    "seriesSlug": "junior-detectives",
+    "status": "coming_soon"
+  },
+  {
+    "id": "junior-archaeologist-egypt",
+    "title": "Junior Archaeologist: Ancient Egypt",
+    "cover": "images/coming-soon/Junior_Archaeologist_Ancient_Egypt_Front_800px.jpg",
+    "series": "Junior Detectives",
+    "seriesSlug": "junior-detectives",
+    "status": "coming_soon"
+  },
+  {
+    "id": "deep-sea-detective",
+    "title": "Deep Sea Detective",
+    "cover": "images/coming-soon/Deep_Sea_Detective_Front_800px.jpg",
+    "series": "Junior Detectives",
+    "seriesSlug": "junior-detectives",
+    "status": "coming_soon"
+  },
+  {
+    "id": "human-body-detective",
+    "title": "Human Body Detective",
+    "cover": "images/coming-soon/Human_Body_Detective_Front_800px.jpg",
+    "series": "Junior Detectives",
+    "seriesSlug": "junior-detectives",
+    "status": "coming_soon"
+  }
+]
