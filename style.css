@@ -265,3 +265,5 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .book-meta{color:#76564c}
 .book-bottom button{color:#795047}
 .text-link{color:#765046}
+
+.contact p:not(.eyebrow), .contact .fineprint { color: #344b40 !important; }
