@@ -488,5 +488,13 @@
     "series": "Kawaii Coloring & Activities",
     "seriesSlug": "kawaii-coloring-activities",
     "status": "coming_soon"
+  },
+  {
+    "id": "little-star-missed-christmas",
+    "title": "The Little Star That Missed Christmas",
+    "cover": "images/coming-soon/The_Little_Star_That_Missed_Christmas_Front_Cover.jpg",
+    "series": "Little Christmas Wonders",
+    "seriesSlug": "little-christmas-wonders",
+    "status": "coming_soon"
   }
 ]
