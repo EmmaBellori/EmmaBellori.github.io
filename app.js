@@ -18,7 +18,7 @@ const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;'
 function formatLabel(value){const s=String(value??'').replace(/\bedition\b/gi,'');const k=/kindle/i.test(s),p=/paperback/i.test(s);return k&&p?'Kindle + Paperback':k?'Kindle':p?'Paperback':s.trim();}
 function cover(b){return b.cover?'<img loading="lazy" decoding="async" src="'+escapeHTML(b.cover)+'" alt="Cover of '+escapeHTML(b.title)+'">':'<div class="cover-placeholder"><strong>'+escapeHTML(b.title)+'</strong></div>';}
 function bookCard(b){
- if(b.status==='coming_soon')return '<article class="book-card book-card-upcoming"><div class="cover-frame upcoming-cover-frame">'+cover(b)+'</div><div class="book-meta"><span>'+escapeHTML(b.series)+'</span></div><span class="upcoming-status">Coming Soon</span><h3>'+escapeHTML(b.title)+'</h3><p class="book-description">More details will be announced soon.</p></article>';
+ if(b.status==='coming_soon'){const selected=preferences[b.series]===b.id;return '<article class="book-card book-card-upcoming'+(selected?' is-preferred':'')+'"><div class="vote-cover-wrap"><div class="cover-frame upcoming-cover-frame">'+cover(b)+'</div><button type="button" class="vote-heart'+(selected?' is-active':'')+'" data-vote-id="'+escapeHTML(b.id)+'" aria-label="'+(selected?'Your selected book: ':'Support ')+escapeHTML(b.title)+'" aria-pressed="'+selected+'" title="'+(selected?'Your choice — choose another book to change':'Support this upcoming book')+'"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></button></div><div class="book-meta"><span>'+escapeHTML(b.series)+'</span></div><span class="upcoming-status">Coming Soon</span><h3>'+escapeHTML(b.title)+'</h3><p class="book-description">More details will be announced soon.</p></article>';}
  const age=b.ageRange?'<span class="book-age">Ages '+escapeHTML(String(b.ageRange).replace(/^ages?\s*/i,''))+'</span>':'';
  return '<article class="book-card"><a class="cover-frame cover-link" href="books/'+escapeHTML(b.id)+'.html" aria-label="Discover '+escapeHTML(b.title)+'">'+cover(b)+'</a><div class="book-meta"><span>Available now</span><span>'+escapeHTML(formatLabel(b.format))+'</span></div>'+age+'<h3><a class="book-title-link" href="books/'+escapeHTML(b.id)+'.html">'+escapeHTML(b.title)+'</a></h3><p class="book-theme">'+escapeHTML(b.theme)+'</p><p class="book-description">'+escapeHTML(b.description)+'</p><div class="book-bottom"><a class="amazon-cta" href="'+escapeHTML(b.amazonUrl)+'" target="_blank" rel="noopener noreferrer sponsored" data-book-id="'+escapeHTML(b.id)+'" aria-label="View '+escapeHTML(b.title)+' on Amazon (opens in new tab)">View on Amazon ↗</a><a class="book-details-link" href="books/'+escapeHTML(b.id)+'.html" aria-label="Details for '+escapeHTML(b.title)+'">Book details →</a></div></article>';
 }
@@ -26,11 +26,92 @@ function render(){
  const q=search.value.trim().toLocaleLowerCase();
  const filtered=books.filter(b=>[b.title,b.series,b.theme,b.description,b.format,b.ageRange||'',...(b.topics||[])].join(' ').toLocaleLowerCase().includes(q));
  const groups=seriesOrder.map(([name,description],index)=>({name,description,index,items:filtered.filter(b=>b.series===name),publishedCount:books.filter(b=>b.series===name&&b.status!=='coming_soon').length,totalCount:books.filter(b=>b.series===name).length})).filter(g=>g.items.length).sort((a,b)=>b.publishedCount-a.publishedCount||b.totalCount-a.totalCount||a.index-b.index);
- catalog.innerHTML='<nav class="series-jump-nav" aria-label="Jump to a book series"><span class="series-jump-label">Jump to a series:</span>'+groups.map((g,i)=>'<a href="#series-'+i+'">'+escapeHTML(g.name)+'</a>').join('')+'</nav>'+groups.map((g,i)=>'<section id="series-'+i+'" class="series-section" aria-labelledby="series-title-'+i+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+i+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+g.items.map(bookCard).join('')+'</div></section>').join('');
+ catalog.innerHTML=groups.map((g,i)=>'<section id="series-'+i+'" class="series-section" aria-labelledby="series-title-'+i+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+i+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+g.items.map(bookCard).join('')+'</div></section>').join('');
  empty.hidden=filtered.length>0;
  const count=document.querySelector('#results-count');if(count)count.textContent=filtered.length===1?'Showing 1 book': 'Showing '+filtered.length+' books across '+groups.length+' collections';
 }
 let searchDebounce;
 search.addEventListener('input',()=>{render();clearTimeout(searchDebounce);searchDebounce=setTimeout(()=>{if(search.value.trim()&&typeof window.ebTrack==='function')window.ebTrack('catalog_search',{search_term:search.value.trim().slice(0,80)});},700);});
+
+// Coming Soon preferences: one active choice per collection, confirmed by Supabase.
+const PREFERENCE_ENDPOINT='https://hsrmqwneuadoomqakzfs.supabase.co/functions/v1/submit-book-preference';
+const TURNSTILE_SITE_KEY='0x4AAAAAAFYRKxv3YSSQ6sQI';
+const VISITOR_STORAGE_KEY='eb-preference-visitor-v1';
+const CHOICES_STORAGE_KEY='eb-preference-choices-v1';
+const preferences=Object.create(null);
+try {const saved=JSON.parse(localStorage.getItem(CHOICES_STORAGE_KEY)||'{}');if(saved&&typeof saved==='object')for(const [k,v] of Object.entries(saved))if(typeof v==='string')preferences[k]=v;}catch{}
+const voteDialog=document.querySelector('#vote-dialog');
+const voteError=document.querySelector('#vote-error');
+const voteConfirm=document.querySelector('#vote-confirm');
+const voteToast=document.querySelector('#vote-toast');
+let pendingVote=null,widgetId=null,verifiedToken='',submitting=false,toastTimeout;
+function visitorId(){
+ let id;try{id=localStorage.getItem(VISITOR_STORAGE_KEY);}catch{}
+ if(!id||!/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(id)){
+  id=crypto.randomUUID();try{localStorage.setItem(VISITOR_STORAGE_KEY,id);}catch{}
+ }
+ return id;
+}
+function showVoteError(message){voteError.hidden=false;voteError.textContent=message;}
+function toast(message){clearTimeout(toastTimeout);voteToast.textContent=message;voteToast.hidden=false;toastTimeout=setTimeout(()=>{voteToast.hidden=true;},4500);}
+function prepareTurnstile(){
+ if(!voteDialog.open||!pendingVote)return;
+ if(!window.turnstile){showVoteError('Security verification is loading. Please try again in a moment.');return;}
+ if(widgetId!==null){try{window.turnstile.remove(widgetId);}catch{}widgetId=null;}
+ verifiedToken='';voteConfirm.disabled=true;
+ document.querySelector('#vote-turnstile').replaceChildren();
+ widgetId=window.turnstile.render('#vote-turnstile',{
+  sitekey:TURNSTILE_SITE_KEY,theme:'light',
+  callback(token){verifiedToken=token;voteConfirm.disabled=false;voteError.hidden=true;},
+  'expired-callback'(){verifiedToken='';voteConfirm.disabled=true;showVoteError('Verification expired. Please try again.');},
+  'error-callback'(){verifiedToken='';voteConfirm.disabled=true;showVoteError('Verification could not load. Please retry.');}
+ });
+}
+function openVote(book){
+ if(submitting||preferences[book.series]===book.id)return;
+ pendingVote=book;verifiedToken='';voteError.hidden=true;voteConfirm.disabled=true;
+ document.querySelector('#vote-description').textContent='Your pick: '+book.title;
+ voteDialog.showModal();
+ if(window.turnstile)prepareTurnstile();
+ else{showVoteError('Loading security verification…');let tries=0;const wait=setInterval(()=>{if(!voteDialog.open||!pendingVote){clearInterval(wait);return;}if(window.turnstile){clearInterval(wait);voteError.hidden=true;prepareTurnstile();}else if(++tries>30){clearInterval(wait);showVoteError('Security verification is unavailable. Please try again later.');}},250);}
+}
+document.querySelector('#vote-cancel').addEventListener('click',()=>{if(!submitting)voteDialog.close();});
+voteDialog.addEventListener('cancel',e=>{if(submitting)e.preventDefault();});
+voteDialog.addEventListener('close',()=>{pendingVote=null;verifiedToken='';if(window.turnstile&&widgetId!==null){try{window.turnstile.remove(widgetId);}catch{}widgetId=null;}});
+catalog.addEventListener('click',e=>{const btn=e.target.closest('[data-vote-id]');if(!btn)return;const book=upcoming.find(b=>b.id===btn.dataset.voteId);if(book)openVote(book);});
+voteConfirm.addEventListener('click',async()=>{
+ if(!pendingVote||!verifiedToken||submitting)return;
+ submitting=true;voteConfirm.disabled=true;voteConfirm.textContent='Saving…';voteError.hidden=true;
+ const book=pendingVote;
+ try{
+  const response=await fetch(PREFERENCE_ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({bookId:book.id,visitorId:visitorId(),turnstileToken:verifiedToken})});
+  const data=await response.json().catch(()=>({}));
+  if(!response.ok||data.success!==true||data.bookId!==book.id)throw Error(response.status===429?'Too many requests. Please try again later.':response.status===403?'Verification failed. Please try again.':'We could not save your vote. Please try again.');
+  preferences[book.series]=book.id;
+  try{localStorage.setItem(CHOICES_STORAGE_KEY,JSON.stringify(preferences));}catch{}
+  voteDialog.close();render();
+  toast('♥ Your vote is in! Thanks for helping choose our next story.');
+ }catch(error){showVoteError(error.message||'Unable to save your preference.');verifiedToken='';if(window.turnstile&&widgetId!==null)try{window.turnstile.reset(widgetId);}catch{}}
+ finally{submitting=false;voteConfirm.textContent='♥ Vote for this book';voteConfirm.disabled=!verifiedToken;}
+});
+const picker=document.querySelector('#series-picker');
+picker.innerHTML='<option value="">Jump to a series…</option>'+seriesOrder.map(([name])=>'<option value="'+escapeHTML(name)+'">'+escapeHTML(name)+'</option>').join('');
+picker.addEventListener('change',()=>{
+ const name=picker.value;picker.selectedIndex=0;
+ if(!name)return;
+ if(search.value.trim()){search.value='';render();}
+ const target=[...catalog.querySelectorAll('.series-section')].find(s=>s.querySelector('.series-heading h3')?.textContent===name);
+ if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+});
+const toolsBar=document.querySelector('.catalog-tools'),toolsSlot=document.querySelector('.catalog-tools-slot');
+function syncToolsBar(){
+ const fixed=toolsSlot.getBoundingClientRect().top<=0;
+ toolsBar.classList.toggle('is-fixed',fixed);
+ toolsSlot.style.height=toolsBar.offsetHeight+'px';
+}
+window.addEventListener('scroll',syncToolsBar,{passive:true});
+window.addEventListener('resize',syncToolsBar);
+syncToolsBar();
+
 document.querySelector('#year').textContent=new Date().getFullYear();
 render();
