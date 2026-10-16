@@ -376,5 +376,117 @@
     "series": "Little Steps, Big Discoveries",
     "seriesSlug": "little-steps-big-discoveries",
     "status": "coming_soon"
+  },
+  {
+    "id": "abc-animals",
+    "title": "ABC Animals – Learn & Color",
+    "cover": "images/coming-soon/abc-animals.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "animals-color-by-number",
+    "title": "Animals Color by Number",
+    "cover": "images/coming-soon/animals-color-by-number.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "construction-vehicles",
+    "title": "Construction Vehicles – Big Trucks & Diggers",
+    "cover": "images/coming-soon/construction-vehicles.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "cute-animals-bold-easy",
+    "title": "Cute Animals – Bold & Easy Coloring Book",
+    "cover": "images/coming-soon/cute-animals-bold-easy.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "easy-animal-mandalas",
+    "title": "Easy Animal Mandalas for Kids",
+    "cover": "images/coming-soon/easy-animal-mandalas.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "kawaii-carnival",
+    "title": "Kawaii Carnival",
+    "cover": "images/coming-soon/kawaii-carnival.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "kawaii-dinosaurs",
+    "title": "Kawaii Dinosaurs",
+    "cover": "images/coming-soon/kawaii-dinosaurs.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "kawaii-easter",
+    "title": "Kawaii Easter",
+    "cover": "images/coming-soon/kawaii-easter.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "kawaii-unicorns",
+    "title": "Kawaii Unicorns",
+    "cover": "images/coming-soon/kawaii-unicorns.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "monster-trucks-big-easy",
+    "title": "Monster Trucks – Big & Easy Coloring Book",
+    "cover": "images/coming-soon/monster-trucks-big-easy.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-animal-activity-book",
+    "title": "My First Animal Activity Book",
+    "cover": "images/coming-soon/my-first-animal-activity-book.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "ocean-animals-adventure",
+    "title": "Ocean Animals Adventure",
+    "cover": "images/coming-soon/ocean-animals-adventure.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "space-adventure",
+    "title": "Space Adventure",
+    "cover": "images/coming-soon/space-adventure.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
+  },
+  {
+    "id": "space-facts-and-coloring",
+    "title": "Space Facts & Coloring",
+    "cover": "images/coming-soon/space-facts-and-coloring.jpg",
+    "series": "Kawaii Coloring & Activities",
+    "seriesSlug": "kawaii-coloring-activities",
+    "status": "coming_soon"
   }
 ]
