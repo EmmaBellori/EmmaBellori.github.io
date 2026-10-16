@@ -1,0 +1,51 @@
+name: Sync Coming Soon report to Supabase
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - catalog.json
+  workflow_dispatch:
+  schedule:
+    - cron: '17 4 * * *'
+
+permissions:
+  contents: read
+
+concurrency:
+  group: sync-coming-soon-report
+  cancel-in-progress: false
+
+jobs:
+  sync:
+    runs-on: ubuntu-latest
+    timeout-minutes: 5
+    steps:
+      - uses: actions/checkout@v4
+      - name: Synchronize Supabase private vote report
+        env:
+          SUPABASE_SERVICE_ROLE_KEY: ${{ secrets.SUPABASE_SERVICE_ROLE_KEY }}
+        run: |
+          python3 - <<'PY'
+          import json, os, urllib.request
+          from pathlib import Path
+          key = os.environ.get("SUPABASE_SERVICE_ROLE_KEY", "")
+          if not key:
+              raise SystemExit("Missing GitHub Actions secret SUPABASE_SERVICE_ROLE_KEY")
+          catalog = json.loads(Path("catalog.json").read_text(encoding="utf-8"))
+          if not isinstance(catalog, list) or not catalog:
+              raise SystemExit("Invalid or empty catalog")
+          payload = json.dumps({"p_catalog": catalog}).encode()
+          url = "https://hsrmqwneuadoomqakzfs.supabase.co/rest/v1/rpc/sync_coming_soon_catalog"
+          req = urllib.request.Request(url, data=payload, method="POST", headers={
+              "apikey": key,
+              "Authorization": "Bearer " + key,
+              "Content-Type": "application/json",
+          })
+          with urllib.request.urlopen(req, timeout=30) as response:
+              count = json.load(response)
+          expected = sum(b.get("status") == "coming_soon" for b in catalog)
+          if count != expected:
+              raise SystemExit(f"Mismatch: report has {count}, catalog has {expected}")
+          print(f"Supabase report synchronized: {count} Coming Soon titles")
+          PY
