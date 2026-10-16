@@ -312,3 +312,6 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 
 /* Align the Jump to a series chevron vertically with the select field. */
 #books .catalog-select .select-chevron{top:50%;transform:translateY(-50%);display:flex;align-items:center;justify-content:center;height:24px;line-height:1;right:13px}
+
+/* Precise chevron centering: draw a CSS icon instead of a font glyph with uneven baseline. */
+#books .catalog-select .select-chevron{top:50%;right:18px;transform:translateY(-65%) rotate(45deg);width:10px;height:10px;display:block;font-size:0;line-height:0;border-right:2px solid #233e43;border-bottom:2px solid #233e43;box-sizing:border-box;pointer-events:none}
