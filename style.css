@@ -315,3 +315,14 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 
 /* Precise chevron centering: draw a CSS icon instead of a font glyph with uneven baseline. */
 #books .catalog-select .select-chevron{top:50%;right:18px;transform:translateY(-65%) rotate(45deg);width:10px;height:10px;display:block;font-size:0;line-height:0;border-right:2px solid #233e43;border-bottom:2px solid #233e43;box-sizing:border-box;pointer-events:none}
+
+/* Compact catalog discovery: progressive disclosure and mobile-first filters */
+.catalog-status-filter{display:flex;flex-wrap:wrap;gap:9px;margin:18px 0 14px}
+.catalog-status-filter button{border:1px solid var(--line);background:#fff;color:var(--ink);padding:9px 16px;border-radius:999px;font-size:.91rem;font-weight:650;min-height:42px}
+.catalog-status-filter button.is-active{background:var(--ink);color:#fff;border-color:var(--ink)}
+.catalog-status-filter button:focus-visible,.collection-toggle:focus-visible{outline:3px solid #146d78;outline-offset:3px}
+.series-section-compact{scroll-margin-top:120px}
+.series-section-compact .series-heading{margin-bottom:16px}
+.collection-toggle{display:block;margin:20px auto 0;padding:12px 22px;min-height:44px;border:1px solid var(--ink);border-radius:999px;background:#fffdf9;color:var(--ink);font-weight:700}
+.collection-toggle:hover{background:var(--sage)}
+@media(max-width:600px){.catalog-status-filter{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}.catalog-status-filter button{white-space:nowrap;flex:none;padding:8px 12px}.series-section-compact{scroll-margin-top:110px}.series-section-compact .series-heading{gap:8px}}
