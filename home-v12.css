@@ -1,0 +1,145 @@
+/* Emma Bellori Books homepage v12: compact, conversion-focused, fully scoped. */
+.home-v12{--home-paper:#fffdf9;--home-sage:#e7efe8;--home-line:#e4ddd4;--home-heart:#b84f69}
+.home-v12 .site-header{max-width:1120px;padding:13px 22px}
+.home-v12 .brand{display:flex;align-items:center;gap:11px}
+.home-v12 .brand-logo{width:56px;height:56px;object-fit:contain}
+.home-v12 .brand-label{font:700 28px Georgia,serif;letter-spacing:-.6px}
+.home-v12 .brand-label span{font:650 9px system-ui,sans-serif;letter-spacing:2px;margin-top:-3px}
+.home-v12 .site-header nav{gap:22px}
+
+/* Search stays available while the user browses the long catalog. */
+.home-search-bar{position:sticky;top:0;z-index:9997;background:rgba(255,250,243,.96);border-top:1px solid #eee5db;border-bottom:1px solid #dcd7cf;box-shadow:0 7px 22px rgba(38,61,64,.07);backdrop-filter:blur(12px)}
+.home-search-inner{position:relative;max-width:1120px;margin:0 auto;padding:9px 22px}
+.home-search-field{display:flex;align-items:center;gap:10px;min-height:46px;padding:0 15px;background:#fff;border:1px solid #cdd7d3;border-radius:999px}
+.home-search-field:focus-within{border-color:#708f88;box-shadow:0 0 0 3px #dfe9e5}
+.home-search-icon{font-size:19px;color:#61716f;line-height:1}
+.home-search-field input{width:100%;min-width:0;border:0;outline:0;background:transparent;color:var(--ink);font:inherit;font-size:14px}
+.home-search-field input::placeholder{color:#84918f}
+.home-search-suggestions{position:absolute;left:22px;right:22px;top:calc(100% - 3px);max-height:350px;overflow:auto;padding:6px;background:#fff;border:1px solid #d3dcd8;border-radius:0 0 15px 15px;box-shadow:0 16px 34px rgba(38,61,64,.16)}
+.home-search-suggestions[hidden]{display:none}
+.home-search-suggestion{display:flex;align-items:center;justify-content:space-between;gap:16px;width:100%;padding:10px 12px;border:0;border-radius:10px;background:#fff;color:var(--ink);text-align:left;text-decoration:none}
+.home-search-suggestion:hover,.home-search-suggestion:focus-visible{background:#edf4ef;outline:0}
+.home-search-suggestion strong{display:block;font-size:13px;line-height:1.35}
+.home-search-suggestion small{display:block;margin-top:2px;color:var(--muted);font-size:11px;line-height:1.35}
+.home-search-status{flex:0 0 auto;padding:4px 8px;border-radius:999px;background:var(--home-sage);color:#35534f;font-size:10px;font-weight:750;white-space:nowrap}
+
+/* Shorter hero with Amazon as the primary conversion action. */
+.home-v12 .hero{min-height:315px;padding-top:30px;padding-bottom:30px;gap:34px}
+.home-v12 .hero h1{font-size:clamp(42px,4.5vw,64px);line-height:1.04;margin:9px 0 10px}
+.home-v12 .hero-copy>p:not(.eyebrow){max-width:610px;margin:0;color:#52615e}
+.home-hero-actions{display:flex;align-items:center;gap:10px;flex-wrap:wrap;margin-top:17px}
+.home-v12 .home-hero-actions .button{margin-top:0}
+.home-v12 .home-amazon-primary{background:var(--ink);color:#fff}
+.home-v12 .home-amazon-primary:hover{background:#36595c}
+.home-v12 .hero-art{min-height:245px}
+.home-v12 .hero-cover{object-fit:contain}
+
+/* General compact section system. */
+.home-v12 .section{max-width:1080px;padding:42px 22px}
+.home-section-heading{display:flex;align-items:flex-end;justify-content:space-between;gap:20px;margin-bottom:17px}
+.home-section-heading h2{font:normal clamp(30px,3.6vw,40px)/1.12 Georgia,serif;margin:0}
+.home-section-heading p:not(.eyebrow){max-width:760px;margin:5px 0 0;color:var(--muted);line-height:1.55}
+.home-heading-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 12px;color:#315d62;font-size:13px;font-weight:750;text-decoration:none;white-space:nowrap}
+.home-heading-link:hover{text-decoration:underline}
+
+/* Cards: covers are never cropped. */
+.home-book-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:14px}
+.home-book-card{min-width:0;display:flex;flex-direction:column;padding:11px;background:#fff;border:1px solid var(--home-line);border-radius:15px;box-shadow:0 4px 15px rgba(35,62,67,.035)}
+.home-cover-wrap{position:relative;width:100%;height:215px;display:flex;align-items:center;justify-content:center;padding:9px;background:#fff9ef;border-radius:10px;overflow:hidden}
+a.home-cover-wrap{text-decoration:none}
+.home-cover-wrap img{display:block;width:100%;height:100%;max-width:100%;max-height:100%;object-fit:contain!important;object-position:center;border-radius:5px}
+.home-card-meta{display:flex;align-items:center;justify-content:space-between;gap:7px;flex-wrap:wrap;margin-top:9px;color:#8c736b;text-transform:uppercase;font-size:9px;line-height:1.45;letter-spacing:.07em}
+.home-card-status{align-self:flex-start;margin-top:9px;padding:5px 9px;background:var(--home-sage);border-radius:999px;color:#35534f;font-size:10px;font-weight:800;line-height:1.3}
+.home-book-card h3{font:normal 20px/1.22 Georgia,serif;margin:8px 0 7px;overflow-wrap:anywhere}
+.home-book-card h3 a{text-decoration:none}
+.home-book-card h3 a:hover{text-decoration:underline}
+.home-book-theme{margin:0 0 10px!important;color:var(--ink)!important;font-size:12px!important;font-weight:700;line-height:1.45}
+.home-card-actions{display:grid;grid-template-columns:minmax(0,1.15fr) minmax(0,.85fr);gap:7px;margin-top:auto}
+.home-card-actions a{display:flex;align-items:center;justify-content:center;min-height:42px;padding:8px 9px;border-radius:999px;text-align:center;text-decoration:none;font-size:11px;font-weight:800;line-height:1.25;white-space:normal}
+.home-card-amazon{background:var(--ink);color:#fff}
+.home-card-amazon:hover{background:#36595c}
+.home-card-details{border:1px solid #b3c0bc;background:#fff;color:#315d62}
+
+/* Coming Soon hearts use the existing live voting flow. */
+.home-vote-button{position:absolute;top:9px;right:9px;z-index:3;width:44px;height:44px;display:grid;place-items:center;border:1px solid #e3cfd4;border-radius:50%;background:#fff;color:var(--home-heart);box-shadow:0 3px 10px rgba(0,0,0,.12)}
+.home-vote-button svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
+.home-vote-button.is-active{background:#fff3f6;border-color:#d99aaa}
+.home-vote-button.is-active svg{fill:currentColor}
+.home-vote-button:hover{transform:scale(1.04)}
+.home-vote-button:focus-visible{outline:3px solid #146d78;outline-offset:3px}
+.home-vote-intro{display:flex;align-items:flex-start;gap:10px;margin:0 0 22px;padding:12px 14px;background:#fffdf9;border:1px solid #dfd9d0;border-radius:14px}
+.home-vote-heart{flex:0 0 auto;color:var(--home-heart);font-size:24px;line-height:1}
+.home-vote-intro p{margin:0;color:#4d605d;font-size:12px;line-height:1.55}
+.home-vote-intro strong{color:var(--ink)}
+
+/* Each homepage collection is only a preview: never more than three cards. */
+.home-collections-section{max-width:none!important;background:#fbf6ee}
+.home-collections-section>.home-section-heading,.home-collections-section>.home-vote-intro,.home-collections-section>.home-series-catalog,.home-collections-section>.empty{max-width:1036px;margin-left:auto;margin-right:auto}
+.home-series-catalog{display:flex;flex-direction:column;gap:0}
+.home-series-preview{padding:25px 0;border-top:1px solid var(--home-line)}
+.home-series-preview:first-child{border-top:0;padding-top:4px}
+.home-series-heading{display:grid;grid-template-columns:minmax(0,1fr) auto;align-items:end;gap:18px;margin-bottom:13px}
+.home-series-copy{min-width:0}
+.home-series-copy h3{font:normal 28px/1.12 Georgia,serif;margin:0}
+.home-series-copy p:not(.eyebrow){margin:5px 0 0;color:var(--muted);font-size:13px;line-height:1.5}
+.home-series-actions{display:flex;align-items:center;justify-content:flex-end;gap:9px;flex-wrap:wrap}
+.home-series-count{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 13px;background:var(--home-sage);border-radius:999px;color:#3a5651;font-size:12px;font-weight:800;white-space:nowrap}
+.home-explore-collection{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:9px 15px;border:1px solid #8da29d;border-radius:999px;background:#fff;color:#284f53;text-decoration:none;font-size:12px;font-weight:800;white-space:nowrap}
+.home-explore-collection:hover{background:#edf3ef}
+
+/* Supporting content deliberately stays compact. */
+.home-guides-section{padding-top:38px!important;padding-bottom:38px!important}
+.home-guide-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
+.home-guide-card{padding:15px;background:#fff;border:1px solid var(--home-line);border-radius:14px}
+.home-guide-card h3{font:normal 18px/1.22 Georgia,serif;margin:0 0 5px}
+.home-guide-card p{margin:0 0 8px;color:var(--muted);font-size:12px;line-height:1.5}
+.home-guide-card a{font-size:12px;font-weight:800}
+.home-about-strip{max-width:1036px;margin:0 auto 34px;padding:18px 22px;display:flex;align-items:center;justify-content:space-between;gap:20px;background:#edf3ed;border-radius:16px}
+.home-about-strip h2{font:normal 27px Georgia,serif;margin:0}
+.home-about-strip p:not(.eyebrow){margin:4px 0 0;color:var(--muted);font-size:13px}
+.home-amazon-band{max-width:none;padding:30px 22px;text-align:center;background:var(--ink);color:#fff}
+.home-amazon-band h2{font:normal 32px Georgia,serif;margin:0}
+.home-amazon-band>p:not(.fineprint){max-width:640px;margin:7px auto 12px;color:#dbe4e1}
+.home-amazon-band .button{margin-top:0;background:#fff;color:var(--ink)}
+.home-amazon-band .fineprint{max-width:760px;margin:18px auto 0!important;color:#d4dfdc!important}
+.home-amazon-band .fineprint a{color:#fff}
+
+/* Return target for book detail pages. */
+.home-v12 #catalog-return{scroll-margin-top:72px}
+
+@media(max-width:900px){
+ .home-v12 .site-header{padding:13px 18px}
+ .home-v12 .hero{grid-template-columns:1fr;padding:30px 22px;gap:18px}
+ .home-v12 .hero-art{min-height:215px}
+ .home-book-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+ .home-series-heading{grid-template-columns:1fr;align-items:start}
+ .home-series-actions{justify-content:flex-start}
+ .home-cover-wrap{height:230px}
+}
+@media(max-width:650px){
+ .home-v12 .site-header{padding:12px 15px;gap:10px}
+ .home-v12 .brand-logo{width:48px;height:48px}
+ .home-v12 .brand-label{font-size:23px}
+ .home-v12 .site-header nav{width:100%;justify-content:space-between;gap:6px 12px}
+ .home-v12 .site-header nav a{font-size:11px}
+ .home-search-inner{padding:8px 14px}
+ .home-search-suggestions{left:14px;right:14px}
+ .home-v12 .hero{padding:26px 16px}
+ .home-v12 .hero h1{font-size:41px}
+ .home-v12 .hero-art{min-height:190px}
+ .home-v12 .section{padding:32px 15px}
+ .home-section-heading{align-items:flex-start;flex-direction:column;gap:8px}
+ .home-book-grid{grid-template-columns:1fr}
+ .home-cover-wrap{height:290px;padding:11px}
+ .home-card-actions{grid-template-columns:1fr 1fr}
+ .home-series-actions{display:grid;grid-template-columns:auto minmax(0,1fr);width:100%}
+ .home-explore-collection{width:100%;font-size:13px}
+ .home-guide-grid{grid-template-columns:1fr}
+ .home-about-strip{margin:0 15px 30px;align-items:flex-start;flex-direction:column}
+ .home-about-strip .home-heading-link{padding-left:0}
+}
+@media(max-width:390px){
+ .home-card-actions{grid-template-columns:1fr}
+ .home-series-actions{grid-template-columns:1fr}
+ .home-series-count{justify-self:start}
+}
