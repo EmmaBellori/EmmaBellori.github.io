@@ -326,3 +326,5 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
 .collection-toggle{display:block;margin:20px auto 0;padding:12px 22px;min-height:44px;border:1px solid var(--ink);border-radius:999px;background:#fffdf9;color:var(--ink);font-weight:700}
 .collection-toggle:hover{background:var(--sage)}
 @media(max-width:600px){.catalog-status-filter{flex-wrap:nowrap;overflow-x:auto;scrollbar-width:thin;padding-bottom:4px}.catalog-status-filter button{white-space:nowrap;flex:none;padding:8px 12px}.series-section-compact{scroll-margin-top:110px}.series-section-compact .series-heading{gap:8px}}
+
+.collection-page-link{margin:0 0 18px;font-weight:700}.collection-page-link a{text-underline-offset:3px}
