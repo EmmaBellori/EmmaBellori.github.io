@@ -10,6 +10,7 @@ const id=document.body.dataset.bookId||new URLSearchParams(location.search).get(
 const known={"mistakes":{"series":"Big Feelings, Real Problems","slug":"big-feelings-real-problems"},"play":{"series":"Big Feelings, Real Problems","slug":"big-feelings-real-problems"},"bugs":{"series":"Junior Detectives","slug":"junior-detectives"},"mad":{"series":"Big Feelings, Real Problems","slug":"big-feelings-real-problems"},"christmas":{"series":"Kawaii Coloring & Activities","slug":"kawaii-coloring-activities"},"halloween":{"series":"Kawaii Coloring & Activities","slug":"kawaii-coloring-activities"}};
 function homeLink(){return root+'index.html#catalog-return';}
 if(home)home.href=root+'index.html#home';
+if(breadcrumb){const homeCrumb=breadcrumb.querySelector('a');if(homeCrumb)homeCrumb.href=root+'index.html#home';}
 if(back){back.href=homeLink();back.textContent='← Back to books';}
 document.querySelectorAll('a[href$="index.html"],a[href$="index.html#books"]').forEach(a=>{
  if(a.closest('header')||a.closest('footer'))a.href=root+'index.html#home';
