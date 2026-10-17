@@ -23,14 +23,32 @@ function bookCard(b){
  const age=b.ageRange?'<span class="book-age">Ages '+escapeHTML(String(b.ageRange).replace(/^ages?\s*/i,''))+'</span>':'';
  return '<article class="book-card"><a class="cover-frame cover-link" href="'+detail+'" aria-label="Discover '+escapeHTML(b.title)+'">'+cover(b)+'</a><div class="book-meta"><span>Available now</span><span>'+escapeHTML(formatLabel(b.format))+'</span></div>'+age+'<h3><a class="book-title-link" href="'+detail+'">'+escapeHTML(b.title)+'</a></h3><p class="book-theme">'+escapeHTML(b.theme)+'</p><p class="book-description">'+escapeHTML(b.description)+'</p><div class="book-bottom"><a class="amazon-cta" href="'+escapeHTML(b.amazonUrl)+'" target="_blank" rel="noopener noreferrer sponsored" data-book-id="'+escapeHTML(b.id)+'" aria-label="View '+escapeHTML(b.title)+' on Amazon (opens in new tab)">View on Amazon ↗</a><a class="book-details-link" href="'+detail+'" aria-label="Details for '+escapeHTML(b.title)+'">Book details →</a></div></article>';
 }
+const collectionState=new Set();
+let catalogStatus='all';
+const statusButtons=document.querySelectorAll('[data-catalog-status]');
+function syncStatusButtons(){statusButtons.forEach(button=>{const active=button.dataset.catalogStatus===catalogStatus;button.setAttribute('aria-pressed',String(active));button.classList.toggle('is-active',active);});}
+statusButtons.forEach(button=>button.addEventListener('click',()=>{catalogStatus=button.dataset.catalogStatus;syncStatusButtons();render();}));
 function render(){
  const q=search.value.trim().toLocaleLowerCase();
- const filtered=books.filter(b=>[b.title,b.series,b.theme,b.description,b.format,b.ageRange||'',...(b.topics||[])].join(' ').toLocaleLowerCase().includes(q));
+ const filtered=books.filter(b=>(catalogStatus==='all'||(catalogStatus==='published'?b.status==='published':b.status==='coming_soon'))&&[b.title,b.series,b.theme,b.description,b.format,b.ageRange||'',...(b.topics||[])].join(' ').toLocaleLowerCase().includes(q));
  const groups=seriesOrder.map(([name,description],index)=>({name,description,index,items:filtered.filter(b=>b.series===name),publishedCount:books.filter(b=>b.series===name&&b.status!=='coming_soon').length,totalCount:books.filter(b=>b.series===name).length})).filter(g=>g.items.length).sort((a,b)=>b.publishedCount-a.publishedCount||b.totalCount-a.totalCount||a.index-b.index);
- catalog.innerHTML=groups.map((g,i)=>'<section id="series-'+i+'" class="series-section" aria-labelledby="series-title-'+i+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+i+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+g.items.map(bookCard).join('')+'</div></section>').join('');
+ catalog.innerHTML=groups.map((g,i)=>{
+  const expanded=!!q||collectionState.has(g.name);
+  const visible=expanded?g.items:g.items.slice(0,4);
+  const id='series-'+g.index;
+  return '<section id="'+id+'" class="series-section series-section-compact" aria-labelledby="series-title-'+g.index+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+g.index+'">'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+visible.map(bookCard).join('')+'</div>'+(g.items.length>4&&!q?'<button type="button" class="collection-toggle" data-collection-toggle="'+escapeHTML(g.name)+'" aria-expanded="'+expanded+'" aria-controls="'+id+'">'+(expanded?'Show fewer books ↑':'View all '+g.items.length+' books ↓')+'</button>':'')+'</section>';
+ }).join('');
  empty.hidden=filtered.length>0;
- const count=document.querySelector('#results-count');if(count)count.textContent=filtered.length===1?'Showing 1 book': 'Showing '+filtered.length+' books across '+groups.length+' collections';
+ const count=document.querySelector('#results-count');if(count)count.textContent=filtered.length===1?'Showing 1 book':'Showing '+filtered.length+' books across '+groups.length+' collections';
 }
+catalog.addEventListener('click',e=>{
+ const toggle=e.target.closest('[data-collection-toggle]');if(!toggle)return;
+ const name=toggle.dataset.collectionToggle;
+ if(collectionState.has(name))collectionState.delete(name);else collectionState.add(name);
+ render();
+ const target=[...catalog.querySelectorAll('.series-section')].find(section=>section.querySelector('.series-heading h3')?.textContent===name);
+ if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
+});
 let searchDebounce;
 search.addEventListener('input',()=>{render();clearTimeout(searchDebounce);searchDebounce=setTimeout(()=>{if(search.value.trim()&&typeof window.ebTrack==='function')window.ebTrack('catalog_search',{search_term:search.value.trim().slice(0,80)});},700);});
 
@@ -101,6 +119,7 @@ picker.addEventListener('change',()=>{
  const name=picker.value;picker.selectedIndex=0;
  if(!name)return;
  if(search.value.trim()){search.value='';render();}
+ collectionState.add(name);render();
  const target=[...catalog.querySelectorAll('.series-section')].find(s=>s.querySelector('.series-heading h3')?.textContent===name);
  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 });
