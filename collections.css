@@ -50,3 +50,24 @@
 .collection-breadcrumb [aria-current="page"]{color:#263d40;font-weight:700}
 .collection-breadcrumb a:focus-visible{outline:3px solid #146d78;outline-offset:3px;border-radius:3px}
 @media(max-width:540px){.collection-breadcrumb{margin-bottom:24px;gap:9px}}
+
+
+/* Slightly denser desktop collection shelves, without shrinking tap targets. */
+@media (min-width:1000px){
+ .collection-page{padding-top:29px;padding-bottom:60px}
+ .collection-breadcrumb{margin-bottom:20px}
+ .collection-intro{margin-bottom:25px}
+ .collection-intro h1{font-size:clamp(2rem,4vw,3.05rem);margin-bottom:12px}
+ .collection-feature{padding:19px 24px;margin-bottom:30px}
+ .collection-shelf{margin:25px 0 35px}
+ .collection-shelf>p{margin-bottom:16px}
+ .collection-grid{gap:18px}
+ .collection-book{padding:13px;gap:10px}
+ .collection-cover-wrap{max-width:205px}
+ .collection-book h2{margin:6px 0}
+ .collection-description{
+  display:-webkit-box;-webkit-box-orient:vertical;-webkit-line-clamp:3;
+  line-clamp:3;overflow:hidden;line-height:1.5;
+ }
+ .collection-actions{gap:8px}
+}
