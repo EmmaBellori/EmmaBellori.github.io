@@ -46,7 +46,7 @@ function openVote(book){
 document.querySelector('#vote-cancel').addEventListener('click',()=>{if(!submitting)voteDialog.close();});
 voteDialog.addEventListener('cancel',e=>{if(submitting)e.preventDefault();});
 voteDialog.addEventListener('close',()=>{pendingVote=null;verifiedToken='';if(window.turnstile&&widgetId!==null){try{window.turnstile.remove(widgetId);}catch{}widgetId=null;}});
-document.querySelector('.collection-grid').addEventListener('click',e=>{const btn=e.target.closest('[data-vote-id]');if(!btn)return;const book=upcoming.find(b=>b.id===btn.dataset.voteId);if(book)openVote(book);});
+document.querySelector('.collection-page').addEventListener('click',e=>{const btn=e.target.closest('[data-vote-id]');if(!btn)return;const book=upcoming.find(b=>b.id===btn.dataset.voteId);if(book)openVote(book);});
 voteConfirm.addEventListener('click',async()=>{
  if(!pendingVote||!verifiedToken||submitting)return;
  submitting=true;voteConfirm.disabled=true;voteConfirm.textContent='Saving…';voteError.hidden=true;
