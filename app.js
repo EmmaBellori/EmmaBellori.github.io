@@ -183,7 +183,7 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
   const position=Math.max(0,saved.y);
   const prior=document.documentElement.style.scrollBehavior;
   document.documentElement.style.scrollBehavior='auto';
-  const move=()=>window.scrollTo({top:position,behavior:'instant'});
+  const move=()=>window.scrollTo(0,position);
   move();
   requestAnimationFrame(()=>{move();requestAnimationFrame(()=>{move();document.documentElement.style.scrollBehavior=prior;});});
   // Image loading may alter heights; keep the viewport stable during initial layout.
