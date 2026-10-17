@@ -1,5 +1,5 @@
 /* Emma Bellori Books — data-driven interior preview UI.
-   Add 2–3 previewImages to a catalog.json book entry and the site exposes them automatically. */
+   Preview images can live in catalog.json or in book-previews.json. */
 (function(){
   'use strict';
   if(window.__emmaBookPreviewLoaded)return;
@@ -8,6 +8,7 @@
   const currentScript=document.currentScript;
   const sourceUrl=currentScript&&currentScript.src?currentScript.src:location.href;
   const catalogUrl=new URL('catalog.json',sourceUrl).href;
+  const previewManifestUrl=new URL('book-previews.json',sourceUrl).href;
   const catalogBase=new URL('.',catalogUrl);
   let dialog=null;
   let activeImages=[];
@@ -26,6 +27,15 @@
       const alt=typeof raw.alt==='string'&&raw.alt.trim()?raw.alt.trim():'Interior preview '+(index+1)+' of '+book.title;
       return {src,alt};
     }).filter(Boolean);
+  }
+
+  function mergePreviewManifest(entries,manifest){
+    if(!manifest||typeof manifest!=='object')return entries;
+    return entries.map(book=>{
+      if(Array.isArray(book.previewImages)&&book.previewImages.length)return book;
+      const images=manifest[book.id];
+      return Array.isArray(images)&&images.length?Object.assign({},book,{previewImages:images}):book;
+    });
   }
 
   function injectStyles(){
@@ -160,10 +170,12 @@
   function decorate(entries){addCardTriggers(entries);addDetailGallery(entries);}
   function scheduleDecorate(entries){if(decoratePending)return;decoratePending=true;requestAnimationFrame(()=>{decoratePending=false;decorate(entries);});}
 
+  function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
   function init(){
     injectStyles();
-    fetch(catalogUrl,{cache:'no-store'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(entries=>{
+    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{})]).then(([entries,manifest])=>{
       if(!Array.isArray(entries))return;
+      entries=mergePreviewManifest(entries,manifest);
       decorate(entries);
       observer=new MutationObserver(()=>scheduleDecorate(entries));
       observer.observe(document.body,{childList:true,subtree:true});
@@ -171,7 +183,7 @@
         const trigger=event.target.closest('.eb-preview-trigger[data-preview-book-id]');if(!trigger)return;
         const book=entries.find(item=>item.id===trigger.dataset.previewBookId);if(book)openPreview(book,0);
       });
-    }).catch(()=>{});
+    });
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
