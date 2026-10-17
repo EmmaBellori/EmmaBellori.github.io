@@ -40,7 +40,7 @@
     const banner=document.createElement('section');
     banner.id='eb-consent-banner';banner.className='eb-consent-banner';banner.hidden=true;
     banner.setAttribute('role','region');banner.setAttribute('aria-label','Analytics privacy choices');
-    banner.innerHTML='<div class="eb-consent-content"><div><strong>Optional website analytics</strong><p>We use Google Analytics only if you agree, to understand visits and clicks to Amazon. You can decline and still use every feature. <a href="'+(location.pathname.includes('/books/')?'../':'')+'privacy.html">Privacy information</a>.</p></div><div class="eb-consent-actions"><button type="button" data-eb-choice="no">Reject analytics</button><button type="button" class="eb-accept" data-eb-choice="yes">Accept analytics</button></div></div>';
+    banner.innerHTML='<div class="eb-consent-content"><div><strong>Optional website analytics</strong><p>We use Google Analytics only if you agree, to understand visits and clicks to Amazon. You can decline and still use every feature. <a href="'+(/\/(books|collections)\//.test(location.pathname)?'../':'')+'privacy.html">Privacy information</a>.</p></div><div class="eb-consent-actions"><button type="button" data-eb-choice="no">Reject analytics</button><button type="button" class="eb-accept" data-eb-choice="yes">Accept analytics</button></div></div>';
     document.body.appendChild(banner);
     banner.addEventListener('click',e=>{const b=e.target.closest('[data-eb-choice]');if(b)choose(b.dataset.ebChoice==='yes');});
     const footer=document.querySelector('footer');
