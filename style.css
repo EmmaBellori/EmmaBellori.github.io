@@ -361,3 +361,31 @@ button:focus-visible,a:focus-visible,input:focus-visible{outline:3px solid #a979
  .book-bottom{gap:8px}
  .collection-toggle{margin-top:15px}
 }
+
+
+/* Desktop compact layout v2: meaningful visual reduction, including 900–999px laptops.
+   Scoped overrides come last so earlier responsive rules cannot mask them. */
+@media (min-width:900px){
+ .site-header{padding-top:12px;padding-bottom:12px}
+ .hero{min-height:315px;padding-top:28px;padding-bottom:28px;gap:30px}
+ .hero h1{font-size:clamp(39px,4vw,58px);line-height:1.1}
+ .hero-art{min-height:235px}
+ .hero-books{max-height:270px}
+ .section{padding-top:43px;padding-bottom:43px}
+ .section h2{font-size:clamp(28px,3vw,38px);margin-bottom:16px}
+ .series-catalog{gap:25px}
+ .series-section+.series-section{padding-top:20px}
+ .series-section-compact .series-heading{margin-bottom:11px}
+ .series-heading h3{font-size:clamp(24px,2.4vw,30px)}
+ .book-grid{gap:15px}
+ .book-card{padding:12px;border-radius:15px}
+ .series-section .book-card .cover-frame,
+ .series-section .book-card-upcoming .upcoming-cover-frame{height:215px;padding:8px}
+ .series-section .book-card .book-meta{margin-top:8px}
+ .series-section .book-card-upcoming .upcoming-status{margin-top:7px}
+ .series-section .book-card h3{font-size:20px;margin-top:8px;min-height:0}
+ .book-card .book-theme{margin-bottom:5px}
+ .series-section .book-card .book-description{margin-bottom:10px}
+ .book-bottom{gap:7px}
+ .collection-toggle{margin-top:12px}
+}

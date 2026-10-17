@@ -71,3 +71,21 @@
  }
  .collection-actions{gap:8px}
 }
+
+
+/* Desktop compact collection pages v2. */
+@media (min-width:900px){
+ .collection-page{padding-top:22px;padding-bottom:48px}
+ .collection-breadcrumb{margin-bottom:14px}
+ .collection-intro{margin-bottom:19px}
+ .collection-intro h1{font-size:clamp(2rem,3.6vw,2.85rem);margin:6px 0 10px}
+ .collection-feature{padding:16px 20px;margin-bottom:23px}
+ .collection-shelf{margin:20px 0 28px}
+ .collection-shelf>p{margin-bottom:13px}
+ .collection-grid{gap:14px}
+ .collection-book{padding:11px;gap:8px}
+ .collection-cover-wrap{max-width:175px}
+ .collection-book h2{margin:5px 0}
+ .collection-description{margin-bottom:9px}
+ .collection-actions{gap:7px}
+}
