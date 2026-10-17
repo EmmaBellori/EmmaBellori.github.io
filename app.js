@@ -48,7 +48,7 @@ catalog.addEventListener('click',e=>{
  const name=toggle.dataset.collectionToggle;
  if(collectionState.has(name))collectionState.delete(name);else collectionState.add(name);
  render();
- const target=[...catalog.querySelectorAll('.series-section')].find(section=>section.querySelector('.series-heading h3')?.textContent===name);
+ const target=[...catalog.querySelectorAll('.series-section')].find(section=>section.dataset.seriesName===name);
  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 });
 let searchDebounce;
