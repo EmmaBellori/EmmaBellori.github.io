@@ -8,6 +8,7 @@ let seriesOrder=[
  ['Little Steps, Big Discoveries','Playful first learning experiences at home.'],
  ['Junior Detectives','Curiosity, science and discovery for young explorers.'],
  ['My First Sports Adventures','Fun first introductions to sports, teamwork and trying something new.'],
+ ['My First Earth Adventures','Discover how our planet’s landscapes form and change through friendly adventures.'],
  ['Kawaii Coloring & Activities','Cheerful coloring books and creative activities.'],
  ['More Books by Emma Bellori','Explore more standalone stories and discoveries.']
 ];
