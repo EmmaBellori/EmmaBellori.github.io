@@ -38,6 +38,7 @@ function render(){
   const id='series-'+g.index;
   return '<section id="'+id+'" class="series-section series-section-compact" aria-labelledby="series-title-'+g.index+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+g.index+'"><a class="series-title-link" href="collections/'+escapeHTML(g.items[0].seriesSlug)+'.html" aria-label="Explore '+escapeHTML(g.name)+' collection">'+escapeHTML(g.name)+' <span aria-hidden="true">↗</span></a></h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+visible.map(bookCard).join('')+'</div>'+(g.items.length>4&&!q?'<button type="button" class="collection-toggle" data-collection-toggle="'+escapeHTML(g.name)+'" aria-expanded="'+expanded+'" aria-controls="'+id+'">'+(expanded?'Show fewer books ↑':'View all '+g.items.length+' books ↓')+'</button>':'')+'</section>';
  }).join('');
+ if(typeof restoreCatalogAfterRender==='function')restoreCatalogAfterRender();
  empty.hidden=filtered.length>0;
  const count=document.querySelector('#results-count');if(count)count.textContent=filtered.length===1?'Showing 1 book':'Showing '+filtered.length+' books across '+groups.length+' collections';
 }
@@ -151,45 +152,52 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
 });
 
 
-// Preserve catalog position when navigating to a book, including browser Back.
-(function(){
- 'use strict';
- const key='eb-catalog-return-v2';
- const catalog=document.querySelector('#series-catalog');
- if(!catalog)return;
- const returning=location.hash==='#catalog-return';
- let saved=null;
- try{saved=JSON.parse(sessionStorage.getItem(key)||'null');if(!saved||!Number.isFinite(saved.y)||Date.now()-saved.t>1800000)saved=null;}catch{}
- function save(){
-  try{sessionStorage.setItem(key,JSON.stringify({y:window.scrollY,t:Date.now(),status:catalogStatus,query:search.value,expanded:[...collectionState]}));}catch{}
- }
- document.addEventListener('click',e=>{
-  const link=e.target.closest('a[href]');
-  if(!link||link.origin!==location.origin)return;
-  const path=new URL(link.href).pathname;
-  if(/\/(?:book\.html|books\/[a-z0-9-]+\.html)$/.test(path))save();
- },true);
- // Also preserve the latest position for browser Back/BFCache.
- window.addEventListener('pagehide',()=>{if(!returning)save();});
- if(!returning||!saved)return;
- // Restore catalog filters and expanded sections before the async catalog is rendered.
- if(saved.status&&['all','published','coming_soon'].includes(saved.status))catalogStatus=saved.status;
- if(typeof saved.query==='string')search.value=saved.query;
- if(Array.isArray(saved.expanded))for(const name of saved.expanded)if(typeof name==='string')collectionState.add(name);
+
+// Reliable return to catalog: restore only after the actual async render, not from a
+// mutation observer racing browser hash scrolling, images and layout.
+const RETURN_KEY='eb-catalog-return-v3';
+const isCatalogReturn=location.hash==='#catalog-return';
+let returnSnapshot=null;
+try{
+ const item=JSON.parse(sessionStorage.getItem(RETURN_KEY)||'null');
+ if(item&&Number.isFinite(item.y)&&item.y>=0&&Date.now()-item.t<1800000)returnSnapshot=item;
+}catch{}
+if(isCatalogReturn&&returnSnapshot){
+ if(['all','published','coming_soon'].includes(returnSnapshot.status))catalogStatus=returnSnapshot.status;
+ if(typeof returnSnapshot.query==='string')search.value=returnSnapshot.query;
+ if(Array.isArray(returnSnapshot.expanded))returnSnapshot.expanded.forEach(name=>{if(typeof name==='string')collectionState.add(name);});
  syncStatusButtons();
- const observer=new MutationObserver(()=>{
-  if(!catalog.querySelector('.book-card'))return;
-  observer.disconnect();
-  const position=Math.max(0,saved.y);
-  const prior=document.documentElement.style.scrollBehavior;
-  document.documentElement.style.scrollBehavior='auto';
-  const move=()=>window.scrollTo(0,position);
-  move();
-  requestAnimationFrame(()=>{move();requestAnimationFrame(()=>{move();document.documentElement.style.scrollBehavior=prior;});});
-  // Image loading may alter heights; keep the viewport stable during initial layout.
-  window.addEventListener('load',move,{once:true});
-  setTimeout(move,350);
-  setTimeout(move,900);
- });
- observer.observe(catalog,{childList:true});
-})();
+ if('scrollRestoration' in history)history.scrollRestoration='manual';
+}
+function saveCatalogReturn(){
+ try{
+  sessionStorage.setItem(RETURN_KEY,JSON.stringify({
+   y:window.scrollY,t:Date.now(),status:catalogStatus,query:search.value,
+   expanded:[...collectionState]
+  }));
+ }catch{}
+}
+document.addEventListener('click',event=>{
+ const link=event.target.closest('a[href]');
+ if(!link||link.origin!==location.origin)return;
+ if(/\/(?:book\.html|books\/[a-z0-9-]+\.html)$/.test(new URL(link.href).pathname))saveCatalogReturn();
+},true);
+let didRestoreCatalog=false;
+function restoreCatalogAfterRender(){
+ if(!isCatalogReturn||!returnSnapshot||didRestoreCatalog)return;
+ didRestoreCatalog=true;
+ const y=returnSnapshot.y;
+ const html=document.documentElement;
+ const previous=html.style.scrollBehavior;
+ html.style.scrollBehavior='auto';
+ const move=()=>window.scrollTo(0,y);
+ // Wait for the DOM render and layout, then correct again for late images/fonts.
+ requestAnimationFrame(()=>{move();requestAnimationFrame(move);});
+ window.addEventListener('load',move,{once:true});
+ setTimeout(move,250);
+ setTimeout(()=>{move();html.style.scrollBehavior=previous;},750);
+}
+window.addEventListener('pageshow',event=>{
+ // BFCache restores the previous document; do not jump to the top.
+ if(event.persisted&&isCatalogReturn&&returnSnapshot)window.scrollTo(0,returnSnapshot.y);
+});
