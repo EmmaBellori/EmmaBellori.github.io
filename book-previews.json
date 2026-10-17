@@ -54,5 +54,19 @@
       "src": "images/previews/play/03.jpg",
       "alt": "Nobody Wants to Play With Me interior preview: Our little town can make some room."
     }
+  ],
+  "mad": [
+    {
+      "src": "images/previews/mad/01.jpg",
+      "alt": "When I Lose, I Get REALLY Mad interior preview: One little turtle. One very BIG hope."
+    },
+    {
+      "src": "images/previews/mad/02.jpg",
+      "alt": "When I Lose, I Get REALLY Mad interior preview: A game can have a loser. It cannot tell me who I am."
+    },
+    {
+      "src": "images/previews/mad/03.jpg",
+      "alt": "When I Lose, I Get REALLY Mad interior preview: I can be disappointed and be a friend at the same time."
+    }
   ]
 }
