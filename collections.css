@@ -185,3 +185,11 @@
  .collection-hero .collection-stat dt{font-size:.63rem;line-height:1.25}
  .collection-hero .collection-stat dd{font-size:1.55rem}
 }
+
+
+/* Let collection descriptions use the full hero width above the KPI row. */
+.collection-hero{grid-template-columns:minmax(0,1fr) !important;gap:22px}
+.collection-hero-copy{width:100%;max-width:none}
+.collection-hero-description{max-width:none;width:100%}
+.collection-hero .collection-stats{grid-column:1 / -1}
+@media(max-width:540px){.collection-hero{gap:16px}}
