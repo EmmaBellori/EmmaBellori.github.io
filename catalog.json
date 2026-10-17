@@ -618,6 +618,14 @@
     "status": "coming_soon"
   },
   {
+    "id": "my-first-skateboarding-adventure",
+    "title": "My First Skateboarding Adventure",
+    "cover": "images/coming-soon/My_First_Skateboarding_Adventure_Front_800px.jpg",
+    "series": "My First Sports Adventures",
+    "seriesSlug": "my-first-sports-adventures",
+    "status": "coming_soon"
+  },
+  {
     "id": "my-first-coastal-adventure",
     "title": "My First Coastal Adventure",
     "cover": "images/coming-soon/My_First_Coastal_Adventure_Front_800px.jpg",
