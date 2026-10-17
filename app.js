@@ -19,7 +19,7 @@ const empty=document.querySelector('#empty');
 const searchInput=document.querySelector('#global-search');
 const suggestionBox=document.querySelector('#search-suggestions');
 
-const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 function formatLabel(value){const s=String(value??'').replace(/\bedition\b/gi,'');const k=/kindle/i.test(s),p=/paperback/i.test(s);return k&&p?'Kindle + Paperback':k?'Kindle':p?'Paperback':s.trim();}
 function detailHref(b){return b.legacyDetail?'books/'+encodeURIComponent(b.id)+'.html':'book.html?id='+encodeURIComponent(b.id);}
 function coverHTML(b){return b.cover?'<img loading="lazy" decoding="async" src="'+escapeHTML(b.cover)+'" alt="Cover of '+escapeHTML(b.title)+'">':'<div class="cover-placeholder"><strong>'+escapeHTML(b.title)+'</strong></div>';}
@@ -64,14 +64,22 @@ function currentSeriesOrder(){
  for(const b of books)if(!known.has(b.series)){list.push([b.series,b.seriesDescription||'Explore stories in this collection.']);known.add(b.series);}
  return list;
 }
+function collectionPreview(publishedItems,upcomingItems){
+ // Latest releases already maximize purchase exposure. Collection previews reserve one slot for voting whenever possible.
+ if(!upcomingItems.length)return publishedItems.slice(0,3);
+ if(!publishedItems.length)return upcomingItems.slice(0,3);
+ const publishedSlots=Math.min(2,publishedItems.length);
+ const preview=[...publishedItems.slice(0,publishedSlots),...upcomingItems.slice(0,3-publishedSlots)];
+ if(preview.length<3)preview.push(...publishedItems.slice(publishedSlots,publishedSlots+(3-preview.length)));
+ return preview.slice(0,3);
+}
 function renderCollections(){
  const order=currentSeriesOrder();
  const groups=order.map(([name,description],index)=>{
   const items=books.filter(b=>b.series===name);
   const publishedItems=items.filter(b=>b.status==='published').sort((a,b)=>b._catalogIndex-a._catalogIndex);
   const upcomingItems=items.filter(b=>b.status==='coming_soon').sort((a,b)=>a._catalogIndex-b._catalogIndex);
-  // Purchase-ready books take precedence. Coming Soon previews are used when a collection has no published title yet.
-  const preview=(publishedItems.length?publishedItems:upcomingItems).slice(0,3);
+  const preview=collectionPreview(publishedItems,upcomingItems);
   return {name,description,index,items,publishedCount:publishedItems.length,preview};
  }).filter(g=>g.items.length).sort((a,b)=>{
   const aHas=a.publishedCount>0,bHas=b.publishedCount>0;
@@ -172,5 +180,5 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
  if(valid.length!==entries.length||new Set(valid.map(b=>b.id)).size!==valid.length)throw Error('Invalid catalog entries');
  published=valid.filter(b=>b.status==='published').map(b=>({...b,legacyDetail:LEGACY_DETAIL_IDS.has(b.id)}));
  upcoming=valid.filter(b=>b.status==='coming_soon');books=[...published,...upcoming];
- renderLatest();renderCollections();renderSuggestions();restoreCatalogAfterRender();
+ renderLatest();renderCollections();restoreCatalogAfterRender();
 }).catch(error=>{console.error('Catalog could not be loaded',error);empty.hidden=false;empty.textContent='The book catalog is temporarily unavailable. Please refresh the page.';});
