@@ -1,5 +1,6 @@
 /* Emma Bellori Books — data-driven interior preview UI.
-   Preview images can live in catalog.json or in book-previews.json. */
+   Preview images can live in catalog.json or in book-previews.json.
+   Cards use arrows on the cover itself; detail pages keep the larger Inside the book gallery. */
 (function(){
   'use strict';
   if(window.__emmaBookPreviewLoaded)return;
@@ -17,16 +18,25 @@
   let decoratePending=false;
 
   function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+  function absoluteSrc(src){try{return new URL(String(src||'').trim(),catalogBase).href;}catch{return '';}}
   function normalizedImages(book){
     if(!book||!Array.isArray(book.previewImages))return [];
     return book.previewImages.slice(0,3).map((item,index)=>{
       const raw=typeof item==='string'?{src:item}:item;
       if(!raw||typeof raw.src!=='string'||!raw.src.trim())return null;
-      let src='';
-      try{src=new URL(raw.src.trim(),catalogBase).href;}catch{return null;}
+      const src=absoluteSrc(raw.src);if(!src)return null;
       const alt=typeof raw.alt==='string'&&raw.alt.trim()?raw.alt.trim():'Interior preview '+(index+1)+' of '+book.title;
       return {src,alt};
     }).filter(Boolean);
+  }
+  function coverSlide(book){
+    const src=absoluteSrc(book&&book.cover);if(!src)return null;
+    return {src,alt:'Cover of '+book.title};
+  }
+  function cardSlides(book){
+    const previews=normalizedImages(book);if(!previews.length)return [];
+    const cover=coverSlide(book);
+    return cover?[cover,...previews]:previews;
   }
 
   function mergePreviewManifest(entries,manifest){
@@ -43,11 +53,15 @@
     const style=document.createElement('style');
     style.id='eb-book-preview-styles';
     style.textContent=`
-      .eb-preview-trigger{display:inline-flex;align-items:center;justify-content:center;gap:6px;width:max-content;max-width:100%;min-height:40px;margin:7px 0 10px;padding:8px 12px;border:1px solid #9bada8;border-radius:999px;background:#fffdf9;color:#294b48;font:750 11px/1.2 system-ui,-apple-system,Segoe UI,sans-serif;cursor:pointer}
-      .eb-preview-trigger:hover{background:#eef4f0}.eb-preview-trigger:focus-visible{outline:3px solid #d59b75;outline-offset:3px}
-      .eb-preview-trigger span[aria-hidden="true"]{font-size:15px;line-height:1}
-      .home-book-card .eb-preview-trigger{margin-top:2px;margin-bottom:10px}
-      .collection-book-info .eb-preview-trigger{margin:7px 0 11px}
+      .eb-cover-carousel{position:relative;min-width:0}
+      .eb-cover-carousel>.home-cover-wrap{display:block;width:100%}
+      .collection-cover-wrap.eb-cover-carousel-host{position:relative}
+      .eb-cover-arrow{position:absolute;top:50%;z-index:6;display:grid;place-items:center;width:38px;height:46px;padding:0;border:1px solid rgba(38,61,64,.18);border-radius:999px;background:rgba(255,255,255,.94);color:#263d40;box-shadow:0 5px 16px rgba(30,49,50,.15);font:700 25px/1 system-ui,-apple-system,Segoe UI,sans-serif;cursor:pointer;transform:translateY(-50%);transition:background .16s ease,transform .16s ease,box-shadow .16s ease}
+      .eb-cover-arrow:hover{background:#fff;box-shadow:0 7px 20px rgba(30,49,50,.2)}
+      .eb-cover-arrow:focus-visible{outline:3px solid #d59b75;outline-offset:2px}
+      .eb-cover-prev{left:7px}.eb-cover-next{right:7px}
+      .eb-cover-counter{position:absolute;left:50%;bottom:8px;z-index:5;transform:translateX(-50%);display:inline-flex;align-items:center;justify-content:center;min-width:42px;min-height:23px;padding:3px 8px;border-radius:999px;background:rgba(38,61,64,.82);color:#fff;font:750 10px/1 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.02em;pointer-events:none}
+      .eb-cover-carousel .home-cover-wrap img,.collection-cover-wrap.eb-cover-carousel-host img{object-fit:contain!important;object-position:center!important}
       .eb-inside-preview{margin-top:28px;padding:24px;border:1px solid #e6ded5;border-radius:18px;background:#fffdf9}
       .eb-inside-preview .eyebrow{margin-top:0}.eb-inside-preview h2{margin:4px 0 7px}.eb-inside-preview>p:not(.eyebrow){margin:0 0 16px;color:#61716f}
       .eb-inside-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:12px}
@@ -64,8 +78,9 @@
       .eb-preview-nav{position:absolute;top:50%;transform:translateY(-50%);width:42px;height:48px;border:1px solid #ccd7d3;border-radius:999px;background:rgba(255,255,255,.94);color:#263d40;font-size:25px;cursor:pointer}.eb-preview-nav:hover{background:white}.eb-preview-nav:focus-visible{outline:3px solid #d59b75;outline-offset:2px}.eb-preview-prev{left:12px}.eb-preview-next{right:12px}
       .eb-preview-footer{padding:12px 18px 18px}.eb-preview-count{margin:0 0 9px;text-align:center;color:#61716f;font-size:11px;font-weight:700}
       .eb-preview-thumbs{display:flex;justify-content:center;gap:9px;overflow-x:auto}.eb-preview-thumb{flex:0 0 72px;height:88px;padding:4px;border:2px solid transparent;border-radius:9px;background:#f1ede6;cursor:pointer}.eb-preview-thumb.is-active{border-color:#53716c}.eb-preview-thumb img{width:100%;height:100%;object-fit:contain}.eb-preview-thumb:focus-visible{outline:3px solid #d59b75;outline-offset:2px}
-      @media(max-width:700px){.eb-inside-preview{padding:18px 15px}.eb-inside-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eb-inside-thumb{min-height:150px}.eb-preview-stage{min-height:55vh;padding:14px 48px}.eb-preview-main{max-height:58vh}.eb-preview-nav{width:38px;height:44px}.eb-preview-prev{left:6px}.eb-preview-next{right:6px}}
-      @media(max-width:430px){.eb-inside-grid{grid-template-columns:1fr}.eb-inside-thumb{min-height:220px}.eb-preview-stage{padding:12px 42px}.eb-preview-dialog-header{padding:15px 15px 11px}.eb-preview-footer{padding:10px 12px 14px}}
+      @media(max-width:700px){.eb-cover-arrow{width:36px;height:44px}.eb-cover-prev{left:5px}.eb-cover-next{right:5px}.eb-inside-preview{padding:18px 15px}.eb-inside-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.eb-inside-thumb{min-height:150px}.eb-preview-stage{min-height:55vh;padding:14px 48px}.eb-preview-main{max-height:58vh}.eb-preview-nav{width:38px;height:44px}.eb-preview-prev{left:6px}.eb-preview-next{right:6px}}
+      @media(max-width:430px){.eb-cover-arrow{width:34px;height:42px;font-size:22px}.eb-cover-counter{bottom:6px}.eb-inside-grid{grid-template-columns:1fr}.eb-inside-thumb{min-height:220px}.eb-preview-stage{padding:12px 42px}.eb-preview-dialog-header{padding:15px 15px 11px}.eb-preview-footer{padding:10px 12px 14px}}
+      @media(prefers-reduced-motion:reduce){.eb-cover-arrow{transition:none}}
     `;
     document.head.appendChild(style);
   }
@@ -114,31 +129,51 @@
     modal.showModal();
   }
 
-  function makeTrigger(book){
-    const count=normalizedImages(book).length;
-    const button=document.createElement('button');
-    button.type='button';button.className='eb-preview-trigger';button.dataset.previewBookId=book.id;
-    button.innerHTML='<span aria-hidden="true">▣</span><span>Preview inside'+(count>1?' ('+count+')':'')+'</span>';
-    button.setAttribute('aria-label','Preview inside '+book.title);
-    return button;
+  function setCardSlide(carousel,index){
+    const slides=carousel._ebSlides||[];if(!slides.length)return;
+    const next=(index+slides.length)%slides.length;
+    carousel.dataset.ebSlideIndex=String(next);
+    const image=carousel.querySelector('img');if(!image)return;
+    image.src=slides[next].src;image.alt=slides[next].alt;
+    const counter=carousel.querySelector('.eb-cover-counter');if(counter)counter.textContent=(next+1)+' / '+slides.length;
   }
 
-  function addCardTriggers(entries){
+  function addCarouselControls(carousel,book){
+    if(carousel.querySelector('.eb-cover-arrow'))return;
+    const slides=cardSlides(book);if(slides.length<2)return;
+    carousel._ebSlides=slides;carousel.dataset.ebSlideIndex='0';
+    const previous=document.createElement('button');
+    previous.type='button';previous.className='eb-cover-arrow eb-cover-prev';previous.setAttribute('aria-label','Previous image for '+book.title);previous.textContent='‹';
+    const next=document.createElement('button');
+    next.type='button';next.className='eb-cover-arrow eb-cover-next';next.setAttribute('aria-label','Next image for '+book.title);next.textContent='›';
+    const counter=document.createElement('span');counter.className='eb-cover-counter';counter.textContent='1 / '+slides.length;counter.setAttribute('aria-hidden','true');
+    const move=delta=>event=>{event.preventDefault();event.stopPropagation();setCardSlide(carousel,Number(carousel.dataset.ebSlideIndex||0)+delta);};
+    previous.addEventListener('click',move(-1));next.addEventListener('click',move(1));
+    carousel.append(previous,next,counter);
+  }
+
+  function decorateHomeCard(card,book){
+    if(!book||!normalizedImages(book).length)return;
+    card.querySelectorAll('.eb-preview-trigger').forEach(node=>node.remove());
+    if(card.querySelector('.eb-cover-carousel'))return;
+    const cover=card.querySelector('.home-cover-wrap');if(!cover)return;
+    const carousel=document.createElement('div');carousel.className='eb-cover-carousel';
+    cover.before(carousel);carousel.appendChild(cover);addCarouselControls(carousel,book);
+  }
+
+  function decorateCollectionCard(card,book){
+    if(!book||!normalizedImages(book).length)return;
+    card.querySelectorAll('.eb-preview-trigger').forEach(node=>node.remove());
+    const cover=card.querySelector('.collection-cover-wrap');if(!cover||cover.classList.contains('eb-cover-carousel-host'))return;
+    cover.classList.add('eb-cover-carousel-host');addCarouselControls(cover,book);
+  }
+
+  function addCardCarousels(entries){
     const byId=new Map(entries.map(book=>[book.id,book]));
-    document.querySelectorAll('.home-book-card[data-book-id]').forEach(card=>{
-      if(card.querySelector('.eb-preview-trigger'))return;
-      const book=byId.get(card.dataset.bookId);if(!normalizedImages(book).length)return;
-      const trigger=makeTrigger(book);
-      const actions=card.querySelector('.home-card-actions');
-      if(actions)actions.before(trigger);else(card.querySelector('h3')||card).after(trigger);
-    });
+    document.querySelectorAll('.home-book-card[data-book-id]').forEach(card=>decorateHomeCard(card,byId.get(card.dataset.bookId)));
     document.querySelectorAll('.collection-book').forEach(card=>{
-      if(card.querySelector('.eb-preview-trigger'))return;
       const id=card.querySelector('[data-vote-id]')?.dataset.voteId||card.querySelector('[data-book-id]')?.dataset.bookId||'';
-      const book=byId.get(id);if(!normalizedImages(book).length)return;
-      const trigger=makeTrigger(book);
-      const title=card.querySelector('.collection-book-info h2');
-      if(title)title.after(trigger);else card.querySelector('.collection-book-info')?.appendChild(trigger);
+      decorateCollectionCard(card,byId.get(id));
     });
   }
 
@@ -167,7 +202,10 @@
     if(about)about.after(section);else if(related)related.before(section);else main.appendChild(section);
   }
 
-  function decorate(entries){addCardTriggers(entries);addDetailGallery(entries);}
+  function decorate(entries){
+    document.querySelectorAll('.eb-preview-trigger').forEach(node=>node.remove());
+    addCardCarousels(entries);addDetailGallery(entries);
+  }
   function scheduleDecorate(entries){if(decoratePending)return;decoratePending=true;requestAnimationFrame(()=>{decoratePending=false;decorate(entries);});}
 
   function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
@@ -179,10 +217,6 @@
       decorate(entries);
       observer=new MutationObserver(()=>scheduleDecorate(entries));
       observer.observe(document.body,{childList:true,subtree:true});
-      document.addEventListener('click',event=>{
-        const trigger=event.target.closest('.eb-preview-trigger[data-preview-book-id]');if(!trigger)return;
-        const book=entries.find(item=>item.id===trigger.dataset.previewBookId);if(book)openPreview(book,0);
-      });
     });
   }
 
