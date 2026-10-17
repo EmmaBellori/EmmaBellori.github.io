@@ -43,3 +43,10 @@
 .collection-heart:focus-visible,.collection-buy:focus-visible,.series-title-link:focus-visible{outline:3px solid #146d78;outline-offset:3px}
 .collection-grid:empty::after{content:"No published titles yet. Explore the upcoming books below.";color:var(--muted);grid-column:1/-1}
 @media(max-width:540px){.collection-feature{padding:18px 17px}.collection-feature-summary{font-size:1rem}.collection-description{font-size:.82rem}.collection-buy{font-size:.83rem;padding:10px 5px}.collection-heart{width:40px;height:40px}}
+
+/* Collection breadcrumb: accessible and comfortable to tap on mobile. */
+.collection-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:10px;margin:0 0 30px;color:#42575a;font-size:.92rem;line-height:1.6}
+.collection-breadcrumb a{display:inline-flex;align-items:center;min-height:44px;padding:7px 4px;font-weight:650;text-underline-offset:3px}
+.collection-breadcrumb [aria-current="page"]{color:#263d40;font-weight:700}
+.collection-breadcrumb a:focus-visible{outline:3px solid #146d78;outline-offset:3px;border-radius:3px}
+@media(max-width:540px){.collection-breadcrumb{margin-bottom:24px;gap:9px}}
