@@ -34,6 +34,49 @@ After GitHub Pages refreshes:
 ### Add an upcoming title
 Copy an existing `coming_soon` object, assign a **new unique** lowercase `id`, set the correct `series` and `seriesSlug`, `title`, and a valid `cover` path, and upload the original cover image to the repository. The database accepts the new title automatically after its first verified vote. For a new series, choose a unique lowercase hyphenated `seriesSlug` and optionally add `seriesDescription`.
 
+### Add an interior preview (2–3 images)
+The website is ready to show interior samples for both **Available now** and **Coming Soon** titles. The preview is optional: if a book has no preview images yet, no empty placeholder or button is shown.
+
+1. Create/upload the images under:
+
+```text
+images/previews/BOOK-ID/01.jpg
+images/previews/BOOK-ID/02.jpg
+images/previews/BOOK-ID/03.jpg
+```
+
+Use the book's existing `id` exactly. JPG or WebP are recommended. Keep each image reasonably compressed for fast loading and make sure the page is readable on mobile.
+
+2. In that book's object inside `catalog.json`, add:
+
+```json
+"previewImages": [
+  {
+    "src": "images/previews/BOOK-ID/01.jpg",
+    "alt": "Interior preview page 1 of BOOK TITLE"
+  },
+  {
+    "src": "images/previews/BOOK-ID/02.jpg",
+    "alt": "Interior preview page 2 of BOOK TITLE"
+  },
+  {
+    "src": "images/previews/BOOK-ID/03.jpg",
+    "alt": "Interior preview page 3 of BOOK TITLE"
+  }
+]
+```
+
+Two or three images are recommended. The site intentionally uses at most the first **3** entries.
+
+Once `previewImages` is present:
+- homepage book cards automatically gain a **Preview inside** control;
+- collection cards automatically gain the same control, including Coming Soon titles;
+- clicking it opens a large, keyboard-friendly gallery with previous/next navigation and thumbnails;
+- published book detail pages also show the 2–3 interior pages directly in an **Inside the book** section, and each image can be enlarged;
+- the same system works for the six original static book pages and for newer shared `book.html?id=...` pages.
+
+No HTML page needs to be edited when adding previews. Upload the images and update only that title's `previewImages` field in `catalog.json`.
+
 ### Remove a title
 Prefer changing its status only when it is actually published. Do not reuse book IDs. For a canceled title, coordinate removal separately; old preferences remain in the private database.
 

@@ -208,3 +208,15 @@
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',createUI);
   else createUI();
 })();
+
+/* Load the independent interior-preview module on every page that already uses the shared site script. */
+(function(){
+  const current=document.currentScript;
+  const src=current&&current.src?new URL('book-preview.js',current.src).href:new URL('book-preview.js',location.href).href;
+  if(document.querySelector('script[data-eb-book-preview]'))return;
+  const script=document.createElement('script');
+  script.src=src;
+  script.defer=true;
+  script.dataset.ebBookPreview='true';
+  document.head.appendChild(script);
+})();
