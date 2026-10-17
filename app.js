@@ -149,3 +149,35 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
  console.error('Catalog could not be loaded',error);
  document.querySelector('#results-count').textContent='The book catalog is temporarily unavailable. Please refresh the page.';
 });
+
+
+// Restore the catalog viewport when returning from a book detail page.
+// sessionStorage is scoped to this browser tab and expires after 30 minutes.
+(function(){
+ const key='eb-catalog-return-v1';
+ const catalog=document.querySelector('#catalog');
+ if(!catalog)return;
+ let restore=null;
+ try{const data=JSON.parse(sessionStorage.getItem(key)||'null');if(data&&Number.isFinite(data.y)&&data.y>=0&&Date.now()-data.t<1800000)restore=data;}catch{}
+ const returning=location.hash==='#catalog-return';
+ let restored=false;
+ function save(){try{sessionStorage.setItem(key,JSON.stringify({y:window.scrollY,t:Date.now()}));}catch{}}
+ document.addEventListener('click',e=>{
+  const link=e.target.closest('a[href]');if(!link||link.origin!==location.origin)return;
+  const path=new URL(link.href).pathname;
+  if(/\/(?:book\.html|books\/[a-z0-9-]+\.html)$/.test(path))save();
+ },true);
+ function restorePosition(){
+  if(!returning||restored||!restore||!document.querySelector('.book-card'))return;
+  restored=true;
+  const target=Math.min(restore.y,Math.max(0,document.documentElement.scrollHeight-innerHeight));
+  const previous=document.documentElement.style.scrollBehavior;
+  document.documentElement.style.scrollBehavior='auto';
+  window.scrollTo(0,target);
+  requestAnimationFrame(()=>{window.scrollTo(0,target);document.documentElement.style.scrollBehavior=previous;});
+ }
+ const observer=new MutationObserver(restorePosition);
+ observer.observe(catalog,{childList:true,subtree:false});
+ window.addEventListener('load',restorePosition,{once:true});
+ window.addEventListener('pageshow',restorePosition);
+})();
