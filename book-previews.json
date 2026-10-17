@@ -40,5 +40,19 @@
       "src": "images/previews/mistakes/03.jpg",
       "alt": "I Hate Making Mistakes interior preview: A little tape. A little room for fun."
     }
+  ],
+  "play": [
+    {
+      "src": "images/previews/play/01.jpg",
+      "alt": "Nobody Wants to Play With Me interior preview: A small red block. A big idea to share."
+    },
+    {
+      "src": "images/previews/play/02.jpg",
+      "alt": "Nobody Wants to Play With Me interior preview: My feeling has someone to sit beside it."
+    },
+    {
+      "src": "images/previews/play/03.jpg",
+      "alt": "Nobody Wants to Play With Me interior preview: Our little town can make some room."
+    }
   ]
 }
