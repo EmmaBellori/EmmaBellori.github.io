@@ -13,3 +13,10 @@
 /* Accessibility: Amazon disclosure text must retain AA contrast on light backgrounds. */
 .detail-copy .fineprint,
 .v4-bottom-cta .fineprint { color:#344b40; opacity:1; }
+
+/* Accessible book breadcrumb navigation */
+.book-breadcrumb{display:flex;align-items:center;flex-wrap:wrap;gap:7px;font-size:.92rem;line-height:1.6;margin:4px 0 12px;color:#42575a}
+.book-breadcrumb a{text-decoration:underline;text-underline-offset:3px;font-weight:600}
+.book-breadcrumb [aria-current=page]{font-weight:700;color:#263d40}
+.book-breadcrumb a:focus-visible{outline:3px solid #146d78;outline-offset:3px}
+.book-breadcrumb+.back-link{margin-top:4px}
