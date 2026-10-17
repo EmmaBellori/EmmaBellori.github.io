@@ -28,3 +28,18 @@
 .book-return-action .back-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;margin:0;border:1px solid #8ca3a5;border-radius:12px;background:#f3f7f5;color:#234c56;text-decoration:none;font-weight:750}
 .book-return-action .back-link:hover{background:#e5efeb}
 @media(max-width:700px){.book-breadcrumb{margin-bottom:30px}.book-return-action{margin:30px 0 22px}.book-return-action .back-link{width:100%;text-align:center}}
+
+
+/* Desktop book detail spacing: breadcrumb and Back remain in separate zones. */
+@media (min-width:1000px){
+ .detail-main{padding-top:30px;padding-bottom:65px}
+ .book-breadcrumb{margin-bottom:24px}
+ .detail-hero{gap:clamp(28px,4.5vw,65px)}
+ .detail-cover-art{max-width:375px}
+ .detail-copy h1{font-size:clamp(2.1rem,3.8vw,3.6rem)}
+ .book-return-action{margin-top:28px;margin-bottom:18px;padding-top:18px}
+ .v4-info{margin-top:44px;padding:26px 32px}
+ .detail-note{margin-top:58px;margin-bottom:52px}
+ .v4-faq{margin:34px 0}
+ .v4-bottom-cta{margin:30px 0 40px}
+}
