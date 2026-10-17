@@ -193,3 +193,18 @@
 .collection-hero-description{max-width:none;width:100%}
 .collection-hero .collection-stats{grid-column:1 / -1}
 @media(max-width:540px){.collection-hero{gap:16px}}
+
+
+/* Full-width editorial description, without a character-based line limit. */
+.collection-page .collection-hero{display:block !important}
+.collection-page .collection-hero .collection-hero-copy{display:block !important;width:100% !important;max-width:100% !important}
+.collection-page .collection-hero .collection-hero-description{
+ display:block !important;
+ width:100% !important;
+ max-width:100% !important;
+ min-width:0;
+ margin:0 !important;
+ text-wrap:wrap;
+}
+.collection-page .collection-hero .collection-stats{margin-top:22px}
+@media(max-width:540px){.collection-page .collection-hero .collection-stats{margin-top:16px}}
