@@ -37,7 +37,7 @@ function render(){
   const expanded=!!q||collectionState.has(g.name);
   const visible=expanded?g.items:g.items.slice(0,4);
   const id='series-'+g.index;
-  return '<section id="'+id+'" class="series-section series-section-compact" aria-labelledby="series-title-'+g.index+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+g.index+'"><a class="series-title-link" href="collections/'+escapeHTML(g.items[0].seriesSlug)+'.html" aria-label="Explore '+escapeHTML(g.name)+' collection">'+escapeHTML(g.name)+' <span aria-hidden="true">↗</span></a></h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+visible.map(bookCard).join('')+'</div>'+(g.items.length>4&&!q?'<button type="button" class="collection-toggle" data-collection-toggle="'+escapeHTML(g.name)+'" aria-expanded="'+expanded+'" aria-controls="'+id+'">'+(expanded?'Show fewer books ↑':'View all '+g.items.length+' books ↓')+'</button>':'')+'</section>';
+  return '<section id="'+id+'" class="series-section series-section-compact" data-series-name="'+escapeHTML(g.name)+'" aria-labelledby="series-title-'+g.index+'"><div class="series-heading"><div><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3 id="series-title-'+g.index+'"><a class="series-title-link" href="collections/'+escapeHTML(g.items[0].seriesSlug)+'.html" aria-label="Explore '+escapeHTML(g.name)+' collection">'+escapeHTML(g.name)+' <span aria-hidden="true">↗</span></a></h3><p>'+escapeHTML(g.description)+'</p></div><span class="series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span></div><div class="book-grid">'+visible.map(bookCard).join('')+'</div>'+(g.items.length>4&&!q?'<button type="button" class="collection-toggle" data-collection-toggle="'+escapeHTML(g.name)+'" aria-expanded="'+expanded+'" aria-controls="'+id+'">'+(expanded?'Show fewer books ↑':'View all '+g.items.length+' books ↓')+'</button>':'')+'</section>';
  }).join('');
  if(typeof restoreCatalogAfterRender==='function')restoreCatalogAfterRender();
  empty.hidden=filtered.length>0;
@@ -120,9 +120,10 @@ const picker=document.querySelector('#series-picker');
 picker.addEventListener('change',()=>{
  const name=picker.value;picker.selectedIndex=0;
  if(!name)return;
- if(search.value.trim()){search.value='';render();}
+ if(search.value.trim())search.value='';
+ if(catalogStatus!=='all'){catalogStatus='all';syncStatusButtons();}
  collectionState.add(name);render();
- const target=[...catalog.querySelectorAll('.series-section')].find(s=>s.querySelector('.series-heading h3')?.textContent===name);
+ const target=[...catalog.querySelectorAll('.series-section')].find(s=>s.dataset.seriesName===name);
  if(target)target.scrollIntoView({behavior:'smooth',block:'start'});
 });
 const toolsBar=document.querySelector('.catalog-tools'),toolsSlot=document.querySelector('.catalog-tools-slot');
