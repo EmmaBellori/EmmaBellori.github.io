@@ -96,5 +96,19 @@
       "src": "images/previews/bugs/03.jpg",
       "alt": "The Amazing Bug Detective interior preview: The Pond & Night Files"
     }
+  ],
+  "i-cant-sleep-without-you": [
+    {
+      "src": "images/previews/i-cant-sleep-without-you/01.jpg",
+      "alt": "I Can't Sleep Without You interior preview: I love the story. I want the closeness to stay."
+    },
+    {
+      "src": "images/previews/i-cant-sleep-without-you/02.jpg",
+      "alt": "I Can't Sleep Without You interior preview: A little more space. The same nearby grown-up."
+    },
+    {
+      "src": "images/previews/i-cant-sleep-without-you/03.jpg",
+      "alt": "I Can't Sleep Without You interior preview: A little space. A grown-up close by."
+    }
   ]
 }
