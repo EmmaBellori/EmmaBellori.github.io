@@ -1,0 +1,18 @@
+/* Standalone collection landing pages */
+.collection-page{max-width:1160px;margin:0 auto;padding:38px 22px 72px}
+.collection-back{display:inline-block;margin-bottom:26px;font-weight:650}
+.collection-intro{max-width:790px;margin-bottom:34px}
+.collection-intro h1{font-size:clamp(2rem,5vw,3.4rem);line-height:1.12;margin:10px 0 16px}
+.collection-intro>p:not(.eyebrow){line-height:1.7}
+.collection-total{font-size:.92rem;color:var(--muted)}
+.collection-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(205px,1fr));gap:22px}
+.collection-book{min-width:0;background:#fffdf9;border:1px solid var(--line);border-radius:18px;padding:15px;display:flex;flex-direction:column;gap:13px}
+.collection-book>a:first-child{display:block;align-self:center;width:100%;max-width:230px}
+.collection-book img{width:100%;height:auto;aspect-ratio:2/3;object-fit:contain;border-radius:10px}
+.collection-book h2{font-size:1.08rem;line-height:1.4;margin:8px 0}
+.collection-book h2 a{text-decoration:none}
+.collection-book h2 a:hover,.collection-action:hover{text-decoration:underline}
+.collection-state{font-size:.8rem;font-weight:750;color:var(--muted)}
+.collection-action{font-size:.9rem;font-weight:700}
+.collection-footer-link{margin-top:38px;font-weight:700}
+@media(max-width:540px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.collection-book{padding:10px}.collection-book h2{font-size:.95rem}.collection-action{font-size:.82rem}.collection-page{padding:24px 16px 56px}}
