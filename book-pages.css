@@ -20,3 +20,11 @@
 .book-breadcrumb [aria-current=page]{font-weight:700;color:#263d40}
 .book-breadcrumb a:focus-visible{outline:3px solid #146d78;outline-offset:3px}
 .book-breadcrumb+.back-link{margin-top:4px}
+
+/* Keep breadcrumb and back action in separate touch zones, including mobile. */
+.book-breadcrumb{margin:0 0 32px;padding:8px 0;gap:10px}
+.book-breadcrumb a{display:inline-block;padding:7px 3px;min-height:40px}
+.book-return-action{display:flex;justify-content:flex-start;margin:36px 0 22px;padding-top:20px;border-top:1px solid #ded8d0}
+.book-return-action .back-link{display:inline-flex;align-items:center;justify-content:center;min-height:48px;padding:12px 20px;margin:0;border:1px solid #8ca3a5;border-radius:12px;background:#f3f7f5;color:#234c56;text-decoration:none;font-weight:750}
+.book-return-action .back-link:hover{background:#e5efeb}
+@media(max-width:700px){.book-breadcrumb{margin-bottom:30px}.book-return-action{margin:30px 0 22px}.book-return-action .back-link{width:100%;text-align:center}}
