@@ -616,5 +616,53 @@
     "series": "My First Sports Adventures",
     "seriesSlug": "my-first-sports-adventures",
     "status": "coming_soon"
+  },
+  {
+    "id": "my-first-coastal-adventure",
+    "title": "My First Coastal Adventure",
+    "cover": "images/coming-soon/My_First_Coastal_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-desert-adventure",
+    "title": "My First Desert Adventure",
+    "cover": "images/coming-soon/My_First_Desert_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-glacier-adventure",
+    "title": "My First Glacier Adventure",
+    "cover": "images/coming-soon/My_First_Glacier_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-mountain-adventure",
+    "title": "My First Mountain Adventure",
+    "cover": "images/coming-soon/My_First_Mountain_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-river-adventure",
+    "title": "My First River Adventure",
+    "cover": "images/coming-soon/My_First_River_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
+  },
+  {
+    "id": "my-first-volcano-adventure",
+    "title": "My First Volcano Adventure",
+    "cover": "images/coming-soon/My_First_Volcano_Adventure_Front_800px.jpg",
+    "series": "My First Earth Adventures",
+    "seriesSlug": "my-first-earth-adventures",
+    "status": "coming_soon"
   }
 ]
