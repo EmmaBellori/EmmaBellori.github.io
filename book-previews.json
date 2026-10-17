@@ -68,5 +68,19 @@
       "src": "images/previews/mad/03.jpg",
       "alt": "When I Lose, I Get REALLY Mad interior preview: I can be disappointed and be a friend at the same time."
     }
+  ],
+  "door-teapot": [
+    {
+      "src": "images/previews/door-teapot/01.jpg",
+      "alt": "The Door Inside the Teapot interior preview: A little door can be the start of something big."
+    },
+    {
+      "src": "images/previews/door-teapot/02.jpg",
+      "alt": "The Door Inside the Teapot interior preview: Two ordinary things made a very unusual plan."
+    },
+    {
+      "src": "images/previews/door-teapot/03.jpg",
+      "alt": "The Door Inside the Teapot interior preview: The teapot garden sparkled with light."
+    }
   ]
 }
