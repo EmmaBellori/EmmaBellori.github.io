@@ -48,6 +48,15 @@
     });
   }
 
+  function mergePreviewManifest(entries,manifest){
+    if(!manifest||typeof manifest!=='object')return entries;
+    return entries.map(book=>{
+      if(Array.isArray(book.previewImages)&&book.previewImages.length)return book;
+      const images=manifest[book.id];
+      return Array.isArray(images)&&images.length?Object.assign({},book,{previewImages:images}):book;
+    });
+  }
+
   function injectStyles(){
     if(document.getElementById('eb-book-preview-styles'))return;
     const style=document.createElement('style');
