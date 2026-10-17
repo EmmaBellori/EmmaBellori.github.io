@@ -26,5 +26,19 @@
       "src": "images/previews/christmas/03.jpg",
       "alt": "Christmas Kawaii interior preview: Christmas Word Search activity page"
     }
+  ],
+  "mistakes": [
+    {
+      "src": "images/previews/mistakes/01.jpg",
+      "alt": "I Hate Making Mistakes interior preview: A paper rocket. A very careful plan."
+    },
+    {
+      "src": "images/previews/mistakes/02.jpg",
+      "alt": "I Hate Making Mistakes interior preview: I can ask for help without giving up my idea."
+    },
+    {
+      "src": "images/previews/mistakes/03.jpg",
+      "alt": "I Hate Making Mistakes interior preview: A little tape. A little room for fun."
+    }
   ]
 }
