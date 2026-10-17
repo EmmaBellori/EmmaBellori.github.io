@@ -151,33 +151,45 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
 });
 
 
-// Restore the catalog viewport when returning from a book detail page.
-// sessionStorage is scoped to this browser tab and expires after 30 minutes.
+// Preserve catalog position when navigating to a book, including browser Back.
 (function(){
- const key='eb-catalog-return-v1';
- const catalog=document.querySelector('#catalog');
+ 'use strict';
+ const key='eb-catalog-return-v2';
+ const catalog=document.querySelector('#series-catalog');
  if(!catalog)return;
- let restore=null;
- try{const data=JSON.parse(sessionStorage.getItem(key)||'null');if(data&&Number.isFinite(data.y)&&data.y>=0&&Date.now()-data.t<1800000)restore=data;}catch{}
  const returning=location.hash==='#catalog-return';
- let restored=false;
- function save(){try{sessionStorage.setItem(key,JSON.stringify({y:window.scrollY,t:Date.now()}));}catch{}}
+ let saved=null;
+ try{saved=JSON.parse(sessionStorage.getItem(key)||'null');if(!saved||!Number.isFinite(saved.y)||Date.now()-saved.t>1800000)saved=null;}catch{}
+ function save(){
+  try{sessionStorage.setItem(key,JSON.stringify({y:window.scrollY,t:Date.now(),status:catalogStatus,query:search.value,expanded:[...collectionState]}));}catch{}
+ }
  document.addEventListener('click',e=>{
-  const link=e.target.closest('a[href]');if(!link||link.origin!==location.origin)return;
+  const link=e.target.closest('a[href]');
+  if(!link||link.origin!==location.origin)return;
   const path=new URL(link.href).pathname;
   if(/\/(?:book\.html|books\/[a-z0-9-]+\.html)$/.test(path))save();
  },true);
- function restorePosition(){
-  if(!returning||restored||!restore||!document.querySelector('.book-card'))return;
-  restored=true;
-  const target=Math.min(restore.y,Math.max(0,document.documentElement.scrollHeight-innerHeight));
-  const previous=document.documentElement.style.scrollBehavior;
+ // Also preserve the latest position for browser Back/BFCache.
+ window.addEventListener('pagehide',()=>{if(!returning)save();});
+ if(!returning||!saved)return;
+ // Restore catalog filters and expanded sections before the async catalog is rendered.
+ if(saved.status&&['all','published','coming_soon'].includes(saved.status))catalogStatus=saved.status;
+ if(typeof saved.query==='string')search.value=saved.query;
+ if(Array.isArray(saved.expanded))for(const name of saved.expanded)if(typeof name==='string')collectionState.add(name);
+ syncStatusButtons();
+ const observer=new MutationObserver(()=>{
+  if(!catalog.querySelector('.book-card'))return;
+  observer.disconnect();
+  const position=Math.max(0,saved.y);
+  const prior=document.documentElement.style.scrollBehavior;
   document.documentElement.style.scrollBehavior='auto';
-  window.scrollTo(0,target);
-  requestAnimationFrame(()=>{window.scrollTo(0,target);document.documentElement.style.scrollBehavior=previous;});
- }
- const observer=new MutationObserver(restorePosition);
- observer.observe(catalog,{childList:true,subtree:false});
- window.addEventListener('load',restorePosition,{once:true});
- window.addEventListener('pageshow',restorePosition);
+  const move=()=>window.scrollTo({top:position,behavior:'instant'});
+  move();
+  requestAnimationFrame(()=>{move();requestAnimationFrame(()=>{move();document.documentElement.style.scrollBehavior=prior;});});
+  // Image loading may alter heights; keep the viewport stable during initial layout.
+  window.addEventListener('load',move,{once:true});
+  setTimeout(move,350);
+  setTimeout(move,900);
+ });
+ observer.observe(catalog,{childList:true});
 })();
