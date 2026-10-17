@@ -82,5 +82,19 @@
       "src": "images/previews/door-teapot/03.jpg",
       "alt": "The Door Inside the Teapot interior preview: The teapot garden sparkled with light."
     }
+  ],
+  "bugs": [
+    {
+      "src": "images/previews/bugs/01.jpg",
+      "alt": "The Amazing Bug Detective interior preview: The Six-Leg Secret"
+    },
+    {
+      "src": "images/previews/bugs/02.jpg",
+      "alt": "The Amazing Bug Detective interior preview: The mixed-up life file"
+    },
+    {
+      "src": "images/previews/bugs/03.jpg",
+      "alt": "The Amazing Bug Detective interior preview: The Pond & Night Files"
+    }
   ]
 }
