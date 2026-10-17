@@ -12,5 +12,19 @@
       "src": "images/previews/halloween/03.jpg",
       "alt": "Halloween Kawaii interior preview: Halloween Word Search activity page"
     }
+  ],
+  "christmas": [
+    {
+      "src": "images/previews/christmas/01.jpg",
+      "alt": "Christmas Kawaii interior preview: Santa's Sweet Surprise coloring page"
+    },
+    {
+      "src": "images/previews/christmas/02.jpg",
+      "alt": "Christmas Kawaii interior preview: Christmas Toy Train coloring page"
+    },
+    {
+      "src": "images/previews/christmas/03.jpg",
+      "alt": "Christmas Kawaii interior preview: Christmas Word Search activity page"
+    }
   ]
 }
