@@ -16,3 +16,28 @@
 .collection-action{font-size:.9rem;font-weight:700}
 .collection-footer-link{margin-top:38px;font-weight:700}
 @media(max-width:540px){.collection-grid{grid-template-columns:repeat(2,minmax(0,1fr));gap:11px}.collection-book{padding:10px}.collection-book h2{font-size:.95rem}.collection-action{font-size:.82rem}.collection-page{padding:24px 16px 56px}}
+
+/* Collection pages: editorial context, direct Amazon conversion and upcoming votes */
+.series-title-link{color:inherit;text-decoration:none}.series-title-link:hover{text-decoration:underline}
+.collection-feature{max-width:780px;margin:0 0 38px;padding:22px 25px;background:var(--sage);border-radius:18px}
+.collection-feature h2{font-size:1.5rem;margin:6px 0}.collection-feature p{margin:10px 0}
+.collection-shelf{margin:30px 0 46px}.collection-shelf>h2{font-size:clamp(1.4rem,3vw,2rem);margin:0}
+.collection-shelf>h2 span{font-size:.75em;color:var(--muted);margin-left:6px}
+.collection-shelf>p{margin:4px 0 22px;color:var(--muted)}
+.collection-cover-wrap{position:relative;width:100%;max-width:230px;align-self:center}
+.collection-cover-wrap>a{display:block}.collection-cover-wrap img{display:block}
+.collection-cover-placeholder{aspect-ratio:2/3;border-radius:10px;background:var(--sage);padding:20px;display:grid;place-items:center;text-align:center;font-weight:700}
+.collection-book-info{display:flex;flex-direction:column;flex:1}
+.collection-theme{font-weight:650;font-size:.88rem;margin:0 0 5px}
+.collection-description{font-size:.87rem;line-height:1.55;color:var(--muted);margin:0 0 12px}
+.collection-age{font-size:.8rem;color:var(--muted)}
+.collection-actions{margin-top:auto;display:flex;flex-direction:column;gap:10px;align-items:stretch}
+.collection-buy{display:block;background:var(--ink);color:white;text-align:center;border-radius:999px;padding:11px 12px;font-weight:750;text-decoration:none;min-height:44px}
+.collection-buy:hover{background:#365f61}
+.collection-action{text-align:center}
+.collection-heart{position:absolute;top:9px;right:9px;z-index:2;width:44px;height:44px;border-radius:50%;border:1px solid #e6d5d2;background:#fff;display:grid;place-items:center;box-shadow:0 2px 8px #0002;cursor:pointer}
+.collection-heart svg{width:23px;height:23px;fill:none;stroke:#aa5966;stroke-width:2;stroke-linejoin:round}
+.collection-heart.is-active svg{fill:#d66c80;stroke:#b53f59}
+.collection-heart:focus-visible,.collection-buy:focus-visible,.series-title-link:focus-visible{outline:3px solid #146d78;outline-offset:3px}
+.collection-grid:empty::after{content:"No published titles yet. Explore the upcoming books below.";color:var(--muted);grid-column:1/-1}
+@media(max-width:540px){.collection-feature{padding:17px}.collection-description{font-size:.82rem}.collection-buy{font-size:.83rem;padding:10px 5px}.collection-heart{width:40px;height:40px}}
