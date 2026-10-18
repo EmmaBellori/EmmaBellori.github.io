@@ -1,240 +1,102 @@
 {
   "halloween": [
-    {
-      "src": "images/previews/halloween/01.jpg",
-      "alt": "Halloween Kawaii interior preview: Puppy's Trick-or-Treat coloring page"
-    },
-    {
-      "src": "images/previews/halloween/02.jpg",
-      "alt": "Halloween Kawaii interior preview: Halloween Picnic coloring page"
-    },
-    {
-      "src": "images/previews/halloween/03.jpg",
-      "alt": "Halloween Kawaii interior preview: Halloween Word Search activity page"
-    }
+    {"src":"images/previews/halloween/01.jpg","alt":"Halloween Kawaii interior preview: Puppy's Trick-or-Treat coloring page"},
+    {"src":"images/previews/halloween/02.jpg","alt":"Halloween Kawaii interior preview: Halloween Picnic coloring page"},
+    {"src":"images/previews/halloween/03.jpg","alt":"Halloween Kawaii interior preview: Halloween Word Search activity page"}
   ],
   "christmas": [
-    {
-      "src": "images/previews/christmas/01.jpg",
-      "alt": "Christmas Kawaii interior preview: Santa's Sweet Surprise coloring page"
-    },
-    {
-      "src": "images/previews/christmas/02.jpg",
-      "alt": "Christmas Kawaii interior preview: Christmas Toy Train coloring page"
-    },
-    {
-      "src": "images/previews/christmas/03.jpg",
-      "alt": "Christmas Kawaii interior preview: Christmas Word Search activity page"
-    }
+    {"src":"images/previews/christmas/01.jpg","alt":"Christmas Kawaii interior preview: Santa's Sweet Surprise coloring page"},
+    {"src":"images/previews/christmas/02.jpg","alt":"Christmas Kawaii interior preview: Christmas Toy Train coloring page"},
+    {"src":"images/previews/christmas/03.jpg","alt":"Christmas Kawaii interior preview: Christmas Word Search activity page"}
   ],
   "mistakes": [
-    {
-      "src": "images/previews/mistakes/01.jpg",
-      "alt": "I Hate Making Mistakes interior preview: A paper rocket. A very careful plan."
-    },
-    {
-      "src": "images/previews/mistakes/02.jpg",
-      "alt": "I Hate Making Mistakes interior preview: I can ask for help without giving up my idea."
-    },
-    {
-      "src": "images/previews/mistakes/03.jpg",
-      "alt": "I Hate Making Mistakes interior preview: A little tape. A little room for fun."
-    }
+    {"src":"images/previews/mistakes/01.jpg","alt":"I Hate Making Mistakes interior preview: A paper rocket. A very careful plan."},
+    {"src":"images/previews/mistakes/02.jpg","alt":"I Hate Making Mistakes interior preview: I can ask for help without giving up my idea."},
+    {"src":"images/previews/mistakes/03.jpg","alt":"I Hate Making Mistakes interior preview: A little tape. A little room for fun."}
   ],
   "play": [
-    {
-      "src": "images/previews/play/01.jpg",
-      "alt": "Nobody Wants to Play With Me interior preview: A small red block. A big idea to share."
-    },
-    {
-      "src": "images/previews/play/02.jpg",
-      "alt": "Nobody Wants to Play With Me interior preview: My feeling has someone to sit beside it."
-    },
-    {
-      "src": "images/previews/play/03.jpg",
-      "alt": "Nobody Wants to Play With Me interior preview: Our little town can make some room."
-    }
+    {"src":"images/previews/play/01.jpg","alt":"Nobody Wants to Play With Me interior preview: A small red block. A big idea to share."},
+    {"src":"images/previews/play/02.jpg","alt":"Nobody Wants to Play With Me interior preview: My feeling has someone to sit beside it."},
+    {"src":"images/previews/play/03.jpg","alt":"Nobody Wants to Play With Me interior preview: Our little town can make some room."}
   ],
   "mad": [
-    {
-      "src": "images/previews/mad/01.jpg",
-      "alt": "When I Lose, I Get REALLY Mad interior preview: One little turtle. One very BIG hope."
-    },
-    {
-      "src": "images/previews/mad/02.jpg",
-      "alt": "When I Lose, I Get REALLY Mad interior preview: A game can have a loser. It cannot tell me who I am."
-    },
-    {
-      "src": "images/previews/mad/03.jpg",
-      "alt": "When I Lose, I Get REALLY Mad interior preview: I can be disappointed and be a friend at the same time."
-    }
+    {"src":"images/previews/mad/01.jpg","alt":"When I Lose, I Get REALLY Mad interior preview: One little turtle. One very BIG hope."},
+    {"src":"images/previews/mad/02.jpg","alt":"When I Lose, I Get REALLY Mad interior preview: A game can have a loser. It cannot tell me who I am."},
+    {"src":"images/previews/mad/03.jpg","alt":"When I Lose, I Get REALLY Mad interior preview: I can be disappointed and be a friend at the same time."}
   ],
   "door-teapot": [
-    {
-      "src": "images/previews/door-teapot/01.jpg",
-      "alt": "The Door Inside the Teapot interior preview: A little door can be the start of something big."
-    },
-    {
-      "src": "images/previews/door-teapot/02.jpg",
-      "alt": "The Door Inside the Teapot interior preview: Two ordinary things made a very unusual plan."
-    },
-    {
-      "src": "images/previews/door-teapot/03.jpg",
-      "alt": "The Door Inside the Teapot interior preview: The teapot garden sparkled with light."
-    }
+    {"src":"images/previews/door-teapot/01.jpg","alt":"The Door Inside the Teapot interior preview: A little door can be the start of something big."},
+    {"src":"images/previews/door-teapot/02.jpg","alt":"The Door Inside the Teapot interior preview: Two ordinary things made a very unusual plan."},
+    {"src":"images/previews/door-teapot/03.jpg","alt":"The Door Inside the Teapot interior preview: The teapot garden sparkled with light."}
   ],
   "bugs": [
-    {
-      "src": "images/previews/bugs/01.jpg",
-      "alt": "The Amazing Bug Detective interior preview: The Six-Leg Secret"
-    },
-    {
-      "src": "images/previews/bugs/02.jpg",
-      "alt": "The Amazing Bug Detective interior preview: The mixed-up life file"
-    },
-    {
-      "src": "images/previews/bugs/03.jpg",
-      "alt": "The Amazing Bug Detective interior preview: The Pond & Night Files"
-    }
+    {"src":"images/previews/bugs/01.jpg","alt":"The Amazing Bug Detective interior preview: The Six-Leg Secret"},
+    {"src":"images/previews/bugs/02.jpg","alt":"The Amazing Bug Detective interior preview: The mixed-up life file"},
+    {"src":"images/previews/bugs/03.jpg","alt":"The Amazing Bug Detective interior preview: The Pond & Night Files"}
   ],
   "i-cant-sleep-without-you": [
-    {
-      "src": "images/previews/i-cant-sleep-without-you/01.jpg",
-      "alt": "I Can't Sleep Without You interior preview: I love the story. I want the closeness to stay."
-    },
-    {
-      "src": "images/previews/i-cant-sleep-without-you/02.jpg",
-      "alt": "I Can't Sleep Without You interior preview: A little more space. The same nearby grown-up."
-    },
-    {
-      "src": "images/previews/i-cant-sleep-without-you/03.jpg",
-      "alt": "I Can't Sleep Without You interior preview: A little space. A grown-up close by."
-    }
+    {"src":"images/previews/i-cant-sleep-without-you/01.jpg","alt":"I Can't Sleep Without You interior preview: I love the story. I want the closeness to stay."},
+    {"src":"images/previews/i-cant-sleep-without-you/02.jpg","alt":"I Can't Sleep Without You interior preview: A little more space. The same nearby grown-up."},
+    {"src":"images/previews/i-cant-sleep-without-you/03.jpg","alt":"I Can't Sleep Without You interior preview: A little space. A grown-up close by."}
   ],
   "cut-with-me-home": [
-    {
-      "src": "images/previews/cut-with-me-home/01.jpg",
-      "alt": "Cut With Me at Home interior preview: A fruit-picture puzzle"
-    },
-    {
-      "src": "images/previews/cut-with-me-home/02.jpg",
-      "alt": "Cut With Me at Home interior preview: A mountain skyline"
-    },
-    {
-      "src": "images/previews/cut-with-me-home/03.jpg",
-      "alt": "Cut With Me at Home interior preview: Build a paper home"
-    }
+    {"src":"images/previews/cut-with-me-home/01.jpg","alt":"Cut With Me at Home interior preview: A fruit-picture puzzle"},
+    {"src":"images/previews/cut-with-me-home/02.jpg","alt":"Cut With Me at Home interior preview: A mountain skyline"},
+    {"src":"images/previews/cut-with-me-home/03.jpg","alt":"Cut With Me at Home interior preview: Build a paper home"}
   ],
   "measure-with-me-home": [
-    {
-      "src": "images/previews/measure-with-me-home/01.jpg",
-      "alt": "Measure With Me at Home interior preview: Heavier or lighter?"
-    },
-    {
-      "src": "images/previews/measure-with-me-home/02.jpg",
-      "alt": "Measure With Me at Home interior preview: Count equal cupfuls"
-    },
-    {
-      "src": "images/previews/measure-with-me-home/03.jpg",
-      "alt": "Measure With Me at Home interior preview: A little measuring hunt"
-    }
+    {"src":"images/previews/measure-with-me-home/01.jpg","alt":"Measure With Me at Home interior preview: Heavier or lighter?"},
+    {"src":"images/previews/measure-with-me-home/02.jpg","alt":"Measure With Me at Home interior preview: Count equal cupfuls"},
+    {"src":"images/previews/measure-with-me-home/03.jpg","alt":"Measure With Me at Home interior preview: A little measuring hunt"}
   ],
   "my-first-baseball-adventure": [
-    {
-      "src": "images/previews/my-first-baseball-adventure/01.jpg",
-      "alt": "My First Baseball Adventure interior preview: first lesson at the baseball field"
-    },
-    {
-      "src": "images/previews/my-first-baseball-adventure/02.jpg",
-      "alt": "My First Baseball Adventure interior preview: first hit"
-    },
-    {
-      "src": "images/previews/my-first-baseball-adventure/03.jpg",
-      "alt": "My First Baseball Adventure interior preview: Meet the baseball diamond"
-    }
+    {"src":"images/previews/my-first-baseball-adventure/01.jpg","alt":"My First Baseball Adventure interior preview: first lesson at the baseball field"},
+    {"src":"images/previews/my-first-baseball-adventure/02.jpg","alt":"My First Baseball Adventure interior preview: first hit"},
+    {"src":"images/previews/my-first-baseball-adventure/03.jpg","alt":"My First Baseball Adventure interior preview: Meet the baseball diamond"}
   ],
   "my-first-basketball-adventure": [
-    {
-      "src": "images/previews/my-first-basketball-adventure/01.jpg",
-      "alt": "My First Basketball Adventure interior preview: first lesson on the basketball court"
-    },
-    {
-      "src": "images/previews/my-first-basketball-adventure/02.jpg",
-      "alt": "My First Basketball Adventure interior preview: first basket"
-    },
-    {
-      "src": "images/previews/my-first-basketball-adventure/03.jpg",
-      "alt": "My First Basketball Adventure interior preview: Meet the basketball court"
-    }
+    {"src":"images/previews/my-first-basketball-adventure/01.jpg","alt":"My First Basketball Adventure interior preview: first lesson on the basketball court"},
+    {"src":"images/previews/my-first-basketball-adventure/02.jpg","alt":"My First Basketball Adventure interior preview: first basket"},
+    {"src":"images/previews/my-first-basketball-adventure/03.jpg","alt":"My First Basketball Adventure interior preview: Meet the basketball court"}
   ],
   "my-first-cheerleading-adventure": [
-    {
-      "src": "images/previews/my-first-cheerleading-adventure/01.jpg",
-      "alt": "My First Cheerleading Adventure interior preview: first cheer class"
-    },
-    {
-      "src": "images/previews/my-first-cheerleading-adventure/02.jpg",
-      "alt": "My First Cheerleading Adventure interior preview: team cheer practice"
-    },
-    {
-      "src": "images/previews/my-first-cheerleading-adventure/03.jpg",
-      "alt": "My First Cheerleading Adventure interior preview: Three first arm shapes"
-    }
+    {"src":"images/previews/my-first-cheerleading-adventure/01.jpg","alt":"My First Cheerleading Adventure interior preview: first cheer class"},
+    {"src":"images/previews/my-first-cheerleading-adventure/02.jpg","alt":"My First Cheerleading Adventure interior preview: team cheer practice"},
+    {"src":"images/previews/my-first-cheerleading-adventure/03.jpg","alt":"My First Cheerleading Adventure interior preview: Three first arm shapes"}
   ],
   "my-first-coastal-adventure": [
-    {
-      "src": "images/previews/my-first-coastal-adventure/01.jpg",
-      "alt": "My First Coastal Adventure interior preview: coastal field trip"
-    },
-    {
-      "src": "images/previews/my-first-coastal-adventure/02.jpg",
-      "alt": "My First Coastal Adventure interior preview: exploring coastal dunes"
-    },
-    {
-      "src": "images/previews/my-first-coastal-adventure/03.jpg",
-      "alt": "My First Coastal Adventure interior preview: Meet a coastal landscape"
-    }
+    {"src":"images/previews/my-first-coastal-adventure/01.jpg","alt":"My First Coastal Adventure interior preview: coastal field trip"},
+    {"src":"images/previews/my-first-coastal-adventure/02.jpg","alt":"My First Coastal Adventure interior preview: exploring coastal dunes"},
+    {"src":"images/previews/my-first-coastal-adventure/03.jpg","alt":"My First Coastal Adventure interior preview: Meet a coastal landscape"}
   ],
   "my-first-desert-adventure": [
-    {
-      "src": "images/previews/my-first-desert-adventure/01.jpg",
-      "alt": "My First Desert Adventure interior preview: desert field trip"
-    },
-    {
-      "src": "images/previews/my-first-desert-adventure/02.jpg",
-      "alt": "My First Desert Adventure interior preview: exploring desert dunes"
-    },
-    {
-      "src": "images/previews/my-first-desert-adventure/03.jpg",
-      "alt": "My First Desert Adventure interior preview: What makes a desert?"
-    }
+    {"src":"images/previews/my-first-desert-adventure/01.jpg","alt":"My First Desert Adventure interior preview: desert field trip"},
+    {"src":"images/previews/my-first-desert-adventure/02.jpg","alt":"My First Desert Adventure interior preview: exploring desert dunes"},
+    {"src":"images/previews/my-first-desert-adventure/03.jpg","alt":"My First Desert Adventure interior preview: What makes a desert?"}
   ],
   "my-first-flag-football-adventure": [
-    {
-      "src": "images/previews/my-first-flag-football-adventure/01.jpg",
-      "alt": "My First Flag Football Adventure interior preview: first lesson"
-    },
-    {
-      "src": "images/previews/my-first-flag-football-adventure/02.jpg",
-      "alt": "My First Flag Football Adventure interior preview: making a catch"
-    },
-    {
-      "src": "images/previews/my-first-flag-football-adventure/03.jpg",
-      "alt": "My First Flag Football Adventure interior preview: Meet the flag football field"
-    }
+    {"src":"images/previews/my-first-flag-football-adventure/01.jpg","alt":"My First Flag Football Adventure interior preview: first lesson"},
+    {"src":"images/previews/my-first-flag-football-adventure/02.jpg","alt":"My First Flag Football Adventure interior preview: making a catch"},
+    {"src":"images/previews/my-first-flag-football-adventure/03.jpg","alt":"My First Flag Football Adventure interior preview: Meet the flag football field"}
   ],
   "my-first-glacier-adventure": [
-    {
-      "src": "images/previews/my-first-glacier-adventure/01.jpg",
-      "alt": "My First Glacier Adventure interior preview: glacier field trip"
-    },
-    {
-      "src": "images/previews/my-first-glacier-adventure/02.jpg",
-      "alt": "My First Glacier Adventure interior preview: observing glacier and moraine clues"
-    },
-    {
-      "src": "images/previews/my-first-glacier-adventure/03.jpg",
-      "alt": "My First Glacier Adventure interior preview: How does a glacier begin?"
-    }
+    {"src":"images/previews/my-first-glacier-adventure/01.jpg","alt":"My First Glacier Adventure interior preview: glacier field trip"},
+    {"src":"images/previews/my-first-glacier-adventure/02.jpg","alt":"My First Glacier Adventure interior preview: observing glacier and moraine clues"},
+    {"src":"images/previews/my-first-glacier-adventure/03.jpg","alt":"My First Glacier Adventure interior preview: How does a glacier begin?"}
+  ],
+  "my-first-golf-adventure": [
+    {"src":"images/previews/my-first-golf-adventure/01.jpg","alt":"My First Golf Adventure interior preview: first lesson on the practice green"},
+    {"src":"images/previews/my-first-golf-adventure/02.jpg","alt":"My First Golf Adventure interior preview: putting toward the hole"},
+    {"src":"images/previews/my-first-golf-adventure/03.jpg","alt":"My First Golf Adventure interior preview: Meet a golf hole"}
+  ],
+  "my-first-gymnastics-adventure": [
+    {"src":"images/previews/my-first-gymnastics-adventure/01.jpg","alt":"My First Gymnastics Adventure interior preview: first lesson in the gym"},
+    {"src":"images/previews/my-first-gymnastics-adventure/02.jpg","alt":"My First Gymnastics Adventure interior preview: balance beam practice"},
+    {"src":"images/previews/my-first-gymnastics-adventure/03.jpg","alt":"My First Gymnastics Adventure interior preview: Meet the gymnastics gym"}
+  ],
+  "my-first-ice-hockey-adventure": [
+    {"src":"images/previews/my-first-ice-hockey-adventure/01.jpg","alt":"My First Ice Hockey Adventure interior preview: first lesson on the ice"},
+    {"src":"images/previews/my-first-ice-hockey-adventure/02.jpg","alt":"My First Ice Hockey Adventure interior preview: shooting toward the goal"},
+    {"src":"images/previews/my-first-ice-hockey-adventure/03.jpg","alt":"My First Ice Hockey Adventure interior preview: When is it a goal?"}
   ]
 }
