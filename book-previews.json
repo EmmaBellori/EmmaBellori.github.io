@@ -113,5 +113,20 @@
     {"src":"images/previews/my-first-pickleball-adventure/01.jpg","alt":"My First Pickleball Adventure interior preview: first lesson on the court"},
     {"src":"images/previews/my-first-pickleball-adventure/02.jpg","alt":"My First Pickleball Adventure interior preview: beginner rally"},
     {"src":"images/previews/my-first-pickleball-adventure/03.jpg","alt":"My First Pickleball Adventure interior preview: Find your way around the court"}
+  ],
+  "my-first-river-adventure": [
+    {"src":"images/previews/my-first-river-adventure/01.jpg","alt":"My First River Adventure interior preview: river field trip"},
+    {"src":"images/previews/my-first-river-adventure/02.jpg","alt":"My First River Adventure interior preview: exploring a river landscape"},
+    {"src":"images/previews/my-first-river-adventure/03.jpg","alt":"My First River Adventure interior preview: Meet a river system"}
+  ],
+  "my-first-skateboarding-adventure": [
+    {"src":"images/previews/my-first-skateboarding-adventure/01.jpg","alt":"My First Skateboarding Adventure interior preview: first lesson at the skate park"},
+    {"src":"images/previews/my-first-skateboarding-adventure/02.jpg","alt":"My First Skateboarding Adventure interior preview: first ride"},
+    {"src":"images/previews/my-first-skateboarding-adventure/03.jpg","alt":"My First Skateboarding Adventure interior preview: Meet your skateboard"}
+  ],
+  "my-first-soccer-adventure": [
+    {"src":"images/previews/my-first-soccer-adventure/01.jpg","alt":"My First Soccer Adventure interior preview: first lesson on the soccer field"},
+    {"src":"images/previews/my-first-soccer-adventure/02.jpg","alt":"My First Soccer Adventure interior preview: scoring a goal"},
+    {"src":"images/previews/my-first-soccer-adventure/03.jpg","alt":"My First Soccer Adventure interior preview: Meet the soccer field"}
   ]
 }
