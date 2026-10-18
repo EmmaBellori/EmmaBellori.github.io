@@ -1,0 +1,17 @@
+{
+  "abc-animals": [
+    {"src":"images/previews/abc-animals/01.jpg","alt":"ABC Animals – Learn & Color interior preview: G is for Giraffe coloring page"},
+    {"src":"images/previews/abc-animals/02.jpg","alt":"ABC Animals – Learn & Color interior preview: Ocean Friends coloring page"},
+    {"src":"images/previews/abc-animals/03.jpg","alt":"ABC Animals – Learn & Color interior preview: Which letter comes first? activity"}
+  ],
+  "animals-color-by-number": [
+    {"src":"images/previews/animals-color-by-number/01.jpg","alt":"Animals Color by Number interior preview: Lion color-by-number page"},
+    {"src":"images/previews/animals-color-by-number/02.jpg","alt":"Animals Color by Number interior preview: Peacock color-by-number page"},
+    {"src":"images/previews/animals-color-by-number/03.jpg","alt":"Animals Color by Number interior preview: Octopus color-by-number page"}
+  ],
+  "bakery-before-breakfast": [
+    {"src":"images/previews/bakery-before-breakfast/01.jpg","alt":"The Bakery Before Breakfast interior preview: Mixing brings the ingredients together"},
+    {"src":"images/previews/bakery-before-breakfast/02.jpg","alt":"The Bakery Before Breakfast interior preview: A grown-up handles the hot oven"},
+    {"src":"images/previews/bakery-before-breakfast/03.jpg","alt":"The Bakery Before Breakfast interior preview: Everyday work helps a neighborhood begin its day"}
+  ]
+}
