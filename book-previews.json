@@ -152,5 +152,47 @@
       "src": "images/previews/my-first-baseball-adventure/03.jpg",
       "alt": "My First Baseball Adventure interior preview: Meet the baseball diamond"
     }
+  ],
+  "my-first-basketball-adventure": [
+    {
+      "src": "images/previews/my-first-basketball-adventure/01.jpg",
+      "alt": "My First Basketball Adventure interior preview: first lesson on the basketball court"
+    },
+    {
+      "src": "images/previews/my-first-basketball-adventure/02.jpg",
+      "alt": "My First Basketball Adventure interior preview: first basket"
+    },
+    {
+      "src": "images/previews/my-first-basketball-adventure/03.jpg",
+      "alt": "My First Basketball Adventure interior preview: Meet the basketball court"
+    }
+  ],
+  "my-first-cheerleading-adventure": [
+    {
+      "src": "images/previews/my-first-cheerleading-adventure/01.jpg",
+      "alt": "My First Cheerleading Adventure interior preview: first cheer class"
+    },
+    {
+      "src": "images/previews/my-first-cheerleading-adventure/02.jpg",
+      "alt": "My First Cheerleading Adventure interior preview: team cheer practice"
+    },
+    {
+      "src": "images/previews/my-first-cheerleading-adventure/03.jpg",
+      "alt": "My First Cheerleading Adventure interior preview: Three first arm shapes"
+    }
+  ],
+  "my-first-coastal-adventure": [
+    {
+      "src": "images/previews/my-first-coastal-adventure/01.jpg",
+      "alt": "My First Coastal Adventure interior preview: coastal field trip"
+    },
+    {
+      "src": "images/previews/my-first-coastal-adventure/02.jpg",
+      "alt": "My First Coastal Adventure interior preview: exploring coastal dunes"
+    },
+    {
+      "src": "images/previews/my-first-coastal-adventure/03.jpg",
+      "alt": "My First Coastal Adventure interior preview: Meet a coastal landscape"
+    }
   ]
 }
