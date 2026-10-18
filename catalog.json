@@ -205,9 +205,14 @@
     "id": "door-teapot",
     "title": "The Door Inside the Teapot",
     "cover": "images/coming-soon/The_Door_Inside_the_Teapot_Front_800px.jpg",
+    "format": "Paperback+Kindle Edition",
+    "theme": "Imagination and discovery",
+    "description": "A whimsical adventure where an ordinary teapot opens the way to an extraordinary hidden world.",
+    "amazonUrl": "https://www.amazon.com/dp/B0HNGWVP9B",
+    "featured": true,
     "series": "Tiny Doors, Big Adventures",
     "seriesSlug": "tiny-doors-big-adventures",
-    "status": "coming_soon"
+    "status": "published"
   },
   {
     "id": "umbrella-forest",
@@ -317,9 +322,14 @@
     "id": "i-cant-sleep-without-you",
     "title": "I Can't Sleep Without You",
     "cover": "images/coming-soon/i-cant-sleep-without-you.jpg",
+    "format": "Paperback+Kindle Edition",
+    "theme": "Bedtime confidence and independence",
+    "description": "A gentle bedtime story about closeness, reassurance and taking small steps toward sleeping independently.",
+    "amazonUrl": "https://www.amazon.com/dp/B0HNGJQJYC",
+    "featured": true,
     "series": "Big Feelings, Real Problems",
     "seriesSlug": "big-feelings-real-problems",
-    "status": "coming_soon"
+    "status": "published"
   },
   {
     "id": "my-new-baby-is-taking-everyone",
