@@ -13,5 +13,25 @@
     {"src":"images/previews/bakery-before-breakfast/01.jpg","alt":"The Bakery Before Breakfast interior preview: Mixing brings the ingredients together"},
     {"src":"images/previews/bakery-before-breakfast/02.jpg","alt":"The Bakery Before Breakfast interior preview: A grown-up handles the hot oven"},
     {"src":"images/previews/bakery-before-breakfast/03.jpg","alt":"The Bakery Before Breakfast interior preview: Everyday work helps a neighborhood begin its day"}
+  ],
+  "construction-vehicles": [
+    {"src":"images/previews/construction-vehicles/01.jpg","alt":"Construction Vehicles – Big Trucks & Diggers interior preview: excavator coloring page"},
+    {"src":"images/previews/construction-vehicles/02.jpg","alt":"Construction Vehicles – Big Trucks & Diggers interior preview: tower crane coloring page"},
+    {"src":"images/previews/construction-vehicles/03.jpg","alt":"Construction Vehicles – Big Trucks & Diggers interior preview: excavator and dump truck coloring page"}
+  ],
+  "cute-animals-bold-easy": [
+    {"src":"images/previews/cute-animals-bold-easy/01.jpg","alt":"Cute Animals – Bold & Easy Coloring Book interior preview: kitten coloring page"},
+    {"src":"images/previews/cute-animals-bold-easy/02.jpg","alt":"Cute Animals – Bold & Easy Coloring Book interior preview: elephant coloring page"},
+    {"src":"images/previews/cute-animals-bold-easy/03.jpg","alt":"Cute Animals – Bold & Easy Coloring Book interior preview: octopus coloring page"}
+  ],
+  "deep-sea-detective": [
+    {"src":"images/previews/deep-sea-detective/01.jpg","alt":"Deep Sea Detective interior preview: The Light in the Dark bioluminescence case"},
+    {"src":"images/previews/deep-sea-detective/02.jpg","alt":"Deep Sea Detective interior preview: Hot Springs in the Dark hydrothermal vent case"},
+    {"src":"images/previews/deep-sea-detective/03.jpg","alt":"Deep Sea Detective interior preview: canyon survey grid activity"}
+  ],
+  "easy-animal-mandalas": [
+    {"src":"images/previews/easy-animal-mandalas/01.jpg","alt":"Easy Animal Mandalas for Kids interior preview: lion mandala coloring page"},
+    {"src":"images/previews/easy-animal-mandalas/02.jpg","alt":"Easy Animal Mandalas for Kids interior preview: peacock mandala coloring page"},
+    {"src":"images/previews/easy-animal-mandalas/03.jpg","alt":"Easy Animal Mandalas for Kids interior preview: octopus mandala coloring page"}
   ]
 }
