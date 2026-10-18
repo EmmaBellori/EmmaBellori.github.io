@@ -33,5 +33,25 @@
     {"src":"images/previews/easy-animal-mandalas/01.jpg","alt":"Easy Animal Mandalas for Kids interior preview: lion mandala coloring page"},
     {"src":"images/previews/easy-animal-mandalas/02.jpg","alt":"Easy Animal Mandalas for Kids interior preview: peacock mandala coloring page"},
     {"src":"images/previews/easy-animal-mandalas/03.jpg","alt":"Easy Animal Mandalas for Kids interior preview: octopus mandala coloring page"}
+  ],
+  "garden-fed-town": [
+    {"src":"images/previews/garden-fed-town/01.jpg","alt":"The Garden That Fed the Town interior preview: children planting seeds with a gardener"},
+    {"src":"images/previews/garden-fed-town/02.jpg","alt":"The Garden That Fed the Town interior preview: harvesting vegetables in the community garden"},
+    {"src":"images/previews/garden-fed-town/03.jpg","alt":"The Garden That Fed the Town interior preview: community supper around one table"}
+  ],
+  "human-body-detective": [
+    {"src":"images/previews/human-body-detective/01.jpg","alt":"Human Body Detective interior preview: The Breath’s Hidden Journey lungs and airways case"},
+    {"src":"images/previews/human-body-detective/02.jpg","alt":"Human Body Detective interior preview: The Message That Found a Hand brain and nerves case"},
+    {"src":"images/previews/human-body-detective/03.jpg","alt":"Human Body Detective interior preview: Restore the handwashing cards activity"}
+  ],
+  "dont-like-changes": [
+    {"src":"images/previews/dont-like-changes/01.jpg","alt":"I Don’t Like Changes! interior preview: a small change can feel very big"},
+    {"src":"images/previews/dont-like-changes/02.jpg","alt":"I Don’t Like Changes! interior preview: asking for something familiar while getting used to something new"},
+    {"src":"images/previews/dont-like-changes/03.jpg","alt":"I Don’t Like Changes! interior preview: feeling unsure and taking a small next step"}
+  ],
+  "dont-want-school": [
+    {"src":"images/previews/dont-want-school/01.jpg","alt":"I Don’t Want to Go to School! interior preview: a small doorway can feel very big"},
+    {"src":"images/previews/dont-want-school/02.jpg","alt":"I Don’t Want to Go to School! interior preview: goodbye can hurt and support can help"},
+    {"src":"images/previews/dont-want-school/03.jpg","alt":"I Don’t Want to Go to School! interior preview: the hard part and the good part can both be heard"}
   ]
 }
