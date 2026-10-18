@@ -98,5 +98,20 @@
     {"src":"images/previews/my-first-ice-hockey-adventure/01.jpg","alt":"My First Ice Hockey Adventure interior preview: first lesson on the ice"},
     {"src":"images/previews/my-first-ice-hockey-adventure/02.jpg","alt":"My First Ice Hockey Adventure interior preview: shooting toward the goal"},
     {"src":"images/previews/my-first-ice-hockey-adventure/03.jpg","alt":"My First Ice Hockey Adventure interior preview: When is it a goal?"}
+  ],
+  "my-first-lacrosse-adventure": [
+    {"src":"images/previews/my-first-lacrosse-adventure/01.jpg","alt":"My First Lacrosse Adventure interior preview: first lesson with lacrosse sticks"},
+    {"src":"images/previews/my-first-lacrosse-adventure/02.jpg","alt":"My First Lacrosse Adventure interior preview: shooting toward the goal"},
+    {"src":"images/previews/my-first-lacrosse-adventure/03.jpg","alt":"My First Lacrosse Adventure interior preview: Meet your lacrosse stick"}
+  ],
+  "my-first-mountain-adventure": [
+    {"src":"images/previews/my-first-mountain-adventure/01.jpg","alt":"My First Mountain Adventure interior preview: mountain field trip"},
+    {"src":"images/previews/my-first-mountain-adventure/02.jpg","alt":"My First Mountain Adventure interior preview: observing a mountain valley"},
+    {"src":"images/previews/my-first-mountain-adventure/03.jpg","alt":"My First Mountain Adventure interior preview: Meet a mountain landscape"}
+  ],
+  "my-first-pickleball-adventure": [
+    {"src":"images/previews/my-first-pickleball-adventure/01.jpg","alt":"My First Pickleball Adventure interior preview: first lesson on the court"},
+    {"src":"images/previews/my-first-pickleball-adventure/02.jpg","alt":"My First Pickleball Adventure interior preview: beginner rally"},
+    {"src":"images/previews/my-first-pickleball-adventure/03.jpg","alt":"My First Pickleball Adventure interior preview: Find your way around the court"}
   ]
 }
