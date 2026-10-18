@@ -110,5 +110,47 @@
       "src": "images/previews/i-cant-sleep-without-you/03.jpg",
       "alt": "I Can't Sleep Without You interior preview: A little space. A grown-up close by."
     }
+  ],
+  "cut-with-me-home": [
+    {
+      "src": "images/previews/cut-with-me-home/01.jpg",
+      "alt": "Cut With Me at Home interior preview: A fruit-picture puzzle"
+    },
+    {
+      "src": "images/previews/cut-with-me-home/02.jpg",
+      "alt": "Cut With Me at Home interior preview: A mountain skyline"
+    },
+    {
+      "src": "images/previews/cut-with-me-home/03.jpg",
+      "alt": "Cut With Me at Home interior preview: Build a paper home"
+    }
+  ],
+  "measure-with-me-home": [
+    {
+      "src": "images/previews/measure-with-me-home/01.jpg",
+      "alt": "Measure With Me at Home interior preview: Heavier or lighter?"
+    },
+    {
+      "src": "images/previews/measure-with-me-home/02.jpg",
+      "alt": "Measure With Me at Home interior preview: Count equal cupfuls"
+    },
+    {
+      "src": "images/previews/measure-with-me-home/03.jpg",
+      "alt": "Measure With Me at Home interior preview: A little measuring hunt"
+    }
+  ],
+  "my-first-baseball-adventure": [
+    {
+      "src": "images/previews/my-first-baseball-adventure/01.jpg",
+      "alt": "My First Baseball Adventure interior preview: first lesson at the baseball field"
+    },
+    {
+      "src": "images/previews/my-first-baseball-adventure/02.jpg",
+      "alt": "My First Baseball Adventure interior preview: first hit"
+    },
+    {
+      "src": "images/previews/my-first-baseball-adventure/03.jpg",
+      "alt": "My First Baseball Adventure interior preview: Meet the baseball diamond"
+    }
   ]
 }
