@@ -8,6 +8,50 @@ const VISITOR_STORAGE_KEY='eb-preference-visitor-v1';
 const CHOICES_STORAGE_KEY='eb-preference-choices-v1';
 const preferences=Object.create(null);
 try {const saved=JSON.parse(localStorage.getItem(CHOICES_STORAGE_KEY)||'{}');if(saved&&typeof saved==='object')for(const [k,v] of Object.entries(saved))if(typeof v==='string')preferences[k]=v;}catch{}
+
+function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
+function detailHref(book){return '../book.html?id='+encodeURIComponent(book.id);}
+function publishedCardMarkup(book,article){
+ const img=article.querySelector('img');
+ const cover=img?img.getAttribute('src'):('../'+book.cover);
+ const alt=img?img.getAttribute('alt'):('Cover of '+book.title);
+ const theme=book.theme?'<p class="collection-theme">'+escapeHTML(book.theme)+'</p>':'';
+ const description=book.description?'<p class="collection-description">'+escapeHTML(book.description)+'</p>':'';
+ return '<div class="collection-cover-wrap"><a href="'+detailHref(book)+'" aria-label="Read about '+escapeHTML(book.title)+'"><img loading="lazy" decoding="async" width="240" height="340" src="'+escapeHTML(cover)+'" alt="'+escapeHTML(alt)+'"></a></div><div class="collection-book-info"><span class="collection-state">Available now</span><h2><a href="'+detailHref(book)+'">'+escapeHTML(book.title)+'</a></h2>'+theme+description+'<div class="collection-actions"><a class="collection-buy" href="'+escapeHTML(book.amazonUrl)+'" target="_blank" rel="noopener noreferrer sponsored" data-book-id="'+escapeHTML(book.id)+'">View on Amazon ↗</a><a class="collection-action" href="'+detailHref(book)+'">Book details →</a></div></div>';
+}
+async function syncPublishedFromCatalog(){
+ const page=document.querySelector('.collection-page');if(!page)return;
+ const currentSeries=document.querySelector('.collection-breadcrumb [aria-current="page"]')?.textContent.trim()||'';
+ if(!currentSeries)return;
+ try{
+  const response=await fetch('../catalog.json',{cache:'no-store'});if(!response.ok)return;
+  const catalog=await response.json();if(!Array.isArray(catalog))return;
+  const seriesBooks=catalog.filter(book=>book&&book.series===currentSeries);
+  const publishedBooks=seriesBooks.filter(book=>book.status==='published'&&typeof book.amazonUrl==='string');
+  if(!publishedBooks.length)return;
+  let availableShelf=page.querySelector('.collection-shelf[aria-labelledby="available-heading"]');
+  const upcomingShelf=page.querySelector('.collection-shelf[aria-labelledby="upcoming-heading"]');
+  if(!availableShelf){
+   availableShelf=document.createElement('section');availableShelf.className='collection-shelf';availableShelf.setAttribute('aria-labelledby','available-heading');availableShelf.innerHTML='<h2 id="available-heading">Available now <span>0</span></h2><p>Discover the books already available and explore their editions on Amazon.</p><div class="collection-grid"></div>';
+   if(upcomingShelf)upcomingShelf.before(availableShelf);else page.querySelector('.collection-footer-link')?.before(availableShelf);
+  }
+  const availableGrid=availableShelf.querySelector('.collection-grid');
+  for(const book of publishedBooks){
+   const voteButton=page.querySelector('[data-vote-id="'+CSS.escape(book.id)+'"]');
+   const article=voteButton?.closest('.collection-book');
+   if(!article||article.classList.contains('is-published'))continue;
+   article.classList.remove('is-upcoming');article.classList.add('is-published');article.innerHTML=publishedCardMarkup(book,article);availableGrid.appendChild(article);
+   const index=upcoming.findIndex(item=>item.id===book.id);if(index!==-1)upcoming.splice(index,1);
+  }
+  const publishedCount=seriesBooks.filter(book=>book.status==='published').length;
+  const comingCount=seriesBooks.filter(book=>book.status==='coming_soon').length;
+  const statValues=page.querySelectorAll('.collection-stat dd');
+  if(statValues.length>=3){statValues[0].textContent=String(seriesBooks.length);statValues[1].textContent=String(publishedCount);statValues[2].textContent=String(comingCount);}
+  const availableCount=availableShelf.querySelector('#available-heading span');if(availableCount)availableCount.textContent=String(publishedCount);
+  if(upcomingShelf){const upcomingCount=upcomingShelf.querySelector('#upcoming-heading span');if(upcomingCount)upcomingCount.textContent=String(comingCount);if(comingCount===0)upcomingShelf.hidden=true;}
+ }catch{}
+}
+
 const voteDialog=document.querySelector('#vote-dialog');
 const voteError=document.querySelector('#vote-error');
 const voteConfirm=document.querySelector('#vote-confirm');
@@ -63,4 +107,4 @@ voteConfirm.addEventListener('click',async()=>{
  finally{submitting=false;voteConfirm.textContent='♥ Vote for this book';voteConfirm.disabled=!verifiedToken;}
 });
 
-syncVotes();
+syncPublishedFromCatalog().finally(syncVotes);
