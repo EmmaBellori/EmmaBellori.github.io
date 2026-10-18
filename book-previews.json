@@ -128,5 +128,20 @@
     {"src":"images/previews/my-first-soccer-adventure/01.jpg","alt":"My First Soccer Adventure interior preview: first lesson on the soccer field"},
     {"src":"images/previews/my-first-soccer-adventure/02.jpg","alt":"My First Soccer Adventure interior preview: scoring a goal"},
     {"src":"images/previews/my-first-soccer-adventure/03.jpg","alt":"My First Soccer Adventure interior preview: Meet the soccer field"}
+  ],
+  "my-first-softball-adventure": [
+    {"src":"images/previews/my-first-softball-adventure/01.jpg","alt":"My First Softball Adventure interior preview: first lesson on the softball field"},
+    {"src":"images/previews/my-first-softball-adventure/02.jpg","alt":"My First Softball Adventure interior preview: first swing"},
+    {"src":"images/previews/my-first-softball-adventure/03.jpg","alt":"My First Softball Adventure interior preview: Meet the softball diamond"}
+  ],
+  "my-first-swimming-adventure": [
+    {"src":"images/previews/my-first-swimming-adventure/01.jpg","alt":"My First Swimming Adventure interior preview: first lesson at the pool"},
+    {"src":"images/previews/my-first-swimming-adventure/02.jpg","alt":"My First Swimming Adventure interior preview: learning to float"},
+    {"src":"images/previews/my-first-swimming-adventure/03.jpg","alt":"My First Swimming Adventure interior preview: Meet the learning pool"}
+  ],
+  "my-first-tennis-adventure": [
+    {"src":"images/previews/my-first-tennis-adventure/01.jpg","alt":"My First Tennis Adventure interior preview: first lesson on the tennis court"},
+    {"src":"images/previews/my-first-tennis-adventure/02.jpg","alt":"My First Tennis Adventure interior preview: beginner rally"},
+    {"src":"images/previews/my-first-tennis-adventure/03.jpg","alt":"My First Tennis Adventure interior preview: A court made for beginners"}
   ]
 }
