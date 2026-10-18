@@ -173,5 +173,20 @@
     {"src":"images/previews/the-gingerbread-house-next-door/01.jpg","alt":"The Gingerbread House Next Door interior preview: baking together"},
     {"src":"images/previews/the-gingerbread-house-next-door/02.jpg","alt":"The Gingerbread House Next Door interior preview: building a gingerbread house"},
     {"src":"images/previews/the-gingerbread-house-next-door/03.jpg","alt":"The Gingerbread House Next Door interior preview: neighboring gingerbread houses"}
+  ],
+  "little-star-christmas": [
+    {"src":"images/previews/the-little-star-that-missed-christmas/01.jpg","alt":"The Little Star That Missed Christmas interior preview: snowy Christmas village"},
+    {"src":"images/previews/the-little-star-that-missed-christmas/02.jpg","alt":"The Little Star That Missed Christmas interior preview: Christmas reunion"},
+    {"src":"images/previews/the-little-star-that-missed-christmas/03.jpg","alt":"The Little Star That Missed Christmas interior preview: Christmas tree at home"}
+  ],
+  "reindeer-couldnt-fly": [
+    {"src":"images/previews/the-reindeer-who-couldnt-fly-yet/01.jpg","alt":"The Reindeer Who Couldn't Fly Yet interior preview: watching the flyers"},
+    {"src":"images/previews/the-reindeer-who-couldnt-fly-yet/02.jpg","alt":"The Reindeer Who Couldn't Fly Yet interior preview: sheltered snowy path"},
+    {"src":"images/previews/the-reindeer-who-couldnt-fly-yet/03.jpg","alt":"The Reindeer Who Couldn't Fly Yet interior preview: Christmas delivery"}
+  ],
+  "snowman-wanted-to-stay": [
+    {"src":"images/previews/the-snowman-who-wanted-to-stay/01.jpg","alt":"The Snowman Who Wanted to Stay interior preview: winter family and snowman"},
+    {"src":"images/previews/the-snowman-who-wanted-to-stay/02.jpg","alt":"The Snowman Who Wanted to Stay interior preview: last song in the snow"},
+    {"src":"images/previews/the-snowman-who-wanted-to-stay/03.jpg","alt":"The Snowman Who Wanted to Stay interior preview: memory book"}
   ]
 }
