@@ -158,5 +158,20 @@
     {"src":"images/previews/my-first-volleyball-adventure/01.jpg","alt":"My First Volleyball Adventure interior preview: first lesson on the volleyball court"},
     {"src":"images/previews/my-first-volleyball-adventure/02.jpg","alt":"My First Volleyball Adventure interior preview: team play over the net"},
     {"src":"images/previews/my-first-volleyball-adventure/03.jpg","alt":"My First Volleyball Adventure interior preview: Two sides, one net"}
+  ],
+  "sort-with-me-home": [
+    {"src":"images/previews/sort-with-me-home/01.jpg","alt":"Sort With Me at Home interior preview: Find all the red shapes"},
+    {"src":"images/previews/sort-with-me-home/02.jpg","alt":"Sort With Me at Home interior preview: Fruit or toy?"},
+    {"src":"images/previews/sort-with-me-home/03.jpg","alt":"Sort With Me at Home interior preview: Find the red circles"}
+  ],
+  "christmas-wish": [
+    {"src":"images/previews/the-christmas-wish-that-got-lost/01.jpg","alt":"The Christmas Wish That Got Lost interior preview: decorating the wishing tree"},
+    {"src":"images/previews/the-christmas-wish-that-got-lost/02.jpg","alt":"The Christmas Wish That Got Lost interior preview: a Christmas invitation"},
+    {"src":"images/previews/the-christmas-wish-that-got-lost/03.jpg","alt":"The Christmas Wish That Got Lost interior preview: community Christmas supper"}
+  ],
+  "gingerbread-house": [
+    {"src":"images/previews/the-gingerbread-house-next-door/01.jpg","alt":"The Gingerbread House Next Door interior preview: baking together"},
+    {"src":"images/previews/the-gingerbread-house-next-door/02.jpg","alt":"The Gingerbread House Next Door interior preview: building a gingerbread house"},
+    {"src":"images/previews/the-gingerbread-house-next-door/03.jpg","alt":"The Gingerbread House Next Door interior preview: neighboring gingerbread houses"}
   ]
 }
