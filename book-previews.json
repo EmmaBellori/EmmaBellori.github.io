@@ -143,5 +143,20 @@
     {"src":"images/previews/my-first-tennis-adventure/01.jpg","alt":"My First Tennis Adventure interior preview: first lesson on the tennis court"},
     {"src":"images/previews/my-first-tennis-adventure/02.jpg","alt":"My First Tennis Adventure interior preview: beginner rally"},
     {"src":"images/previews/my-first-tennis-adventure/03.jpg","alt":"My First Tennis Adventure interior preview: A court made for beginners"}
+  ],
+  "my-first-track-and-field-adventure": [
+    {"src":"images/previews/my-first-track-and-field-adventure/01.jpg","alt":"My First Track and Field Adventure interior preview: running on the track"},
+    {"src":"images/previews/my-first-track-and-field-adventure/02.jpg","alt":"My First Track and Field Adventure interior preview: landing in the sand pit"},
+    {"src":"images/previews/my-first-track-and-field-adventure/03.jpg","alt":"My First Track and Field Adventure interior preview: Meet track and field"}
+  ],
+  "my-first-volcano-adventure": [
+    {"src":"images/previews/my-first-volcano-adventure/01.jpg","alt":"My First Volcano Adventure interior preview: volcano field trip"},
+    {"src":"images/previews/my-first-volcano-adventure/02.jpg","alt":"My First Volcano Adventure interior preview: examining lava rock"},
+    {"src":"images/previews/my-first-volcano-adventure/03.jpg","alt":"My First Volcano Adventure interior preview: A volcano, outside and inside"}
+  ],
+  "my-first-volleyball-adventure": [
+    {"src":"images/previews/my-first-volleyball-adventure/01.jpg","alt":"My First Volleyball Adventure interior preview: first lesson on the volleyball court"},
+    {"src":"images/previews/my-first-volleyball-adventure/02.jpg","alt":"My First Volleyball Adventure interior preview: team play over the net"},
+    {"src":"images/previews/my-first-volleyball-adventure/03.jpg","alt":"My First Volleyball Adventure interior preview: Two sides, one net"}
   ]
 }
