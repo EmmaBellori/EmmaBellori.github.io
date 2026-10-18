@@ -194,5 +194,47 @@
       "src": "images/previews/my-first-coastal-adventure/03.jpg",
       "alt": "My First Coastal Adventure interior preview: Meet a coastal landscape"
     }
+  ],
+  "my-first-desert-adventure": [
+    {
+      "src": "images/previews/my-first-desert-adventure/01.jpg",
+      "alt": "My First Desert Adventure interior preview: desert field trip"
+    },
+    {
+      "src": "images/previews/my-first-desert-adventure/02.jpg",
+      "alt": "My First Desert Adventure interior preview: exploring desert dunes"
+    },
+    {
+      "src": "images/previews/my-first-desert-adventure/03.jpg",
+      "alt": "My First Desert Adventure interior preview: What makes a desert?"
+    }
+  ],
+  "my-first-flag-football-adventure": [
+    {
+      "src": "images/previews/my-first-flag-football-adventure/01.jpg",
+      "alt": "My First Flag Football Adventure interior preview: first lesson"
+    },
+    {
+      "src": "images/previews/my-first-flag-football-adventure/02.jpg",
+      "alt": "My First Flag Football Adventure interior preview: making a catch"
+    },
+    {
+      "src": "images/previews/my-first-flag-football-adventure/03.jpg",
+      "alt": "My First Flag Football Adventure interior preview: Meet the flag football field"
+    }
+  ],
+  "my-first-glacier-adventure": [
+    {
+      "src": "images/previews/my-first-glacier-adventure/01.jpg",
+      "alt": "My First Glacier Adventure interior preview: glacier field trip"
+    },
+    {
+      "src": "images/previews/my-first-glacier-adventure/02.jpg",
+      "alt": "My First Glacier Adventure interior preview: observing glacier and moraine clues"
+    },
+    {
+      "src": "images/previews/my-first-glacier-adventure/03.jpg",
+      "alt": "My First Glacier Adventure interior preview: How does a glacier begin?"
+    }
   ]
 }
