@@ -18,7 +18,7 @@ const LITTLE_MONEY_BOOKS=[
  {id:'birthday-party-budget',title:'The Birthday Party Budget',cover:'images/coming-soon/The_Birthday_Party_Budget_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
  {id:'jar-something-special',title:'The Jar for Something Special',cover:'images/coming-soon/The_Jar_for_Something_Special_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
  {id:'price-tag-surprise',title:'The Price Tag Surprise',cover:'images/coming-soon/The_Price_Tag_Surprise_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
- {id:'three-coins-choice',title:'Three Coins and a Choice',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
+ {id:'three-coins-choice',title:'Three Coins and a Choice',cover:'images/coming-soon/Three_Coins_and_a_Choice_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
 ];
 const LEGACY_DETAIL_IDS=new Set(['mistakes','play','bugs','mad','christmas','halloween']);
 const latestGrid=document.querySelector('#latest-grid');
