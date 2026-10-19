@@ -52,9 +52,12 @@
       const lead=copy.querySelector('.lead');
       if(lead)lead.insertAdjacentElement('afterend',badge);else copy.prepend(badge);
     }
-    badge.className='book-age eb-age-badge eb-age-detail';
-    badge.textContent='Ages '+range;
-    badge.setAttribute('aria-label','Recommended age: '+range+' years');
+    const wantedClass='book-age eb-age-badge eb-age-detail';
+    const wantedText='Ages '+range;
+    const wantedLabel='Recommended age: '+range+' years';
+    if(badge.className!==wantedClass)badge.className=wantedClass;
+    if(badge.textContent!==wantedText)badge.textContent=wantedText;
+    if(badge.getAttribute('aria-label')!==wantedLabel)badge.setAttribute('aria-label',wantedLabel);
   }
   function isComingSoon(book){
     if(book&&book.status==='coming_soon')return true;
@@ -71,15 +74,15 @@
 
     const amazon=document.querySelector('#book-amazon');
     if(amazon){
-      amazon.hidden=true;
-      amazon.removeAttribute('href');
-      amazon.style.setProperty('display','none','important');
+      if(!amazon.hidden)amazon.hidden=true;
+      if(amazon.hasAttribute('href'))amazon.removeAttribute('href');
+      if(amazon.style.getPropertyValue('display')!=='none')amazon.style.setProperty('display','none','important');
     }
-    const fineprint=document.querySelector('#book-fineprint');if(fineprint)fineprint.hidden=true;
+    const fineprint=document.querySelector('#book-fineprint');if(fineprint&&!fineprint.hidden)fineprint.hidden=true;
 
     const coming=document.querySelector('#book-coming-soon-actions');
     if(coming){
-      coming.hidden=false;
+      if(coming.hidden)coming.hidden=false;
       const pills=coming.querySelectorAll('.coming-soon-pill');
       pills.forEach((pill,index)=>{if(index>0)pill.remove();});
     }
@@ -94,7 +97,8 @@
   function cleanLegacyAgeText(){
     document.querySelectorAll('.detail-copy .detail-fact').forEach(node=>{
       if(/^\s*(Recommended|Suggested) age\s*:/i.test(node.textContent||'')){
-        node.className='book-age eb-age-badge eb-age-detail';
+        const wantedClass='book-age eb-age-badge eb-age-detail';
+        if(node.className!==wantedClass)node.className=wantedClass;
       }
     });
   }
