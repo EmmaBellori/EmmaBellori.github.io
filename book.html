@@ -1,7 +1,7 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Book details | Emma Bellori Books</title><meta name="robots" content="index,follow"><link rel="icon" href="favicon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book-pages.css"><link rel="stylesheet" href="v91-book.css"><style>.coming-soon-pill{display:inline-flex;align-items:center;width:max-content;padding:7px 11px;border-radius:999px;background:#e9f1eb;color:#23433e;font-size:.82rem;font-weight:800;letter-spacing:.01em}.coming-soon-note{margin:0;color:#5a6d6a;font-size:.92rem;line-height:1.55}.coming-soon-collection-link{display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:11px 18px;border:1px solid #9db0ab;border-radius:999px;color:#263d40;font-weight:750;text-decoration:none}.coming-soon-collection-link:hover{text-decoration:underline}.dynamic-related[hidden],.dynamic-bottom-cta[hidden],.primary-book-cta[hidden],#book-format[hidden],#book-fineprint[hidden]{display:none!important}</style></head>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>Book details | Emma Bellori Books</title><meta name="robots" content="index,follow"><link rel="icon" href="favicon.png"><link rel="stylesheet" href="style.css"><link rel="stylesheet" href="book-pages.css"><link rel="stylesheet" href="v91-book.css"><style>.coming-soon-pill{display:inline-flex;align-items:center;justify-content:center;width:max-content;min-height:28px;padding:6px 10px;border-radius:999px;background:#e9f1eb;color:#23433e;font:750 11px/1 system-ui,-apple-system,Segoe UI,sans-serif;letter-spacing:.01em;white-space:nowrap}.dynamic-related[hidden],.dynamic-bottom-cta[hidden],.primary-book-cta[hidden],#book-format[hidden],#book-fineprint[hidden],#book-coming-soon-actions[hidden]{display:none!important}</style></head>
 <body><a class="skip-link" href="#book-content">Skip to book details</a><header class="site-header"><a class="brand" href="index.html"><img class="brand-logo" alt="" src="images/emma-bellori-logo.webp" width="66" height="66"><span class="brand-label">Emma Bellori<span>BOOKS FOR CURIOUS MINDS</span></span></a><nav aria-label="Main navigation"><a href="index.html#books">All books</a></nav></header>
-<main class="detail-main" id="book-content"><nav class="book-breadcrumb" data-book-breadcrumb aria-label="Breadcrumb"><a href="index.html#catalog-return">Home</a></nav><section class="detail-hero"><div class="detail-cover-art v4-cover"><img id="book-cover" alt="" decoding="async" width="400" height="600"></div><div class="detail-copy"><p class="eyebrow">EMMA BELLORI BOOKS</p><h1 id="book-title">Loading book…</h1><p class="detail-subtitle" id="book-theme"></p><p class="lead" id="book-description"></p><p class="detail-fact" id="book-format"></p><div id="book-coming-soon-actions" hidden><span class="coming-soon-pill">Coming Soon</span><p class="coming-soon-note">Preview pages are shown below when available.</p><a class="coming-soon-collection-link" id="book-collection-link" href="#">Explore the collection →</a></div><a class="button primary-book-cta" id="book-amazon" href="#" target="_blank" rel="noopener noreferrer sponsored" hidden>View on Amazon ↗</a><p class="fineprint" id="book-fineprint">Amazon.com displays current prices, available editions and any available preview.</p></div></section><section class="related-section dynamic-related" id="book-related" aria-labelledby="related-title" hidden><p class="eyebrow">KEEP EXPLORING</p><h2 id="related-title">You might also like</h2><div class="related-grid" id="book-related-grid"></div></section><div class="v4-bottom-cta dynamic-bottom-cta" id="book-bottom-cta" hidden><p id="book-bottom-copy"></p><a class="button" id="book-bottom-link" href="#"></a></div><div class="book-return-action"><a class="back-link" href="index.html#books">← Back to all books</a></div></main><footer><span>© Emma Bellori Books</span><span><a href="index.html">Home</a> · <a href="https://www.amazon.com/author/emmabellori">Amazon Author Page</a></span></footer>
+<main class="detail-main" id="book-content"><nav class="book-breadcrumb" data-book-breadcrumb aria-label="Breadcrumb"><a href="index.html#catalog-return">Home</a></nav><section class="detail-hero"><div class="detail-cover-art v4-cover"><img id="book-cover" alt="" decoding="async" width="400" height="600"></div><div class="detail-copy"><p class="eyebrow">EMMA BELLORI BOOKS</p><h1 id="book-title">Loading book…</h1><p class="detail-subtitle" id="book-theme"></p><p class="lead" id="book-description"></p><div id="book-meta-pills" class="eb-detail-badges"></div><p class="detail-fact" id="book-format"></p><div id="book-coming-soon-actions" hidden><span class="coming-soon-pill">Coming Soon</span></div><a class="button primary-book-cta" id="book-amazon" href="#" target="_blank" rel="noopener noreferrer sponsored" hidden>View on Amazon ↗</a><p class="fineprint" id="book-fineprint">Amazon.com displays current prices, available editions and any available preview.</p></div></section><section class="related-section dynamic-related" id="book-related" aria-labelledby="related-title" hidden><p class="eyebrow">KEEP EXPLORING</p><h2 id="related-title">You might also like</h2><div class="related-grid" id="book-related-grid"></div></section><div class="v4-bottom-cta dynamic-bottom-cta" id="book-bottom-cta" hidden><p id="book-bottom-copy"></p><a class="button" id="book-bottom-link" href="#"></a></div><div class="book-return-action"><a class="back-link" href="index.html#books">← Back to all books</a></div></main><footer><span>© Emma Bellori Books</span><span><a href="index.html">Home</a> · <a href="https://www.amazon.com/author/emmabellori">Amazon Author Page</a></span></footer>
 <script>
 (async()=>{
  const id=new URLSearchParams(location.search).get('id');
@@ -14,6 +14,72 @@
  ];
  const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const fail=()=>{document.querySelector('#book-title').textContent='Book not found';document.querySelector('#book-description').textContent='Return to the catalog to explore Emma Bellori books.';document.querySelector('#book-cover').hidden=true;document.querySelector('#book-format').hidden=true;document.querySelector('#book-fineprint').hidden=true;};
+ function comingSoonDescription(book){
+  const title=String(book.title||'This book');
+  const t=title.toLocaleLowerCase();
+  const exact={
+   'christmas-wish':'A warm holiday story about a lost Christmas wish, the people who help it find its way, and the small acts of kindness that make the season feel magical.',
+   'gingerbread-house':'A cozy Christmas story about a gingerbread house next door, new neighbors, shared traditions and the joy of creating something together.',
+   'reindeer':'A reassuring Christmas story about a young reindeer who is not ready to fly yet and learns that confidence can grow one small step at a time.',
+   'snowman':'A tender winter story about a snowman who wishes the season could last forever and discovers how memories can stay even when things change.',
+   'dont-want-to-share':'A relatable story about special belongings, personal boundaries and learning that sharing can be kind without meaning every toy must be given away.',
+   'dont-like-changes':'A gentle story about how even small changes can feel very big, and how familiar routines, reassurance and tiny next steps can make change easier.',
+   'those-words-hurt':'A thoughtful story about how words can hurt, what a sincere apology can begin, and why kindness and repair sometimes need time.',
+   'dont-want-school':'A supportive story about school worries, difficult goodbyes and the small routines and trusted people that can help a child feel safer.',
+   'want-it-now':'A relatable story about wanting something immediately, learning to wait and discovering how a clear plan can make patience easier.',
+   'my-new-baby-is-taking-everyone':'A reassuring family story about jealousy, feeling left out after a new baby arrives and discovering that love and belonging still have room for everyone.',
+   'bakery-before-breakfast':'A behind-the-scenes story about the early-morning work inside a neighborhood bakery and the many careful steps that help a town start its day.',
+   'garden-fed-town':'A community story about planting, growing, harvesting and sharing food, showing how many hands can help a garden feed a whole town.',
+   'repair-shop':'A child-friendly look inside a repair shop, where careful observation, useful tools and patient problem-solving help broken things work again.',
+   'parcel-crossed-town':'A story that follows one parcel across town and shows the many people, vehicles and careful handoffs that help it reach the right door.',
+   'library-after-closing':'A warm behind-the-scenes visit to a library after closing, revealing the quiet work that prepares books, spaces and surprises for the next day.',
+   'staircase-seashell':'An imaginative adventure in which a tiny clue inside a seashell opens the way to a hidden staircase, a mysterious world and a journey of curiosity.',
+   'umbrella-forest':'A whimsical adventure about an ordinary umbrella that begins growing an extraordinary forest, inviting young readers into a world of wonder and discovery.',
+   'midnight-sock-parade':'A playful nighttime adventure about a mysterious parade of marching socks, unexpected clues and the magic hidden in an ordinary home after dark.',
+   'pocket-sized-moon':'A gentle fantasy adventure about carrying a tiny moon, following its light and discovering how one small glow can make an unfamiliar path feel possible.',
+   'count-with-me-home':'A playful first-learning book that turns familiar objects at home into simple counting moments, helping young children notice quantities in everyday life.',
+   'letters-with-me-home':'A friendly introduction to letters using familiar objects and moments from home, designed to make early letter recognition feel natural and playful.',
+   'five-senses-home':'A hands-on first-learning book that helps children notice what they can see, hear, smell, taste and touch through familiar experiences at home.',
+   'shapes-with-me-home':'A playful introduction to circles, squares, triangles and other shapes through everyday objects children can spot, compare and trace at home.',
+   'colors-with-me-home':'A bright first-learning book that helps children notice, name and compare colors through familiar objects and simple activities at home.',
+   'cut-with-me-home':'A gentle first-scissor-skills book with simple cutting experiences designed to build hand control, confidence and safe early practice.',
+   'measure-with-me-home':'A playful introduction to comparing length, size, height and quantity using familiar household objects and simple hands-on observations.',
+   'nature-with-me-home':'A first nature-discovery book that encourages children to notice leaves, seeds, weather, textures and other small signs of the natural world close to home.',
+   'opposites-with-me-home':'A visual first-learning book that introduces everyday opposites such as full and empty, day and night, big and small through clear familiar examples.',
+   'patterns-with-me-home':'A playful introduction to repeating patterns using colors, shapes and familiar objects, helping children predict what comes next.',
+   'sort-with-me-home':'A simple first-learning book about grouping and sorting by color, shape, size and use, turning everyday objects into early reasoning practice.',
+   'weather-detective':'A discovery adventure that invites young readers to investigate clouds, wind, rain and rainbows by noticing the clues weather leaves behind.',
+   'junior-archaeologist-egypt':'An archaeology adventure through Ancient Egypt where young readers investigate the Nile, scribes, pyramids and clues left by people from long ago.',
+   'deep-sea-detective':'An ocean mystery adventure that explores bioluminescence, deep-sea habitats and surprising clues from some of the darkest places on Earth.',
+   'human-body-detective':'A science mystery adventure that follows clues through breathing, nerves, movement and other body systems to reveal how the human body works.',
+   'our-first-little-market':'A playful money story about setting up a small market, counting what is sold and making simple choices about earning, spending and working together.',
+   'birthday-party-budget':'A child-friendly story about planning a birthday party, comparing costs and making thoughtful choices so a limited budget can still create a special day.',
+   'jar-something-special':'A gentle saving story about putting money aside for a goal, reconsidering what matters and learning that plans can change thoughtfully.',
+   'price-tag-surprise':'A playful story about reading prices, comparing options and asking questions before choosing what to buy.',
+   'three-coins-choice':'A simple money-choice story about having only three coins, comparing possibilities and discovering that the best choice is not always the most expensive one.'
+  };
+  if(exact[book.id])return exact[book.id];
+  if(book.series==='My First Sports Adventures'){
+   const sport=title.replace(/^My First\s+/i,'').replace(/\s+Adventure$/i,'').trim().toLocaleLowerCase();
+   return 'A friendly first introduction to '+sport+', following young players as they practice, build confidence, learn teamwork and discover the fun of trying something new.';
+  }
+  if(book.series==='My First Earth Adventures'){
+   const place=title.replace(/^My First\s+/i,'').replace(/\s+Adventure$/i,'').trim().toLocaleLowerCase();
+   return 'A child-friendly Earth science adventure that explores '+place+', how this landscape changes and the natural clues children can learn to notice.';
+  }
+  if(book.series==='Kawaii Coloring & Activities'){
+   const topic=title.replace(/^Kawaii\s+/i,'').replace(/\s*[–-].*$/,'').trim().toLocaleLowerCase();
+   return 'A cheerful coloring and activity book inspired by '+topic+', with approachable pages created for creativity, focus and screen-free fun.';
+  }
+  if(book.series==='Junior Detectives')return title+' turns a science topic into a clue-filled investigation, encouraging young readers to observe closely, ask questions and connect evidence.';
+  if(book.series==='Little Steps, Big Discoveries')return title+' turns an everyday early-learning idea into simple visual examples and playful moments children can explore with a grown-up.';
+  if(book.series==='Big Feelings, Real Problems')return title+' explores a familiar childhood feeling with reassurance, practical language and a gentle path toward understanding what to do next.';
+  if(book.series==='Tiny Doors, Big Adventures')return title+' opens the door to an imaginative journey built around curiosity, small clues and the possibility of finding wonder in ordinary places.';
+  if(book.series==='Small Town, Many Hands')return title+' follows the people and practical steps behind an everyday community service, showing how many small jobs work together.';
+  if(book.series==='Little Christmas Wonders')return title+' is a warm holiday story about kindness, wonder and the small moments that can make Christmas feel magical.';
+  if(t.includes('animal'))return 'A playful book centered on animals, created to combine easy-to-follow learning or creative activities with friendly illustrations for young readers.';
+  return title+' is an upcoming Emma Bellori title with a child-friendly concept designed to be engaging, approachable and easy to explore.';
+ }
  if(!id||!/^[a-z0-9-]{1,80}$/.test(id)){fail();return;}
  try{
   const r=await fetch('catalog.json',{cache:'no-store'});if(!r.ok)throw Error();
@@ -25,25 +91,29 @@
   if(!isPublished&&!isComingSoon)throw Error();
   if(isPublished&&!/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl||''))throw Error();
   document.body.dataset.bookId=b.id;
+  document.body.dataset.seriesSlug=b.seriesSlug||'';
   document.title=b.title+' | Emma Bellori Books';
   document.querySelector('#book-title').textContent=b.title;
   document.querySelector('#book-theme').textContent=b.theme||b.series||'';
-  document.querySelector('#book-description').textContent=b.description||(isComingSoon?'A forthcoming title in the '+b.series+' collection, currently being prepared for publication.':'');
+  document.querySelector('#book-description').textContent=b.description||(isComingSoon?comingSoonDescription(b):'');
   const cover=document.querySelector('#book-cover');cover.src=b.cover||'';cover.alt='Cover of '+b.title+' by Emma Bellori';if(!b.cover)cover.hidden=true;
   const format=document.querySelector('#book-format');
   const fineprint=document.querySelector('#book-fineprint');
   const amazon=document.querySelector('#book-amazon');
   const coming=document.querySelector('#book-coming-soon-actions');
+  const pills=document.querySelector('#book-meta-pills');
   if(isPublished){
    format.hidden=false;format.innerHTML='<strong>Available formats:</strong> '+escapeHTML(b.format||'See Amazon');
    amazon.href=b.amazonUrl;amazon.dataset.bookId=b.id;amazon.hidden=false;amazon.style.removeProperty('display');
    fineprint.hidden=false;
+   coming.hidden=true;
   }else{
    format.textContent='';format.hidden=true;
    amazon.hidden=true;amazon.removeAttribute('href');amazon.style.setProperty('display','none','important');
    fineprint.hidden=true;
    coming.hidden=false;
-   const collection=document.querySelector('#book-collection-link');collection.href='collections/'+encodeURIComponent(b.seriesSlug)+'.html';collection.textContent='Explore '+b.series+' →';
+   const status=coming.querySelector('.coming-soon-pill');if(status&&pills&&!pills.contains(status))pills.appendChild(status);
+   coming.hidden=true;
   }
   const related=entries.filter(x=>x.id!==b.id&&x.series===b.series).slice(0,2);
   if(related.length){
@@ -53,7 +123,7 @@
   }
   const bottom=document.querySelector('#book-bottom-cta');const bottomCopy=document.querySelector('#book-bottom-copy');const bottomLink=document.querySelector('#book-bottom-link');
   if(isPublished){bottomCopy.innerHTML='Interested in <strong>'+escapeHTML(b.title)+'</strong>?';bottomLink.href=b.amazonUrl;bottomLink.dataset.bookId=b.id;bottomLink.target='_blank';bottomLink.rel='noopener noreferrer sponsored';bottomLink.textContent='View on Amazon ↗';bottom.hidden=false;}
-  else{bottomCopy.textContent='Explore more books in '+b.series+'.';bottomLink.href='collections/'+encodeURIComponent(b.seriesSlug)+'.html';bottomLink.textContent='Explore the collection →';bottom.hidden=false;}
+  else{bottom.hidden=true;bottomCopy.textContent='';bottomLink.removeAttribute('href');bottomLink.textContent='';}
  }catch{fail();}
 })();
 </script><script defer src="analytics-consent.js"></script><script defer src="book-navigation.js"></script></body></html>
