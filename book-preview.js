@@ -1,5 +1,5 @@
 /* Emma Bellori Books — data-driven interior preview UI.
-   Preview images can live in catalog.json or in book-previews.json.
+   Preview images can live in catalog.json or in supplemental preview manifests.
    Cards use arrows on the cover itself; detail pages keep the larger Inside the book gallery. */
 (function(){
   'use strict';
@@ -11,6 +11,7 @@
   const catalogUrl=new URL('catalog.json',sourceUrl).href;
   const previewManifestUrl=new URL('book-previews.json',sourceUrl).href;
   const previewBatchUrl=new URL('book-previews-batch-32.json',sourceUrl).href;
+  const littleMoneyManifestUrl=new URL('book-previews-little-money.json',sourceUrl).href;
   const catalogBase=new URL('.',catalogUrl);
   let dialog=null;
   let activeImages=[];
@@ -47,6 +48,26 @@
       const images=manifest[book.id];
       return Array.isArray(images)&&images.length?Object.assign({},book,{previewImages:images}):book;
     });
+  }
+  function appendManifestOnlyEntries(entries,manifest){
+    if(!manifest||typeof manifest!=='object')return entries;
+    const result=entries.slice();
+    const seen=new Set(result.map(book=>book&&book.id).filter(Boolean));
+    for(const [id,images] of Object.entries(manifest)){
+      if(seen.has(id)||!Array.isArray(images)||!images.length)continue;
+      result.push({id,title:id,previewImages:images});
+      seen.add(id);
+    }
+    return result;
+  }
+  function enrichBookFromCard(book,card){
+    if(!book||!card)return book;
+    const enriched=Object.assign({},book);
+    const title=(card.querySelector('h3,h2')?.textContent||'').trim();
+    if(!enriched.title||enriched.title===enriched.id)enriched.title=title||enriched.id;
+    const image=card.querySelector('img');
+    if(!enriched.cover&&image)enriched.cover=image.currentSrc||image.getAttribute('src')||'';
+    return enriched;
   }
 
   function injectStyles(){
@@ -143,6 +164,11 @@
     if(carousel.querySelector('.eb-cover-arrow'))return;
     const slides=cardSlides(book);if(slides.length<2)return;
     carousel._ebSlides=slides;carousel.dataset.ebSlideIndex='0';
+    if(!carousel.querySelector('img')){
+      const placeholder=carousel.querySelector('.cover-placeholder');
+      const image=document.createElement('img');image.loading='lazy';image.decoding='async';image.src=slides[0].src;image.alt=slides[0].alt;
+      if(placeholder)placeholder.replaceWith(image);else carousel.prepend(image);
+    }
     const previous=document.createElement('button');
     previous.type='button';previous.className='eb-cover-arrow eb-cover-prev';previous.setAttribute('aria-label','Previous image for '+book.title);previous.textContent='‹';
     const next=document.createElement('button');
@@ -154,6 +180,7 @@
   }
 
   function decorateHomeCard(card,book){
+    book=enrichBookFromCard(book,card);
     if(!book||!normalizedImages(book).length)return;
     card.querySelectorAll('.eb-preview-trigger').forEach(node=>node.remove());
     if(card.querySelector('.eb-cover-carousel'))return;
@@ -163,6 +190,7 @@
   }
 
   function decorateCollectionCard(card,book){
+    book=enrichBookFromCard(book,card);
     if(!book||!normalizedImages(book).length)return;
     card.querySelectorAll('.eb-preview-trigger').forEach(node=>node.remove());
     const cover=card.querySelector('.collection-cover-wrap');if(!cover||cover.classList.contains('eb-cover-carousel-host'))return;
@@ -212,10 +240,12 @@
   function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
   function init(){
     injectStyles();
-    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{})]).then(([entries,manifest,batchManifest])=>{
+    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{}),fetchJSON(littleMoneyManifestUrl,{})]).then(([entries,manifest,batchManifest,littleMoneyManifest])=>{
       if(!Array.isArray(entries))return;
       entries=mergePreviewManifest(entries,manifest);
       entries=mergePreviewManifest(entries,batchManifest);
+      entries=mergePreviewManifest(entries,littleMoneyManifest);
+      entries=appendManifestOnlyEntries(entries,littleMoneyManifest);
       decorate(entries);
       observer=new MutationObserver(()=>scheduleDecorate(entries));
       observer.observe(document.body,{childList:true,subtree:true});
