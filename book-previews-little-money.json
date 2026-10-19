@@ -1,0 +1,27 @@
+{
+  "our-first-little-market": [
+    {"src":"images/previews/our-first-little-market/01.jpg","alt":"Our First Little Market interior preview: children making bookmarks with care"},
+    {"src":"images/previews/our-first-little-market/02.jpg","alt":"Our First Little Market interior preview: counting money and items sold"},
+    {"src":"images/previews/our-first-little-market/03.jpg","alt":"Our First Little Market interior preview: deciding together what happens next"}
+  ],
+  "birthday-party-budget": [
+    {"src":"images/previews/birthday-party-budget/01.jpg","alt":"The Birthday Party Budget interior preview: adding prices before buying"},
+    {"src":"images/previews/birthday-party-budget/02.jpg","alt":"The Birthday Party Budget interior preview: using what you already have"},
+    {"src":"images/previews/birthday-party-budget/03.jpg","alt":"The Birthday Party Budget interior preview: friends helping make a party special"}
+  ],
+  "jar-something-special": [
+    {"src":"images/previews/jar-something-special/01.jpg","alt":"The Jar for Something Special interior preview: starting with what you already have"},
+    {"src":"images/previews/jar-something-special/02.jpg","alt":"The Jar for Something Special interior preview: changing a goal after thinking it through"},
+    {"src":"images/previews/jar-something-special/03.jpg","alt":"The Jar for Something Special interior preview: save, think, choose and grow"}
+  ],
+  "price-tag-surprise": [
+    {"src":"images/previews/price-tag-surprise/01.jpg","alt":"The Price Tag Surprise interior preview: matching each price tag to its item"},
+    {"src":"images/previews/price-tag-surprise/02.jpg","alt":"The Price Tag Surprise interior preview: comparing choices before deciding"},
+    {"src":"images/previews/price-tag-surprise/03.jpg","alt":"The Price Tag Surprise interior preview: looking, matching, asking and choosing"}
+  ],
+  "three-coins-choice": [
+    {"src":"images/previews/three-coins-choice/01.jpg","alt":"Three Coins and a Choice interior preview: the boat costs three coins"},
+    {"src":"images/previews/three-coins-choice/02.jpg","alt":"Three Coins and a Choice interior preview: asking questions and finding out more"},
+    {"src":"images/previews/three-coins-choice/03.jpg","alt":"Three Coins and a Choice interior preview: playing together costs no extra coins"}
+  ]
+}
