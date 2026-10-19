@@ -10,7 +10,15 @@ const seriesOrder=[
  ['Little Steps, Big Discoveries','Playful first learning experiences at home.'],
  ['My First Sports Adventures','Fun first introductions to sports, teamwork and trying something new.'],
  ['My First Earth Adventures','Discover how our planet’s landscapes form and change through friendly adventures.'],
+ ['Little Money, Smart Choices','Playful stories about saving, spending, budgeting and making thoughtful everyday money choices.'],
  ['More Books by Emma Bellori','Explore more standalone stories and discoveries.']
+];
+const LITTLE_MONEY_BOOKS=[
+ {id:'our-first-little-market',title:'Our First Little Market',cover:'images/coming-soon/Our_First_Little_Market_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+ {id:'birthday-party-budget',title:'The Birthday Party Budget',cover:'images/coming-soon/The_Birthday_Party_Budget_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+ {id:'jar-something-special',title:'The Jar for Something Special',cover:'images/coming-soon/The_Jar_for_Something_Special_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+ {id:'price-tag-surprise',title:'The Price Tag Surprise',cover:'images/coming-soon/The_Price_Tag_Surprise_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+ {id:'three-coins-choice',title:'Three Coins and a Choice',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
 ];
 const LEGACY_DETAIL_IDS=new Set(['mistakes','play','bugs','mad','christmas','halloween']);
 const latestGrid=document.querySelector('#latest-grid');
@@ -176,8 +184,9 @@ window.addEventListener('pageshow',event=>{if(event.persisted&&isCatalogReturn&&
 document.querySelector('#year').textContent=new Date().getFullYear();
 fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw Error('Catalog unavailable');return response.json();}).then(entries=>{
  if(!Array.isArray(entries))throw Error('Invalid catalog');
- const valid=entries.map((b,index)=>({...b,_catalogIndex:index})).filter(b=>b&&typeof b.id==='string'&&typeof b.title==='string'&&typeof b.series==='string'&&typeof b.seriesSlug==='string'&&(b.status==='published'||b.status==='coming_soon')&&(b.status!=='published'||(typeof b.amazonUrl==='string'&&/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl))));
- if(valid.length!==entries.length||new Set(valid.map(b=>b.id)).size!==valid.length)throw Error('Invalid catalog entries');
+ const allEntries=[...entries,...LITTLE_MONEY_BOOKS];
+ const valid=allEntries.map((b,index)=>({...b,_catalogIndex:index})).filter(b=>b&&typeof b.id==='string'&&typeof b.title==='string'&&typeof b.series==='string'&&typeof b.seriesSlug==='string'&&(b.status==='published'||b.status==='coming_soon')&&(b.status!=='published'||(typeof b.amazonUrl==='string'&&/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl))));
+ if(valid.length!==allEntries.length||new Set(valid.map(b=>b.id)).size!==valid.length)throw Error('Invalid catalog entries');
  published=valid.filter(b=>b.status==='published').map(b=>({...b,legacyDetail:LEGACY_DETAIL_IDS.has(b.id)}));
  upcoming=valid.filter(b=>b.status==='coming_soon');books=[...published,...upcoming];
  renderLatest();renderCollections();restoreCatalogAfterRender();
