@@ -1,6 +1,0 @@
-Verified on main before this PR:
-- images/previews/reindeer/01.jpg, 02.jpg, 03.jpg exist
-- images/previews/snowman/01.jpg, 02.jpg, 03.jpg exist
-- images/previews/little-star-missed-christmas/01.jpg, 02.jpg, 03.jpg exist
-
-This PR only registers those existing images in the supplemental preview manifest.
