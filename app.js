@@ -53,10 +53,12 @@ function publishedCard(b){
 }
 function upcomingCard(b){
  const selected=preferences[b.series]===b.id;
+ const detail=detailHref(b);
  return '<article class="home-book-card" data-book-id="'+escapeHTML(b.id)+'">'+
   '<div class="home-cover-wrap">'+coverHTML(b)+
   '<button type="button" class="home-vote-button'+(selected?' is-active':'')+'" data-vote-id="'+escapeHTML(b.id)+'" aria-label="'+(selected?'Your selected book: ':'Vote for ')+escapeHTML(b.title)+'" aria-pressed="'+String(selected)+'" title="'+(selected?'Your choice — choose another book to change':'Vote for this upcoming book')+'"><svg viewBox="0 0 24 24" aria-hidden="true" focusable="false"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78L12 21.23l8.84-8.84a5.5 5.5 0 0 0 0-7.78Z"/></svg></button></div>'+
-  '<span class="home-card-status">Coming Soon</span><h3>'+escapeHTML(b.title)+'</h3>'+
+  '<span class="home-card-status">Coming Soon</span><h3><a href="'+detail+'">'+escapeHTML(b.title)+'</a></h3>'+
+  '<div class="home-card-actions"><a class="home-card-details" href="'+detail+'">Book details →</a></div>'+
  '</article>';
 }
 function homeCard(b){return b.status==='published'?publishedCard(b):upcomingCard(b);}
@@ -104,7 +106,7 @@ function renderCollections(){
 
 // Sticky free search with suggestions that update as the user types.
 function closeSuggestions(){suggestionBox.hidden=true;suggestionBox.innerHTML='';searchInput.setAttribute('aria-expanded','false');}
-function searchDestination(b){return b.status==='published'?detailHref(b):'collections/'+encodeURIComponent(b.seriesSlug)+'.html#upcoming-heading';}
+function searchDestination(b){return detailHref(b);}
 function renderSuggestions(){
  const q=normalize(searchInput.value);
  if(!q||!books.length){closeSuggestions();return;}
