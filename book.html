@@ -5,12 +5,20 @@
 <script>
 (async()=>{
  const id=new URLSearchParams(location.search).get('id');
+ const extraBooks=[
+  {id:'our-first-little-market',title:'Our First Little Market',cover:'images/coming-soon/Our_First_Little_Market_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+  {id:'birthday-party-budget',title:'The Birthday Party Budget',cover:'images/coming-soon/The_Birthday_Party_Budget_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+  {id:'jar-something-special',title:'The Jar for Something Special',cover:'images/coming-soon/The_Jar_for_Something_Special_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+  {id:'price-tag-surprise',title:'The Price Tag Surprise',cover:'images/coming-soon/The_Price_Tag_Surprise_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
+  {id:'three-coins-choice',title:'Three Coins and a Choice',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
+ ];
  const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const fail=()=>{document.querySelector('#book-title').textContent='Book not found';document.querySelector('#book-description').textContent='Return to the catalog to explore Emma Bellori books.';document.querySelector('#book-cover').hidden=true;document.querySelector('#book-format').hidden=true;document.querySelector('#book-fineprint').hidden=true;};
  if(!id||!/^[a-z0-9-]{1,80}$/.test(id)){fail();return;}
  try{
   const r=await fetch('catalog.json',{cache:'no-store'});if(!r.ok)throw Error();
-  const entries=await r.json();if(!Array.isArray(entries))throw Error();
+  const catalog=await r.json();if(!Array.isArray(catalog))throw Error();
+  const entries=[...catalog,...extraBooks.filter(extra=>!catalog.some(item=>item.id===extra.id))];
   const b=entries.find(x=>x.id===id);if(!b)throw Error();
   const isPublished=b.status==='published';
   const isComingSoon=b.status==='coming_soon';
