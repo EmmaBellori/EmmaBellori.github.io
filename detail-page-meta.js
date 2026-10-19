@@ -63,7 +63,9 @@
     badge.setAttribute('aria-label','Recommended age: '+range+' years');
   }
   function isComingSoon(book){
-    return !!((book&&book.status==='coming_soon')||document.querySelector('.detail-copy .coming-soon-pill'));
+    /* Trust the catalog status only. The dynamic detail template always contains a hidden
+       Coming Soon pill, even for published books, so DOM presence must not determine status. */
+    return !!(book&&book.status==='coming_soon');
   }
   function cleanComingSoonDetail(book){
     if(!isComingSoon(book))return;
