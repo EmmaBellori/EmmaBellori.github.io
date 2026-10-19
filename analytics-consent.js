@@ -16,6 +16,7 @@
     'My First Sports Adventures':'5–8',
     'My First Earth Adventures':'5–8',
     'Kawaii Coloring & Activities':'4–10',
+    'Little Money, Smart Choices':'5–8',
     'More Books by Emma Bellori':'4–9'
   });
   let enabled = false;
@@ -231,4 +232,124 @@
   script.defer=true;
   script.dataset.ebDetailMeta='true';
   document.head.appendChild(script);
+})();
+
+/* Context-aware navigation and Coming Soon CTA polish. */
+(function(){
+  'use strict';
+  const current=document.currentScript;
+  const sourceUrl=current&&current.src?current.src:location.href;
+  const catalogUrl=new URL('catalog.json',sourceUrl).href;
+  const HOME_RETURN_KEY='eb-home-collection-return-v1';
+  let contextButton=null;
+
+  function injectStyles(){
+    if(document.getElementById('eb-context-navigation-styles'))return;
+    const style=document.createElement('style');
+    style.id='eb-context-navigation-styles';
+    style.textContent=`
+      .eb-detail-badges{display:flex;align-items:center;gap:8px;flex-wrap:wrap;margin:17px 0 7px}
+      .eb-detail-badges .eb-age-badge,.eb-detail-badges .coming-soon-pill{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:28px!important;margin:0!important;padding:6px 10px!important;border-radius:999px!important;background:#e9f1eb!important;color:#23433e!important;font:750 11px/1 system-ui,-apple-system,Segoe UI,sans-serif!important;letter-spacing:.01em!important;white-space:nowrap!important}
+      .eb-context-return{position:fixed;left:max(16px,env(safe-area-inset-left));bottom:18px;z-index:9997;display:inline-flex;align-items:center;justify-content:center;min-height:44px;padding:10px 15px;border:1px solid rgba(38,61,64,.22);border-radius:999px;background:#263d40;color:#fff;text-decoration:none;box-shadow:0 8px 24px rgba(38,61,64,.2);font:700 12px/1 system-ui,-apple-system,Segoe UI,sans-serif;transition:transform .18s ease,box-shadow .18s ease,bottom .2s ease}
+      .eb-context-return:hover{transform:translateY(-2px);box-shadow:0 11px 28px rgba(38,61,64,.25);color:#fff}
+      .eb-context-return:focus-visible{outline:3px solid #d59b75;outline-offset:3px}
+      .home-card-actions.eb-coming-soon-only{justify-content:center!important;text-align:center!important}
+      .home-card-actions.eb-coming-soon-only .home-card-details{margin-left:auto!important;margin-right:auto!important;text-align:center!important}
+      @media(max-width:600px){.eb-context-return{left:max(12px,env(safe-area-inset-left));padding:10px 13px;font-size:11px}.eb-detail-badges{gap:6px}.eb-detail-badges .eb-age-badge,.eb-detail-badges .coming-soon-pill{font-size:10px!important;padding:5px 9px!important}}
+      @media(prefers-reduced-motion:reduce){.eb-context-return{transition:none}.eb-context-return:hover{transform:none}}
+    `;
+    document.head.appendChild(style);
+  }
+
+  function syncContextOffset(){
+    if(!contextButton)return;
+    const banner=document.getElementById('eb-consent-banner');
+    if(banner&&!banner.hidden){
+      const h=Math.ceil(banner.getBoundingClientRect().height);
+      contextButton.style.bottom=(h+16)+'px';
+    }else contextButton.style.bottom='18px';
+  }
+
+  function detailId(){
+    if(document.body.dataset.bookId)return document.body.dataset.bookId;
+    const tagged=document.querySelector('[data-book-id]');
+    if(tagged&&tagged.dataset.bookId)return tagged.dataset.bookId;
+    if(/\/book\.html$/.test(location.pathname))return new URLSearchParams(location.search).get('id')||'';
+    const match=location.pathname.match(/\/books\/([a-z0-9-]+)\.html$/);return match?match[1]:'';
+  }
+
+  function addContextButton(entries){
+    if(contextButton||document.querySelector('.eb-context-return'))return;
+    const collectionMatch=location.pathname.match(/\/collections\/([a-z0-9-]+)\.html$/);
+    const isDynamicDetail=/\/book\.html$/.test(location.pathname);
+    const isStaticDetail=/\/books\/[a-z0-9-]+\.html$/.test(location.pathname);
+    if(!collectionMatch&&!isDynamicDetail&&!isStaticDetail)return;
+
+    const link=document.createElement('a');
+    link.className='eb-context-return';
+    if(collectionMatch){
+      link.href='../index.html#collection-return';
+      link.textContent='← Back to homepage';
+      link.setAttribute('aria-label','Back to the previous position on the homepage');
+    }else{
+      const id=detailId();
+      const book=Array.isArray(entries)?entries.find(item=>item&&item.id===id):null;
+      const slug=document.body.dataset.seriesSlug||(book&&book.seriesSlug)||'';
+      if(!slug)return;
+      const prefix=isStaticDetail?'../':'';
+      link.href=prefix+'collections/'+encodeURIComponent(slug)+'.html';
+      link.textContent='← Back to collection';
+      link.setAttribute('aria-label','Back to '+((book&&book.series)||'the collection'));
+    }
+    document.body.appendChild(link);
+    contextButton=link;
+    syncContextOffset();
+    const banner=document.getElementById('eb-consent-banner');
+    if(banner)new MutationObserver(syncContextOffset).observe(banner,{attributes:true,attributeFilter:['hidden']});
+    window.addEventListener('resize',syncContextOffset,{passive:true});
+  }
+
+  function markComingSoonActions(){
+    document.querySelectorAll('.home-book-card .home-card-actions').forEach(actions=>{
+      const children=Array.from(actions.children).filter(node=>node.matches('a,button'));
+      const onlyDetails=children.length===1&&children[0].classList.contains('home-card-details');
+      actions.classList.toggle('eb-coming-soon-only',onlyDetails);
+    });
+  }
+
+  function saveHomepagePosition(event){
+    if(!/\/(?:index\.html)?$/.test(location.pathname))return;
+    const link=event.target.closest('a[href]');if(!link)return;
+    let url;try{url=new URL(link.href,location.href);}catch{return;}
+    if(url.origin!==location.origin||!url.pathname.includes('/collections/'))return;
+    try{sessionStorage.setItem(HOME_RETURN_KEY,JSON.stringify({y:Math.max(0,Math.round(window.scrollY)),time:Date.now()}));}catch{}
+  }
+
+  function restoreHomepagePosition(){
+    if(location.hash!=='#collection-return'||!/\/(?:index\.html)?$/.test(location.pathname))return;
+    let saved=null;try{saved=JSON.parse(sessionStorage.getItem(HOME_RETURN_KEY)||'null');}catch{}
+    if(!saved||!Number.isFinite(saved.y))return;
+    let tries=0;
+    const restore=()=>{
+      tries++;
+      const enough=document.documentElement.scrollHeight>=saved.y+window.innerHeight*.7;
+      const rendered=!!document.querySelector('.home-series-preview,.home-book-card');
+      if((enough&&rendered)||tries>50){window.scrollTo(0,saved.y);return;}
+      setTimeout(restore,60);
+    };
+    restore();
+  }
+
+  function init(){
+    injectStyles();
+    document.addEventListener('click',saveHomepagePosition,true);
+    markComingSoonActions();
+    new MutationObserver(markComingSoonActions).observe(document.body,{childList:true,subtree:true});
+    restoreHomepagePosition();
+    fetch(catalogUrl,{cache:'no-store'}).then(r=>r.ok?r.json():[]).then(entries=>addContextButton(entries)).catch(()=>addContextButton([]));
+    if(/\/collections\//.test(location.pathname))addContextButton([]);
+    if(/\/book\.html$/.test(location.pathname)&&document.body.dataset.seriesSlug)addContextButton([]);
+  }
+
+  if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
