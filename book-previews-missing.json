@@ -1,0 +1,32 @@
+{
+  "count-with-me-home": [
+    {"src":"images/previews/count-with-me-home/01.jpg","alt":"Count With Me at Home interior preview 1"},
+    {"src":"images/previews/count-with-me-home/02.jpg","alt":"Count With Me at Home interior preview 2"},
+    {"src":"images/previews/count-with-me-home/03.jpg","alt":"Count With Me at Home interior preview 3"}
+  ],
+  "letters-with-me-home": [
+    {"src":"images/previews/letters-with-me-home/01.jpg","alt":"Letters With Me at Home interior preview 1"},
+    {"src":"images/previews/letters-with-me-home/02.jpg","alt":"Letters With Me at Home interior preview 2"},
+    {"src":"images/previews/letters-with-me-home/03.jpg","alt":"Letters With Me at Home interior preview 3"}
+  ],
+  "five-senses-home": [
+    {"src":"images/previews/five-senses-home/01.jpg","alt":"My Five Senses at Home interior preview 1"},
+    {"src":"images/previews/five-senses-home/02.jpg","alt":"My Five Senses at Home interior preview 2"},
+    {"src":"images/previews/five-senses-home/03.jpg","alt":"My Five Senses at Home interior preview 3"}
+  ],
+  "colors-with-me-home": [
+    {"src":"images/previews/colors-with-me-home/01.jpg","alt":"Colors With Me at Home interior preview 1"},
+    {"src":"images/previews/colors-with-me-home/02.jpg","alt":"Colors With Me at Home interior preview 2"},
+    {"src":"images/previews/colors-with-me-home/03.jpg","alt":"Colors With Me at Home interior preview 3"}
+  ],
+  "nature-with-me-home": [
+    {"src":"images/previews/nature-with-me-home/01.jpg","alt":"Nature With Me at Home interior preview 1"},
+    {"src":"images/previews/nature-with-me-home/02.jpg","alt":"Nature With Me at Home interior preview 2"},
+    {"src":"images/previews/nature-with-me-home/03.jpg","alt":"Nature With Me at Home interior preview 3"}
+  ],
+  "repair-shop": [
+    {"src":"images/previews/repair-shop/01.jpg","alt":"A Day at the Repair Shop interior preview 1"},
+    {"src":"images/previews/repair-shop/02.jpg","alt":"A Day at the Repair Shop interior preview 2"},
+    {"src":"images/previews/repair-shop/03.jpg","alt":"A Day at the Repair Shop interior preview 3"}
+  ]
+}
