@@ -12,6 +12,7 @@
   const previewManifestUrl=new URL('book-previews.json',sourceUrl).href;
   const previewBatchUrl=new URL('book-previews-batch-32.json',sourceUrl).href;
   const littleMoneyManifestUrl=new URL('book-previews-little-money.json',sourceUrl).href;
+  const missingPreviewManifestUrl=new URL('book-previews-missing.json',sourceUrl).href;
   const catalogBase=new URL('.',catalogUrl);
   let dialog=null;
   let activeImages=[];
@@ -208,6 +209,8 @@
 
   function detailBookId(){
     if(document.body.dataset.bookId)return document.body.dataset.bookId;
+    const tagged=document.querySelector('[data-book-id]');
+    if(tagged&&tagged.dataset.bookId)return tagged.dataset.bookId;
     if(/\/book\.html$/.test(location.pathname))return new URLSearchParams(location.search).get('id')||'';
     return '';
   }
@@ -240,11 +243,12 @@
   function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
   function init(){
     injectStyles();
-    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{}),fetchJSON(littleMoneyManifestUrl,{})]).then(([entries,manifest,batchManifest,littleMoneyManifest])=>{
+    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{}),fetchJSON(littleMoneyManifestUrl,{}),fetchJSON(missingPreviewManifestUrl,{})]).then(([entries,manifest,batchManifest,littleMoneyManifest,missingPreviewManifest])=>{
       if(!Array.isArray(entries))return;
       entries=mergePreviewManifest(entries,manifest);
       entries=mergePreviewManifest(entries,batchManifest);
       entries=mergePreviewManifest(entries,littleMoneyManifest);
+      entries=mergePreviewManifest(entries,missingPreviewManifest);
       entries=appendManifestOnlyEntries(entries,littleMoneyManifest);
       decorate(entries);
       observer=new MutationObserver(()=>scheduleDecorate(entries));
