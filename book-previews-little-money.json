@@ -23,5 +23,20 @@
     {"src":"images/previews/three-coins-choice/01.jpg","alt":"Three Coins and a Choice interior preview: the boat costs three coins"},
     {"src":"images/previews/three-coins-choice/02.jpg","alt":"Three Coins and a Choice interior preview: asking questions and finding out more"},
     {"src":"images/previews/three-coins-choice/03.jpg","alt":"Three Coins and a Choice interior preview: playing together costs no extra coins"}
+  ],
+  "opposites-with-me-home": [
+    {"src":"images/previews/opposites-with-me-at-home/01.jpg","alt":"Opposites With Me at Home interior preview: Full and empty"},
+    {"src":"images/previews/opposites-with-me-at-home/02.jpg","alt":"Opposites With Me at Home interior preview: Day and night"},
+    {"src":"images/previews/opposites-with-me-at-home/03.jpg","alt":"Opposites With Me at Home interior preview: Size depends on the comparison"}
+  ],
+  "patterns-with-me-home": [
+    {"src":"images/previews/patterns-with-me-at-home/01.jpg","alt":"Patterns With Me at Home interior preview: Red, blue, red, blue"},
+    {"src":"images/previews/patterns-with-me-at-home/02.jpg","alt":"Patterns With Me at Home interior preview: Three shapes take turns"},
+    {"src":"images/previews/patterns-with-me-at-home/03.jpg","alt":"Patterns With Me at Home interior preview: Patterns we can look for"}
+  ],
+  "shapes-with-me-home": [
+    {"src":"images/previews/shapes-with-me-at-home/01.jpg","alt":"Shapes With Me at Home interior preview: Circle"},
+    {"src":"images/previews/shapes-with-me-at-home/02.jpg","alt":"Shapes With Me at Home interior preview: Turn it. It is still a square."},
+    {"src":"images/previews/shapes-with-me-at-home/03.jpg","alt":"Shapes With Me at Home interior preview: Make a little shape house"}
   ]
 }
