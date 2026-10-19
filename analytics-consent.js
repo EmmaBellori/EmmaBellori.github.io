@@ -171,7 +171,7 @@
     save((accept?'yes':'no')+'|'+consentVersion);
     hideBanner();
     if(accept) loadAnalytics();
-    else if (wasActive) { // GA was already loaded in this page view; reload to ensure no further tracking.
+    else if (wasActive) {
       location.reload();
     }
   }
@@ -218,5 +218,17 @@
   script.src=src;
   script.defer=true;
   script.dataset.ebBookPreview='true';
+  document.head.appendChild(script);
+})();
+
+/* Normalize age/status presentation on every book detail page. */
+(function(){
+  const current=document.currentScript;
+  const src=current&&current.src?new URL('detail-page-meta.js',current.src).href:new URL('detail-page-meta.js',location.href).href;
+  if(document.querySelector('script[data-eb-detail-meta]'))return;
+  const script=document.createElement('script');
+  script.src=src;
+  script.defer=true;
+  script.dataset.ebDetailMeta='true';
   document.head.appendChild(script);
 })();
