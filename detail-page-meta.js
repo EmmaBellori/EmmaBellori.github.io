@@ -106,12 +106,19 @@
       }
     });
   }
+  function removeBackToBooks(){
+    document.querySelectorAll('.detail-main .book-return-action').forEach(node=>node.remove());
+    document.querySelectorAll('.detail-main a.back-link').forEach(link=>{
+      if(/back to (?:all )?books/i.test(link.textContent||''))link.remove();
+    });
+  }
   function decorate(){
     if(!document.querySelector('.detail-main'))return;
     const book=currentBook();
     cleanLegacyAgeText();
     ensureAgeBadge(book);
     cleanComingSoonDetail(book);
+    removeBackToBooks();
   }
   function schedule(){
     if(pending)return;pending=true;
