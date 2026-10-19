@@ -60,6 +60,10 @@ a.home-cover-wrap{text-decoration:none}
 .home-card-amazon:hover{background:#36595c}
 .home-card-details{border:1px solid #b3c0bc;background:#fff;color:#315d62}
 
+/* A single Coming Soon detail action uses the same footprint as the Amazon CTA, centered. */
+.home-card-actions.eb-coming-soon-only{display:flex!important;justify-content:center!important;grid-template-columns:none!important;text-align:center!important}
+.home-card-actions.eb-coming-soon-only .home-card-details{flex:0 1 58%!important;width:58%!important;min-width:150px!important;max-width:190px!important;margin:0 auto!important;text-align:center!important}
+
 /* Coming Soon hearts use the existing live voting flow. */
 .home-vote-button{position:absolute;top:9px;right:9px;z-index:3;width:44px;height:44px;display:grid;place-items:center;border:1px solid #e3cfd4;border-radius:50%;background:#fff;color:var(--home-heart);box-shadow:0 3px 10px rgba(0,0,0,.12)}
 .home-vote-button svg{width:23px;height:23px;fill:none;stroke:currentColor;stroke-width:1.9;stroke-linecap:round;stroke-linejoin:round}
@@ -140,6 +144,7 @@ a.home-cover-wrap{text-decoration:none}
 }
 @media(max-width:390px){
  .home-card-actions{grid-template-columns:1fr}
+ .home-card-actions.eb-coming-soon-only .home-card-details{width:100%!important;max-width:none!important}
  .home-series-actions{grid-template-columns:1fr}
  .home-series-count{justify-self:start}
 }
