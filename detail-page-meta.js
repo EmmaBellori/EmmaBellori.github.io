@@ -37,68 +37,72 @@
     const found=entries.find(book=>book&&book.id===id);
     if(found)return found;
     const series=(document.querySelector('.detail-subtitle')?.textContent||'').trim();
-    return {id,series};
+    return {id,series,seriesSlug:document.body.dataset.seriesSlug||''};
   }
   function ageRangeFor(book){
     const explicit=cleanAgeRange(book&&book.ageRange);
     return explicit||AGE_BY_SERIES[book&&book.series]||'';
   }
-  function ensureAgeBadge(book){
-    const copy=document.querySelector('.detail-copy');if(!copy)return;
-    const range=ageRangeFor(book);if(!range)return;
-    let badge=copy.querySelector('.eb-age-detail');
-    if(!badge){
-      badge=document.createElement('span');
+  function ensureBadgeRow(){
+    const copy=document.querySelector('.detail-copy');if(!copy)return null;
+    let row=copy.querySelector('.eb-detail-badges');
+    if(!row){
+      row=document.createElement('div');row.className='eb-detail-badges';
       const lead=copy.querySelector('.lead');
-      if(lead)lead.insertAdjacentElement('afterend',badge);else copy.prepend(badge);
+      if(lead)lead.insertAdjacentElement('afterend',row);else copy.prepend(row);
     }
-    const wantedClass='book-age eb-age-badge eb-age-detail';
-    const wantedText='Ages '+range;
-    const wantedLabel='Recommended age: '+range+' years';
-    if(badge.className!==wantedClass)badge.className=wantedClass;
-    if(badge.textContent!==wantedText)badge.textContent=wantedText;
-    if(badge.getAttribute('aria-label')!==wantedLabel)badge.setAttribute('aria-label',wantedLabel);
+    return row;
+  }
+  function ensureAgeBadge(book){
+    const range=ageRangeFor(book);if(!range)return;
+    const row=ensureBadgeRow();if(!row)return;
+    let badge=document.querySelector('.detail-copy .eb-age-detail');
+    if(!badge){badge=document.createElement('span');row.prepend(badge);}else if(badge.parentElement!==row)row.prepend(badge);
+    badge.className='book-age eb-age-badge eb-age-detail';
+    badge.textContent='Ages '+range;
+    badge.setAttribute('aria-label','Recommended age: '+range+' years');
   }
   function isComingSoon(book){
-    if(book&&book.status==='coming_soon')return true;
-    const coming=document.querySelector('#book-coming-soon-actions');
-    return !!(coming&&!coming.hidden);
+    return !!((book&&book.status==='coming_soon')||document.querySelector('.detail-copy .coming-soon-pill'));
   }
   function cleanComingSoonDetail(book){
     if(!isComingSoon(book))return;
     const copy=document.querySelector('.detail-copy');if(!copy)return;
+    const row=ensureBadgeRow();
 
     copy.querySelectorAll('.detail-fact').forEach(node=>{
       if(/^\s*Publication status\s*:/i.test(node.textContent||''))node.remove();
     });
 
     const amazon=document.querySelector('#book-amazon');
-    if(amazon){
-      if(!amazon.hidden)amazon.hidden=true;
-      if(amazon.hasAttribute('href'))amazon.removeAttribute('href');
-      if(amazon.style.getPropertyValue('display')!=='none')amazon.style.setProperty('display','none','important');
-    }
-    const fineprint=document.querySelector('#book-fineprint');if(fineprint&&!fineprint.hidden)fineprint.hidden=true;
+    if(amazon){amazon.hidden=true;amazon.removeAttribute('href');amazon.style.setProperty('display','none','important');}
+    const fineprint=document.querySelector('#book-fineprint');if(fineprint)fineprint.hidden=true;
 
-    const coming=document.querySelector('#book-coming-soon-actions');
-    if(coming){
-      if(coming.hidden)coming.hidden=false;
-      const pills=coming.querySelectorAll('.coming-soon-pill');
+    const comingHost=document.querySelector('#book-coming-soon-actions');
+    if(comingHost){
+      comingHost.querySelectorAll('.coming-soon-note,.coming-soon-collection-link').forEach(node=>node.remove());
+      const pills=comingHost.querySelectorAll('.coming-soon-pill');
       pills.forEach((pill,index)=>{if(index>0)pill.remove();});
+      const pill=comingHost.querySelector('.coming-soon-pill');
+      if(pill&&row&&pill.parentElement!==row)row.appendChild(pill);
+      comingHost.hidden=true;
     }
+    const allPills=copy.querySelectorAll('.coming-soon-pill');
+    allPills.forEach((pill,index)=>{if(index>0)pill.remove();});
+    const status=copy.querySelector('.coming-soon-pill');if(status&&row&&status.parentElement!==row)row.appendChild(status);
 
     const bottom=document.querySelector('#book-bottom-cta');
-    const bottomCopy=document.querySelector('#book-bottom-copy');
-    if(bottom&&bottomCopy&&/Coming Soon/i.test(bottomCopy.textContent||'')){
-      const series=(book&&book.series)||(document.querySelector('.detail-subtitle')?.textContent||'').trim();
-      bottomCopy.textContent=series?'Explore more books in '+series+'.':'Explore more Emma Bellori books.';
-    }
+    if(bottom)bottom.hidden=true;
   }
   function cleanLegacyAgeText(){
     document.querySelectorAll('.detail-copy .detail-fact').forEach(node=>{
       if(/^\s*(Recommended|Suggested) age\s*:/i.test(node.textContent||'')){
-        const wantedClass='book-age eb-age-badge eb-age-detail';
-        if(node.className!==wantedClass)node.className=wantedClass;
+        const match=(node.textContent||'').match(/(?:Ages?\s*)?(\d+\s*[–-]\s*\d+)/i);
+        const range=match?match[1].replace('-', '–'):'';
+        const badge=document.createElement('span');
+        badge.className='book-age eb-age-badge eb-age-detail';
+        if(range){badge.textContent='Ages '+range;badge.setAttribute('aria-label','Recommended age: '+range+' years');}
+        node.replaceWith(badge);
       }
     });
   }
@@ -117,7 +121,7 @@
     fetch(catalogUrl,{cache:'no-store'}).then(response=>response.ok?response.json():[]).then(data=>{entries=Array.isArray(data)?data:[];decorate();}).catch(()=>decorate());
     decorate();
     observer=new MutationObserver(schedule);
-    observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','data-book-id']});
+    observer.observe(document.body,{childList:true,subtree:true,attributes:true,attributeFilter:['hidden','data-book-id','data-series-slug']});
   }
 
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
