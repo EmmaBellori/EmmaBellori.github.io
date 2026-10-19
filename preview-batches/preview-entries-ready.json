@@ -53,5 +53,110 @@
     {"src":"images/previews/dont-want-school/01.jpg","alt":"I Don’t Want to Go to School! interior preview: a small doorway can feel very big"},
     {"src":"images/previews/dont-want-school/02.jpg","alt":"I Don’t Want to Go to School! interior preview: goodbye can hurt and support can help"},
     {"src":"images/previews/dont-want-school/03.jpg","alt":"I Don’t Want to Go to School! interior preview: the hard part and the good part can both be heard"}
+  ],
+  "dont-want-to-share": [
+    {"src":"images/previews/dont-want-to-share/01.jpg","alt":"I Don’t Want to Share! interior preview: some things feel extra special to me"},
+    {"src":"images/previews/dont-want-to-share/02.jpg","alt":"I Don’t Want to Share! interior preview: sharing a class block while keeping a special toy close"},
+    {"src":"images/previews/dont-want-to-share/03.jpg","alt":"I Don’t Want to Share! interior preview: playing together does not always mean lending every toy"}
+  ],
+  "want-it-now": [
+    {"src":"images/previews/want-it-now/01.jpg","alt":"I Want It NOW! interior preview: one little truck and one very big want"},
+    {"src":"images/previews/want-it-now/02.jpg","alt":"I Want It NOW! interior preview: a clear plan is easier to understand"},
+    {"src":"images/previews/want-it-now/03.jpg","alt":"I Want It NOW! interior preview: waiting did not feel good every moment"}
+  ],
+  "junior-archaeologist-egypt": [
+    {"src":"images/previews/junior-archaeologist-egypt/01.jpg","alt":"Junior Archaeologist: Ancient Egypt interior preview: The River That Runs North"},
+    {"src":"images/previews/junior-archaeologist-egypt/02.jpg","alt":"Junior Archaeologist: Ancient Egypt interior preview: The Scribe’s Secret"},
+    {"src":"images/previews/junior-archaeologist-egypt/03.jpg","alt":"Junior Archaeologist: Ancient Egypt interior preview: The Pyramid Builders"}
+  ],
+  "kawaii-carnival": [
+    {"src":"images/previews/kawaii-carnival/01.jpg","alt":"Kawaii Carnival interior preview: Pirate Fox coloring page"},
+    {"src":"images/previews/kawaii-carnival/02.jpg","alt":"Kawaii Carnival interior preview: The Carnival Train coloring page"},
+    {"src":"images/previews/kawaii-carnival/03.jpg","alt":"Kawaii Carnival interior preview: The Grand Carnival Parade coloring page"}
+  ],
+  "kawaii-dinosaurs": [
+    {"src":"images/previews/kawaii-dinosaurs/01.jpg","alt":"Kawaii Dinosaurs interior preview: dinosaur birthday coloring page"},
+    {"src":"images/previews/kawaii-dinosaurs/02.jpg","alt":"Kawaii Dinosaurs interior preview: underwater dinosaur adventure coloring page"},
+    {"src":"images/previews/kawaii-dinosaurs/03.jpg","alt":"Kawaii Dinosaurs interior preview: Dino Word Search activity"}
+  ],
+  "kawaii-easter": [
+    {"src":"images/previews/kawaii-easter/01.jpg","alt":"Kawaii Easter interior preview: Easter Bunny coloring page"},
+    {"src":"images/previews/kawaii-easter/02.jpg","alt":"Kawaii Easter interior preview: The Garden Egg Hunt coloring page"},
+    {"src":"images/previews/kawaii-easter/03.jpg","alt":"Kawaii Easter interior preview: The Happy Easter Picnic coloring page"}
+  ],
+  "kawaii-unicorns": [
+    {"src":"images/previews/kawaii-unicorns/01.jpg","alt":"Kawaii Unicorns interior preview: unicorn on a cloud coloring page"},
+    {"src":"images/previews/kawaii-unicorns/02.jpg","alt":"Kawaii Unicorns interior preview: mermaid unicorn coloring page"},
+    {"src":"images/previews/kawaii-unicorns/03.jpg","alt":"Kawaii Unicorns interior preview: Magical Word Search activity"}
+  ],
+  "library-after-closing": [
+    {"src":"images/previews/library-after-closing/01.jpg","alt":"The Library After Closing interior preview: caring for books begins with looking closely"},
+    {"src":"images/previews/library-after-closing/02.jpg","alt":"The Library After Closing interior preview: a welcoming space takes thought and preparation"},
+    {"src":"images/previews/library-after-closing/03.jpg","alt":"The Library After Closing interior preview: care behind the scenes can reach a new reader"}
+  ],
+  "midnight-sock-parade": [
+    {"src":"images/previews/midnight-sock-parade/01.jpg","alt":"The Midnight Sock Parade interior preview: the night was full of little marching feet"},
+    {"src":"images/previews/midnight-sock-parade/02.jpg","alt":"The Midnight Sock Parade interior preview: the little rhythm started something wonderful"},
+    {"src":"images/previews/midnight-sock-parade/03.jpg","alt":"The Midnight Sock Parade interior preview: a tiny keepsake held a wonderful memory"}
+  ],
+  "monster-trucks-big-easy": [
+    {"src":"images/previews/monster-trucks-big-easy/01.jpg","alt":"Monster Trucks – Big & Easy Coloring Book interior preview: monster truck jumping a ramp"},
+    {"src":"images/previews/monster-trucks-big-easy/02.jpg","alt":"Monster Trucks – Big & Easy Coloring Book interior preview: cheerful monster truck with flowers"},
+    {"src":"images/previews/monster-trucks-big-easy/03.jpg","alt":"Monster Trucks – Big & Easy Coloring Book interior preview: monster truck on a ramp"}
+  ],
+  "my-first-animal-activity-book": [
+    {"src":"images/previews/my-first-animal-activity-book/01.jpg","alt":"My First Animal Activity Book interior preview: Lion coloring page"},
+    {"src":"images/previews/my-first-animal-activity-book/02.jpg","alt":"My First Animal Activity Book interior preview: Count the animal crowd activity"},
+    {"src":"images/previews/my-first-animal-activity-book/03.jpg","alt":"My First Animal Activity Book interior preview: Find the animal words activity"}
+  ],
+  "my-new-baby-is-taking-everyone": [
+    {"src":"images/previews/my-new-baby-is-taking-everyone/01.jpg","alt":"My New Baby Is Taking Everyone! interior preview: under my angry words I feel left out"},
+    {"src":"images/previews/my-new-baby-is-taking-everyone/02.jpg","alt":"My New Baby Is Taking Everyone! interior preview: a small moment together can feel wonderfully big"},
+    {"src":"images/previews/my-new-baby-is-taking-everyone/03.jpg","alt":"My New Baby Is Taking Everyone! interior preview: a new person in my family and the same important place for me"}
+  ],
+  "ocean-animals-adventure": [
+    {"src":"images/previews/ocean-animals-adventure/01.jpg","alt":"Ocean Animals Adventure interior preview: sea turtle coloring page"},
+    {"src":"images/previews/ocean-animals-adventure/02.jpg","alt":"Ocean Animals Adventure interior preview: whales swimming together coloring page"},
+    {"src":"images/previews/ocean-animals-adventure/03.jpg","alt":"Ocean Animals Adventure interior preview: dolphin, turtle and starfish coloring page"}
+  ],
+  "parcel-crossed-town": [
+    {"src":"images/previews/parcel-crossed-town/01.jpg","alt":"The Parcel That Crossed Town interior preview: careful packing helps protect what is inside"},
+    {"src":"images/previews/parcel-crossed-town/02.jpg","alt":"The Parcel That Crossed Town interior preview: a careful journey leaves room for other people"},
+    {"src":"images/previews/parcel-crossed-town/03.jpg","alt":"The Parcel That Crossed Town interior preview: someone’s work can help someone else’s day"}
+  ],
+  "pocket-sized-moon": [
+    {"src":"images/previews/pocket-sized-moon/01.jpg","alt":"The Pocket-Sized Moon interior preview: some wonders are small enough to carry"},
+    {"src":"images/previews/pocket-sized-moon/02.jpg","alt":"The Pocket-Sized Moon interior preview: the light they carried showed them where to go"},
+    {"src":"images/previews/pocket-sized-moon/03.jpg","alt":"The Pocket-Sized Moon interior preview: one small light made the whole world shine"}
+  ],
+  "space-adventure": [
+    {"src":"images/previews/space-adventure/01.jpg","alt":"Space Adventure interior preview: astronaut and moon balloon coloring page"},
+    {"src":"images/previews/space-adventure/02.jpg","alt":"Space Adventure interior preview: astronaut using a telescope coloring page"},
+    {"src":"images/previews/space-adventure/03.jpg","alt":"Space Adventure interior preview: Astronaut Maze activity"}
+  ],
+  "space-facts-and-coloring": [
+    {"src":"images/previews/space-facts-and-coloring/01.jpg","alt":"Space Facts & Coloring interior preview: Floating fact and coloring page"},
+    {"src":"images/previews/space-facts-and-coloring/02.jpg","alt":"Space Facts & Coloring interior preview: Saturn fact and coloring page"},
+    {"src":"images/previews/space-facts-and-coloring/03.jpg","alt":"Space Facts & Coloring interior preview: Asteroid Belt fact and coloring page"}
+  ],
+  "staircase-seashell": [
+    {"src":"images/previews/staircase-seashell/01.jpg","alt":"The Staircase Inside the Seashell interior preview: the smallest doorway could lead to a winding world"},
+    {"src":"images/previews/staircase-seashell/02.jpg","alt":"The Staircase Inside the Seashell interior preview: a quiet moment made room for a smaller sound"},
+    {"src":"images/previews/staircase-seashell/03.jpg","alt":"The Staircase Inside the Seashell interior preview: small clues and helping hands had brought them there"}
+  ],
+  "those-words-hurt": [
+    {"src":"images/previews/those-words-hurt/01.jpg","alt":"Those Words Hurt! interior preview: words can hurt even when nobody touches me"},
+    {"src":"images/previews/those-words-hurt/02.jpg","alt":"Those Words Hurt! interior preview: an apology can be a beginning and the hurt may need more time"},
+    {"src":"images/previews/those-words-hurt/03.jpg","alt":"Those Words Hurt! interior preview: different ideas can be treated with care"}
+  ],
+  "umbrella-forest": [
+    {"src":"images/previews/umbrella-forest/01.jpg","alt":"The Umbrella That Grew a Forest interior preview: even an upside-down forest had a place to begin"},
+    {"src":"images/previews/umbrella-forest/02.jpg","alt":"The Umbrella That Grew a Forest interior preview: winter hid the path beneath a snowy blanket"},
+    {"src":"images/previews/umbrella-forest/03.jpg","alt":"The Umbrella That Grew a Forest interior preview: a tiny seed unfurled a whole new forest"}
+  ],
+  "weather-detective": [
+    {"src":"images/previews/weather-detective/01.jpg","alt":"Weather Detective interior preview: The Cloud Clue Files"},
+    {"src":"images/previews/weather-detective/02.jpg","alt":"Weather Detective interior preview: The Wind That Left a Clue"},
+    {"src":"images/previews/weather-detective/03.jpg","alt":"Weather Detective interior preview: The Rainbow Clue"}
   ]
 }
