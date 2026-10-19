@@ -19,6 +19,18 @@ function publishedCardMarkup(book,article){
  const description=book.description?'<p class="collection-description">'+escapeHTML(book.description)+'</p>':'';
  return '<div class="collection-cover-wrap"><a href="'+detailHref(book)+'" aria-label="Read about '+escapeHTML(book.title)+'"><img loading="lazy" decoding="async" width="240" height="340" src="'+escapeHTML(cover)+'" alt="'+escapeHTML(alt)+'"></a></div><div class="collection-book-info"><span class="collection-state">Available now</span><h2><a href="'+detailHref(book)+'">'+escapeHTML(book.title)+'</a></h2>'+theme+description+'<div class="collection-actions"><a class="collection-buy" href="'+escapeHTML(book.amazonUrl)+'" target="_blank" rel="noopener noreferrer sponsored" data-book-id="'+escapeHTML(book.id)+'">View on Amazon ↗</a><a class="collection-action" href="'+detailHref(book)+'">Book details →</a></div></div>';
 }
+function linkUpcomingDetailCards(){
+ document.querySelectorAll('.collection-book.is-upcoming').forEach(article=>{
+  const id=article.querySelector('[data-vote-id]')?.dataset.voteId||'';
+  const book=upcoming.find(item=>item.id===id);if(!book)return;
+  const heading=article.querySelector('.collection-book-info h2');
+  if(heading&&!heading.querySelector('a'))heading.innerHTML='<a href="'+detailHref(book)+'">'+escapeHTML(book.title)+'</a>';
+  const actions=article.querySelector('.collection-actions');
+  if(actions&&!actions.querySelector('.collection-action[data-coming-soon-details]')){
+   const link=document.createElement('a');link.className='collection-action';link.dataset.comingSoonDetails='true';link.href=detailHref(book);link.textContent='Book details →';actions.appendChild(link);
+  }
+ });
+}
 async function syncPublishedFromCatalog(){
  const page=document.querySelector('.collection-page');if(!page)return;
  const currentSeries=document.querySelector('.collection-breadcrumb [aria-current="page"]')?.textContent.trim()||'';
@@ -107,4 +119,4 @@ voteConfirm.addEventListener('click',async()=>{
  finally{submitting=false;voteConfirm.textContent='♥ Vote for this book';voteConfirm.disabled=!verifiedToken;}
 });
 
-syncPublishedFromCatalog().finally(syncVotes);
+syncPublishedFromCatalog().finally(()=>{linkUpcomingDetailCards();syncVotes();});
