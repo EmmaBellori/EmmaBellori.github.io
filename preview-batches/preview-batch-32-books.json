@@ -1,0 +1,8 @@
+{
+  "status": "ready_to_merge",
+  "target": "book-previews-batch-32.json",
+  "image_pattern": "images/previews/<book-id>/01.jpg ... 03.jpg",
+  "completed": 32,
+  "total": 32,
+  "note": "All 32 preview sets are configured in the production supplemental manifest and loaded by book-preview.js."
+}

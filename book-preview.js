@@ -10,6 +10,7 @@
   const sourceUrl=currentScript&&currentScript.src?currentScript.src:location.href;
   const catalogUrl=new URL('catalog.json',sourceUrl).href;
   const previewManifestUrl=new URL('book-previews.json',sourceUrl).href;
+  const previewBatchUrl=new URL('book-previews-batch-32.json',sourceUrl).href;
   const catalogBase=new URL('.',catalogUrl);
   let dialog=null;
   let activeImages=[];
@@ -37,15 +38,6 @@
     const previews=normalizedImages(book);if(!previews.length)return [];
     const cover=coverSlide(book);
     return cover?[cover,...previews]:previews;
-  }
-
-  function mergePreviewManifest(entries,manifest){
-    if(!manifest||typeof manifest!=='object')return entries;
-    return entries.map(book=>{
-      if(Array.isArray(book.previewImages)&&book.previewImages.length)return book;
-      const images=manifest[book.id];
-      return Array.isArray(images)&&images.length?Object.assign({},book,{previewImages:images}):book;
-    });
   }
 
   function mergePreviewManifest(entries,manifest){
@@ -220,9 +212,10 @@
   function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
   function init(){
     injectStyles();
-    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{})]).then(([entries,manifest])=>{
+    Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{})]).then(([entries,manifest,batchManifest])=>{
       if(!Array.isArray(entries))return;
       entries=mergePreviewManifest(entries,manifest);
+      entries=mergePreviewManifest(entries,batchManifest);
       decorate(entries);
       observer=new MutationObserver(()=>scheduleDecorate(entries));
       observer.observe(document.body,{childList:true,subtree:true});
