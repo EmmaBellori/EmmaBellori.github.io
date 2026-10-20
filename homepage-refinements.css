@@ -15,88 +15,158 @@
  z-index:9998;
 }
 
-/* Editorial section headings: warm, open and clearly distinct from collection titles. */
+/*
+ Featured homepage sections use a chapter-opening treatment.
+ This deliberately contrasts with collection headings below, which stay
+ left-aligned, smaller and action-oriented.
+*/
 .home-v12 #start-here>.home-section-heading,
 .home-v12 #latest>.home-section-heading{
  position:relative;
- align-items:flex-end;
- padding:0 0 15px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ justify-content:center;
+ gap:0;
+ width:calc(100% + 44px);
+ margin-left:-22px;
+ margin-right:-22px;
+ margin-bottom:26px;
+ padding:31px 44px 27px;
+ text-align:center;
  border:0;
- border-bottom:1px solid #e4ddd4;
+ border-top:1px solid #ddd8cf;
+ border-bottom:1px solid #ddd8cf;
  border-radius:0;
- background:transparent;
  box-shadow:none;
  overflow:visible;
 }
+.home-v12 #start-here>.home-section-heading{
+ background:#edf4ef;
+ border-color:#d6e2d9;
+}
+.home-v12 #latest>.home-section-heading{
+ background:#fbefe8;
+ border-color:#ead8ce;
+}
 .home-v12 #start-here>.home-section-heading>div,
 .home-v12 #latest>.home-section-heading>div{
- max-width:760px;
+ display:flex;
+ flex-direction:column;
+ align-items:center;
+ width:100%;
+ max-width:820px;
 }
 .home-v12 #start-here>.home-section-heading h2,
 .home-v12 #latest>.home-section-heading h2{
- max-width:700px;
- margin-top:3px;
- font-size:clamp(34px,4vw,44px);
- line-height:1.08;
- letter-spacing:-.025em;
+ max-width:800px;
+ margin:5px auto 0;
+ font-size:clamp(42px,5vw,53px);
+ line-height:1.02;
+ letter-spacing:-.035em;
  color:#27474a;
+ text-wrap:balance;
 }
 .home-v12 #start-here>.home-section-heading p:not(.eyebrow),
 .home-v12 #latest>.home-section-heading p:not(.eyebrow){
- max-width:700px;
- margin-top:8px;
- color:#61716f;
+ max-width:650px;
+ margin:11px auto 0;
+ color:#5d706c;
+ font-size:13px;
+ line-height:1.6;
+ text-wrap:balance;
 }
+
+/* Eyebrows become centered chapter labels with fine rules on both sides. */
 .home-v12 #start-here>.home-section-heading .eyebrow,
 .home-v12 #latest>.home-section-heading .eyebrow{
  display:flex;
  align-items:center;
- gap:11px;
- width:max-content;
+ justify-content:center;
+ gap:12px;
+ width:100%;
+ max-width:360px;
  padding:0;
- margin:0 0 8px;
+ margin:0 auto 8px;
  border:0;
  border-radius:0;
  background:transparent;
  font-size:10px;
+ font-weight:800;
  line-height:1.2;
- letter-spacing:.17em;
+ letter-spacing:.2em;
+ white-space:nowrap;
 }
+.home-v12 #start-here>.home-section-heading .eyebrow::before,
 .home-v12 #start-here>.home-section-heading .eyebrow::after,
+.home-v12 #latest>.home-section-heading .eyebrow::before,
 .home-v12 #latest>.home-section-heading .eyebrow::after{
  content:"";
  display:block;
- width:34px;
+ flex:1 1 46px;
+ max-width:52px;
  height:1px;
  background:currentColor;
- opacity:.55;
+ opacity:.5;
 }
-.home-v12 #start-here>.home-section-heading .eyebrow{color:#78968c}
-.home-v12 #latest>.home-section-heading .eyebrow{color:#b77a68}
+.home-v12 #start-here>.home-section-heading .eyebrow{color:#6f8e84}
+.home-v12 #latest>.home-section-heading .eyebrow{color:#ad7464}
+
+/* CTA sits below the copy instead of competing with the heading on the right. */
 .home-v12 #start-here>.home-section-heading .home-heading-link,
 .home-v12 #latest>.home-section-heading .home-heading-link{
  min-height:auto;
- padding:6px 0 3px;
+ margin-top:14px;
+ padding:5px 2px 3px;
  border:0;
- border-bottom:1px solid #aebcb7;
+ border-bottom:1px solid currentColor;
  border-radius:0;
  background:transparent;
  color:#315d62;
+ font-size:12px;
+ font-weight:800;
+ letter-spacing:.01em;
 }
 .home-v12 #start-here>.home-section-heading .home-heading-link:hover,
 .home-v12 #latest>.home-section-heading .home-heading-link:hover{
  text-decoration:none;
- border-bottom-color:#315d62;
+ color:#203f43;
 }
+
+/* Keep the surrounding featured sections airy so the chapter bands read as macro sections. */
+.home-v12 #start-here{padding-top:46px}
+.home-v12 #latest{padding-top:30px}
 
 @media(max-width:650px){
  .home-v12 #start-here>.home-section-heading,
  .home-v12 #latest>.home-section-heading{
-  align-items:flex-start;
-  flex-direction:column;
-  gap:11px;
-  padding-bottom:14px;
+  width:calc(100% + 30px);
+  margin-left:-15px;
+  margin-right:-15px;
+  margin-bottom:21px;
+  padding:25px 18px 22px;
  }
  .home-v12 #start-here>.home-section-heading h2,
- .home-v12 #latest>.home-section-heading h2{font-size:32px}
+ .home-v12 #latest>.home-section-heading h2{
+  max-width:520px;
+  font-size:clamp(34px,10vw,42px);
+  line-height:1.04;
+ }
+ .home-v12 #start-here>.home-section-heading p:not(.eyebrow),
+ .home-v12 #latest>.home-section-heading p:not(.eyebrow){
+  font-size:12px;
+ }
+ .home-v12 #start-here>.home-section-heading .eyebrow,
+ .home-v12 #latest>.home-section-heading .eyebrow{
+  max-width:300px;
+  gap:9px;
+  font-size:9px;
+  letter-spacing:.16em;
+ }
+ .home-v12 #start-here>.home-section-heading .eyebrow::before,
+ .home-v12 #start-here>.home-section-heading .eyebrow::after,
+ .home-v12 #latest>.home-section-heading .eyebrow::before,
+ .home-v12 #latest>.home-section-heading .eyebrow::after{
+  max-width:30px;
+ }
 }
