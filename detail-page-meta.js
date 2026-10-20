@@ -133,7 +133,7 @@
     style.id='eb-book-conversion-styles';
     style.textContent=`
       .eb-conversion-mid{box-sizing:border-box;max-width:920px;margin:30px auto 46px;padding:25px 28px;border:1px solid #d7e4df;border-radius:20px;background:#f3f7f5;text-align:center}
-      .eb-conversion-mid .eyebrow{margin:0 0 6px}.eb-conversion-mid h2{margin:0 0 9px;font:normal clamp(1.55rem,3vw,2.1rem)/1.2 Georgia,serif;color:#263d40}
+      .eb-conversion-mid .eyebrow{display:block!important;width:100%;margin:0 0 6px;text-align:center!important}.eb-conversion-mid h2{margin:0 0 9px;font:normal clamp(1.55rem,3vw,2.1rem)/1.2 Georgia,serif;color:#263d40}
       .eb-conversion-mid p{max-width:660px;margin:0 auto 15px;line-height:1.65;color:#48615c}.eb-conversion-mid .button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 24px;text-align:center}
       .eb-conversion-mid .eb-conversion-note{margin:10px auto 0;font-size:.78rem;color:#536965}
       .detail-copy .primary-book-cta.eb-amazon-conversion{font-weight:800}
