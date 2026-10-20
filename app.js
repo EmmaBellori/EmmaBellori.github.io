@@ -74,13 +74,19 @@ function currentSeriesOrder(){
  for(const b of books)if(!known.has(b.series)){list.push([b.series,b.seriesDescription||'Explore stories in this collection.']);known.add(b.series);}
  return list;
 }
+function rotatingPreview(items,count){
+ if(count<=0||!items.length)return [];
+ if(items.length<=count)return items.slice(0,count);
+ const dayIndex=Math.floor(Date.now()/86400000);
+ const offset=dayIndex%items.length;
+ return Array.from({length:count},(_,index)=>items[(offset+index)%items.length]);
+}
 function collectionPreview(publishedItems,upcomingItems){
- // Latest releases already maximize purchase exposure. Collection previews reserve one slot for voting whenever possible.
- if(!upcomingItems.length)return publishedItems.slice(0,3);
- if(!publishedItems.length)return upcomingItems.slice(0,3);
- const publishedSlots=Math.min(2,publishedItems.length);
- const preview=[...publishedItems.slice(0,publishedSlots),...upcomingItems.slice(0,3-publishedSlots)];
- if(preview.length<3)preview.push(...publishedItems.slice(publishedSlots,publishedSlots+(3-preview.length)));
+ // Homepage collection cards always prioritize books that are already available to buy.
+ const publishedSlots=Math.min(3,publishedItems.length);
+ const preview=rotatingPreview(publishedItems,publishedSlots);
+ const upcomingSlots=3-preview.length;
+ if(upcomingSlots>0)preview.push(...rotatingPreview(upcomingItems,upcomingSlots));
  return preview.slice(0,3);
 }
 function renderCollections(){
