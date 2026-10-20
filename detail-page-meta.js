@@ -1,4 +1,4 @@
-/* Emma Bellori Books — shared detail-page metadata presentation. */
+/* Emma Bellori Books — shared detail-page metadata and conversion presentation. */
 (function(){
   'use strict';
   if(window.__emmaDetailMetaLoaded)return;
@@ -23,6 +23,7 @@
   let entries=[];
   let observer=null;
   let pending=false;
+  let trackingBound=false;
 
   function cleanAgeRange(value){return String(value||'').replace(/^ages?\s*/i,'').trim();}
   function detailId(){
@@ -114,6 +115,103 @@
       if(/back to (?:all )?books/i.test(link.textContent||''))link.remove();
     });
   }
+
+  function isAmazonProductLink(link){
+    if(!link||!link.href)return false;
+    try{
+      const url=new URL(link.href,location.href);
+      return /(^|\.)amazon\.[a-z.]+$/i.test(url.hostname)&&/\/dp\//.test(url.pathname);
+    }catch{return false;}
+  }
+  function primaryAmazonLink(){
+    const link=document.querySelector('.detail-hero a.primary-book-cta[href]');
+    return isAmazonProductLink(link)?link:null;
+  }
+  function ensureConversionStyles(){
+    if(document.getElementById('eb-book-conversion-styles'))return;
+    const style=document.createElement('style');
+    style.id='eb-book-conversion-styles';
+    style.textContent=`
+      .eb-conversion-mid{box-sizing:border-box;max-width:920px;margin:30px auto 46px;padding:25px 28px;border:1px solid #d7e4df;border-radius:20px;background:#f3f7f5;text-align:center}
+      .eb-conversion-mid .eyebrow{margin:0 0 6px}.eb-conversion-mid h2{margin:0 0 9px;font:normal clamp(1.55rem,3vw,2.1rem)/1.2 Georgia,serif;color:#263d40}
+      .eb-conversion-mid p{max-width:660px;margin:0 auto 15px;line-height:1.65;color:#48615c}.eb-conversion-mid .button{display:inline-flex;align-items:center;justify-content:center;min-height:50px;padding:14px 24px;text-align:center}
+      .eb-conversion-mid .eb-conversion-note{margin:10px auto 0;font-size:.78rem;color:#536965}
+      .detail-copy .primary-book-cta.eb-amazon-conversion{font-weight:800}
+      @media(max-width:700px){.eb-conversion-mid{margin:24px 0 36px;padding:22px 18px}.eb-conversion-mid .button{display:flex;width:100%;box-sizing:border-box}}
+    `;
+    document.head.appendChild(style);
+  }
+  function markAmazonCtas(){
+    const main=document.querySelector('.detail-main');if(!main)return;
+    const title=(main.querySelector('h1')?.textContent||'this book').trim();
+    const hero=primaryAmazonLink();
+    if(hero){
+      hero.dataset.ctaPosition='hero';
+      hero.classList.add('eb-amazon-conversion');
+      hero.setAttribute('aria-label','Check current price and availability for '+title+' on Amazon');
+      if(/^\s*View on Amazon\s*↗?\s*$/i.test(hero.textContent||''))hero.textContent='Check price & availability on Amazon ↗';
+      const fineprint=hero.parentElement?.querySelector('.fineprint');
+      if(fineprint&&/Amazon\.com displays current prices/i.test(fineprint.textContent||''))fineprint.textContent='Opens Amazon.com to view the current price, available formats and customer reviews, if available.';
+    }
+    const bottom=main.querySelector('.v4-bottom-cta a[href]');
+    if(isAmazonProductLink(bottom)){
+      bottom.dataset.ctaPosition='bottom';
+      bottom.setAttribute('aria-label','Check current price and availability for '+title+' on Amazon');
+      if(/^\s*View on Amazon\s*↗?\s*$/i.test(bottom.textContent||''))bottom.textContent='Check price & availability on Amazon ↗';
+    }
+    const mid=main.querySelector('.eb-conversion-mid a[href]');
+    if(isAmazonProductLink(mid))mid.dataset.ctaPosition='after_preview';
+  }
+  function ensureMidConversionCta(){
+    const main=document.querySelector('.detail-main');
+    const hero=document.querySelector('.detail-hero');
+    const source=primaryAmazonLink();
+    if(!main||!hero||!source)return;
+    const title=(main.querySelector('h1')?.textContent||'this book').trim();
+    let section=main.querySelector('.eb-conversion-mid');
+    if(!section){
+      section=document.createElement('section');
+      section.className='eb-conversion-mid';
+      section.setAttribute('aria-label','Amazon purchase options');
+      const eyebrow=document.createElement('p');eyebrow.className='eyebrow';eyebrow.textContent='AVAILABLE ON AMAZON';
+      const heading=document.createElement('h2');heading.textContent='Want to see the current price?';
+      const copy=document.createElement('p');copy.textContent='Open '+title+' on Amazon.com to view current availability and available formats.';
+      const link=document.createElement('a');link.className='button';link.href=source.href;link.target='_blank';link.rel='noopener noreferrer sponsored';link.dataset.bookId=source.dataset.bookId||detailId();link.dataset.ctaPosition='after_preview';link.textContent='Check price & availability on Amazon ↗';link.setAttribute('aria-label','Check current price and availability for '+title+' on Amazon');
+      const note=document.createElement('p');note.className='eb-conversion-note';note.textContent='Purchase is completed on Amazon.';
+      section.append(eyebrow,heading,copy,link,note);
+    }
+    const preview=main.querySelector('.eb-inside-preview');
+    const anchor=preview||hero;
+    if(anchor.nextElementSibling!==section)anchor.insertAdjacentElement('afterend',section);
+  }
+  function bindConversionTracking(){
+    if(trackingBound)return;trackingBound=true;
+    document.addEventListener('click',event=>{
+      const preview=event.target.closest('.eb-inside-thumb');
+      if(preview){
+        const siblings=Array.from(preview.parentElement?.querySelectorAll('.eb-inside-thumb')||[]);
+        const index=Math.max(0,siblings.indexOf(preview))+1;
+        if(typeof window.ebTrack==='function')window.ebTrack('book_preview_open',{book_id:detailId()||'unknown',preview_index:index});
+        return;
+      }
+      const link=event.target.closest('a[data-cta-position][href]');
+      if(!isAmazonProductLink(link))return;
+      let host='';try{host=new URL(link.href,location.href).hostname;}catch{}
+      if(typeof window.ebTrack==='function')window.ebTrack('amazon_cta_click',{
+        book_id:link.dataset.bookId||detailId()||'unknown',
+        cta_position:link.dataset.ctaPosition||'unknown',
+        cta_text:(link.textContent||'').trim().slice(0,80),
+        link_host:host
+      });
+    },true);
+  }
+  function decorateConversion(){
+    ensureConversionStyles();
+    markAmazonCtas();
+    ensureMidConversionCta();
+    markAmazonCtas();
+  }
+
   function decorate(){
     if(!document.querySelector('.detail-main'))return;
     const book=currentBook();
@@ -121,12 +219,14 @@
     ensureAgeBadge(book);
     cleanComingSoonDetail(book);
     removeBackToBooks();
+    decorateConversion();
   }
   function schedule(){
     if(pending)return;pending=true;
     requestAnimationFrame(()=>{pending=false;decorate();});
   }
   function init(){
+    bindConversionTracking();
     fetch(catalogUrl,{cache:'no-store'}).then(response=>response.ok?response.json():[]).then(data=>{entries=Array.isArray(data)?data:[];decorate();}).catch(()=>decorate());
     decorate();
     observer=new MutationObserver(schedule);
