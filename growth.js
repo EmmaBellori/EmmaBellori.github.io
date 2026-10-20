@@ -4,7 +4,7 @@ document.addEventListener('DOMContentLoaded',()=>{
  const priorityIds=['mad','mistakes','i-cant-sleep-without-you'];
  const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
  const formatLabel=value=>{const s=String(value??'').replace(/\bedition\b/gi,'');const k=/kindle/i.test(s),p=/paperback/i.test(s);return k&&p?'Kindle + Paperback':k?'Kindle':p?'Paperback':s.trim();};
- const legacy=new Set(['mistakes','play','bugs','mad','christmas','halloween']);
+ const legacy=new Set(['mistakes','play','bugs','mad','christmas','halloween','i-cant-sleep-without-you']);
  const detailHref=b=>legacy.has(b.id)?'books/'+encodeURIComponent(b.id)+'.html':'book.html?id='+encodeURIComponent(b.id);
  fetch('catalog.json',{cache:'no-store'}).then(r=>{if(!r.ok)throw Error();return r.json();}).then(entries=>{
   if(!Array.isArray(entries))throw Error();
