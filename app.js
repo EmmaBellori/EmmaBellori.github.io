@@ -20,7 +20,7 @@ const LITTLE_MONEY_BOOKS=[
  {id:'price-tag-surprise',title:'The Price Tag Surprise',cover:'images/coming-soon/The_Price_Tag_Surprise_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
  {id:'three-coins-choice',title:'Three Coins and a Choice',cover:'images/coming-soon/Three_Coins_and_a_Choice_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
 ];
-const LEGACY_DETAIL_IDS=new Set(['mistakes','play','bugs','mad','christmas','halloween']);
+const PUBLISHED_DETAIL_OVERRIDES=Object.freeze({'door-teapot':'the-door-inside-the-teapot'});
 const latestGrid=document.querySelector('#latest-grid');
 const seriesCatalog=document.querySelector('#series-catalog');
 const empty=document.querySelector('#empty');
@@ -29,7 +29,13 @@ const suggestionBox=document.querySelector('#search-suggestions');
 
 const escapeHTML=s=>String(s??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot',"'":'&#39;'}[c]));
 function formatLabel(value){const s=String(value??'').replace(/\bedition\b/gi,'');const k=/kindle/i.test(s),p=/paperback/i.test(s);return k&&p?'Kindle + Paperback':k?'Kindle':p?'Paperback':s.trim();}
-function detailHref(b){return b.legacyDetail?'books/'+encodeURIComponent(b.id)+'.html':'book.html?id='+encodeURIComponent(b.id);}
+function detailHref(b){
+ if(b&&b.status==='published'){
+  const slug=PUBLISHED_DETAIL_OVERRIDES[b.id]||b.id;
+  return 'books/'+encodeURIComponent(slug)+'.html';
+ }
+ return 'book.html?id='+encodeURIComponent(b.id);
+}
 function coverHTML(b){return b.cover?'<img loading="lazy" decoding="async" src="'+escapeHTML(b.cover)+'" alt="Cover of '+escapeHTML(b.title)+'">':'<div class="cover-placeholder"><strong>'+escapeHTML(b.title)+'</strong></div>';}
 function normalize(value){return String(value??'').trim().toLocaleLowerCase();}
 
@@ -195,7 +201,7 @@ fetch('catalog.json',{cache:'no-store'}).then(response=>{if(!response.ok)throw E
  const allEntries=[...entries,...LITTLE_MONEY_BOOKS];
  const valid=allEntries.map((b,index)=>({...b,_catalogIndex:index})).filter(b=>b&&typeof b.id==='string'&&typeof b.title==='string'&&typeof b.series==='string'&&typeof b.seriesSlug==='string'&&(b.status==='published'||b.status==='coming_soon')&&(b.status!=='published'||(typeof b.amazonUrl==='string'&&/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl))));
  if(valid.length!==allEntries.length||new Set(valid.map(b=>b.id)).size!==valid.length)throw Error('Invalid catalog entries');
- published=valid.filter(b=>b.status==='published').map(b=>({...b,legacyDetail:LEGACY_DETAIL_IDS.has(b.id)}));
+ published=valid.filter(b=>b.status==='published');
  upcoming=valid.filter(b=>b.status==='coming_soon');books=[...published,...upcoming];
  renderLatest();renderCollections();restoreCatalogAfterRender();
 }).catch(error=>{console.error('Catalog could not be loaded',error);empty.hidden=false;empty.textContent='The book catalog is temporarily unavailable. Please refresh the page.';});

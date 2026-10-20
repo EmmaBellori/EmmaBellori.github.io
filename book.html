@@ -13,6 +13,8 @@
   {id:'three-coins-choice',title:'Three Coins and a Choice',cover:'images/coming-soon/Three_Coins_and_a_Choice_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'}
  ];
  const escapeHTML=value=>String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+ const PUBLISHED_DETAIL_OVERRIDES=Object.freeze({'door-teapot':'the-door-inside-the-teapot'});
+ const detailHref=book=>book&&book.status==='published'?'books/'+encodeURIComponent(PUBLISHED_DETAIL_OVERRIDES[book.id]||book.id)+'.html':'book.html?id='+encodeURIComponent(book.id);
  const fail=()=>{document.querySelector('#book-title').textContent='Book not found';document.querySelector('#book-description').textContent='Return to the catalog to explore Emma Bellori books.';document.querySelector('#book-cover').hidden=true;document.querySelector('#book-format').hidden=true;document.querySelector('#book-fineprint').hidden=true;};
  function comingSoonDescription(book){
   const title=String(book.title||'This book');
@@ -90,8 +92,11 @@
   const isComingSoon=b.status==='coming_soon';
   if(!isPublished&&!isComingSoon)throw Error();
   if(isPublished&&!/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl||''))throw Error();
+  if(isPublished){location.replace(detailHref(b));return;}
   document.body.dataset.bookId=b.id;
   document.body.dataset.seriesSlug=b.seriesSlug||'';
+  document.body.dataset.seriesName=b.series||'';
+  document.dispatchEvent(new CustomEvent('emma:book-ready',{detail:{id:b.id,series:b.series||'',seriesSlug:b.seriesSlug||''}}));
   document.title=b.title+' | Emma Bellori Books';
   document.querySelector('#book-title').textContent=b.title;
   document.querySelector('#book-theme').textContent=b.theme||b.series||'';
@@ -118,7 +123,7 @@
   const related=entries.filter(x=>x.id!==b.id&&x.series===b.series).slice(0,2);
   if(related.length){
    const grid=document.querySelector('#book-related-grid');
-   grid.innerHTML=related.map(item=>{const href=item.status==='published'&&['mistakes','play','bugs','mad','christmas','halloween'].includes(item.id)?'books/'+encodeURIComponent(item.id)+'.html':'book.html?id='+encodeURIComponent(item.id);return '<article class="related-card"><a href="'+href+'">'+(item.cover?'<img src="'+escapeHTML(item.cover)+'" alt="Cover of '+escapeHTML(item.title)+'" loading="lazy" decoding="async" width="240" height="360">':'')+'<span class="related-card-copy"><strong>'+escapeHTML(item.title)+'</strong><span class="related-card-theme">'+escapeHTML(item.theme||item.series||'')+'</span></span></a></article>';}).join('');
+   grid.innerHTML=related.map(item=>{const href=detailHref(item);return '<article class="related-card"><a href="'+href+'">'+(item.cover?'<img src="'+escapeHTML(item.cover)+'" alt="Cover of '+escapeHTML(item.title)+'" loading="lazy" decoding="async" width="240" height="360">':'')+'<span class="related-card-copy"><strong>'+escapeHTML(item.title)+'</strong><span class="related-card-theme">'+escapeHTML(item.theme||item.series||'')+'</span></span></a></article>';}).join('');
    document.querySelector('#book-related').hidden=false;
   }
   const bottom=document.querySelector('#book-bottom-cta');const bottomCopy=document.querySelector('#book-bottom-copy');const bottomLink=document.querySelector('#book-bottom-link');

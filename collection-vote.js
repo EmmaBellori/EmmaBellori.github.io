@@ -10,7 +10,14 @@ const preferences=Object.create(null);
 try {const saved=JSON.parse(localStorage.getItem(CHOICES_STORAGE_KEY)||'{}');if(saved&&typeof saved==='object')for(const [k,v] of Object.entries(saved))if(typeof v==='string')preferences[k]=v;}catch{}
 
 function escapeHTML(value){return String(value??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function detailHref(book){return '../book.html?id='+encodeURIComponent(book.id);}
+const PUBLISHED_DETAIL_OVERRIDES=Object.freeze({'door-teapot':'the-door-inside-the-teapot'});
+function detailHref(book){
+ if(book&&book.status==='published'){
+  const slug=PUBLISHED_DETAIL_OVERRIDES[book.id]||book.id;
+  return '../books/'+encodeURIComponent(slug)+'.html';
+ }
+ return '../book.html?id='+encodeURIComponent(book.id);
+}
 function publishedCardMarkup(book,article){
  const img=article.querySelector('img');
  const cover=img?img.getAttribute('src'):('../'+book.cover);
