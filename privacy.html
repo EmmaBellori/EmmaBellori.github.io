@@ -1,1 +1,101 @@
-<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><meta name="robots" content="noindex,follow"><title>Privacy & Analytics | Emma Bellori Books</title><link rel="stylesheet" href="style.css"></head><body><header class="site-header"><a class="brand" href="index.html">Emma Bellori<span>BOOKS FOR CURIOUS MINDS</span></a></header><main class="section" style="max-width:850px;margin:auto;min-height:65vh"><p class="eyebrow">PRIVACY</p><h1>Privacy & Analytics</h1><p>Emma Bellori Books is an independent author website hosted on GitHub Pages. You can browse the website without accepting analytics.</p><h2>Optional Google Analytics</h2><p>If you choose “Accept analytics”, we load Google Analytics 4 (measurement ID G-PJDVFZV1QG) to understand site visits, pages viewed, and clicks on Amazon links. Google may process device, browser, approximate location and usage data, and may use cookies or similar identifiers. If you decline, our site does not load Google Analytics.</p><h2>Your choice</h2><p>Use the “Privacy settings” control in the footer to change your preference. Rejecting after acceptance reloads the page to stop further analytics requests from this site. To clear existing Google Analytics cookies, you may also clear this site's cookies in your browser.</p><h2>Amazon links</h2><p>Amazon links open Amazon's website, where Amazon's own privacy practices apply. We do not receive your purchase details through this website.</p><h2>Optional upcoming-book preferences</h2><p>Visitors may optionally support one upcoming book per series, changing their selection later. A randomly generated browser identifier is stored locally to recognize the visitor’s choices. The identifier is pseudonymized using a keyed hash before storage in our Supabase database. The site does not publicly display individual preferences or voting totals.</p><p>To prevent automated abuse, Cloudflare Turnstile verifies submissions and may process technical data such as IP addresses and browser information. Server-side rate limiting uses pseudonymized network identifiers. Preference records and security-related rate-limit data are processed for the purpose of operating and protecting the voting feature. Clearing browser storage may reset the local identifier and visible selections. For information about these providers, see <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase privacy information</a> and <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare privacy policy</a>.</p><h2>Hosting and contact</h2><p>GitHub Pages may process technical connection data to serve this website independently of your analytics choice. Before publishing a final legal privacy notice, the website operator should add their identity and a usable contact address, and review the applicable legal requirements.</p><p><a href="index.html">← Back to books</a></p></main><footer><span>© Emma Bellori Books</span></footer><script defer src="analytics-consent.js"></script></body></html>
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="robots" content="noindex,follow">
+  <meta name="description" content="Privacy, analytics and contact information for the Emma Bellori Books website.">
+  <meta name="theme-color" content="#fffaf5">
+  <title>Privacy & Analytics | Emma Bellori Books</title>
+  <link rel="icon" href="favicon.png" type="image/png">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="privacy.css?v=1">
+</head>
+<body class="privacy-page">
+  <a class="skip-link" href="#privacy-content">Skip to privacy information</a>
+
+  <header class="site-header">
+    <a class="brand" href="index.html">
+      <img alt="" class="brand-logo" src="images/emma-bellori-logo.webp" width="66" height="66">
+      <span class="brand-label">Emma Bellori<span>BOOKS FOR CURIOUS MINDS</span></span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a href="index.html#start-here">Start here</a>
+      <a href="index.html#books">Collections</a>
+      <a href="index.html#parenting-guides">Free guides</a>
+      <a href="index.html#about">About</a>
+    </nav>
+  </header>
+
+  <main id="privacy-content">
+    <section class="privacy-hero">
+      <div>
+        <p class="eyebrow">PRIVACY · ANALYTICS · CONTACT</p>
+        <h1>Privacy, clearly explained.</h1>
+        <p class="privacy-lead">Emma Bellori Books is an independent author website hosted on GitHub Pages. You can browse the site without accepting optional analytics, and you can change your analytics choice at any time.</p>
+      </div>
+      <aside class="privacy-summary" aria-label="Privacy summary">
+        <strong>At a glance</strong>
+        <p>Google Analytics is optional. Amazon purchases happen on Amazon. Upcoming-book preferences use a pseudonymous visitor identifier. Privacy questions can be sent directly to Emma Bellori Books.</p>
+      </aside>
+    </section>
+
+    <section class="privacy-main" aria-label="Privacy details">
+      <div class="privacy-grid">
+        <article class="privacy-card wide">
+          <p class="eyebrow">OPTIONAL ANALYTICS</p>
+          <h2>Google Analytics 4</h2>
+          <p>If you choose <strong>Accept analytics</strong>, this website loads Google Analytics 4 (measurement ID <strong>G-PJDVFZV1QG</strong>) to understand how the site is used and improve the reading experience.</p>
+          <p>Depending on your activity, analytics may include page visits, book-page interactions, interior-preview opens and outbound clicks to Amazon. Google may process device, browser, approximate location and usage information and may use cookies or similar identifiers. If you decline analytics, this website does not load Google Analytics.</p>
+        </article>
+
+        <article class="privacy-card">
+          <p class="eyebrow">YOUR CHOICE</p>
+          <h2>Analytics consent</h2>
+          <p>You can accept or reject optional analytics when the consent panel appears. The <strong>Privacy settings</strong> control in the footer lets you revisit that choice later.</p>
+          <p>If you reject analytics after previously accepting it, the page reloads to stop further analytics requests from this site. You can also clear existing site cookies through your browser settings.</p>
+        </article>
+
+        <article class="privacy-card">
+          <p class="eyebrow">AMAZON</p>
+          <h2>Books and purchases</h2>
+          <p>Links to books open Amazon's website. Amazon's own privacy, cookie and purchase practices apply once you leave this website.</p>
+          <p>Emma Bellori Books does not receive your Amazon payment details or the personal information you provide during an Amazon purchase through this website.</p>
+        </article>
+
+        <article class="privacy-card wide">
+          <p class="eyebrow">COMING SOON VOTING</p>
+          <h2>Optional upcoming-book preferences</h2>
+          <p>Visitors may optionally support one upcoming book per series and change their selection later. A randomly generated browser identifier is stored locally so the site can recognize the visitor's choices. Before a preference is stored in the Supabase database, the identifier is pseudonymized using a keyed hash.</p>
+          <p>The site does not publicly display individual preferences or voting totals. Clearing browser storage may reset the local identifier and the selections shown on your device.</p>
+          <p>To help prevent automated abuse, Cloudflare Turnstile may process technical data such as IP address and browser information. Server-side rate limiting uses pseudonymized network identifiers for security and abuse prevention.</p>
+          <p>Provider information: <a href="https://supabase.com/privacy" target="_blank" rel="noopener noreferrer">Supabase privacy information ↗</a> · <a href="https://www.cloudflare.com/privacypolicy/" target="_blank" rel="noopener noreferrer">Cloudflare privacy policy ↗</a></p>
+        </article>
+
+        <article class="privacy-card">
+          <p class="eyebrow">HOSTING</p>
+          <h2>GitHub Pages</h2>
+          <p>This website is hosted on GitHub Pages. GitHub may process technical connection information needed to deliver the website, independently of your optional Google Analytics choice.</p>
+          <p><a href="https://docs.github.com/en/site-policy/privacy-policies/github-general-privacy-statement" target="_blank" rel="noopener noreferrer">GitHub privacy statement ↗</a></p>
+        </article>
+
+        <article class="privacy-card privacy-contact">
+          <p class="eyebrow">CONTACT</p>
+          <h2>Privacy questions or requests</h2>
+          <p>For questions about this website's privacy practices, analytics consent or information handled directly by Emma Bellori Books, contact:</p>
+          <a class="privacy-email" href="mailto:emmabelloribooks@outlook.com">emmabelloribooks@outlook.com</a>
+        </article>
+      </div>
+
+      <p class="privacy-meta">Emma Bellori Books is the editorial name used for this author website. Last updated: 21 October 2026.</p>
+    </section>
+  </main>
+
+  <footer>
+    <span>© Emma Bellori Books</span>
+    <span><a href="index.html">Home</a> · <a href="mailto:emmabelloribooks@outlook.com">Contact</a> · <a href="https://www.amazon.com/author/emmabellori" target="_blank" rel="noopener noreferrer">Amazon Author Page</a></span>
+  </footer>
+
+  <script defer src="analytics-consent.js"></script>
+</body>
+</html>
