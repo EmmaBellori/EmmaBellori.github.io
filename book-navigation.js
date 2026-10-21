@@ -2,6 +2,12 @@
 (function(){
 'use strict';
 
+if(/\/book\.html$/.test(location.pathname)){
+ let robots=document.querySelector('meta[name="robots"]');
+ if(!robots){robots=document.createElement('meta');robots.name='robots';document.head.appendChild(robots);}
+ robots.content='noindex,follow';
+}
+
 const home=document.querySelector('a.brand');
 const back=document.querySelector('.back-link');
 const breadcrumb=document.querySelector('[data-book-breadcrumb]');
