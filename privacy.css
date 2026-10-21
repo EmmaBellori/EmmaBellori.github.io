@@ -1,0 +1,33 @@
+/* Emma Bellori Books — Privacy & contact page */
+.privacy-page{background:#fffaf5;color:#233e43}
+.privacy-page .site-header{border-bottom:1px solid #e7ddd2;background:rgba(255,250,245,.96)}
+.privacy-page .privacy-hero{max-width:1120px;margin:0 auto;padding:72px 28px 46px;display:grid;grid-template-columns:minmax(0,1.45fr) minmax(280px,.75fr);gap:42px;align-items:center}
+.privacy-page .privacy-hero h1{font:normal clamp(44px,6vw,68px)/1.07 Georgia,serif;letter-spacing:-1.8px;margin:10px 0 18px;color:#233e43}
+.privacy-page .privacy-hero .privacy-lead{max-width:720px;margin:0;color:#536865;font-size:17px;line-height:1.7}
+.privacy-page .privacy-summary{padding:25px 26px;border:1px solid #d9e3dd;border-radius:22px;background:#edf4ef;box-shadow:0 8px 28px rgba(35,62,67,.045)}
+.privacy-page .privacy-summary strong{display:block;margin-bottom:8px;font:normal 24px/1.2 Georgia,serif;color:#29484b}
+.privacy-page .privacy-summary p{margin:0;color:#536865;font-size:14px;line-height:1.65}
+.privacy-page .privacy-main{max-width:960px;margin:0 auto;padding:0 28px 82px}
+.privacy-page .privacy-grid{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:18px}
+.privacy-page .privacy-card{padding:28px 30px;border:1px solid #e6ddd4;border-radius:20px;background:#fffdf9;box-shadow:0 5px 22px rgba(35,62,67,.035)}
+.privacy-page .privacy-card.wide{grid-column:1/-1}
+.privacy-page .privacy-card h2{font:normal 28px/1.2 Georgia,serif;margin:0 0 10px;color:#29484b}
+.privacy-page .privacy-card p{margin:0 0 12px;color:#566a67;line-height:1.7}
+.privacy-page .privacy-card p:last-child{margin-bottom:0}
+.privacy-page .privacy-card ul{margin:10px 0 0;padding-left:19px;color:#566a67}
+.privacy-page .privacy-card li+li{margin-top:7px}
+.privacy-page .privacy-card a{color:#315d62;font-weight:700}
+.privacy-page .privacy-contact{background:#f8e7df;border-color:#ecd7cc}
+.privacy-page .privacy-email{display:inline-flex;align-items:center;justify-content:center;min-height:46px;margin-top:7px;padding:11px 17px;border-radius:999px;background:#233e43;color:#fff!important;text-decoration:none;font-size:13px;font-weight:750}
+.privacy-page .privacy-email:hover{background:#365b60}
+.privacy-page .privacy-meta{margin:24px 2px 0;color:#74817f;font-size:12px}
+.privacy-page footer{border-top:1px solid #e7ddd2}
+.privacy-page footer a{color:#315d62}
+@media(max-width:760px){
+  .privacy-page .privacy-hero{grid-template-columns:1fr;padding:48px 20px 32px;gap:22px}
+  .privacy-page .privacy-hero h1{font-size:44px}
+  .privacy-page .privacy-main{padding:0 20px 64px}
+  .privacy-page .privacy-grid{grid-template-columns:1fr}
+  .privacy-page .privacy-card.wide{grid-column:auto}
+  .privacy-page .privacy-card{padding:23px 21px}
+}
