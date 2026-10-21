@@ -126,4 +126,12 @@ voteConfirm.addEventListener('click',async()=>{
  finally{submitting=false;voteConfirm.textContent='♥ Vote for this book';voteConfirm.disabled=!verifiedToken;}
 });
 
-syncPublishedFromCatalog().finally(()=>{linkUpcomingDetailCards();syncVotes();});
+function loadCollectionSeo(){
+ if(!document.querySelector('link[data-collection-seo]')){
+  const style=document.createElement('link');style.rel='stylesheet';style.href='../collection-seo.css?v=1';style.dataset.collectionSeo='true';document.head.appendChild(style);
+ }
+ if(!document.querySelector('script[data-collection-seo]')){
+  const script=document.createElement('script');script.src='../collection-seo.js?v=1';script.dataset.collectionSeo='true';document.head.appendChild(script);
+ }
+}
+syncPublishedFromCatalog().finally(()=>{linkUpcomingDetailCards();syncVotes();loadCollectionSeo();});
