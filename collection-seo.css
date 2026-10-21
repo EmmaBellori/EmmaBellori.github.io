@@ -1,0 +1,13 @@
+/* Related-reading hub shared by collection landing pages. */
+.collection-seo-hub{margin:34px 0 8px;padding:22px 24px;background:#f8f6f2;border:1px solid #e2ddd5;border-radius:16px}
+.collection-seo-hub .eyebrow{margin:0 0 7px;color:#62615d;letter-spacing:.14em}
+.collection-seo-hub h2{margin:0 0 8px;font-size:clamp(1.35rem,2.6vw,1.8rem);color:var(--ink)}
+.collection-seo-summary{margin:0 0 15px;max-width:82ch;line-height:1.62;color:#46575a}
+.collection-seo-links{display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:0 22px;border-top:1px solid #dedbd3}
+.collection-seo-link{display:grid;grid-template-columns:1fr auto;grid-template-areas:"kind arrow" "title arrow";align-items:center;gap:2px 12px;min-height:66px;padding:11px 2px;border-bottom:1px solid #dedbd3;color:var(--ink);text-decoration:none}
+.collection-seo-link span{grid-area:kind;font-size:.72rem;font-weight:750;letter-spacing:.08em;text-transform:uppercase;color:#65706d}
+.collection-seo-link strong{grid-area:title;font-size:.96rem;line-height:1.35}
+.collection-seo-link b{grid-area:arrow;font-size:1.08rem;color:#365f61;font-weight:700}
+.collection-seo-link:hover strong{text-decoration:underline;text-underline-offset:3px}
+.collection-seo-link:focus-visible{outline:3px solid #146d78;outline-offset:3px;border-radius:4px}
+@media(max-width:540px){.collection-seo-hub{margin-top:27px;padding:18px 17px}.collection-seo-links{grid-template-columns:1fr}.collection-seo-link{min-height:62px}}
