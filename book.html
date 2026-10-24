@@ -5,6 +5,8 @@
 <script>
 (async()=>{
  const id=new URLSearchParams(location.search).get('id');
+ const companionPages=Object.freeze({'cute-animals-bold-easy':'cute-animals-bold-easy','reindeer':'reindeer'});
+ if(Object.prototype.hasOwnProperty.call(companionPages,id)){location.replace('books/'+companionPages[id]+'.html');return;}
  const extraBooks=[
   {id:'our-first-little-market',title:'Our First Little Market',cover:'images/coming-soon/Our_First_Little_Market_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
   {id:'birthday-party-budget',title:'The Birthday Party Budget',cover:'images/coming-soon/The_Birthday_Party_Budget_Front_Cover.jpg',series:'Little Money, Smart Choices',seriesSlug:'little-money-smart-choices',status:'coming_soon'},
