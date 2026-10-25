@@ -95,7 +95,11 @@
     "cover": "images/coming-soon/The_Christmas_Wish_That_Got_Lost_Front_800px.jpg",
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
-    "status": "coming_soon"
+    "status": "published",
+    "format": "Kindle",
+    "amazonUrl": "https://www.amazon.com/dp/B0HP7ZWDR5",
+    "theme": "Christmas wishes, kindness and connection",
+    "description": "A warm holiday story about a lost Christmas wish, the people who help it find its way, and the small acts of kindness that make the season feel magical."
   },
   {
     "id": "gingerbread-house",
@@ -111,7 +115,11 @@
     "cover": "images/coming-soon/The_Reindeer_Who_Couldnt_Fly_Yet_Front_800px.jpg",
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
-    "status": "coming_soon"
+    "status": "published",
+    "format": "Kindle + Paperback",
+    "amazonUrl": "https://www.amazon.com/dp/B0HP7G17YW",
+    "theme": "Belonging, kind words and learning at your own pace",
+    "description": "A gentle Christmas story about Niko, a young reindeer whose careful noticing helps him and Mara find another way together."
   },
   {
     "id": "snowman",
@@ -413,11 +421,15 @@
   },
   {
     "id": "cute-animals-bold-easy",
-    "title": "Cute Animals – Bold & Easy Coloring Book",
+    "title": "Cute Animals: Bold & Easy Coloring Book",
     "cover": "images/coming-soon/cute-animals-bold-easy.jpg",
     "series": "Kawaii Coloring & Activities",
     "seriesSlug": "kawaii-coloring-activities",
-    "status": "coming_soon"
+    "status": "published",
+    "format": "Paperback",
+    "amazonUrl": "https://www.amazon.com/dp/B0HP7MGBHK",
+    "theme": "Easy coloring, animal friends and creative play",
+    "description": "A friendly animal coloring book with bold outlines and approachable pictures for relaxed creative time."
   },
   {
     "id": "easy-animal-mandalas",
