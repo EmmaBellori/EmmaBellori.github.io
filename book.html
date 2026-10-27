@@ -95,6 +95,10 @@
   if(!isPublished&&!isComingSoon)throw Error();
   if(isPublished&&!/^https:\/\/www\.amazon\.[a-z.]+\//.test(b.amazonUrl||''))throw Error();
   if(isPublished){location.replace(detailHref(b));return;}
+  // Each upcoming title has its own preferred URL; discard tracking parameters.
+  const canonical=new URL('book.html',location.href);
+  canonical.searchParams.set('id',b.id);
+  const canonicalLink=document.createElement('link');canonicalLink.rel='canonical';canonicalLink.href=canonical.href;document.head.appendChild(canonicalLink);
   document.body.dataset.bookId=b.id;
   document.body.dataset.seriesSlug=b.seriesSlug||'';
   document.body.dataset.seriesName=b.series||'';
