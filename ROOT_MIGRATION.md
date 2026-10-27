@@ -1,6 +1,6 @@
 # Emma Bellori Books — migration to `emmabellori.github.io`
 
-This branch prepares the current project-site repository to become the account-level GitHub Pages site.
+This repository is now the account-level GitHub Pages site.
 
 ## Target
 
@@ -20,21 +20,24 @@ At build time it:
 5. gives each legacy page an immediate redirect and canonical to the equivalent root URL;
 6. adds a 404 fallback that strips the old `/emma-bellori-books/` prefix for uncatalogued legacy URLs.
 
-## Safe cutover order
+## Cutover status
 
-1. Merge the technical SEO PR first.
-2. Merge this migration PR second.
-3. In GitHub repository **Settings → General**, rename `emma-bellori-books` to `EmmaBellori.github.io`.
-4. In **Settings → Pages**, set **Source** to **GitHub Actions**.
-5. Open **Actions → Deploy root GitHub Pages → Run workflow**.
-6. Verify:
-   - `https://emmabellori.github.io/`
-   - `https://emmabellori.github.io/sitemap.xml`
-   - one book page at the new root path
-   - the old homepage `/emma-bellori-books/`
-   - one old book URL under `/emma-bellori-books/books/...`
-7. In Google Search Console, add/verify the root URL-prefix property if needed, submit `https://emmabellori.github.io/sitemap.xml`, and request indexing for the new homepage and priority pages.
+- Technical SEO PR merged.
+- Root migration PR merged.
+- Repository renamed to `EmmaBellori.github.io`.
+- Post-rename deployment trigger committed on 2026-10-27.
+
+## Post-cutover verification
+
+Verify:
+- `https://emmabellori.github.io/`
+- `https://emmabellori.github.io/sitemap.xml`
+- one book page at the new root path
+- the old homepage `/emma-bellori-books/`
+- one old book URL under `/emma-bellori-books/books/...`
+
+Then in Google Search Console, submit `https://emmabellori.github.io/sitemap.xml` and request indexing for the homepage and priority pages.
 
 ## Rollback
 
-Before the repository is renamed, this workflow is inert because of the repository-name guard. If the cutover needs to be reversed after rename, rename the repository back and restore the previous Pages publishing source.
+If the cutover needs to be reversed, restore the previous repository name and Pages publishing source, then revert the migration deployment configuration.
