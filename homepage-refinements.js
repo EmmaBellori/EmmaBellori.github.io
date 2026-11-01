@@ -1,6 +1,7 @@
 /* Homepage refinements: keep Start Here unique, compact latest releases, sync sticky header/search, and add editorial merchandising. */
 (()=>{
  const START_HERE_IDS=new Set(['mad','mistakes','i-cant-sleep-without-you']);
+ const LATEST_RELEASE_IDS=['little-star-missed-christmas','gingerbread-house','cute-animals-bold-easy'];
  const RELEASE_OVERRIDES={
   'gingerbread-house':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZWR8H1'},
   'little-star-missed-christmas':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZSQMT7'}
@@ -16,12 +17,17 @@
  // Override the homepage latest renderer before the catalog fetch resolves.
  if(typeof renderLatest==='function'){
   renderLatest=function(){
-   const latest=published
-    .filter(book=>!START_HERE_IDS.has(book.id))
-    .slice()
-    .sort((a,b)=>b._catalogIndex-a._catalogIndex)
-    .slice(0,3);
-   latestGrid.innerHTML=latest.map(publishedCard).join('');
+   const eligible=published.filter(book=>!START_HERE_IDS.has(book.id));
+   const byId=new Map(eligible.map(book=>[book.id,book]));
+   const latest=[];
+   for(const id of LATEST_RELEASE_IDS){
+    const book=byId.get(id);
+    if(book){latest.push(book);byId.delete(id);}
+   }
+   if(latest.length<3){
+    latest.push(...Array.from(byId.values()).sort((a,b)=>b._catalogIndex-a._catalogIndex).slice(0,3-latest.length));
+   }
+   latestGrid.innerHTML=latest.slice(0,3).map(publishedCard).join('');
   };
  }
 
@@ -41,11 +47,28 @@
   return true;
  }
 
+ function wrapFeaturedReleaseContent(card){
+  if(!card)return;
+  let content=card.querySelector(':scope > .eb-featured-release-content');
+  if(!content){
+   content=document.createElement('div');
+   content.className='eb-featured-release-content';
+   const cover=card.querySelector(':scope > .home-cover-wrap');
+   if(cover)cover.insertAdjacentElement('afterend',content);else card.prepend(content);
+  }
+  Array.from(card.children).forEach(child=>{
+   if(child===content||child.matches('.home-cover-wrap'))return;
+   content.appendChild(child);
+  });
+ }
+
  function decorateLatest(){
   const cards=Array.from(document.querySelectorAll('#latest-grid .home-book-card'));
   cards.forEach((card,index)=>{
-   card.classList.toggle('is-featured-release',index===0);
+   const featured=index===0;
+   card.classList.toggle('is-featured-release',featured);
    card.classList.toggle('is-secondary-release',index>0);
+   if(featured)wrapFeaturedReleaseContent(card);
   });
  }
 
