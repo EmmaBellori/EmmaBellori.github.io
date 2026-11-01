@@ -53,11 +53,20 @@
   if(!content){
    content=document.createElement('div');
    content.className='eb-featured-release-content';
-   const cover=card.querySelector(':scope > .home-cover-wrap');
-   if(cover)cover.insertAdjacentElement('afterend',content);else card.prepend(content);
+   card.appendChild(content);
   }
+
+  // The preview module wraps .home-cover-wrap inside .eb-cover-carousel after render.
+  // Treat both as the cover host and always keep that host outside the editorial content.
+  let coverHost=card.querySelector(':scope > .eb-cover-carousel, :scope > .home-cover-wrap');
+  if(!coverHost){
+   coverHost=content.querySelector(':scope > .eb-cover-carousel, :scope > .home-cover-wrap');
+   if(coverHost)content.before(coverHost);
+  }
+  if(coverHost && coverHost.nextElementSibling!==content)coverHost.insertAdjacentElement('afterend',content);
+
   Array.from(card.children).forEach(child=>{
-   if(child===content||child.matches('.home-cover-wrap'))return;
+   if(child===content||child===coverHost||child.matches('.home-cover-wrap,.eb-cover-carousel'))return;
    content.appendChild(child);
   });
  }
