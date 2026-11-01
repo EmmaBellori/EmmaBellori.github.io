@@ -1,0 +1,33 @@
+/* Emma Bellori Books — premium catalog card hierarchy and interaction polish. */
+.home-book-card,.collection-book{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;background:#fffdf9}
+.home-book-card:hover,.collection-book:hover{transform:translateY(-3px);border-color:#d8cec3;box-shadow:0 13px 30px rgba(38,61,64,.09)}
+.home-cover-wrap,.collection-cover-wrap{transition:transform .18s ease}
+.home-book-card:hover .home-cover-wrap,.collection-book:hover .collection-cover-wrap{transform:translateY(-2px)}
+.home-cover-wrap img,.collection-cover-wrap img{transition:transform .18s ease,filter .18s ease}
+.home-book-card:hover .home-cover-wrap img,.collection-book:hover .collection-cover-wrap img{transform:scale(1.018);filter:drop-shadow(0 8px 10px rgba(38,61,64,.1))}
+.home-card-meta{align-items:center!important;text-transform:none!important;letter-spacing:0!important;font-size:10px!important;color:#6e7b78!important}
+.home-card-meta>span:first-child,.collection-state{font-size:10px!important;font-weight:750!important;color:#6c7b77!important;text-transform:uppercase;letter-spacing:.065em}
+.home-card-meta>span:last-child,.eb-format-pill{display:inline-flex;align-items:center;justify-content:center;min-height:25px;padding:5px 9px;border-radius:999px;background:#edf3ef;color:#31534e;font-size:10px;font-weight:800;line-height:1.1;text-transform:none;letter-spacing:0;white-space:nowrap}
+.eb-format-row{display:flex;align-items:center;gap:6px;flex-wrap:wrap;margin:5px 0 2px}
+.home-book-card .eb-age-badge,.collection-book .eb-age-badge{background:#f7eadf!important;color:#765344!important}
+.home-book-card h3,.collection-book h2{color:#263f42;letter-spacing:-.012em}
+.home-book-theme,.collection-theme{color:#3d5654!important}
+.home-card-amazon,.collection-buy{box-shadow:0 4px 10px rgba(35,62,67,.1);transition:background .16s ease,transform .16s ease,box-shadow .16s ease}
+.home-card-amazon:hover,.collection-buy:hover{transform:translateY(-1px);box-shadow:0 7px 15px rgba(35,62,67,.16)}
+.home-card-details,.collection-action{color:#426764!important;font-weight:750!important}
+.home-card-details:hover,.collection-action:hover{text-decoration:underline;text-underline-offset:3px}
+.home-book-card .home-cover-wrap{background:#fff8ef!important}
+.collection-cover-wrap{padding:5px;border-radius:13px;background:#fff8ef}
+.collection-book-info{gap:2px}
+.collection-book h2{font-size:1.08rem!important;line-height:1.32!important}
+@media(min-width:900px){
+ .home-book-card{padding:12px!important;border-radius:16px!important}
+ .home-cover-wrap{height:232px!important}
+ .collection-book{padding:13px!important;border-radius:16px!important}
+ .collection-cover-wrap{max-width:190px!important}
+}
+@media(max-width:650px){
+ .home-book-card:hover,.collection-book:hover{transform:none}
+ .home-card-meta>span:last-child,.eb-format-pill{font-size:9px;padding:5px 8px}
+}
+@media(prefers-reduced-motion:reduce){.home-book-card,.collection-book,.home-cover-wrap,.collection-cover-wrap,.home-cover-wrap img,.collection-cover-wrap img,.home-card-amazon,.collection-buy{transition:none}.home-book-card:hover,.collection-book:hover,.home-book-card:hover .home-cover-wrap,.collection-book:hover .collection-cover-wrap,.home-card-amazon:hover,.collection-buy:hover{transform:none}}
