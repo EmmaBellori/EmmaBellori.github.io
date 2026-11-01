@@ -3,15 +3,15 @@
 .home-v12 #latest>.home-section-heading,.home-v12 #latest>#latest-grid{max-width:1036px;margin-left:auto;margin-right:auto}
 .home-v12 #latest .home-section-heading{margin-bottom:14px!important}
 .home-v12 #latest .home-book-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:14px!important}
-.home-v12 #latest .home-book-card.is-featured-release{grid-column:1/-1;display:grid;grid-template-columns:minmax(205px,285px) minmax(0,1fr);grid-template-rows:auto auto auto auto auto auto;column-gap:22px;row-gap:5px;align-items:center;padding:14px!important;background:#fffdf9;min-height:0!important}
-.home-v12 #latest .is-featured-release .home-cover-wrap{grid-column:1;grid-row:1/7;height:285px!important;align-self:center;margin:0!important}
+.home-v12 #latest .home-book-card.is-featured-release{grid-column:1/-1;display:grid;grid-template-columns:minmax(205px,285px) minmax(0,1fr);grid-template-rows:max-content max-content max-content max-content max-content max-content 1fr;column-gap:22px;row-gap:5px;align-items:start;align-content:start;padding:14px!important;background:#fffdf9;min-height:0!important}
+.home-v12 #latest .is-featured-release .home-cover-wrap{grid-column:1;grid-row:1/8;height:285px!important;align-self:start;margin:0!important}
 .home-v12 #latest .is-featured-release .home-card-meta,.home-v12 #latest .is-featured-release h3,.home-v12 #latest .is-featured-release .home-book-theme,.home-v12 #latest .is-featured-release .home-card-actions,.home-v12 #latest .is-featured-release .eb-age-badge{grid-column:2}
-.home-v12 #latest .is-featured-release h3{font-size:clamp(25px,2.5vw,34px);margin:3px 0!important;line-height:1.08}
-.home-v12 #latest .is-featured-release .home-book-theme{font-size:13px!important;max-width:58ch;margin:0 0 4px!important}
-.home-v12 #latest .is-featured-release .home-card-meta{margin:0!important}
-.home-v12 #latest .is-featured-release .eb-age-badge{margin:0!important;width:max-content}
-.home-v12 #latest .is-featured-release .home-card-actions{align-self:start;max-width:470px;margin-top:4px!important}
-.home-v12 #latest .is-featured-release::before{content:"NEW RELEASE";grid-column:2;display:inline-flex;width:max-content;margin:0 0 2px;padding:5px 9px;border-radius:999px;background:#f4dfd6;color:#8e5548;font-size:9px;font-weight:850;letter-spacing:.12em;align-self:end}
+.home-v12 #latest .is-featured-release .home-card-meta{grid-row:2;margin:0!important}
+.home-v12 #latest .is-featured-release .eb-age-badge{grid-row:3;margin:0!important;width:max-content}
+.home-v12 #latest .is-featured-release h3{grid-row:4;font-size:clamp(25px,2.5vw,34px);margin:3px 0!important;line-height:1.08}
+.home-v12 #latest .is-featured-release .home-book-theme{grid-row:5;font-size:13px!important;max-width:58ch;margin:0 0 4px!important}
+.home-v12 #latest .is-featured-release .home-card-actions{grid-row:6;align-self:start;max-width:470px;margin-top:4px!important}
+.home-v12 #latest .is-featured-release::before{content:"NEW RELEASE";grid-column:2;grid-row:1;display:inline-flex;width:max-content;margin:0 0 2px;padding:5px 9px;border-radius:999px;background:#f4dfd6;color:#8e5548;font-size:9px;font-weight:850;letter-spacing:.12em;align-self:start}
 .home-v12 #latest .is-secondary-release::before{content:"NEW";position:absolute;top:12px;left:12px;z-index:4;padding:5px 8px;border-radius:999px;background:#fff;color:#9a5c4c;font-size:9px;font-weight:850;letter-spacing:.1em;box-shadow:0 3px 10px rgba(35,62,67,.09)}
 .home-v12 #latest .is-secondary-release{position:relative}
 .home-series-heading{grid-template-columns:132px minmax(0,1fr) auto!important;align-items:center!important}
