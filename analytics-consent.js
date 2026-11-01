@@ -34,6 +34,7 @@
     const style=document.createElement('style');
     style.id='eb-shared-ui-styles';
     style.textContent=`
+      .site-header{position:sticky!important;top:0!important;z-index:9999!important;width:100%!important;max-width:none!important;margin:0!important;padding:12px max(20px,calc((100vw - 1180px)/2 + 28px))!important;background:rgba(255,250,243,.98)!important;border-bottom:1px solid #e5ddd3!important;box-shadow:0 4px 15px rgba(38,61,64,.045)!important;backdrop-filter:blur(12px);-webkit-backdrop-filter:blur(12px)}
       .eb-back-to-top{position:fixed;right:max(16px,env(safe-area-inset-right));bottom:18px;z-index:9997;display:inline-flex;align-items:center;justify-content:center;gap:7px;min-height:44px;padding:10px 15px;border:1px solid rgba(38,61,64,.22);border-radius:999px;background:#263d40;color:#fff;box-shadow:0 8px 24px rgba(38,61,64,.2);font:700 12px/1 system-ui,-apple-system,Segoe UI,sans-serif;cursor:pointer;transition:transform .18s ease,box-shadow .18s ease,bottom .2s ease}
       .eb-back-to-top:hover{transform:translateY(-2px);box-shadow:0 11px 28px rgba(38,61,64,.25)}
       .eb-back-to-top:focus-visible{outline:3px solid #d59b75;outline-offset:3px}
@@ -43,6 +44,7 @@
       .collection-book-info .eb-age-badge{margin-top:5px}
       .eb-age-detail{margin-top:8px!important}
       .eb-related-age{display:block;margin-top:4px;color:#48615c;font-size:11px;font-weight:700}
+      @media(max-width:750px){.site-header{padding:12px 20px!important}}
       @media(max-width:600px){.eb-back-to-top{right:max(12px,env(safe-area-inset-right));padding:10px 13px;font-size:11px}.eb-age-badge{font-size:10px;padding:4px 8px}}
       @media(prefers-reduced-motion:reduce){.eb-back-to-top{transition:none}.eb-back-to-top:hover{transform:none}}
     `;
