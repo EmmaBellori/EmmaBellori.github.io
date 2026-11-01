@@ -5,6 +5,10 @@
  position:sticky;
  top:0;
  z-index:9999;
+ width:100%;
+ max-width:none;
+ margin:0;
+ padding:13px max(22px,calc((100vw - 1120px)/2 + 22px));
  background:rgba(255,250,243,.98);
  border-bottom:1px solid #e5ddd3;
  box-shadow:0 4px 15px rgba(38,61,64,.045);
@@ -154,6 +158,7 @@
 }
 
 @media(max-width:650px){
+ .home-v12 .site-header{padding:12px 15px}
  .home-v12 #start-here>.home-section-heading,
  .home-v12 #latest>.home-section-heading{
   width:calc(100% + 30px);
