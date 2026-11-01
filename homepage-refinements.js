@@ -1,6 +1,11 @@
 /* Homepage refinements: keep Start Here unique, compact latest releases, sync sticky header/search, and add editorial merchandising. */
 (()=>{
  const START_HERE_IDS=new Set(['mad','mistakes','i-cant-sleep-without-you']);
+ const RELEASE_OVERRIDES={
+  'gingerbread-house':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZWR8H1'},
+  'little-star-missed-christmas':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZSQMT7'}
+ };
+ let releaseOverridesApplied=false;
 
  // Load the homepage-only editorial layer.
  if(!document.querySelector('#eb-homepage-merchandising-css')){
@@ -18,6 +23,22 @@
     .slice(0,3);
    latestGrid.innerHTML=latest.map(publishedCard).join('');
   };
+ }
+
+ function applyReleaseOverrides(){
+  if(releaseOverridesApplied||!Array.isArray(books)||!books.length)return false;
+  let changed=false;
+  books.forEach(book=>{
+   const override=RELEASE_OVERRIDES[book.id];
+   if(!override)return;
+   Object.assign(book,override);
+   changed=true;
+  });
+  if(!changed)return false;
+  published=books.filter(book=>book.status==='published');
+  upcoming=books.filter(book=>book.status==='coming_soon');
+  releaseOverridesApplied=true;
+  return true;
  }
 
  function decorateLatest(){
@@ -40,7 +61,14 @@
   });
  }
 
- function decorateHomepage(){decorateLatest();decorateSeries();}
+ function decorateHomepage(){
+  if(applyReleaseOverrides()){
+   if(typeof renderLatest==='function')renderLatest();
+   if(typeof renderCollections==='function')renderCollections();
+   return;
+  }
+  decorateLatest();decorateSeries();
+ }
  decorateHomepage();
  const homeObserver=new MutationObserver(decorateHomepage);
  if(latestGrid)homeObserver.observe(latestGrid,{childList:true,subtree:true});
