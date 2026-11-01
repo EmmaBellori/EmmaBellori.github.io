@@ -45,6 +45,11 @@
     document.head.appendChild(style);
   }
 
+  function loadStylesheet(href,id){
+    if(document.getElementById(id))return;
+    const link=document.createElement('link');link.id=id;link.rel='stylesheet';link.href=href;document.head.appendChild(link);
+  }
+
   function activeKey(){
     const p=location.pathname;
     if(/\/guides\//.test(p))return 'guides';
@@ -63,38 +68,47 @@
     if(brand){
       brand.href='/';
       const logo=brand.querySelector('.brand-logo');if(logo)logo.alt='Emma Bellori Books';
-      const label=brand.querySelector('.brand-label');
-      if(label)label.innerHTML='Emma Bellori Books<span>BOOKS FOR CURIOUS MINDS</span>';
+      const label=brand.querySelector('.brand-label');if(label)label.innerHTML='Emma Bellori Books<span>BOOKS FOR CURIOUS MINDS</span>';
     }
-    let nav=header.querySelector('nav');
-    if(!nav){nav=document.createElement('nav');header.appendChild(nav);}
+    let nav=header.querySelector('nav');if(!nav){nav=document.createElement('nav');header.appendChild(nav);}
     nav.id='eb-site-nav';nav.setAttribute('aria-label','Main navigation');
     nav.innerHTML='<a data-nav="start" href="/#start-here">Start here</a><a data-nav="latest" href="/#latest">Latest releases</a><a data-nav="collections" href="/#books">Collections</a><a data-nav="guides" href="/#parenting-guides">Free guides</a><a data-nav="about" href="/#about">About</a>';
     const key=activeKey();nav.querySelector('[data-nav="'+key+'"]').setAttribute('aria-current','page');
-
     let toggle=header.querySelector('.eb-menu-toggle');
-    if(!toggle){
-      toggle=document.createElement('button');toggle.type='button';toggle.className='eb-menu-toggle';toggle.setAttribute('aria-controls','eb-site-nav');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open site menu');toggle.innerHTML='<span class="eb-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span><span>Menu</span>';
-      header.insertBefore(toggle,nav);
-    }
+    if(!toggle){toggle=document.createElement('button');toggle.type='button';toggle.className='eb-menu-toggle';toggle.setAttribute('aria-controls','eb-site-nav');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open site menu');toggle.innerHTML='<span class="eb-menu-icon" aria-hidden="true"><span></span><span></span><span></span></span><span>Menu</span>';header.insertBefore(toggle,nav);}
     const close=()=>{nav.classList.remove('is-open');toggle.setAttribute('aria-expanded','false');toggle.setAttribute('aria-label','Open site menu');};
     toggle.addEventListener('click',()=>{const open=!nav.classList.contains('is-open');nav.classList.toggle('is-open',open);toggle.setAttribute('aria-expanded',String(open));toggle.setAttribute('aria-label',open?'Close site menu':'Open site menu');});
-    nav.addEventListener('click',close);
-    document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});
-    window.addEventListener('resize',()=>{if(innerWidth>760)close();},{passive:true});
+    nav.addEventListener('click',close);document.addEventListener('keydown',e=>{if(e.key==='Escape')close();});window.addEventListener('resize',()=>{if(innerWidth>760)close();},{passive:true});
+    const syncCompact=()=>header.classList.toggle('is-compact',window.scrollY>70);syncCompact();window.addEventListener('scroll',syncCompact,{passive:true});
+  }
 
-    const syncCompact=()=>header.classList.toggle('is-compact',window.scrollY>70);
-    syncCompact();window.addEventListener('scroll',syncCompact,{passive:true});
+  function formatPills(value){
+    const s=String(value||'');const labels=[];if(/paperback/i.test(s))labels.push('Paperback');if(/kindle/i.test(s))labels.push('Kindle');if(!labels.length&&s.trim())labels.push(s.replace(/edition/ig,'').trim());
+    return labels.map(label=>'<span class="eb-format-pill">'+label+'</span>').join('');
+  }
+  function decorateCatalogCards(entries){
+    const byId=new Map((Array.isArray(entries)?entries:[]).map(item=>[item.id,item]));
+    document.querySelectorAll('.home-card-meta').forEach(meta=>{const spans=meta.querySelectorAll(':scope>span');if(spans[0])spans[0].classList.add('eb-card-state');if(spans[1])spans[1].classList.add('eb-format-pill');});
+    document.querySelectorAll('.collection-book.is-published').forEach(card=>{
+      if(card.querySelector('.eb-format-row'))return;
+      const id=card.querySelector('[data-book-id]')?.dataset.bookId||'';const book=byId.get(id);if(!book||!book.format)return;
+      const row=document.createElement('div');row.className='eb-format-row';row.innerHTML=formatPills(book.format);
+      const state=card.querySelector('.collection-state');if(state)state.insertAdjacentElement('afterend',row);else card.querySelector('.collection-book-info')?.prepend(row);
+    });
+  }
+  function initCatalogPolish(){
+    loadStylesheet('/catalog-polish.css','eb-catalog-polish-css');
+    let entries=[];const apply=()=>decorateCatalogCards(entries);
+    fetch('/catalog.json',{cache:'no-store'}).then(r=>r.ok?r.json():[]).then(data=>{entries=Array.isArray(data)?data:[];apply();new MutationObserver(apply).observe(document.body,{childList:true,subtree:true});}).catch(apply);
   }
 
   function decorateFooter(){
     const footer=document.querySelector('footer');if(!footer)return;
-    const privacyButton=footer.querySelector('.eb-privacy-button');
-    footer.classList.add('eb-site-footer');
+    const privacyButton=footer.querySelector('.eb-privacy-button');footer.classList.add('eb-site-footer');
     footer.innerHTML='<div class="eb-footer-inner"><div class="eb-footer-intro"><a class="eb-footer-brand" href="/"><img src="/images/emma-bellori-logo.webp" alt="Emma Bellori Books"><span><strong>Emma Bellori Books</strong><span>BOOKS FOR CURIOUS MINDS</span></span></a><p class="eb-footer-about">Illustrated children\'s stories, learning adventures and creative books designed to spark curiosity, confidence and imagination.</p></div><div class="eb-footer-column"><h2>Explore</h2><a href="/#start-here">Start here</a><a href="/#latest">Latest releases</a><a href="/#books">Collections</a><a href="/#parenting-guides">Free guides</a></div><div class="eb-footer-column"><h2>Emma Bellori</h2><a href="/#about">About</a><a href="https://www.amazon.com/author/emmabellori" target="_blank" rel="noopener noreferrer">Amazon Author Page ↗</a><a href="https://emma-bellori.author-pages.com/" target="_blank" rel="noopener noreferrer">BookBub ↗</a></div><div class="eb-footer-column eb-footer-info"><h2>Info</h2><a href="/privacy.html">Privacy & analytics</a><a href="mailto:emmabelloribooks@outlook.com">Contact</a></div></div><div class="eb-footer-bottom"><span>© '+new Date().getFullYear()+' Emma Bellori Books</span><span>Independent author website · Purchases completed on Amazon</span></div>';
     if(privacyButton){const host=footer.querySelector('.eb-footer-info');if(host)host.appendChild(privacyButton);}
   }
 
-  function init(){injectStyles();decorateHeader();decorateFooter();}
+  function init(){injectStyles();decorateHeader();decorateFooter();initCatalogPolish();}
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',init,{once:true});else init();
 })();
