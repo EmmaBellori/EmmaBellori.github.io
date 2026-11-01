@@ -1,19 +1,22 @@
 /* Emma Bellori Books — editorial merchandising for Latest releases and collections. */
-.home-v12 #latest{max-width:none!important;background:#fbf4ee}
+.home-v12 #latest{max-width:none!important;background:#fbf4ee;padding-top:20px!important;padding-bottom:26px!important}
 .home-v12 #latest>.home-section-heading,.home-v12 #latest>#latest-grid{max-width:1036px;margin-left:auto;margin-right:auto}
-.home-v12 #latest .home-book-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch}
-.home-v12 #latest .home-book-card.is-featured-release{grid-column:1/-1;display:grid;grid-template-columns:minmax(220px,330px) minmax(0,1fr);grid-template-rows:auto auto auto 1fr auto;column-gap:24px;align-items:start;padding:16px!important;background:#fffdf9}
-.home-v12 #latest .is-featured-release .home-cover-wrap{grid-column:1;grid-row:1/6;height:330px!important;align-self:stretch}
+.home-v12 #latest .home-section-heading{margin-bottom:14px!important}
+.home-v12 #latest .home-book-grid{grid-template-columns:repeat(2,minmax(0,1fr));align-items:stretch;gap:14px!important}
+.home-v12 #latest .home-book-card.is-featured-release{grid-column:1/-1;display:grid;grid-template-columns:minmax(205px,285px) minmax(0,1fr);grid-template-rows:auto auto auto auto auto auto;column-gap:22px;row-gap:5px;align-items:center;padding:14px!important;background:#fffdf9;min-height:0!important}
+.home-v12 #latest .is-featured-release .home-cover-wrap{grid-column:1;grid-row:1/7;height:285px!important;align-self:center;margin:0!important}
 .home-v12 #latest .is-featured-release .home-card-meta,.home-v12 #latest .is-featured-release h3,.home-v12 #latest .is-featured-release .home-book-theme,.home-v12 #latest .is-featured-release .home-card-actions,.home-v12 #latest .is-featured-release .eb-age-badge{grid-column:2}
-.home-v12 #latest .is-featured-release h3{font-size:clamp(27px,3vw,36px);margin-top:8px}
-.home-v12 #latest .is-featured-release .home-book-theme{font-size:14px!important;max-width:58ch}
-.home-v12 #latest .is-featured-release .home-card-actions{align-self:end;max-width:470px}
-.home-v12 #latest .is-featured-release::before{content:"NEW RELEASE";grid-column:2;display:inline-flex;width:max-content;margin:0 0 5px;padding:5px 9px;border-radius:999px;background:#f4dfd6;color:#8e5548;font-size:9px;font-weight:850;letter-spacing:.12em}
+.home-v12 #latest .is-featured-release h3{font-size:clamp(25px,2.5vw,34px);margin:3px 0!important;line-height:1.08}
+.home-v12 #latest .is-featured-release .home-book-theme{font-size:13px!important;max-width:58ch;margin:0 0 4px!important}
+.home-v12 #latest .is-featured-release .home-card-meta{margin:0!important}
+.home-v12 #latest .is-featured-release .eb-age-badge{margin:0!important;width:max-content}
+.home-v12 #latest .is-featured-release .home-card-actions{align-self:start;max-width:470px;margin-top:4px!important}
+.home-v12 #latest .is-featured-release::before{content:"NEW RELEASE";grid-column:2;display:inline-flex;width:max-content;margin:0 0 2px;padding:5px 9px;border-radius:999px;background:#f4dfd6;color:#8e5548;font-size:9px;font-weight:850;letter-spacing:.12em;align-self:end}
 .home-v12 #latest .is-secondary-release::before{content:"NEW";position:absolute;top:12px;left:12px;z-index:4;padding:5px 8px;border-radius:999px;background:#fff;color:#9a5c4c;font-size:9px;font-weight:850;letter-spacing:.1em;box-shadow:0 3px 10px rgba(35,62,67,.09)}
 .home-v12 #latest .is-secondary-release{position:relative}
 .home-series-heading{grid-template-columns:132px minmax(0,1fr) auto!important;align-items:center!important}
-.eb-series-cover-stack{position:relative;width:120px;height:88px;flex:0 0 auto}
-.eb-series-cover-stack img{position:absolute;top:2px;width:54px;height:78px;object-fit:contain;border-radius:4px;background:#fff;box-shadow:0 7px 15px rgba(38,61,64,.16);transform-origin:bottom center}
+.eb-series-cover-stack{position:relative;width:120px;height:88px;flex:0 0 auto;overflow:visible}
+.eb-series-cover-stack img{position:absolute;top:2px;width:54px;height:78px;object-fit:cover;object-position:center;border-radius:4px;background:transparent;box-shadow:0 7px 15px rgba(38,61,64,.16);transform-origin:bottom center}
 .eb-series-cover-stack img:nth-child(1){left:2px;transform:rotate(-7deg)}
 .eb-series-cover-stack img:nth-child(2){left:33px;z-index:2;transform:translateY(-3px)}
 .eb-series-cover-stack img:nth-child(3){left:65px;transform:rotate(7deg)}
@@ -26,16 +29,17 @@
 .home-v12 .eyebrow{letter-spacing:.16em}
 .home-guides-section{background:#fffdf9}
 @media(max-width:800px){
- .home-v12 #latest .home-book-card.is-featured-release{grid-template-columns:190px minmax(0,1fr);column-gap:16px}
- .home-v12 #latest .is-featured-release .home-cover-wrap{height:265px!important}
+ .home-v12 #latest .home-book-card.is-featured-release{grid-template-columns:180px minmax(0,1fr);column-gap:16px}
+ .home-v12 #latest .is-featured-release .home-cover-wrap{height:245px!important}
  .home-series-heading{grid-template-columns:110px minmax(0,1fr)!important}
  .home-series-actions{grid-column:2}
  .eb-series-cover-stack{width:100px;height:76px}.eb-series-cover-stack img{width:47px;height:68px}.eb-series-cover-stack img:nth-child(2){left:27px}.eb-series-cover-stack img:nth-child(3){left:53px}
 }
 @media(max-width:650px){
+ .home-v12 #latest{padding-top:14px!important;padding-bottom:20px!important}
  .home-v12 #latest .home-book-grid{grid-template-columns:1fr}
  .home-v12 #latest .home-book-card.is-featured-release{grid-column:auto;display:flex;flex-direction:column;padding:11px!important}
- .home-v12 #latest .is-featured-release .home-cover-wrap{width:100%;height:300px!important}
+ .home-v12 #latest .is-featured-release .home-cover-wrap{width:100%;height:270px!important}
  .home-v12 #latest .is-featured-release::before{order:-1;margin:0 0 7px}
  .home-v12 #latest .is-featured-release .home-card-actions{max-width:none;width:100%}
  .home-series-heading{grid-template-columns:1fr!important;align-items:start!important}
