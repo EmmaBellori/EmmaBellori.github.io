@@ -3,8 +3,8 @@
  const START_HERE_IDS=new Set(['mad','mistakes','i-cant-sleep-without-you']);
  const LATEST_RELEASE_IDS=['little-star-missed-christmas','gingerbread-house','cute-animals-bold-easy'];
  const RELEASE_OVERRIDES={
-  'gingerbread-house':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZWR8H1'},
-  'little-star-missed-christmas':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZSQMT7'}
+  'gingerbread-house':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZWR8H1',theme:'A Christmas story from the Little Christmas Wonders collection'},
+  'little-star-missed-christmas':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZSQMT7',theme:'A Christmas story from the Little Christmas Wonders collection'}
  };
  let releaseOverridesApplied=false;
 
