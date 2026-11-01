@@ -1,3 +1,5 @@
+@import url('book-detail-polish.css');
+
 /* Emma Bellori Books — premium catalog card hierarchy and interaction polish. */
 .home-book-card,.collection-book{transition:transform .18s ease,box-shadow .18s ease,border-color .18s ease;background:#fffdf9}
 .home-book-card:hover,.collection-book:hover{transform:translateY(-3px);border-color:#d8cec3;box-shadow:0 13px 30px rgba(38,61,64,.09)}

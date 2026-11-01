@@ -1,0 +1,30 @@
+/* Emma Bellori Books — premium book detail hierarchy, breadcrumb and conversion polish. */
+.detail-main{max-width:1160px!important}
+.book-breadcrumb{margin:0 0 22px!important;padding:6px 0!important;color:#637370!important;font-size:.82rem!important;gap:7px!important}
+.book-breadcrumb a{min-height:auto!important;padding:3px 0!important;color:#456361!important;font-weight:700!important;text-decoration:none!important}
+.book-breadcrumb a:hover{text-decoration:underline!important;text-underline-offset:3px}
+.book-breadcrumb span[aria-hidden="true"]{font-size:0}
+.book-breadcrumb span[aria-hidden="true"]::after{content:"›";font-size:.9rem;color:#9baaa6}
+.detail-hero{align-items:center!important;border:1px solid #e5ddd3;border-radius:24px;background:#fffdf9;padding:clamp(20px,3vw,34px);box-shadow:0 8px 24px rgba(38,61,64,.045)}
+.detail-cover-art{background:#fff7ec!important;border-radius:18px!important;box-shadow:none!important;padding:12px!important}
+.detail-cover-art img{border-radius:7px!important;box-shadow:0 10px 24px rgba(38,45,43,.15)!important}
+.detail-copy>.eyebrow{margin:0 0 7px!important;color:#9b6758!important;font-size:10px!important;font-weight:850!important;letter-spacing:.16em!important}
+.detail-copy h1{margin:0 0 10px!important;color:#263f42!important;font-size:clamp(2.25rem,4.2vw,3.75rem)!important;line-height:1.03!important;letter-spacing:-.035em!important}
+.detail-subtitle{margin:0 0 13px!important;color:#486460!important;font-size:1.02rem!important;font-weight:800!important}
+.detail-copy .lead{max-width:62ch;margin:0 0 12px!important;color:#4e605d;font-size:1.04rem!important;line-height:1.62!important}
+.eb-detail-badges{margin:14px 0 9px!important;gap:7px!important}
+.eb-detail-badges .eb-age-badge,.eb-detail-badges .coming-soon-pill{min-height:29px!important;padding:6px 11px!important;background:#f7eadf!important;color:#755143!important;font-size:10px!important;font-weight:850!important}
+.detail-copy .detail-fact{display:inline-flex;align-items:center;width:max-content;max-width:100%;min-height:29px;margin:0 0 12px!important;padding:6px 11px;border-radius:999px;background:#edf3ef;color:#31534e;font-size:10px!important;line-height:1.25!important;font-weight:700}
+.detail-copy .detail-fact strong{margin-right:4px;font-weight:850}
+.detail-copy .primary-book-cta{display:inline-flex!important;align-items:center!important;justify-content:center!important;min-height:52px!important;margin:5px 0 8px!important;padding:14px 24px!important;border-radius:999px!important;box-shadow:0 7px 17px rgba(35,62,67,.16);font-size:13px!important;font-weight:850!important;transition:transform .16s ease,box-shadow .16s ease,background .16s ease}
+.detail-copy .primary-book-cta:hover{transform:translateY(-1px);box-shadow:0 10px 21px rgba(35,62,67,.2)}
+.detail-copy .fineprint{max-width:58ch;margin:2px 0 0!important;color:#657571!important;font-size:.74rem!important;line-height:1.5!important}
+.related-section h2,.v4-info h2,.v4-faq h2,.detail-note h2{color:#29474a;letter-spacing:-.02em}
+.related-card{transition:transform .17s ease}
+.related-card:hover{transform:translateY(-2px)}
+.related-card img{transition:box-shadow .17s ease;box-shadow:0 7px 18px rgba(38,61,64,.12)!important}
+.related-card:hover img{box-shadow:0 11px 24px rgba(38,61,64,.18)!important}
+.eb-conversion-mid{border-color:#d8e2dc!important;background:#f1f6f2!important;box-shadow:0 5px 18px rgba(38,61,64,.04)}
+@media(min-width:900px){.detail-hero{grid-template-columns:minmax(250px,345px) minmax(0,1fr)!important;gap:clamp(34px,5vw,68px)!important}.detail-cover-art{max-width:345px!important}.detail-main{padding-top:24px!important}}
+@media(max-width:700px){.detail-hero{padding:17px!important;border-radius:18px}.detail-copy h1{font-size:clamp(2rem,9vw,2.8rem)!important}.detail-copy .primary-book-cta{width:100%!important}.detail-copy .detail-fact{width:auto}.related-card:hover{transform:none}}
+@media(prefers-reduced-motion:reduce){.detail-copy .primary-book-cta,.related-card,.related-card img{transition:none}.detail-copy .primary-book-cta:hover,.related-card:hover{transform:none}}
