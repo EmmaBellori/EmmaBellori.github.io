@@ -5,6 +5,9 @@
   const ENDPOINT='https://hsrmqwneuadoomqakzfs.supabase.co/functions/v1/join-activity-club';
   const SITE_KEY='0x4AAAAAAFYRKxv3YSSQ6sQI';
   const ATTRIBUTION_KEY='eb-attribution-v1';
+  const KLAVIYO_PUBLIC_KEY='YdseTx';
+  const KLAVIYO_LIST_ID='Rv2JJy';
+  const KLAVIYO_ENDPOINT=`https://a.klaviyo.com/client/subscriptions/?company_id=${encodeURIComponent(KLAVIYO_PUBLIC_KEY)}`;
   let widgetId=null,token='',loadingTurnstile=false;
 
   function pageType(){
@@ -20,6 +23,26 @@
   }
   function attribution(){
     try{return JSON.parse(sessionStorage.getItem(ATTRIBUTION_KEY)||'{}')||{};}catch{return {};}
+  }
+  async function requestKlaviyoDoubleOptIn(email){
+    const response=await fetch(KLAVIYO_ENDPOINT,{
+      method:'POST',
+      headers:{'Content-Type':'application/json','revision':'2025-01-15'},
+      body:JSON.stringify({
+        data:{
+          type:'subscription',
+          attributes:{
+            custom_source:'Emma Bellori Free Activity Club',
+            profile:{data:{type:'profile',attributes:{
+              email,
+              subscriptions:{email:{marketing:{consent:'SUBSCRIBED'}}}
+            }}}
+          },
+          relationships:{list:{data:{type:'list',id:KLAVIYO_LIST_ID}}}
+        }
+      })
+    });
+    if(!response.ok)throw Error('Your request was saved, but we could not send the confirmation email. Please try again.');
   }
   function injectStyles(){
     if(document.getElementById('eb-activity-club-styles'))return;
@@ -69,7 +92,7 @@
   }
   function markup(){
     const privacy=/\/guides\//.test(location.pathname)?'../privacy.html':'privacy.html';
-    return `<section class="eb-club" aria-labelledby="eb-club-title"><div class="eb-club-inner"><div><p class="eyebrow">FREE ACTIVITY CLUB</p><h2 id="eb-club-title">One useful idea for families, delivered simply.</h2><p>Join the Emma Bellori Free Activity Club for occasional printable activities, practical family ideas and new free guides connected to the themes in the books.</p><ul class="eb-club-benefits"><li>Free family activities and printable ideas</li><li>New guides about feelings, friendship, learning and bedtime</li><li>Occasional new-book updates — no daily emails</li></ul></div><form class="eb-club-form" novalidate><label for="eb-club-email">Email address</label><input id="eb-club-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required><label class="eb-club-consent"><input name="consent" type="checkbox" required><span>I agree to receive Emma Bellori Books emails and understand I can unsubscribe at any time. See the <a href="${privacy}">privacy information</a>.</span></label><div class="eb-club-turnstile"></div><button class="eb-club-submit" type="submit" disabled>Join the Free Activity Club →</button><p class="eb-club-status" role="status" aria-live="polite"></p><p class="eb-club-note">Your email is used only for this mailing list. Purchases remain on Amazon or Payhip.</p></form></div></section>`;
+    return `<section class="eb-club" aria-labelledby="eb-club-title"><div class="eb-club-inner"><div><p class="eyebrow">FREE ACTIVITY CLUB</p><h2 id="eb-club-title">One useful idea for families, delivered simply.</h2><p>Join the Emma Bellori Free Activity Club for occasional printable activities, practical family ideas and new free guides connected to the themes in the books.</p><ul class="eb-club-benefits"><li>Free family activities and printable ideas</li><li>New guides about feelings, friendship, learning and bedtime</li><li>Occasional new-book updates — no daily emails</li></ul></div><form class="eb-club-form" novalidate><label for="eb-club-email">Email address</label><input id="eb-club-email" name="email" type="email" autocomplete="email" maxlength="254" placeholder="you@example.com" required><label class="eb-club-consent"><input name="consent" type="checkbox" required><span>I agree to receive Emma Bellori Books emails and understand I can unsubscribe at any time. See the <a href="${privacy}">privacy information</a>.</span></label><div class="eb-club-turnstile"></div><button class="eb-club-submit" type="submit" disabled>Join the Free Activity Club →</button><p class="eb-club-status" role="status" aria-live="polite"></p><p class="eb-club-note">Double opt-in: after joining, check your inbox and confirm your email. Purchases remain on Amazon or Payhip.</p></form></div></section>`;
   }
   function insert(){
     if(document.querySelector('.eb-club'))return;
@@ -100,8 +123,9 @@
         const response=await fetch(ENDPOINT,{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({email,consent:true,turnstileToken:token,sourcePage:sourcePage(),pageType:pageType(),utmSource:attr.utm_source||'',utmMedium:attr.utm_medium||'',utmCampaign:attr.utm_campaign||''})});
         const data=await response.json().catch(()=>({}));
         if(!response.ok||data.success!==true)throw Error(data.error||'We could not save your signup.');
-        form.email.value='';form.consent.checked=false;status.textContent='Welcome — your signup has been saved.';status.className='eb-club-status is-success';
-        if(typeof window.ebTrack==='function')window.ebTrack('newsletter_signup',{source_page:sourcePage(),page_type:pageType(),utm_source:String(attr.utm_source||'').slice(0,100),utm_campaign:String(attr.utm_campaign||'').slice(0,100)});
+        await requestKlaviyoDoubleOptIn(email);
+        form.email.value='';form.consent.checked=false;status.textContent='Almost there — check your inbox and confirm your Free Activity Club subscription.';status.className='eb-club-status is-success';
+        if(typeof window.ebTrack==='function')window.ebTrack('newsletter_signup',{source_page:sourcePage(),page_type:pageType(),signup_stage:'double_opt_in_requested',utm_source:String(attr.utm_source||'').slice(0,100),utm_campaign:String(attr.utm_campaign||'').slice(0,100)});
       }catch(error){status.textContent=error.message||'We could not save your signup. Please try again.';status.className='eb-club-status is-error';}
       finally{token='';submit.textContent='Join the Free Activity Club →';submit.disabled=true;if(window.turnstile&&widgetId!==null)try{window.turnstile.reset(widgetId);}catch{}}
     });
