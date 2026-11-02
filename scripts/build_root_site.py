@@ -7,8 +7,9 @@ https://emmabellori.github.io/emma-bellori-books/.
 When the repository is renamed to EmmaBellori.github.io, this build:
 1. copies the static site to _site;
 2. rewrites absolute SEO/site URLs to https://emmabellori.github.io/;
-3. generates legacy redirect pages for URLs listed in sitemap.xml;
-4. generates a 404 fallback that redirects old /emma-bellori-books/ paths.
+3. pre-renders the homepage catalog from catalog.json for crawlers and no-JS visitors;
+4. generates legacy redirect pages for URLs listed in sitemap.xml;
+5. generates a 404 fallback that redirects old /emma-bellori-books/ paths.
 """
 
 from __future__ import annotations
@@ -32,6 +33,7 @@ TEXT_EXTENSIONS = {
     ".html", ".htm", ".js", ".json", ".xml", ".txt", ".md", ".css", ".yml", ".yaml"
 }
 EXCLUDED_TOP_LEVEL = {".git", ".github", "_site"}
+PUBLISHED_DETAIL_OVERRIDES = {"door-teapot": "the-door-inside-the-teapot"}
 
 
 def legacy_urls_from_sitemap() -> list[tuple[str, str]]:
@@ -87,6 +89,193 @@ def rewrite_absolute_urls() -> None:
         updated = text.replace(OLD_ROOT, NEW_ROOT).replace(OLD_ROOT_NO_SLASH, NEW_ROOT_NO_SLASH)
         if updated != text:
             path.write_text(updated, encoding="utf-8")
+
+
+def _esc(value: object) -> str:
+    return html.escape(str(value or ""), quote=True)
+
+
+def _book_detail_href(book: dict) -> str:
+    book_id = str(book.get("id") or "").strip()
+    if book.get("status") == "published":
+        slug = PUBLISHED_DETAIL_OVERRIDES.get(book_id, book_id)
+        return f"books/{slug}.html"
+    return f"book.html?id={book_id}"
+
+
+def _format_label(value: object) -> str:
+    label = str(value or "").replace("Edition", "").strip()
+    lower = label.lower()
+    has_kindle = "kindle" in lower
+    has_paperback = "paperback" in lower
+    if has_kindle and has_paperback:
+        return "Kindle + Paperback"
+    if has_kindle:
+        return "Kindle"
+    if has_paperback:
+        return "Paperback"
+    return label or "Book"
+
+
+def _cover_html(book: dict) -> str:
+    title = _esc(book.get("title"))
+    cover = str(book.get("cover") or "").strip()
+    if cover:
+        return (
+            f'<img loading="lazy" decoding="async" src="{_esc(cover)}" '
+            f'alt="Cover of {title}">'
+        )
+    return f'<div class="cover-placeholder"><strong>{title}</strong></div>'
+
+
+def _published_card(book: dict) -> str:
+    detail = _book_detail_href(book)
+    title = _esc(book.get("title"))
+    theme = str(book.get("theme") or "").strip()
+    amazon_url = _esc(book.get("amazonUrl"))
+    book_id = _esc(book.get("id"))
+    theme_html = f'<p class="home-book-theme">{_esc(theme)}</p>' if theme else ""
+    amazon_html = ""
+    if amazon_url:
+        amazon_html = (
+            f'<a class="home-card-amazon" href="{amazon_url}" target="_blank" '
+            f'rel="noopener noreferrer sponsored" data-book-id="{book_id}" '
+            f'aria-label="View {title} on Amazon (opens in new tab)">View on Amazon ↗</a>'
+        )
+
+    return (
+        f'<article class="home-book-card" data-book-id="{book_id}">'
+        f'<a class="home-cover-wrap" href="{_esc(detail)}" aria-label="Discover {title}">'
+        f'{_cover_html(book)}</a>'
+        f'<div class="home-card-meta"><span>Available now</span>'
+        f'<span>{_esc(_format_label(book.get("format")))}</span></div>'
+        f'<h3><a href="{_esc(detail)}">{title}</a></h3>{theme_html}'
+        f'<div class="home-card-actions">{amazon_html}'
+        f'<a class="home-card-details" href="{_esc(detail)}">Book details →</a></div>'
+        f'</article>'
+    )
+
+
+def _upcoming_card(book: dict) -> str:
+    detail = _book_detail_href(book)
+    title = _esc(book.get("title"))
+    book_id = _esc(book.get("id"))
+    return (
+        f'<article class="home-book-card" data-book-id="{book_id}">'
+        f'<a class="home-cover-wrap" href="{_esc(detail)}" aria-label="Discover {title}">'
+        f'{_cover_html(book)}</a>'
+        f'<span class="home-card-status">Coming Soon</span>'
+        f'<h3><a href="{_esc(detail)}">{title}</a></h3>'
+        f'<div class="home-card-actions eb-coming-soon-only">'
+        f'<a class="home-card-details" href="{_esc(detail)}">Book details →</a></div>'
+        f'</article>'
+    )
+
+
+def _home_card(book: dict) -> str:
+    return _published_card(book) if book.get("status") == "published" else _upcoming_card(book)
+
+
+def prerender_homepage_catalog() -> None:
+    """Seed the homepage with real links/content before client-side rendering.
+
+    app.js still replaces these containers after catalog.json loads in the browser.
+    The pre-rendered HTML gives search crawlers and no-JS visitors a useful,
+    crawlable catalog instead of empty containers.
+    """
+    index_path = DEST / "index.html"
+    catalog_path = DEST / "catalog.json"
+    if not index_path.exists() or not catalog_path.exists():
+        print("Homepage pre-render skipped: index.html or catalog.json is missing.")
+        return
+
+    try:
+        books = json.loads(catalog_path.read_text(encoding="utf-8"))
+    except (json.JSONDecodeError, OSError) as exc:
+        print(f"Homepage pre-render skipped: catalog could not be read ({exc}).")
+        return
+    if not isinstance(books, list):
+        print("Homepage pre-render skipped: catalog.json is not a list.")
+        return
+
+    indexed_books: list[dict] = []
+    for index, item in enumerate(books):
+        if isinstance(item, dict) and item.get("id") and item.get("title"):
+            copy = dict(item)
+            copy["_catalogIndex"] = index
+            indexed_books.append(copy)
+
+    published = [book for book in indexed_books if book.get("status") == "published"]
+    start_here = [
+        book for book in published if book.get("series") == "Big Feelings, Real Problems"
+    ][:3]
+    latest = sorted(
+        published, key=lambda book: book.get("_catalogIndex", 0), reverse=True
+    )[:6]
+
+    # Keep first-seen collection order; show published titles first in each preview.
+    groups: dict[str, list[dict]] = {}
+    for book in indexed_books:
+        series = str(book.get("series") or "More Books by Emma Bellori")
+        groups.setdefault(series, []).append(book)
+
+    series_sections: list[str] = []
+    for series, items in groups.items():
+        available = [book for book in items if book.get("status") == "published"]
+        upcoming = [book for book in items if book.get("status") != "published"]
+        preview = (available + upcoming)[:3]
+        if not preview:
+            continue
+        series_slug = str(items[0].get("seriesSlug") or "").strip()
+        collection_link = (
+            f'<a class="home-explore-collection" href="collections/{_esc(series_slug)}.html" '
+            f'aria-label="Explore {_esc(series)} collection">Explore collection →</a>'
+            if series_slug
+            else ""
+        )
+        series_sections.append(
+            f'<section class="home-series-preview" data-series-name="{_esc(series)}">'
+            f'<div class="home-series-heading"><div class="home-series-copy">'
+            f'<p class="eyebrow">EMMA BELLORI COLLECTION</p>'
+            f'<h3>{_esc(series)}</h3>'
+            f'<p>Explore stories and activities in this Emma Bellori collection.</p>'
+            f'</div><div class="home-series-actions">'
+            f'<span class="home-series-count">{len(items)} {"book" if len(items) == 1 else "books"}</span>'
+            f'{collection_link}</div></div>'
+            f'<div class="home-book-grid">{"".join(_home_card(book) for book in preview)}</div>'
+            f'</section>'
+        )
+
+    replacements = {
+        '<div id="start-here-grid" class="home-book-grid" aria-live="polite"></div>':
+            '<div id="start-here-grid" class="home-book-grid" aria-live="polite">'
+            + "".join(_published_card(book) for book in start_here)
+            + "</div>",
+        '<div id="latest-grid" class="home-book-grid" aria-live="polite"></div>':
+            '<div id="latest-grid" class="home-book-grid" aria-live="polite">'
+            + "".join(_published_card(book) for book in latest)
+            + "</div>",
+        '<div id="series-catalog" class="home-series-catalog"></div>':
+            '<div id="series-catalog" class="home-series-catalog">'
+            + "".join(series_sections)
+            + "</div>",
+    }
+
+    text = index_path.read_text(encoding="utf-8")
+    changed = False
+    for needle, replacement in replacements.items():
+        if needle in text:
+            text = text.replace(needle, replacement, 1)
+            changed = True
+        else:
+            print(f"Homepage pre-render warning: expected placeholder not found: {needle[:60]}")
+
+    if changed:
+        index_path.write_text(text, encoding="utf-8")
+        print(
+            f"Pre-rendered homepage with {len(start_here)} start-here books, "
+            f"{len(latest)} latest books and {len(series_sections)} collection previews."
+        )
 
 
 def redirect_document(target: str) -> str:
@@ -166,6 +355,7 @@ def main() -> None:
     redirects = legacy_urls_from_sitemap()
     copy_source()
     rewrite_absolute_urls()
+    prerender_homepage_catalog()
     generate_legacy_redirects(redirects)
     generate_404()
     ensure_root_metadata_files()
