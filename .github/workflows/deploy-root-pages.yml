@@ -31,6 +31,9 @@ jobs:
       - name: Generate growth guide clusters
         run: python3 scripts/generate_growth_guides.py
 
+      - name: Add Free Activity Club privacy information
+        run: python3 scripts/add_activity_club_privacy.py
+
       - name: Inject conversion tracking
         run: python3 scripts/inject_conversion_tracking.py
 
