@@ -112,7 +112,7 @@
       <p class="eyebrow">Almost there</p>
       <h3 id="eb-club-success-heading" tabindex="-1">Check your inbox</h3>
       <p>We sent a confirmation email to <strong class="eb-club-success-email"></strong>.</p>
-      <ol class="eb-club-next-steps"><li>Open the email from Emma Bellori Books.</li><li>Tap <strong>Yes, I want to subscribe</strong>.</li><li>Enjoy the free guides while your welcome email arrives.</li></ol>
+      <ol class="eb-club-next-steps"><li>Open the email from Emma Bellori Books.</li><li>Tap <strong>Confirm my subscription</strong>.</li><li>Enjoy the free guides while your welcome email arrives.</li></ol>
       <p class="eb-club-success-help">No email? Check Spam or Promotions. You are not subscribed until you confirm.</p>
       <div class="eb-club-success-actions"><a class="eb-club-success-link" href="${guides}">Browse free family guides →</a><button class="eb-club-try-again" type="button">Use another email</button></div>
     </section></div></div></section>`;
