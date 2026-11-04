@@ -19,6 +19,11 @@ on:
         description: "Optional: comma-separated published book IDs for a safe preview"
         required: false
         type: string
+  push:
+    branches:
+      - main
+    paths:
+      - ".github/workflows/new-release-email.yml"
   pull_request:
     paths:
       - "scripts/release_email_campaign.py"
@@ -51,6 +56,22 @@ jobs:
           name: example-new-books-email
           path: artifacts/new-release-email/
           retention-days: 14
+
+  connection-test:
+    needs: checks
+    if: github.event_name == 'push'
+    runs-on: ubuntu-latest
+    permissions:
+      contents: read
+    env:
+      KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Validate Klaviyo draft creation without sending
+        run: python scripts/release_email_campaign.py --mode draft --test-draft-ids reindeer,cute-animals-bold-easy
 
   release-email:
     needs: checks
