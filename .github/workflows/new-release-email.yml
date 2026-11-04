@@ -2,7 +2,7 @@ name: New book release emails
 
 on:
   schedule:
-    # Once daily; Sunday releases are normally bundled into the next digest.
+    # Auto-send once daily, grouping same-day releases into one newsletter.
     # GitHub schedules run in UTC. 09:20 UTC is 10:20/11:20 in Rome.
     - cron: "20 9 * * *"
   workflow_dispatch:
@@ -82,8 +82,9 @@ jobs:
     runs-on: ubuntu-latest
     env:
       KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
-      RELEASE_EMAIL_MODE: ${{ vars.RELEASE_EMAIL_MODE || 'draft' }}
-      RELEASE_EMAIL_ALLOW_SEND: ${{ vars.RELEASE_EMAIL_ALLOW_SEND || '' }}
+      # Explicitly approved 2026-11-04: scheduled releases can send autonomously.
+      # A manual dispatch is always preview or draft, never auto-send.
+      RELEASE_EMAIL_ALLOW_SEND: "YES_I_APPROVE"
       PREVIEW_IDS: ${{ inputs.preview_ids || '' }}
       DISPATCH_MODE: ${{ inputs.mode || '' }}
     steps:
@@ -97,7 +98,8 @@ jobs:
         shell: bash
         run: |
           set -euo pipefail
-          MODE="$RELEASE_EMAIL_MODE"
+          MODE=draft
+          if [[ "$GITHUB_EVENT_NAME" == "schedule" ]]; then MODE=send; fi
           if [[ -n "$DISPATCH_MODE" ]]; then MODE="$DISPATCH_MODE"; fi
           if [[ -n "$PREVIEW_IDS" ]]; then MODE=preview; fi
           ARGS=(--mode "$MODE")

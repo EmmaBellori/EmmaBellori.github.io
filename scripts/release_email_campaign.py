@@ -217,7 +217,7 @@ class Klaviyo:
     def __init__(self, key: str):
         self.key = key
 
-    def req(self, method: str, url: str, payload: dict | None = None) -> dict:
+    def req(self, method: str, url: str, payload: dict | None = None, allow_404: bool = False) -> dict | None:
         if not url.startswith(API):
             raise ValueError("Unexpected API host")
         headers = {
@@ -232,6 +232,8 @@ class Klaviyo:
             with urllib.request.urlopen(request, timeout=30) as response:
                 return json.load(response)
         except urllib.error.HTTPError as exc:
+            if allow_404 and exc.code == 404:
+                return None
             detail = exc.read(1200).decode("utf-8", errors="replace")
             raise RuntimeError(f"Klaviyo {method} returned HTTP {exc.code}: {detail}") from exc
 
@@ -289,10 +291,37 @@ class Klaviyo:
             "relationships": {"template": {"data": {"type": "template", "id": template_id}}},
         }})
 
-    def send(self, campaign_id: str) -> None:
-        self.req("POST", API + "campaign-send-jobs/", {
+    def get_send_job(self, campaign_id: str) -> dict | None:
+        """Klaviyo returns 404 when no send job has ever been requested."""
+        return self.req("GET", API + "campaign-send-jobs/" + urllib.parse.quote(campaign_id, safe="") + "/", allow_404=True)
+
+    def send(self, campaign_id: str) -> dict:
+        return self.req("POST", API + "campaign-send-jobs/", {
             "data": {"type": "campaign-send-job", "id": campaign_id}
         })
+
+
+def send_campaign_safely(api: Klaviyo, campaign: dict) -> str:
+    """Send only once, or recognize an existing job after a GitHub retry."""
+    campaign_id = campaign["id"]
+    existing_job = api.get_send_job(campaign_id)
+    if existing_job is not None:
+        status = str(existing_job.get("data", {}).get("attributes", {}).get("status") or "existing")
+        print("Existing Klaviyo send job found; do not request another:", status)
+        return "send_job_" + status
+    status = str(campaign.get("attributes", {}).get("status", "")).lower()
+    if status in ("sent", "sending", "scheduled", "queued", "processing"):
+        print("Campaign is already active/complete; no repeat send:", status)
+        return "campaign_" + status
+    if status != "draft":
+        raise RuntimeError("Refusing send: unexpected campaign status " + repr(status))
+    result = api.send(campaign_id)
+    job = result.get("data", {})
+    if job.get("type") != "campaign-send-job" or job.get("id") != campaign_id:
+        raise RuntimeError("Unexpected Klaviyo send-job response; inspect before retrying")
+    job_status = str(job.get("attributes", {}).get("status") or "accepted")
+    print("Klaviyo accepted campaign send request:", campaign_id, job_status)
+    return "send_job_" + job_status
 
 
 def save_state(path: Path, state: dict) -> None:
@@ -375,12 +404,8 @@ def main() -> int:
         template_id = api.template(name + " | HTML", markup, plain)
         api.assign(message_id, template_id)
         print("Assigned HTML template", template_id)
-    current_status = str(campaign.get("attributes", {}).get("status", "")).lower()
-    if args.mode == "send" and current_status not in ("sent", "sending", "scheduled"):
-        api.send(campaign["id"])
-        current_status = "send_requested"
-    elif args.mode == "send":
-        print("Campaign already sent/processing; no repeat send.")
+    if args.mode == "send":
+        current_status = send_campaign_safely(api, campaign)
     else:
         current_status = "draft"
     if test_draft:

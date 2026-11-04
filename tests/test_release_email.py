@@ -70,6 +70,57 @@ class ReleaseEmailTests(unittest.TestCase):
             release.campaign_key(list(reversed(batch))),
         )
 
+    def test_send_once_from_draft(self):
+        class API:
+            def __init__(self):
+                self.calls = []
+            def get_send_job(self, campaign_id):
+                return None
+            def send(self, campaign_id):
+                self.calls.append(campaign_id)
+                return {"data": {"type": "campaign-send-job", "id": campaign_id,
+                                 "attributes": {"status": "queued"}}}
+        api = API()
+        result = release.send_campaign_safely(
+            api, {"id": "campaign-1", "attributes": {"status": "Draft"}})
+        self.assertEqual(result, "send_job_queued")
+        self.assertEqual(api.calls, ["campaign-1"])
+
+    def test_existing_send_job_is_never_retried(self):
+        class API:
+            def get_send_job(self, campaign_id):
+                return {"data": {"attributes": {"status": "processing"}}}
+            def send(self, campaign_id):
+                raise AssertionError("Never resend existing job")
+        result = release.send_campaign_safely(
+            API(), {"id": "campaign-1", "attributes": {"status": "Draft"}})
+        self.assertEqual(result, "send_job_processing")
+
+    def test_non_draft_or_unknown_campaign_not_sent(self):
+        class API:
+            def get_send_job(self, campaign_id):
+                return None
+            def send(self, campaign_id):
+                raise AssertionError("Unexpected send")
+        with self.assertRaises(RuntimeError):
+            release.send_campaign_safely(
+                API(), {"id": "campaign-1", "attributes": {"status": "Unknown"}})
+        self.assertEqual(
+            release.send_campaign_safely(
+                API(), {"id": "campaign-1", "attributes": {"status": "Sent"}}),
+            "campaign_sent",
+        )
+
+    def test_reject_unexpected_send_response(self):
+        class API:
+            def get_send_job(self, campaign_id):
+                return None
+            def send(self, campaign_id):
+                return {"data": {"id": "other", "type": "campaign-send-job"}}
+        with self.assertRaises(RuntimeError):
+            release.send_campaign_safely(
+                API(), {"id": "campaign-1", "attributes": {"status": "Draft"}})
+
     def test_special_detail_path(self):
         self.assertEqual(release.detail_path({"id": "door-teapot"}),
                          "books/the-door-inside-the-teapot.html")
