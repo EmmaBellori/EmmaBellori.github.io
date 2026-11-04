@@ -43,6 +43,14 @@ jobs:
           python-version: '3.12'
       - name: Run deterministic unit tests
         run: python -m unittest discover -s tests -p 'test_release_email.py' -v
+      - name: Produce a safe two-book layout preview
+        run: python scripts/release_email_campaign.py --mode preview --preview-ids reindeer,cute-animals-bold-easy
+      - name: Upload example newsletter for visual review
+        uses: actions/upload-artifact@v4
+        with:
+          name: example-new-books-email
+          path: artifacts/new-release-email/
+          retention-days: 14
 
   release-email:
     needs: checks
