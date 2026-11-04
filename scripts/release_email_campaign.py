@@ -307,6 +307,7 @@ def main() -> int:
     parser = argparse.ArgumentParser()
     parser.add_argument("--mode", choices=["preview", "draft", "send"], default="preview")
     parser.add_argument("--preview-ids", default="", help="Comma-separated existing IDs for a non-sending visual preview")
+    parser.add_argument("--test-draft-ids", default="", help="Create an unsent TEST draft using existing books; never update ledger")
     parser.add_argument("--skip-live-check", action="store_true")
     parser.add_argument("--output-dir", default="artifacts/new-release-email")
     args = parser.parse_args()
@@ -316,6 +317,17 @@ def main() -> int:
         raise RuntimeError("Invalid catalog or release state")
     books = eligible(catalog, state)
     demo = False
+    test_draft = bool(args.test_draft_ids)
+    if test_draft and args.preview_ids:
+        raise RuntimeError("Choose only one of --test-draft-ids and --preview-ids")
+    if test_draft:
+        if args.mode != "draft":
+            raise RuntimeError("A test draft must use --mode draft; sending is prohibited")
+        ids = {s.strip() for s in args.test_draft_ids.split(",") if s.strip()}
+        books = [b for b in catalog if b.get("id") in ids and b.get("status") == "published"]
+        if not books or len(books) != len(ids):
+            raise RuntimeError("Test IDs must refer to existing published books")
+        demo = True
     if args.preview_ids:
         ids = {s.strip() for s in args.preview_ids.split(",") if s.strip()}
         books = [b for b in catalog if b.get("id") in ids and b.get("status") == "published"]
@@ -345,12 +357,14 @@ def main() -> int:
         raise RuntimeError("Automatic send requires RELEASE_EMAIL_ALLOW_SEND=YES_I_APPROVE")
     key = os.environ.get("KLAVIYO_PRIVATE_API_KEY", "").strip()
     if not key:
+        if test_draft:
+            raise RuntimeError("KLAVIYO_PRIVATE_API_KEY secret missing; test draft cannot be created")
         print("KLAVIYO_PRIVATE_API_KEY missing: generated previews only; no email/draft created.")
         return 0
     if not args.skip_live_check:
         assert_public_pages(books)
     api = Klaviyo(key)
-    name = campaign_name(books)
+    name = ("[TEST - DO NOT SEND] " if test_draft else "") + campaign_name(books)
     campaign = api.find_campaign(name)
     if campaign is None:
         campaign = api.create_campaign(name, subject, preview)
@@ -370,6 +384,9 @@ def main() -> int:
         print("Campaign already sent/processing; no repeat send.")
     else:
         current_status = "draft"
+    if test_draft:
+        print("TEST DRAFT SUCCESS:", campaign["id"], "; ledger unchanged, no send requested.")
+        return 0
     existing_ids = set(state["announced_ids"])
     state["announced_ids"] = sorted(existing_ids | {b["id"] for b in books})
     state.setdefault("campaigns", []).append({
