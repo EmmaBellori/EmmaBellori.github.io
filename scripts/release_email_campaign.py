@@ -254,7 +254,6 @@ class Klaviyo:
             "audiences": {"included": [LIST_ID]},
             "send_strategy": {"method": "immediate"},
             "send_options": {"use_smart_sending": True},
-            "tracking_options": {"is_add_utm": False, "is_tracking_clicks": True, "is_tracking_opens": True},
             "campaign-messages": {"data": [{"type": "campaign-message", "attributes": {"definition": {
                 "channel": "email", "label": subject,
                 "content": {"subject": subject, "preview_text": preview,
