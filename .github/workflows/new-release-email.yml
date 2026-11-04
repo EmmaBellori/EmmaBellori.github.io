@@ -76,7 +76,8 @@ jobs:
 
   release-email:
     needs: checks
-    if: github.event_name != 'pull_request'
+    # Pushes are for isolated integration tests, never for release processing.
+    if: github.event_name == 'schedule' || github.event_name == 'workflow_dispatch'
     permissions:
       contents: write
     runs-on: ubuntu-latest
