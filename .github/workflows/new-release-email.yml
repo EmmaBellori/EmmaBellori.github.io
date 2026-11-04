@@ -27,14 +27,28 @@ on:
       - ".github/workflows/new-release-email.yml"
 
 permissions:
-  contents: write
+  contents: read
 
 concurrency:
   group: new-release-email-${{ github.ref }}
   cancel-in-progress: false
 
 jobs:
+  checks:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run deterministic unit tests
+        run: python -m unittest discover -s tests -p 'test_release_email.py' -v
+
   release-email:
+    needs: checks
+    if: github.event_name != 'pull_request'
+    permissions:
+      contents: write
     runs-on: ubuntu-latest
     env:
       KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
@@ -49,10 +63,7 @@ jobs:
       - uses: actions/setup-python@v5
         with:
           python-version: '3.12'
-      - name: Run deterministic unit tests
-        run: python -m unittest discover -s tests -p 'test_release_email.py' -v
       - name: Build preview or Klaviyo campaign
-        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
@@ -63,7 +74,6 @@ jobs:
           if [[ -n "$PREVIEW_IDS" ]]; then ARGS+=(--preview-ids "$PREVIEW_IDS"); fi
           python scripts/release_email_campaign.py "${ARGS[@]}"
       - name: Upload email preview for review
-        if: github.event_name != 'pull_request'
         uses: actions/upload-artifact@v4
         with:
           name: new-book-release-newsletter
@@ -71,7 +81,6 @@ jobs:
           if-no-files-found: ignore
           retention-days: 14
       - name: Save announcement ledger only after successful Klaviyo preparation
-        if: github.event_name != 'pull_request'
         shell: bash
         run: |
           set -euo pipefail
