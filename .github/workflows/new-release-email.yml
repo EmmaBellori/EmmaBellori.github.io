@@ -24,6 +24,7 @@ on:
       - main
     paths:
       - ".github/workflows/new-release-email.yml"
+      - "scripts/release_email_campaign.py"
   pull_request:
     paths:
       - "scripts/release_email_campaign.py"
