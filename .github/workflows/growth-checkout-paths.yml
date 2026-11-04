@@ -5,6 +5,8 @@ on:
     paths:
       - "scripts/generate_growth_guides.py"
       - "growth/guides.json"
+      - "growth/pinterest-amplification.json"
+      - "tests/test_pinterest_destinations.py"
       - "conversion-tracking.js"
       - "printables.html"
       - "printables.css"
@@ -15,6 +17,8 @@ on:
     paths:
       - "scripts/generate_growth_guides.py"
       - "growth/guides.json"
+      - "growth/pinterest-amplification.json"
+      - "tests/test_pinterest_destinations.py"
       - "conversion-tracking.js"
       - "printables.html"
       - "printables.css"
@@ -34,6 +38,8 @@ jobs:
           python-version: "3.12"
       - name: Verify contextual commerce and attribution
         run: python -m unittest discover -s tests -p 'test_growth_store_paths.py' -v
+      - name: Verify Pinterest destination coverage
+        run: python -m unittest discover -s tests -p 'test_pinterest_destinations.py' -v
       - name: Verify JavaScript syntax
         run: node --check conversion-tracking.js
       - name: Build actual deployed root pages
