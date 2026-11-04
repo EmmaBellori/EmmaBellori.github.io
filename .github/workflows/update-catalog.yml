@@ -1,32 +1,23 @@
-name: Update book catalog
+name: Legacy book catalog (retired)
+
+# The live website now uses catalog.json as its canonical source.
+# The old books.json generator overwrote hand-curated product pages,
+# direct Payhip purchase links and the full root sitemap.
+# It must not run on push or be used to publish new titles.
+
 on:
-  push:
-    branches: [main]
-    paths:
-      - 'books.json'
-      - 'images/books/**'
-      - 'scripts/build_catalog.py'
   workflow_dispatch:
+
 permissions:
-  contents: write
+  contents: read
+
 jobs:
-  update:
+  retired:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-        with:
-          persist-credentials: true
-      - uses: actions/setup-python@v5
-        with:
-          python-version: '3.12'
-      - name: Generate catalog and pages
-        run: python scripts/build_catalog.py
-      - name: Commit generated files
+      - name: Explain the canonical publishing path
         run: |
-          git config user.name "github-actions[bot]"
-          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-          git add books.js sitemap.xml books/
-          if ! git diff --cached --quiet; then
-            git commit -m "Update catalog and book pages"
-            git push
-          fi
+          echo "Legacy catalog generator is retired."
+          echo "Do not regenerate published book pages from books.json."
+          echo "Use catalog.json and PUBLISHING_GUIDE.md to publish titles."
+          echo "This check never modifies site pages or the sitemap."
