@@ -1,0 +1,84 @@
+name: New book release emails
+
+on:
+  schedule:
+    # Once daily; Sunday releases are normally bundled into the next digest.
+    # GitHub schedules run in UTC. 09:20 UTC is 10:20/11:20 in Rome.
+    - cron: "20 9 * * *"
+  workflow_dispatch:
+    inputs:
+      mode:
+        description: "Preview or create a Klaviyo draft (no sending)"
+        required: false
+        default: "draft"
+        type: choice
+        options:
+          - preview
+          - draft
+      preview_ids:
+        description: "Optional: comma-separated published book IDs for a safe preview"
+        required: false
+        type: string
+  pull_request:
+    paths:
+      - "scripts/release_email_campaign.py"
+      - "growth/release-email-state.json"
+      - "tests/test_release_email.py"
+      - ".github/workflows/new-release-email.yml"
+
+permissions:
+  contents: write
+
+concurrency:
+  group: new-release-email-${{ github.ref }}
+  cancel-in-progress: false
+
+jobs:
+  release-email:
+    runs-on: ubuntu-latest
+    env:
+      KLAVIYO_PRIVATE_API_KEY: ${{ secrets.KLAVIYO_PRIVATE_API_KEY }}
+      RELEASE_EMAIL_MODE: ${{ vars.RELEASE_EMAIL_MODE || 'draft' }}
+      RELEASE_EMAIL_ALLOW_SEND: ${{ vars.RELEASE_EMAIL_ALLOW_SEND || '' }}
+      PREVIEW_IDS: ${{ inputs.preview_ids || '' }}
+      DISPATCH_MODE: ${{ inputs.mode || '' }}
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          persist-credentials: true
+      - uses: actions/setup-python@v5
+        with:
+          python-version: '3.12'
+      - name: Run deterministic unit tests
+        run: python -m unittest discover -s tests -p 'test_release_email.py' -v
+      - name: Build preview or Klaviyo campaign
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          MODE="$RELEASE_EMAIL_MODE"
+          if [[ -n "$DISPATCH_MODE" ]]; then MODE="$DISPATCH_MODE"; fi
+          if [[ -n "$PREVIEW_IDS" ]]; then MODE=preview; fi
+          ARGS=(--mode "$MODE")
+          if [[ -n "$PREVIEW_IDS" ]]; then ARGS+=(--preview-ids "$PREVIEW_IDS"); fi
+          python scripts/release_email_campaign.py "${ARGS[@]}"
+      - name: Upload email preview for review
+        if: github.event_name != 'pull_request'
+        uses: actions/upload-artifact@v4
+        with:
+          name: new-book-release-newsletter
+          path: artifacts/new-release-email/
+          if-no-files-found: ignore
+          retention-days: 14
+      - name: Save announcement ledger only after successful Klaviyo preparation
+        if: github.event_name != 'pull_request'
+        shell: bash
+        run: |
+          set -euo pipefail
+          git add growth/release-email-state.json
+          if ! git diff --cached --quiet; then
+            git config user.name "github-actions[bot]"
+            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+            git commit -m "Record drafted new-release newsletter [skip ci]"
+            git push
+          fi
