@@ -16,7 +16,8 @@ published catalog entries.
   With two releases on Sunday, Monday morning normally produces one email.
 - The workflow also supports manual preview and draft creation. Existing
   welcome emails and their delays are not changed.
-- The default is draft-only. Automated sending is disabled.
+- **Automatic sending is enabled for daily scheduled runs** after explicit approval on 2026-11-04.
+- Manual GitHub workflow dispatches remain preview/draft only and cannot trigger a send.
 
 ## Enable draft creation (one manual action, no key in source code)
 
@@ -33,9 +34,10 @@ variables → Actions → New repository secret. Add:
 The account already has sender Emma Bellori Books /
 emmabelloribooks@outlook.com. No list, flow, or contact data needs changing.
 
-Once the key is present, GitHub Actions creates a draft email campaign for
-the newly published books it detects. The new draft appears in Klaviyo Campaigns
-and will never send without an additional action.
+The configured secret lets GitHub automatically create a campaign for newly published
+books, assign its email template and request a send through Klaviyo.
+The historical 11 titles are excluded; a campaign marked [TEST - DO NOT SEND]
+remains an unsent draft.
 
 ## Preview safely before making changes
 
@@ -49,8 +51,9 @@ Download artifact new-book-release-newsletter. It contains HTML, plaintext,
 and a manifest. This does not create a Klaviyo campaign and does not advance
 the release ledger. Preview IDs can only be used in preview mode.
 
-For ordinary new releases, no action is needed: the workflow runs every day
-at 09:20 UTC (10:20 CET / 11:20 CEST), after the GitHub Pages publication.
+For ordinary new releases, no action is needed: the workflow **sends the new-release
+email automatically** once daily at 09:20 UTC (10:20 CET / 11:20 CEST),
+after the GitHub Pages publication.
 GitHub Actions scheduled runs can be delayed; this is not a realtime trigger.
 
 ## Review each campaign
@@ -64,19 +67,26 @@ The automated campaign features:
 - The existing Free Activity Club list, with Klaviyo consent/suppression
   filtering and Smart Sending.
 
-Review the Klaviyo draft, preview mobile and desktop, and send from Klaviyo
-manually only once you are satisfied with subject, recipient estimate and content.
+The message is sent automatically to the Free Activity Club list at the next
+scheduled run once the site is published. Klaviyo applies marketing consent and
+suppression rules. Check the campaign's send job in Klaviyo for actual delivery;
+a successful request does not mean every recipient has received it.
 
-## Optional fully automatic sending — keep disabled until validated
+## Automatic sending (enabled on 2026-11-04)
 
-The script has an intentionally separate safeguard:
-- Repo variable RELEASE_EMAIL_MODE must be send and
-- Repo variable RELEASE_EMAIL_ALLOW_SEND must equal YES_I_APPROVE.
+Only the daily `schedule` trigger selects `--mode send`. The GitHub workflow
+provides `RELEASE_EMAIL_ALLOW_SEND=YES_I_APPROVE` to that job after explicit
+user approval. Manual dispatch mode only accepts `preview` and `draft`.
 
-Without both, no automated send job can be requested.
-Do not enable these variables until a new release draft has been created and
-end-to-end delivery has been confirmed. This configuration is intentionally
-manual and requires an explicit decision.
+Before sending, the script checks whether a Klaviyo send job already exists
+for the campaign. If a job exists (queued, processing, complete or cancelled),
+it will **not request another send**, even when GitHub retries after a timeout
+or ledger push issue. Campaign status is also checked. No title previously
+listed in the announcement ledger is repeated.
+
+To pause future automatic newsletters, disable the GitHub Actions workflow
+`New book release emails` in the Actions UI. Do not delete the API secret if
+it is shared with other workflows.
 
 ## Troubleshooting
 
@@ -90,6 +100,10 @@ manual and requires an explicit decision.
   before attempting a new campaign, helping avoid duplicates.
 - The daily run groups max 6 new titles; remaining unannounced titles are
   processed in subsequent runs.
+- A Klaviyo send job is asynchronous. For verification, inspect its status and
+  actual recipient events instead of assuming delivery from a successful API call.
+- An existing cancelled send job is not automatically retried; review it in
+  Klaviyo if you wish to send a replacement.
 - Do not manually edit announced_ids except after verifying which titles
   were actually drafted/sent.
 
