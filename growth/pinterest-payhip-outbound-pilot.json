@@ -1,0 +1,98 @@
+{
+  "brand": "Emma Bellori Books",
+  "purpose": "Organic Pinterest outbound click pilot for existing Payhip printable kits",
+  "created": "2026-11-04",
+  "creative_rules": [
+    "1000 x 1500 px portrait",
+    "original hand-drawn watercolor/colored pencil look",
+    "no book covers or sales text within Pin images",
+    "discreet Emma Bellori Books signature permitted",
+    "different visual composition for every kit"
+  ],
+  "measurement": {
+    "primary": "Pinterest outbound clicks",
+    "secondary": "GA4 payhip_click / payhip_click_context",
+    "test_window": "after publishing, compare 14-day performance per pin",
+    "note": "Links target kit anchors on the existing website, not the generic Payhip store. Images and Pinterest publication still required."
+  },
+  "pins": [
+    {
+      "id": "try-again",
+      "product": "Try Again Play Kit",
+      "topic": "Confidence & mistakes",
+      "board": "Confidence & Growth Mindset for Kids",
+      "title": "When Your Child Is Afraid to Make Mistakes: Try This Play Activity",
+      "description": "A small playful step can make trying again feel less intimidating. Discover a screen-free printable activity kit with games and encouraging prompts for ages 4–8. Explore what’s included on the product page.",
+      "alt": "Hand-drawn child and adult at a craft table trying a new approach after an imperfect first attempt.",
+      "brief": "Original warm watercolor-and-colored-pencil editorial scene: handmade cardboard path game, scattered pencil crayons, child reconsidering an imperfect attempt and calm adult beside them; unpolished natural gestures, thoughtful expressions, no text or book cover.",
+      "slot": 1,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=try-again#try-again",
+      "status": "creative_needed_not_scheduled"
+    },
+    {
+      "id": "calm-down",
+      "product": "Calm Down & Play On Kit",
+      "topic": "Big feelings & games",
+      "board": "Big Feelings & Emotional Skills",
+      "title": "A Gentle Game to Help Kids Handle Losing",
+      "description": "After a tough game, children may need space before they can try again. Explore movement, family bingo and playful activities in a printable kit designed around big feelings and game-time frustration.",
+      "alt": "Hand-drawn family table with simple game pieces, a child taking a quiet pause and an adult offering calm company.",
+      "brief": "Original pencil and watercolor scene, board game afternoon, child upset but respected rather than caricatured, adult at child's level, handmade paper game pieces, warm muted forest and ochre palette; no lettering and no book cover.",
+      "slot": 2,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=calm-down#calm-down",
+      "status": "creative_needed_not_scheduled"
+    },
+    {
+      "id": "room-for-you",
+      "product": "Room for You! Play Kit",
+      "topic": "Friendship & belonging",
+      "board": "Friendship Skills for Kids",
+      "title": "Friendship Activities for Kids Who Feel Left Out",
+      "description": "Cooperative play, puppet friends and gentle conversation starters can open space for talking about friendship and joining in. Take a look at the Room for You! printable activity kit for families.",
+      "alt": "Hand-drawn two children and simple paper puppets taking turns creating a pretend game on a cozy rug.",
+      "brief": "Original editorial illustration with children making simple paper puppets and practicing turn-taking; sincere natural expressions, warm home setting, colored pencil grain and watercolor washes, no text and no sales visuals.",
+      "slot": 3,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=room-for-you#room-for-you",
+      "status": "creative_needed_not_scheduled"
+    },
+    {
+      "id": "bedtime",
+      "product": "Together at Bedtime",
+      "topic": "Bedtime & connection",
+      "board": "Calm Bedtime Routines for Kids",
+      "title": "Gentle Bedtime Connection Activities for Kids",
+      "description": "Make evenings a little more predictable with small games, feelings cards and simple routine ideas. Explore the Together at Bedtime printable kit for parents who want calm, screen-free connection.",
+      "alt": "Hand-drawn parent and child preparing a cozy bedtime routine with small illustrated cards and a bedside lamp.",
+      "brief": "Original watercolor/pencil scene of cozy bedroom at twilight, parent and child arranging a few blank illustrated routine cards on bedside table, soft lamplight, reassuring atmosphere, no words and no book cover.",
+      "slot": 4,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=bedtime#bedtime",
+      "status": "creative_needed_not_scheduled"
+    },
+    {
+      "id": "cute-animals",
+      "product": "Cute Animal Friends — Color & Play",
+      "topic": "Animal coloring & creativity",
+      "board": "Screen-Free Activities for Kids",
+      "title": "Cute Animal Coloring and Play Activities for a Screen-Free Afternoon",
+      "description": "For a relaxed creative afternoon, explore animal coloring, matching pairs, a spot-the-difference game and little paper puppets. See the Cute Animal Friends printable kit and its activities.",
+      "alt": "Hand-drawn tabletop with cute animal drawings, colored pencils, matching cards and tiny paper puppet shapes.",
+      "brief": "Original professional hand-drawn editorial flat-lay, paper animal sketches, colored pencils, matching cards and paper puppets casually scattered across a textured table, visibly handmade and imperfect, no legible text and no book cover.",
+      "slot": 5,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=cute-animals#cute-animals",
+      "status": "creative_needed_not_scheduled"
+    },
+    {
+      "id": "bug-detective",
+      "product": "Little Bug Detectives — Explore & Create",
+      "topic": "Nature & bugs",
+      "board": "Nature Activities for Kids",
+      "title": "Backyard Bug Detective Activities for Curious Kids",
+      "description": "Turn a backyard walk into a small discovery mission. Explore nature clues, matching details, cooperative games and a butterfly flipbook in the Little Bug Detectives printable kit.",
+      "alt": "Hand-drawn child observing a small beetle with a magnifying glass beside leaves and a field notebook.",
+      "brief": "Original nature-journal watercolor and colored pencil scene, child carefully observing a beetle with magnifying glass, leaves, field notes with simple non-text sketches, realistic small invertebrate proportions, no logos or book cover.",
+      "slot": 6,
+      "url": "https://emmabellori.github.io/printables.html?utm_source=pinterest&utm_medium=organic&utm_campaign=payhip_pilot_nov2026&utm_content=bug-detective#bug-detective",
+      "status": "creative_needed_not_scheduled"
+    }
+  ]
+}

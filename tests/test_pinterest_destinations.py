@@ -38,6 +38,31 @@ class PinterestDestinationsTests(unittest.TestCase):
                 self.assertTrue(pin["alt"].strip())
                 self.assertTrue(pin["creative_brief"].strip())
 
+    def test_payhip_pilot_links_open_existing_kit_sections(self):
+        plan = json.loads(
+            (ROOT / "growth" / "pinterest-payhip-outbound-pilot.json").read_text(encoding="utf-8")
+        )
+        hub = (ROOT / "printables.html").read_text(encoding="utf-8")
+        self.assertEqual(len(plan["pins"]), 6)
+        observed = set()
+        for pin in plan["pins"]:
+            with self.subTest(id=pin["id"]):
+                url = urlparse(pin["url"])
+                self.assertEqual(url.scheme, "https")
+                self.assertEqual(url.hostname, "emmabellori.github.io")
+                self.assertEqual(url.path, "/printables.html")
+                self.assertEqual(url.fragment, pin["id"])
+                self.assertIn('id="' + pin["id"] + '"', hub)
+                params = parse_qs(url.query)
+                self.assertEqual(params.get("utm_source"), ["pinterest"])
+                self.assertEqual(params.get("utm_medium"), ["organic"])
+                self.assertEqual(params.get("utm_campaign"), ["payhip_pilot_nov2026"])
+                self.assertEqual(params.get("utm_content"), [pin["id"]])
+                self.assertNotIn(pin["id"], observed)
+                observed.add(pin["id"])
+                self.assertEqual(pin["status"], "creative_needed_not_scheduled")
+                self.assertTrue(pin["title"] and pin["description"] and pin["alt"] and pin["brief"])
+
 
 if __name__ == "__main__":
     unittest.main()
