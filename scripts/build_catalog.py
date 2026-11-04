@@ -55,7 +55,7 @@ def main():
         target.write_text(page(b,books),encoding='utf-8')
     ns='http://www.sitemaps.org/schemas/sitemap/0.9';ET.register_namespace('',ns)
     root=ET.Element('{'+ns+'}urlset')
-    urls=[BASE]+[BASE+'books/'+b['id']+'.html' for b in books]+[BASE+str(f.relative_to(ROOT)).replace('\\','/') for f in sorted((ROOT/'guides').glob('*.html'))]
+    urls=[BASE, BASE+'printables.html']+[BASE+'books/'+b['id']+'.html' for b in books]+[BASE+str(f.relative_to(ROOT)).replace('\\','/') for f in sorted((ROOT/'guides').glob('*.html'))]
     for url in urls: ET.SubElement(ET.SubElement(root,'{'+ns+'}url'),'{'+ns+'}loc').text=url
     ET.ElementTree(root).write(ROOT/'sitemap.xml',encoding='utf-8',xml_declaration=True)
     print(f'Built {len(books)} books, {len(urls)} sitemap URLs')
