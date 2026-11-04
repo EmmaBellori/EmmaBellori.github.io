@@ -1,5 +1,5 @@
 /* Emma Bellori Books — conversion context tracking for GA4.
-   Persists campaign context during a visit and emits enriched Amazon click events.
+   Persists campaign context during a visit and emits enriched Amazon and Payhip click events.
    Event delivery still respects the consent gate in analytics-consent.js via window.ebTrack. */
 (function(){
   'use strict';
@@ -44,6 +44,7 @@
     if(/\/guides\//.test(path))return 'guide';
     if(/\/books\//.test(path)||/\/book\.html$/.test(path))return 'book';
     if(/\/collections\//.test(path))return 'collection';
+    if(/\/printables\.html$/.test(path))return 'printables';
     if(/privacy\.html$/.test(path))return 'privacy';
     return 'homepage';
   }
@@ -70,6 +71,7 @@
     if(anchor.classList.contains('primary-book-cta'))return 'book_primary_cta';
     if(anchor.classList.contains('home-card-amazon'))return 'homepage_book_card';
     if(anchor.classList.contains('collection-buy'))return 'collection_book_card';
+    if(anchor.classList.contains('kit-buy'))return 'printables_hub_card';
     if(anchor.closest('.hero'))return 'homepage_hero';
     if(anchor.closest('.home-amazon-band'))return 'homepage_amazon_band';
     if(anchor.closest('footer'))return 'footer';
@@ -90,8 +92,27 @@
     const anchor=event.target.closest('a[href]');
     if(!anchor)return;
     let url;try{url=new URL(anchor.href,location.href);}catch{return;}
-    if(!/(^|\.)amazon\.[a-z.]+$/i.test(url.hostname))return;
+    const amazon=/(^|\.)amazon\.[a-z.]+$/i.test(url.hostname);
+    const payhip=url.hostname==='payhip.com'||url.hostname.endsWith('.payhip.com');
+    if(!amazon&&!payhip)return;
     if(typeof window.ebTrack!=='function')return;
+    if(payhip){
+      window.ebTrack('payhip_click_context',{
+        product_id:String(anchor.dataset.productId||url.pathname.split('/').pop()||'store').slice(0,100),
+        page_type:pageType(),
+        source_page:sourcePage(),
+        placement:placement(anchor),
+        link_host:url.hostname.slice(0,100),
+        landing_path:String(attribution.landing_path||'').slice(0,100),
+        referrer_host:String(attribution.referrer_host||'').slice(0,100),
+        utm_source:String(attribution.utm_source||'').slice(0,100),
+        utm_medium:String(attribution.utm_medium||'').slice(0,100),
+        utm_campaign:String(attribution.utm_campaign||'').slice(0,100),
+        utm_content:String(attribution.utm_content||'').slice(0,100),
+        transport_type:'beacon'
+      });
+      return;
+    }
 
     const payload={
       book_id:bookId(anchor),
