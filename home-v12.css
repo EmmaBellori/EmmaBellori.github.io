@@ -148,3 +148,16 @@ a.home-cover-wrap{text-decoration:none}
  .home-series-actions{grid-template-columns:1fr}
  .home-series-count{justify-self:start}
 }
+
+
+/* Conversion-first bridge from the author homepage to real Payhip printable kits. */
+.home-v12 .home-printables-section{max-width:1080px;margin:10px auto 40px;padding:25px 28px;background:linear-gradient(120deg,#e5efe7 0%,#f9ede0 100%);border:1px solid #dbe3d7;border-radius:24px}
+.home-printables-content{display:flex;align-items:center;justify-content:space-between;gap:28px}
+.home-printables-content>div:first-child{flex:1 1 68%;min-width:0}
+.home-printables-section h2{font:normal clamp(23px,3vw,35px)/1.22 Georgia,serif;margin:9px 0;color:#263d40}
+.home-printables-section p:not(.eyebrow){font:400 14px/1.66 system-ui,sans-serif;color:#4c615c;margin:10px 0 0}
+.home-printables-section .home-printables-meta{font-size:12px!important;color:#657970!important}
+.home-printables-actions{flex:0 0 235px;display:flex;flex-direction:column;align-items:center;gap:12px}
+.home-printables-actions .button{width:100%;font-size:14px;border-radius:25px;text-align:center}
+.home-printables-actions>a:not(.button){font:700 13px/1.4 system-ui,sans-serif;color:#315c52;text-decoration:underline;text-underline-offset:4px}
+@media(max-width:750px){.home-v12 .home-printables-section{margin:12px 20px 28px;padding:22px}.home-printables-content{display:block}.home-printables-actions{margin-top:16px;align-items:flex-start}.home-printables-actions .button{width:auto;max-width:100%}}
