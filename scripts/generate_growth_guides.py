@@ -8,6 +8,7 @@ from __future__ import annotations
 import html
 import json
 import re
+from urllib.parse import urlencode
 from collections import defaultdict
 from pathlib import Path
 import xml.etree.ElementTree as ET
@@ -22,6 +23,18 @@ STYLE = """
 """
 
 
+# Companion offers are relevant optional resources, never prerequisites for free guides.
+# Match the verified Payhip listings on printables.html by canonical book ID.
+PRINTABLES_BY_BOOK = {
+    "mistakes": ("try-again", "Try Again Play Kit", "https://payhip.com/b/jShfF"),
+    "play": ("room-for-you", "Room for You! Play Kit", "https://payhip.com/b/549Cv"),
+    "mad": ("calm-down", "Calm Down & Play On Kit", "https://payhip.com/b/6wMl9"),
+    "i-cant-sleep-without-you": ("bedtime", "Together at Bedtime", "https://payhip.com/b/5z6jW"),
+    "cute-animals-bold-easy": ("cute-animals", "Cute Animal Friends — Color & Play", "https://payhip.com/b/2UsHd"),
+    "bugs": ("bug-detective", "Little Bug Detectives — Explore & Create", "https://payhip.com/b/7kwUS"),
+}
+
+
 def esc(value: object) -> str:
     return html.escape(str(value or ""), quote=True)
 
@@ -30,11 +43,40 @@ def slug_url(slug: str) -> str:
     return SITE + "guides/" + slug + ".html"
 
 
-def page_html(item: dict) -> str:
+def page_html(item: dict, published_books: dict[str, dict] | None = None) -> str:
     slug = item["slug"]
     title = item["title"]
     desc = item["description"]
     canonical = slug_url(slug)
+    published_books = published_books or {}
+    companion = ""
+    product = PRINTABLES_BY_BOOK.get(item.get("book_id", ""))
+    book = published_books.get(item.get("book_id", ""))
+    if book and product and str(book.get("amazonUrl") or "").startswith("https://www.amazon.com/dp/"):
+        kit_id, kit_name, kit_base = product
+        kit_url = kit_base + "?" + urlencode({
+            "utm_source": "emmabellori_site",
+            "utm_medium": "referral",
+            "utm_campaign": "growth_guide",
+            "utm_content": slug,
+        })
+        companion = (
+            '<section class="guide-extra guide-companion" aria-labelledby="companion-offers">'
+            '<p class="eyebrow">KEEP EXPLORING</p>'
+            '<h2 id="companion-offers">Try this topic with a story or an activity kit</h2>'
+            '<p>Finished the free activity? Explore an optional story or hands-on printable '
+            'for another small moment of practice together.</p>'
+            '<div class="guide-links">'
+            f'<a href="{esc(kit_url)}" data-product-id="{esc(kit_id)}" '
+            f'data-placement="growth_guide_companion" target="_blank" rel="noopener noreferrer">'
+            f'Explore {esc(kit_name)} on Payhip ↗</a>'
+            f'<a href="{esc(book["amazonUrl"])}" data-book-id="{esc(book["id"])}" '
+            'data-placement="growth_guide_companion" target="_blank" rel="noopener noreferrer">'
+            f'View {esc(book["title"])} on Amazon ↗</a>'
+            '</div>'
+            '<p class="guide-meta">Optional purchases. The guide and its activities are free.</p>'
+            '</section>'
+        )
     sections = "".join(
         f'<section><h2>{esc(heading)}</h2><p>{esc(body)}</p></section>'
         for heading, body in item.get("sections", [])
@@ -69,7 +111,7 @@ def page_html(item: dict) -> str:
 <meta property="og:type" content="article"><meta property="og:title" content="{esc(title)}"><meta property="og:description" content="{esc(desc)}"><meta property="og:url" content="{esc(canonical)}"><meta property="og:site_name" content="Emma Bellori Books"><meta name="twitter:card" content="summary"><link rel="icon" href="../favicon.png" type="image/png"><link rel="stylesheet" href="../style.css"><style>{STYLE}</style><script type="application/ld+json">{json.dumps(structured, ensure_ascii=False, separators=(',', ':'))}</script></head>
 <body><a class="skip-link" href="#article">Skip to article</a><header class="site-header"><a class="brand" href="../index.html#home"><img alt="" class="brand-logo" height="66" src="../images/emma-bellori-logo.webp" width="66"><span class="brand-label">Emma Bellori<span>BOOKS FOR CURIOUS MINDS</span></span></a><nav aria-label="Main navigation"><a href="../index.html#books">Book series</a><a href="index.html">Free guides</a><a href="../index.html#about">About</a></nav></header>
 <main class="guide-wrap" id="article"><nav class="guide-breadcrumb" aria-label="Breadcrumb"><a href="../index.html">Home</a><span aria-hidden="true">/</span><a href="index.html">Free guides</a><span aria-hidden="true">/</span><span aria-current="page">{esc(item.get('cluster'))}</span></nav><p class="eyebrow">{esc(item.get('cluster')).upper()} · EMMA BELLORI BOOKS</p><h1>{esc(title)}</h1><p class="intro">{esc(item.get('intro'))}</p><p class="guide-meta">A practical guide for parents and caregivers</p>{sections}
-<section class="guide-extra"><h2>{esc(item.get('activity_title'))}</h2><p>{esc(item.get('activity'))}</p></section><section><h2>Frequently asked question</h2><h3>{esc(item.get('faq_q'))}</h3><p>{esc(item.get('faq_a'))}</p></section><div class="note"><strong>Every child is different.</strong> These general ideas are educational and are not a substitute for individualized professional support when a concern is persistent, severe or affects daily life.</div>
+<section class="guide-extra"><h2>{esc(item.get('activity_title'))}</h2><p>{esc(item.get('activity'))}</p></section>{companion}<section><h2>Frequently asked question</h2><h3>{esc(item.get('faq_q'))}</h3><p>{esc(item.get('faq_a'))}</p></section><div class="note"><strong>Every child is different.</strong> These general ideas are educational and are not a substitute for individualized professional support when a concern is persistent, severe or affects daily life.</div>
 <section><h2>Explore a related story</h2><p>If this topic feels familiar in your family, <a href="{esc(item.get('book_url'))}">{esc(item.get('book_title'))}</a> offers a story-based way to explore the same theme together.</p><div class="guide-links"><a href="{esc(item.get('book_url'))}">Discover the book →</a><a href="{esc(item.get('hub'))}">Read the core guide →</a><a href="{esc(item.get('series_url'))}">Explore the collection →</a></div></section></main>
 <footer><span>© Emma Bellori Books</span><span><a href="../index.html">Home</a> · <a href="https://www.amazon.com/author/emmabellori" rel="noopener noreferrer" target="_blank">Amazon Author Page</a></span></footer><script defer src="../analytics-consent.js"></script></body></html>'''
 
@@ -139,10 +181,15 @@ def update_sitemap(items: list[dict]) -> None:
 
 def main() -> None:
     items = json.loads(DATA.read_text(encoding="utf-8"))
+    published_books = {
+        book["id"]: book
+        for book in json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
+        if book.get("status") == "published" and book.get("id")
+    }
     guides_dir = DEST / "guides"
     guides_dir.mkdir(parents=True, exist_ok=True)
     for item in items:
-        (guides_dir / f"{item['slug']}.html").write_text(page_html(item), encoding="utf-8")
+        (guides_dir / f"{item['slug']}.html").write_text(page_html(item, published_books), encoding="utf-8")
     (guides_dir / "index.html").write_text(make_index(items), encoding="utf-8")
     add_hub_links(items)
     add_home_link()
