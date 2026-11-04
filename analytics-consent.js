@@ -183,7 +183,7 @@
     const banner=document.createElement('section');
     banner.id='eb-consent-banner';banner.className='eb-consent-banner';banner.hidden=true;
     banner.setAttribute('role','region');banner.setAttribute('aria-label','Analytics privacy choices');
-    banner.innerHTML='<div class="eb-consent-content"><div><strong>Optional website analytics</strong><p>We use Google Analytics only if you agree, to understand visits and clicks to Amazon. You can decline and still use every feature. <a href="'+(/\/(books|collections|guides)\//.test(location.pathname)?'../':'')+'privacy.html">Privacy information</a>.</p></div><div class="eb-consent-actions"><button type="button" data-eb-choice="no">Reject analytics</button><button type="button" class="eb-accept" data-eb-choice="yes">Accept analytics</button></div></div>';
+    banner.innerHTML='<div class="eb-consent-content"><div><strong>Optional website analytics</strong><p>We use Google Analytics only if you agree, to understand visits and clicks to Amazon and Payhip. You can decline and still use every feature. <a href="'+(/\/(books|collections|guides)\//.test(location.pathname)?'../':'')+'privacy.html">Privacy information</a>.</p></div><div class="eb-consent-actions"><button type="button" data-eb-choice="no">Reject analytics</button><button type="button" class="eb-accept" data-eb-choice="yes">Accept analytics</button></div></div>';
     document.body.appendChild(banner);
     banner.addEventListener('click',e=>{const b=e.target.closest('[data-eb-choice]');if(b)choose(b.dataset.ebChoice==='yes');});
     const footer=document.querySelector('footer');
@@ -199,8 +199,20 @@
     const a=e.target.closest('a[href]');
     if(!a || !consentGranted || !(loading || enabled) || typeof window.gtag!=='function')return;
     let u;try{u=new URL(a.href,location.href);}catch(_){return;}
-    if(!/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname))return;
-    const slug=location.pathname.match(/\/books\/([a-z-]+)\.html$/);
+    const isAmazon=/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname);
+    const isPayhip=u.hostname==='payhip.com'||u.hostname.endsWith('.payhip.com');
+    if(!isAmazon&&!isPayhip)return;
+    if(isPayhip){
+      window.gtag('event','payhip_click',{
+        product_id:(a.dataset.productId||u.pathname.split('/').pop()||'store').slice(0,100),
+        source_page:location.pathname.slice(0,100),
+        placement:(a.dataset.placement||'other').slice(0,100),
+        link_host:u.hostname.slice(0,100),
+        transport_type:'beacon'
+      });
+      return;
+    }
+    const slug=location.pathname.match(/\/books\/([a-z0-9-]+)\.html$/);
     window.gtag('event','amazon_click',{
       book_id:a.dataset.bookId|| (slug?slug[1]:'homepage'),
       link_host:u.hostname,
