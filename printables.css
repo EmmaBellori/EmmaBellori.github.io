@@ -21,6 +21,7 @@
 .kit-hero-aside .kit-hero-label{font:800 11px/1 system-ui,sans-serif;letter-spacing:1.2px;color:#48685d;border:1px solid #95b4a2;border-radius:30px;padding:11px 15px}
 .kit-breadcrumb{max-width:1130px;margin:0 auto 20px;padding:0 25px;color:#708078;font-size:12px}
 .kit-breadcrumb a{color:#486c63}
+.kit-quick-nav{display:flex;align-items:center;flex-wrap:wrap;gap:10px;max-width:1130px;margin:0 auto 26px;padding:0 25px}.kit-quick-label{font:700 12px/1.45 system-ui,sans-serif;color:#5b6c64;margin-right:3px}.kit-quick-nav a{display:inline-flex;align-items:center;min-height:36px;padding:8px 13px;border-radius:20px;background:#f1f6ef;border:1px solid #c8d8c8;color:#263d40;font:700 12px/1.4 system-ui,sans-serif;text-decoration:none}.kit-quick-nav a:hover,.kit-quick-nav a:focus-visible{background:#e0ebe0;text-decoration:underline}.kit-card{scroll-margin-top:100px}
 .kit-section{max-width:1130px;margin:0 auto;padding:20px 25px 56px}
 .kit-heading{max-width:780px;margin-bottom:27px}
 .kit-heading h2,.kit-cross-sell h2,.kit-free h2{font:normal clamp(27px,3vw,40px)/1.2 Georgia,serif;margin:5px 0 11px}

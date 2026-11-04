@@ -1,0 +1,62 @@
+name: Growth checkout path checks
+
+on:
+  pull_request:
+    paths:
+      - "scripts/generate_growth_guides.py"
+      - "growth/guides.json"
+      - "conversion-tracking.js"
+      - "printables.html"
+      - "printables.css"
+      - "tests/test_growth_store_paths.py"
+      - ".github/workflows/growth-checkout-paths.yml"
+  push:
+    branches: [main]
+    paths:
+      - "scripts/generate_growth_guides.py"
+      - "growth/guides.json"
+      - "conversion-tracking.js"
+      - "printables.html"
+      - "printables.css"
+      - "tests/test_growth_store_paths.py"
+      - ".github/workflows/growth-checkout-paths.yml"
+
+permissions:
+  contents: read
+
+jobs:
+  validate:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+      - name: Verify contextual commerce and attribution
+        run: python -m unittest discover -s tests -p 'test_growth_store_paths.py' -v
+      - name: Verify JavaScript syntax
+        run: node --check conversion-tracking.js
+      - name: Build actual deployed root pages
+        run: |
+          python scripts/build_root_site.py
+          python scripts/generate_growth_guides.py
+          python scripts/inject_conversion_tracking.py
+      - name: Verify built pages and links
+        run: |
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          root=Path("_site")
+          items=json.loads(Path("growth/guides.json").read_text(encoding="utf-8"))
+          for item in items:
+              path=root/"guides"/(item["slug"]+".html")
+              text=path.read_text(encoding="utf-8")
+              assert 'https://payhip.com/b/' in text, path
+              assert 'https://www.amazon.com/dp/' in text, path
+              assert 'data-placement="growth_guide_companion"' in text, path
+              assert 'https://emmabellori.github.io/guides/' in text, path
+          hub=(root/"printables.html").read_text(encoding="utf-8")
+          assert 'class="kit-quick-nav"' in hub
+          assert (root/"conversion-tracking.js").is_file()
+          print("Verified",len(items),"deployed guide CTAs + printables navigation")
+          PY
