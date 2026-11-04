@@ -1,23 +1,160 @@
 {
-  "brand":"Emma Bellori Books",
-  "cadence":"14 pins per week",
-  "utm_defaults":{"utm_source":"pinterest","utm_medium":"organic","utm_campaign":"guide_growth"},
-  "creative_rules":["1000x1500 vertical","professional hand-drawn illustration","no book cover in the Pin artwork","no sales copy in the artwork","discreet Emma Bellori Books signature","visual concept must match the guide problem rather than look like a generic AI illustration"],
-  "status_note":"Copy, landing pages, UTM structure and creative briefs are ready. Scheduling in Metricool requires one compliant image and a Pinterest board for each Pin.",
-  "pins":[
-    {"slot":1,"slug":"what-to-do-when-child-angry-after-losing","title":"What to Do When Your Child Gets Angry After Losing","description":"Losing can feel enormous to a child. Start with connection, lower the pressure, and help them find a next step after the big feeling passes. Free parent guide from Emma Bellori Books.","url":"https://emmabellori.github.io/guides/what-to-do-when-child-angry-after-losing.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=losing_anger_01","board_theme":"Big Feelings & Emotional Skills","alt":"Hand-drawn scene of a child pausing after a board game while a caring adult offers calm support.","creative_brief":"Quiet post-game scene, pieces still on table, child visibly frustrated but not caricatured, adult nearby at child level; warm editorial watercolor/pencil feel."},
-    {"slot":2,"slug":"how-to-teach-kids-good-sportsmanship","title":"How to Teach Kids Good Sportsmanship Without a Lecture","description":"Good sportsmanship grows through tiny repeated habits: fair play, kind endings, repair after frustration and trying again. Use these practical ideas at home.","url":"https://emmabellori.github.io/guides/how-to-teach-kids-good-sportsmanship.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=sportsmanship_01","board_theme":"Big Feelings & Emotional Skills","alt":"Hand-drawn children ending a game with a friendly gesture after playing together.","creative_brief":"Two children after a tabletop or playground game, one offering a small friendly gesture; show mixed emotions and warmth, not trophy imagery."},
-    {"slot":3,"slug":"games-to-help-kids-practice-losing","title":"Low-Pressure Games That Help Kids Practice Losing","description":"Children can practice disappointment in small, safe doses. These playful ideas make winning and losing less emotionally loaded without forcing a perfect reaction.","url":"https://emmabellori.github.io/guides/games-to-help-kids-practice-losing.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=losing_games_01","board_theme":"Screen-Free Activities for Kids","alt":"Hand-drawn family playing a simple tabletop game with relaxed expressions and colorful pieces.","creative_brief":"Cozy family tabletop scene, simple homemade game pieces, imperfect natural gestures, no branded board game."},
-    {"slot":4,"slug":"help-child-afraid-to-make-mistakes","title":"How to Help a Child Who Is Afraid to Make Mistakes","description":"When fear of being wrong stops a child from trying, make the first step smaller and turn mistakes into useful information. Four practical ways to help.","url":"https://emmabellori.github.io/guides/help-child-afraid-to-make-mistakes.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=mistakes_fear_01","board_theme":"Confidence & Growth Mindset for Kids","alt":"Hand-drawn child hesitating over a creative project while an adult calmly supports the first small step.","creative_brief":"Child at desk with unfinished drawing/building project, pencil hovering, adult beside rather than over them; expressive hands and natural clutter."},
-    {"slot":5,"slug":"perfectionism-in-kids-everyday-activities","title":"When Your Child Wants Everything to Be Perfect","description":"Careful work can be a strength. But when “good” only feels acceptable if it is flawless, these everyday strategies can make trying and finishing feel safer.","url":"https://emmabellori.github.io/guides/perfectionism-in-kids-everyday-activities.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=perfectionism_01","board_theme":"Confidence & Growth Mindset for Kids","alt":"Hand-drawn child comparing two imperfect drawings and learning to leave one finished.","creative_brief":"Two drawings side by side, eraser crumbs, child considering rather than distressed; emphasize process and tactile paper texture."},
-    {"slot":6,"slug":"growth-mindset-after-a-mistake","title":"A 3-Step Growth Mindset Routine After a Mistake","description":"Skip the slogans. Help children notice what happened, choose one useful change, and decide when to try again with this simple routine.","url":"https://emmabellori.github.io/guides/growth-mindset-after-a-mistake.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=growth_mindset_01","board_theme":"Confidence & Growth Mindset for Kids","alt":"Hand-drawn child rebuilding a block structure after noticing why it fell.","creative_brief":"Block tower partly fallen with child calmly testing a different base; show observation and adjustment, not a celebratory success pose."},
-    {"slot":7,"slug":"what-to-say-when-child-says-i-cant","title":"What to Say When Your Child Says “I Can’t Do It”","description":"“I can’t” can mean the task feels hard, the first step is unclear, or failure feels risky. Try these calm responses instead of arguing or over-reassuring.","url":"https://emmabellori.github.io/guides/what-to-say-when-child-says-i-cant.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=i_cant_01","board_theme":"Confidence & Growth Mindset for Kids","alt":"Hand-drawn adult and child looking together at a difficult puzzle and choosing one small next step.","creative_brief":"Adult and child side by side with puzzle/craft, one small piece highlighted by composition; collaborative rather than instructional posture."},
-    {"slot":8,"slug":"help-child-join-a-game","title":"How to Help a Child Join a Game With Other Kids","description":"Joining play has hidden steps: watch, notice what the group is doing, choose a useful opening and handle either yes or no. Practice them gently at home.","url":"https://emmabellori.github.io/guides/help-child-join-a-game.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=join_game_01","board_theme":"Friendship Skills for Kids","alt":"Hand-drawn playground scene where one child watches a group game before finding a natural way to join.","creative_brief":"Playground or park, small group building/chalking/ball play, observing child at edge but visually connected; avoid sad isolated stereotype."},
-    {"slot":9,"slug":"child-has-no-one-to-play-with","title":"When Your Child Says “No One Wants to Play With Me”","description":"Before solving the friendship problem, help your child feel heard and understand what actually happened. Then choose one practical next move together.","url":"https://emmabellori.github.io/guides/child-has-no-one-to-play-with.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=left_out_01","board_theme":"Friendship Skills for Kids","alt":"Hand-drawn child talking with a parent after a difficult friendship moment, with gentle attentive body language.","creative_brief":"After-school conversation on bench/sofa, backpack nearby, child explaining while adult listens; intimate editorial scene, no melodrama."},
-    {"slot":10,"slug":"friendship-role-play-for-kids","title":"4 Friendship Role-Play Games for Kids","description":"Practice invitations, kind refusals, disagreement and repair before the playground moment matters. Four short role-play games families can try at home.","url":"https://emmabellori.github.io/guides/friendship-role-play-for-kids.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=friendship_roleplay_01","board_theme":"Friendship Skills for Kids","alt":"Hand-drawn children using toys for a playful friendship role-play activity at home.","creative_brief":"Two children or child/adult using simple figures/puppets to rehearse a social scene; warm floor-level play, subtle humor."},
-    {"slot":11,"slug":"help-child-after-friend-rejection","title":"How to Support a Child After Friend Rejection","description":"A friend saying no can feel much bigger than the moment itself. Help your child separate what happened from what they fear it means, then decide whether action is needed.","url":"https://emmabellori.github.io/guides/help-child-after-friend-rejection.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=friend_rejection_01","board_theme":"Friendship Skills for Kids","alt":"Hand-drawn child processing a friendship disappointment with calm support nearby.","creative_brief":"Reflective scene after social disappointment, perhaps child drawing or sitting with caregiver; hopeful negative space, no crying close-up."},
-    {"slot":12,"slug":"bedtime-routine-for-independent-sleep","title":"A Simple Bedtime Routine for More Independent Sleep","description":"Independent sleep does not have to begin with a sudden separation. Use a short, predictable routine and change one small step at a time.","url":"https://emmabellori.github.io/guides/bedtime-routine-for-independent-sleep.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_routine_01","board_theme":"Bedtime Routines for Kids","alt":"Hand-drawn cozy bedtime scene with a child following a simple visual routine before sleep.","creative_brief":"Warm bedroom, 3–4 visual routine cues in environment, parent and child near final story step; soft pencil/watercolor, not overly dreamy."},
-    {"slot":13,"slug":"gradual-bedtime-independence-for-kids","title":"How to Build Bedtime Independence Gradually","description":"Think of bedtime independence as a ladder, not a jump. Start from what happens now, make one understandable change, and repeat before moving on.","url":"https://emmabellori.github.io/guides/gradual-bedtime-independence-for-kids.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_ladder_01","board_theme":"Bedtime Routines for Kids","alt":"Hand-drawn bedtime scene showing a parent sitting a little farther from the child’s bed as part of a gradual routine.","creative_brief":"Bedroom composition with chair positioned near but not at bedside; child settled with comfort object; visual storytelling of gradual distance."},
-    {"slot":14,"slug":"screen-free-calming-bedtime-activities","title":"7 Screen-Free Calming Activities Before Bed","description":"Choose one or two quiet activities that are easy to stop and repeat. Here are seven simple screen-free ideas for the transition into bedtime.","url":"https://emmabellori.github.io/guides/screen-free-calming-bedtime-activities.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_screenfree_01","board_theme":"Screen-Free Activities for Kids","alt":"Hand-drawn collection of calm bedtime activities including a book, drawing paper, stuffed animal and gentle stretching.","creative_brief":"Editorial collection scene rather than infographic: open book, small drawing, stuffed animal, child stretching in cozy room; tactile objects and hand-drawn imperfections."}
+  "brand": "Emma Bellori Books",
+  "cadence": "14 pins per week",
+  "utm_defaults": {
+    "utm_source": "pinterest",
+    "utm_medium": "organic",
+    "utm_campaign": "guide_growth"
+  },
+  "creative_rules": [
+    "1000x1500 vertical",
+    "professional hand-drawn illustration",
+    "no book cover in the Pin artwork",
+    "no sales copy in the artwork",
+    "discreet Emma Bellori Books signature",
+    "visual concept must match the guide problem rather than look like a generic AI illustration"
+  ],
+  "status_note": "Copy, landing pages, UTM structure and creative briefs are ready. Scheduling in Metricool requires one compliant image and a Pinterest board for each Pin.",
+  "pins": [
+    {
+      "slot": 1,
+      "slug": "child-gets-angry-after-losing",
+      "title": "What to Do When Your Child Gets Angry After Losing",
+      "description": "Losing can feel enormous to a child. Start with connection, lower the pressure, and help them find a next step after the big feeling passes. Free parent guide from Emma Bellori Books.",
+      "url": "https://emmabellori.github.io/guides/child-gets-angry-after-losing.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=losing_anger_01",
+      "board_theme": "Big Feelings & Emotional Skills",
+      "alt": "Hand-drawn scene of a child pausing after a board game while a caring adult offers calm support.",
+      "creative_brief": "Quiet post-game scene, pieces still on table, child visibly frustrated but not caricatured, adult nearby at child level; warm editorial watercolor/pencil feel."
+    },
+    {
+      "slot": 2,
+      "slug": "teach-kids-good-sportsmanship",
+      "title": "How to Teach Kids Good Sportsmanship Without a Lecture",
+      "description": "Good sportsmanship grows through tiny repeated habits: fair play, kind endings, repair after frustration and trying again. Use these practical ideas at home.",
+      "url": "https://emmabellori.github.io/guides/teach-kids-good-sportsmanship.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=sportsmanship_01",
+      "board_theme": "Big Feelings & Emotional Skills",
+      "alt": "Hand-drawn children ending a game with a friendly gesture after playing together.",
+      "creative_brief": "Two children after a tabletop or playground game, one offering a small friendly gesture; show mixed emotions and warmth, not trophy imagery."
+    },
+    {
+      "slot": 3,
+      "slug": "games-to-practice-losing-gracefully",
+      "title": "Low-Pressure Games That Help Kids Practice Losing",
+      "description": "Children can practice disappointment in small, safe doses. These playful ideas make winning and losing less emotionally loaded without forcing a perfect reaction.",
+      "url": "https://emmabellori.github.io/guides/games-to-practice-losing-gracefully.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=losing_games_01",
+      "board_theme": "Screen-Free Activities for Kids",
+      "alt": "Hand-drawn family playing a simple tabletop game with relaxed expressions and colorful pieces.",
+      "creative_brief": "Cozy family tabletop scene, simple homemade game pieces, imperfect natural gestures, no branded board game."
+    },
+    {
+      "slot": 4,
+      "slug": "help-child-afraid-to-make-mistakes",
+      "title": "How to Help a Child Who Is Afraid to Make Mistakes",
+      "description": "When fear of being wrong stops a child from trying, make the first step smaller and turn mistakes into useful information. Four practical ways to help.",
+      "url": "https://emmabellori.github.io/guides/help-child-afraid-to-make-mistakes.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=mistakes_fear_01",
+      "board_theme": "Confidence & Growth Mindset for Kids",
+      "alt": "Hand-drawn child hesitating over a creative project while an adult calmly supports the first small step.",
+      "creative_brief": "Child at desk with unfinished drawing/building project, pencil hovering, adult beside rather than over them; expressive hands and natural clutter."
+    },
+    {
+      "slot": 5,
+      "slug": "perfectionism-in-kids-everyday-activities",
+      "title": "When Your Child Wants Everything to Be Perfect",
+      "description": "Careful work can be a strength. But when “good” only feels acceptable if it is flawless, these everyday strategies can make trying and finishing feel safer.",
+      "url": "https://emmabellori.github.io/guides/perfectionism-in-kids-everyday-activities.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=perfectionism_01",
+      "board_theme": "Confidence & Growth Mindset for Kids",
+      "alt": "Hand-drawn child comparing two imperfect drawings and learning to leave one finished.",
+      "creative_brief": "Two drawings side by side, eraser crumbs, child considering rather than distressed; emphasize process and tactile paper texture."
+    },
+    {
+      "slot": 6,
+      "slug": "growth-mindset-after-a-mistake",
+      "title": "A 3-Step Growth Mindset Routine After a Mistake",
+      "description": "Skip the slogans. Help children notice what happened, choose one useful change, and decide when to try again with this simple routine.",
+      "url": "https://emmabellori.github.io/guides/growth-mindset-after-a-mistake.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=growth_mindset_01",
+      "board_theme": "Confidence & Growth Mindset for Kids",
+      "alt": "Hand-drawn child rebuilding a block structure after noticing why it fell.",
+      "creative_brief": "Block tower partly fallen with child calmly testing a different base; show observation and adjustment, not a celebratory success pose."
+    },
+    {
+      "slot": 7,
+      "slug": "what-to-say-when-child-says-i-cant",
+      "title": "What to Say When Your Child Says “I Can’t Do It”",
+      "description": "“I can’t” can mean the task feels hard, the first step is unclear, or failure feels risky. Try these calm responses instead of arguing or over-reassuring.",
+      "url": "https://emmabellori.github.io/guides/what-to-say-when-child-says-i-cant.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=i_cant_01",
+      "board_theme": "Confidence & Growth Mindset for Kids",
+      "alt": "Hand-drawn adult and child looking together at a difficult puzzle and choosing one small next step.",
+      "creative_brief": "Adult and child side by side with puzzle/craft, one small piece highlighted by composition; collaborative rather than instructional posture."
+    },
+    {
+      "slot": 8,
+      "slug": "help-child-join-a-game",
+      "title": "How to Help a Child Join a Game With Other Kids",
+      "description": "Joining play has hidden steps: watch, notice what the group is doing, choose a useful opening and handle either yes or no. Practice them gently at home.",
+      "url": "https://emmabellori.github.io/guides/help-child-join-a-game.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=join_game_01",
+      "board_theme": "Friendship Skills for Kids",
+      "alt": "Hand-drawn playground scene where one child watches a group game before finding a natural way to join.",
+      "creative_brief": "Playground or park, small group building/chalking/ball play, observing child at edge but visually connected; avoid sad isolated stereotype."
+    },
+    {
+      "slot": 9,
+      "slug": "child-has-no-one-to-play-with",
+      "title": "When Your Child Says “No One Wants to Play With Me”",
+      "description": "Before solving the friendship problem, help your child feel heard and understand what actually happened. Then choose one practical next move together.",
+      "url": "https://emmabellori.github.io/guides/child-has-no-one-to-play-with.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=left_out_01",
+      "board_theme": "Friendship Skills for Kids",
+      "alt": "Hand-drawn child talking with a parent after a difficult friendship moment, with gentle attentive body language.",
+      "creative_brief": "After-school conversation on bench/sofa, backpack nearby, child explaining while adult listens; intimate editorial scene, no melodrama."
+    },
+    {
+      "slot": 10,
+      "slug": "friendship-role-play-for-kids",
+      "title": "4 Friendship Role-Play Games for Kids",
+      "description": "Practice invitations, kind refusals, disagreement and repair before the playground moment matters. Four short role-play games families can try at home.",
+      "url": "https://emmabellori.github.io/guides/friendship-role-play-for-kids.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=friendship_roleplay_01",
+      "board_theme": "Friendship Skills for Kids",
+      "alt": "Hand-drawn children using toys for a playful friendship role-play activity at home.",
+      "creative_brief": "Two children or child/adult using simple figures/puppets to rehearse a social scene; warm floor-level play, subtle humor."
+    },
+    {
+      "slot": 11,
+      "slug": "help-child-after-friend-rejection",
+      "title": "How to Support a Child After Friend Rejection",
+      "description": "A friend saying no can feel much bigger than the moment itself. Help your child separate what happened from what they fear it means, then decide whether action is needed.",
+      "url": "https://emmabellori.github.io/guides/help-child-after-friend-rejection.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=friend_rejection_01",
+      "board_theme": "Friendship Skills for Kids",
+      "alt": "Hand-drawn child processing a friendship disappointment with calm support nearby.",
+      "creative_brief": "Reflective scene after social disappointment, perhaps child drawing or sitting with caregiver; hopeful negative space, no crying close-up."
+    },
+    {
+      "slot": 12,
+      "slug": "bedtime-routine-for-independent-sleep",
+      "title": "A Simple Bedtime Routine for More Independent Sleep",
+      "description": "Independent sleep does not have to begin with a sudden separation. Use a short, predictable routine and change one small step at a time.",
+      "url": "https://emmabellori.github.io/guides/bedtime-routine-for-independent-sleep.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_routine_01",
+      "board_theme": "Bedtime Routines for Kids",
+      "alt": "Hand-drawn cozy bedtime scene with a child following a simple visual routine before sleep.",
+      "creative_brief": "Warm bedroom, 3–4 visual routine cues in environment, parent and child near final story step; soft pencil/watercolor, not overly dreamy."
+    },
+    {
+      "slot": 13,
+      "slug": "gradual-bedtime-independence-for-kids",
+      "title": "How to Build Bedtime Independence Gradually",
+      "description": "Think of bedtime independence as a ladder, not a jump. Start from what happens now, make one understandable change, and repeat before moving on.",
+      "url": "https://emmabellori.github.io/guides/gradual-bedtime-independence-for-kids.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_ladder_01",
+      "board_theme": "Bedtime Routines for Kids",
+      "alt": "Hand-drawn bedtime scene showing a parent sitting a little farther from the child’s bed as part of a gradual routine.",
+      "creative_brief": "Bedroom composition with chair positioned near but not at bedside; child settled with comfort object; visual storytelling of gradual distance."
+    },
+    {
+      "slot": 14,
+      "slug": "screen-free-calming-bedtime-activities",
+      "title": "7 Screen-Free Calming Activities Before Bed",
+      "description": "Choose one or two quiet activities that are easy to stop and repeat. Here are seven simple screen-free ideas for the transition into bedtime.",
+      "url": "https://emmabellori.github.io/guides/screen-free-calming-bedtime-activities.html?utm_source=pinterest&utm_medium=organic&utm_campaign=guide_growth&utm_content=bedtime_screenfree_01",
+      "board_theme": "Screen-Free Activities for Kids",
+      "alt": "Hand-drawn collection of calm bedtime activities including a book, drawing paper, stuffed animal and gentle stretching.",
+      "creative_brief": "Editorial collection scene rather than infographic: open book, small drawing, stuffed animal, child stretching in cozy room; tactile objects and hand-drawn imperfections."
+    }
   ]
 }
