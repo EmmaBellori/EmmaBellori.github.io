@@ -28,6 +28,9 @@ jobs:
       - name: Test automatic collection counters
         run: python3 -m unittest discover -s tests -p 'test_collection_stats.py'
 
+      - name: Validate new-release catalog, landing pages and homepage ordering
+        run: python3 -m unittest discover -s tests -p 'test_publication_sync.py'
+
       - name: Build root site and legacy redirects
         run: python3 scripts/build_root_site.py
 
