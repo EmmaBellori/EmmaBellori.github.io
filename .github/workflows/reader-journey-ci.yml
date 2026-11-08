@@ -54,6 +54,9 @@ jobs:
       - name: Validate all seven reader improvements and links
         run: python3 -m unittest discover -s tests -p 'test_reader_journey.py' -v
 
+      - name: Verify responsive Coming Soon layout and unchanged voting/preview functionality
+        run: python3 -m unittest discover -s tests -p 'test_coming_soon_layout.py' -v
+
       - name: Verify existing publication + collection stability
         run: |
           python3 -m unittest discover -s tests -p 'test_collection_stats.py' -v
