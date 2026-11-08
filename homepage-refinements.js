@@ -2,12 +2,6 @@
 (()=>{
  const START_HERE_IDS=new Set(['mad','mistakes','i-cant-sleep-without-you']);
  const LATEST_RELEASE_IDS=['little-star-missed-christmas','gingerbread-house','cute-animals-bold-easy'];
- const RELEASE_OVERRIDES={
-  'gingerbread-house':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZWR8H1',theme:'A Christmas story from the Little Christmas Wonders collection'},
-  'little-star-missed-christmas':{status:'published',format:'Paperback',amazonUrl:'https://www.amazon.com/dp/B0HPZSQMT7',theme:'A Christmas story from the Little Christmas Wonders collection'}
- };
- let releaseOverridesApplied=false;
-
  // Load the homepage-only editorial layer.
  if(!document.querySelector('#eb-homepage-merchandising-css')){
   const link=document.createElement('link');
@@ -29,22 +23,6 @@
    }
    latestGrid.innerHTML=latest.slice(0,3).map(publishedCard).join('');
   };
- }
-
- function applyReleaseOverrides(){
-  if(releaseOverridesApplied||!Array.isArray(books)||!books.length)return false;
-  let changed=false;
-  books.forEach(book=>{
-   const override=RELEASE_OVERRIDES[book.id];
-   if(!override)return;
-   Object.assign(book,override);
-   changed=true;
-  });
-  if(!changed)return false;
-  published=books.filter(book=>book.status==='published');
-  upcoming=books.filter(book=>book.status==='coming_soon');
-  releaseOverridesApplied=true;
-  return true;
  }
 
  function wrapFeaturedReleaseContent(card){
@@ -94,11 +72,7 @@
  }
 
  function decorateHomepage(){
-  if(applyReleaseOverrides()){
-   if(typeof renderLatest==='function')renderLatest();
-   if(typeof renderCollections==='function')renderCollections();
-   return;
-  }
+  // Publication status comes from catalog.json, never from homepage-only overrides.
   decorateLatest();decorateSeries();
  }
  decorateHomepage();
