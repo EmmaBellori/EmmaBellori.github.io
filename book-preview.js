@@ -222,6 +222,7 @@
     const main=document.querySelector('.detail-main');if(!main)return;
     const section=document.createElement('section');
     section.className='eb-inside-preview';
+    section.id='inside-the-book';
     section.innerHTML='<p class="eyebrow">LOOK INSIDE</p><h2>Inside the book</h2><p>A small preview of the interior. Tap any page to view it larger.</p><div class="eb-inside-grid"></div>';
     const grid=section.querySelector('.eb-inside-grid');
     images.forEach((image,index)=>{
@@ -242,6 +243,8 @@
 
   function fetchJSON(url,fallback){return fetch(url,{cache:'no-store'}).then(r=>r.ok?r.json():fallback).catch(()=>fallback);}
   function init(){
+    // Avoid five JSON requests and gallery work on pages with no book browsing UI.
+    if(!document.querySelector('#latest-grid,.collection-book,.detail-main,[data-book-id].home-book-card'))return;
     injectStyles();
     Promise.all([fetchJSON(catalogUrl,[]),fetchJSON(previewManifestUrl,{}),fetchJSON(previewBatchUrl,{}),fetchJSON(littleMoneyManifestUrl,{}),fetchJSON(missingPreviewManifestUrl,{})]).then(([entries,manifest,batchManifest,littleMoneyManifest,missingPreviewManifest])=>{
       if(!Array.isArray(entries))return;
