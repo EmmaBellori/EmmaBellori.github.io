@@ -35,6 +35,12 @@ jobs:
       - name: Generate growth guide clusters
         run: python3 scripts/generate_growth_guides.py
 
+      - name: Render book-finder pages, interior galleries and reader journeys
+        run: python3 scripts/improve_reader_journey.py
+
+      - name: Validate generated reader journeys and SEO
+        run: python3 -m unittest discover -s tests -p 'test_reader_journey.py' -v
+
       - name: Add Free Activity Club privacy information
         run: python3 scripts/add_activity_club_privacy.py
 

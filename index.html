@@ -35,6 +35,7 @@
   <link rel="stylesheet" href="style.css">
   <link rel="stylesheet" href="home-v12.css?v=1">
   <link rel="stylesheet" href="homepage-refinements.css?v=2">
+  <link rel="stylesheet" href="reader-journey.css?v=1">
   <script type="application/ld+json">{"@context":"https://schema.org","@graph":[{"@type":"WebSite","@id":"https://emmabellori.github.io/#website","url":"https://emmabellori.github.io/","name":"Emma Bellori Books","alternateName":["Emma Bellori","emmabellori.github.io"],"description":"Illustrated children's books, stories, coloring, learning activities and free family guides for ages 3–10.","inLanguage":"en","publisher":{"@id":"https://emmabellori.github.io/#organization"}},{"@type":"Organization","@id":"https://emmabellori.github.io/#organization","name":"Emma Bellori Books","url":"https://emmabellori.github.io/","email":"emmabelloribooks@outlook.com","logo":{"@type":"ImageObject","@id":"https://emmabellori.github.io/#logo","url":"https://emmabellori.github.io/images/emma-bellori-logo.webp","contentUrl":"https://emmabellori.github.io/images/emma-bellori-logo.webp","width":1254,"height":1254,"caption":"Emma Bellori Books"},"sameAs":["https://www.amazon.com/author/emmabellori","https://emma-bellori.author-pages.com/"]},{"@type":"Person","@id":"https://emmabellori.github.io/#author","name":"Emma Bellori","url":"https://emmabellori.github.io/","sameAs":["https://www.amazon.com/author/emmabellori","https://emma-bellori.author-pages.com/"],"worksFor":{"@id":"https://emmabellori.github.io/#organization"}},{"@type":"ImageObject","@id":"https://emmabellori.github.io/#search-image","url":"https://emmabellori.github.io/images/play.jpg","contentUrl":"https://emmabellori.github.io/images/play.jpg","width":1000,"height":1000,"caption":"Nobody Wants to Play With Me! by Emma Bellori"},{"@type":"WebPage","@id":"https://emmabellori.github.io/#webpage","url":"https://emmabellori.github.io/","name":"Emma Bellori Books | Illustrated Children's Books & Free Guides","description":"Explore Emma Bellori's illustrated books for ages 3–10: heartfelt stories, Christmas adventures, coloring books, learning activities and free family guides.","isPartOf":{"@id":"https://emmabellori.github.io/#website"},"about":[{"@id":"https://emmabellori.github.io/#organization"},{"@id":"https://emmabellori.github.io/#author"}],"primaryImageOfPage":{"@id":"https://emmabellori.github.io/#search-image"},"inLanguage":"en"}]}</script>
 </head>
 <body class="home-v12">
@@ -46,11 +47,13 @@
       <span class="brand-label">Emma Bellori Books<span>BOOKS FOR CURIOUS MINDS</span></span>
     </a>
     <nav aria-label="Main navigation">
+      <a href="find-a-book.html">Find a book</a>
       <a href="#start-here">Start here</a>
       <a href="#latest">Latest releases</a>
       <a href="#books">Collections</a>
       <a href="#parenting-guides">Free guides</a>
       <a href="printables.html">Printables</a>
+      <a href="about.html">About</a>
     </nav>
   </header>
 
@@ -58,8 +61,8 @@
     <div class="home-search-inner">
       <label class="home-search-field" for="global-search">
         <span class="home-search-icon" aria-hidden="true">⌕</span>
-        <span class="sr-only">Search books by title or collection</span>
-        <input id="global-search" type="search" placeholder="Search a book title or collection…" autocomplete="off" aria-autocomplete="list" aria-controls="search-suggestions" aria-expanded="false">
+        <span class="sr-only">Search books by title, topic, feeling, sport or age</span>
+        <input id="global-search" type="search" placeholder="Search books by feeling, topic or title…" autocomplete="off" aria-autocomplete="list" aria-controls="search-suggestions" aria-expanded="false">
       </label>
       <div id="search-suggestions" class="home-search-suggestions" role="listbox" hidden></div>
     </div>
@@ -70,9 +73,9 @@
       <div class="hero-copy">
         <p class="eyebrow">STORIES · LEARNING · CREATIVITY</p>
         <h1>Little Books.<br><em>Big Discoveries.</em></h1>
-        <p>Thoughtfully created children's stories, playful learning adventures, and relaxing coloring books for curious minds of all ages.</p>
+        <p>Thoughtful stories, playful adventures, and creative books for children ages 3–10. Find a book for your child's next little milestone.</p>
         <div class="home-hero-actions">
-          <a class="button home-amazon-primary" href="https://www.amazon.com/author/emmabellori" rel="noopener noreferrer" target="_blank">Browse books on Amazon ↗</a>
+          <a class="button home-amazon-primary" href="find-a-book.html" data-placement="homepage_hero_finder">Find a book for your child →</a>
           <a class="button button-secondary" href="printables.html">Explore printable play kits →</a>
         </div>
       </div>
@@ -80,6 +83,15 @@
         <img alt="" class="hero-cover hero-cover-one" loading="lazy" decoding="async" width="400" height="600" src="images/mistakes.jpg">
         <img alt="" class="hero-cover hero-cover-two" loading="eager" decoding="async" fetchpriority="high" width="400" height="600" src="images/play.jpg">
         <img alt="" class="hero-cover hero-cover-three" loading="lazy" decoding="async" width="400" height="600" src="images/mad.jpg">
+      </div>
+    </section>
+
+    <section class="section eb-discovery" aria-labelledby="eb-discovery-title">
+      <div class="home-section-heading"><div><p class="eyebrow">A BETTER WAY TO CHOOSE</p><h2 id="eb-discovery-title">Start with what your child needs today</h2><p>No need to know the title first. Explore stories and activities by feeling, curiosity or age.</p></div></div>
+      <div class="eb-discovery-grid">
+        <a class="eb-discovery-card" href="find-a-book.html?topic=feelings" data-placement="homepage_discovery_feelings"><span class="eb-discovery-icon" aria-hidden="true">♡</span><span class="eb-discovery-name">By feeling</span><span>Confidence, friendship, emotions and bedtime</span><strong>Explore stories →</strong></a>
+        <a class="eb-discovery-card" href="find-a-book.html?topic=discovery" data-placement="homepage_discovery_interests"><span class="eb-discovery-icon" aria-hidden="true">✧</span><span class="eb-discovery-name">By interest</span><span>Sports, nature, imagination and creativity</span><strong>Explore adventures →</strong></a>
+        <a class="eb-discovery-card" href="find-a-book.html?age=5-8" data-placement="homepage_discovery_age"><span class="eb-discovery-icon" aria-hidden="true">☆</span><span class="eb-discovery-name">By age</span><span>Choose a book to fit your child's stage</span><strong>Explore age ranges →</strong></a>
       </div>
     </section>
 
@@ -107,13 +119,12 @@
       <div id="latest-grid" class="home-book-grid" aria-live="polite"></div>
     </section>
 
-    <span id="coming-soon" class="catalog-anchor" aria-hidden="true"></span>
     <section class="section home-collections-section" id="books">
       <div class="home-section-heading">
         <div>
           <p class="eyebrow">THE EMMA BELLORI BOOKSHELF</p>
-          <h2>Explore by collection</h2>
-          <p>Each collection shows a short preview. Open its dedicated page to browse the complete series.</p>
+          <h2>Explore books you can read now</h2>
+          <p>Browse collections with books already published. Open any collection to see all current and upcoming titles.</p>
         </div>
       </div>
       <div class="home-vote-intro">
@@ -122,6 +133,11 @@
       </div>
       <div id="series-catalog" class="home-series-catalog"></div>
       <p class="empty" hidden id="empty">The book catalog is temporarily unavailable. Please refresh the page.</p>
+    </section>
+
+    <section class="section eb-coming-soon-section" id="coming-soon" aria-labelledby="upcoming-home-heading">
+      <div class="home-section-heading"><div><p class="eyebrow">WHAT'S NEXT</p><h2 id="upcoming-home-heading">Help shape future adventures</h2><p>Explore upcoming series and choose the book you would love to see next. Available books always come first in our bookshelf.</p></div></div>
+      <div id="upcoming-series-catalog" class="home-series-catalog" aria-live="polite"></div>
     </section>
 
     <section class="section home-guides-section" id="parenting-guides">
@@ -167,8 +183,8 @@
         <h2>Meet Emma Bellori</h2>
         <p>Stories, learning adventures and creative books designed to spark curiosity, confidence and imagination.</p>
       </div>
+      <a class="home-heading-link" href="about.html">Meet the author and our approach →</a>
       <a class="home-heading-link" href="https://www.amazon.com/author/emmabellori" rel="noopener noreferrer" target="_blank">Amazon Author Page ↗</a>
-      <a class="home-heading-link" href="https://emma-bellori.author-pages.com/" rel="noopener noreferrer" target="_blank">BookBub Author Page ↗</a>
     </section>
 
     <section class="home-amazon-band" id="reader-review">
@@ -197,10 +213,11 @@
   </dialog>
   <div id="vote-toast" class="vote-toast" role="status" aria-live="polite" hidden></div>
 
-  <footer><span>© <span id="year"></span> Emma Bellori Books</span><span>Independent author website · <a href="privacy.html">Privacy & analytics</a> · <a href="printables.html">Printable kits</a> · <a href="mailto:emmabelloribooks@outlook.com">Contact</a> · <a href="https://www.amazon.com/author/emmabellori" rel="noopener noreferrer" target="_blank">Amazon Author Page</a> · <a href="https://emma-bellori.author-pages.com/" rel="noopener noreferrer" target="_blank">BookBub</a></span></footer>
+  <footer><span>© <span id="year"></span> Emma Bellori Books</span><span>Independent author website · <a href="about.html">About</a> · <a href="find-a-book.html">Find a book</a> · <a href="free-activity.html">Free activity</a> · <a href="privacy.html">Privacy & analytics</a> · <a href="printables.html">Printable kits</a> · <a href="mailto:emmabelloribooks@outlook.com">Contact</a> · <a href="https://www.amazon.com/author/emmabellori" rel="noopener noreferrer" target="_blank">Amazon Author Page</a> · <a href="https://emma-bellori.author-pages.com/" rel="noopener noreferrer" target="_blank">BookBub</a></span></footer>
   <script defer src="app.js?v=13"></script>
   <script defer src="growth.js?v=2"></script>
   <script defer src="homepage-refinements.js?v=2"></script>
+  <script defer src="reader-journey.js?v=1"></script>
   <script defer src="https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit"></script>
   <script defer src="analytics-consent.js"></script>
 </body>

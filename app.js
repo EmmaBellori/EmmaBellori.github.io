@@ -23,6 +23,7 @@ const LITTLE_MONEY_BOOKS=[
 const PUBLISHED_DETAIL_OVERRIDES=Object.freeze({'door-teapot':'the-door-inside-the-teapot'});
 const latestGrid=document.querySelector('#latest-grid');
 const seriesCatalog=document.querySelector('#series-catalog');
+const upcomingSeriesCatalog=document.querySelector('#upcoming-series-catalog');
 const empty=document.querySelector('#empty');
 const searchInput=document.querySelector('#global-search');
 const suggestionBox=document.querySelector('#search-suggestions');
@@ -99,21 +100,23 @@ function renderCollections(){
  const order=currentSeriesOrder();
  const groups=order.map(([name,description],index)=>{
   const items=books.filter(b=>b.series===name);
-  const publishedItems=items.filter(b=>b.status==='published').sort((a,b)=>b._catalogIndex-a._catalogIndex);
-  const upcomingItems=items.filter(b=>b.status==='coming_soon').sort((a,b)=>a._catalogIndex-b._catalogIndex);
-  const preview=collectionPreview(publishedItems,upcomingItems);
-  return {name,description,index,items,publishedCount:publishedItems.length,preview};
- }).filter(g=>g.items.length).sort((a,b)=>{
-  const aHas=a.publishedCount>0,bHas=b.publishedCount>0;
-  if(aHas!==bHas)return aHas?-1:1;
-  if(aHas&&bHas&&a.publishedCount!==b.publishedCount)return b.publishedCount-a.publishedCount;
-  return a.index-b.index;
- });
- seriesCatalog.innerHTML=groups.map(g=>{
+  const available=items.filter(b=>b.status==='published').sort((a,b)=>b._catalogIndex-a._catalogIndex);
+  const pending=items.filter(b=>b.status==='coming_soon').sort((a,b)=>a._catalogIndex-b._catalogIndex);
+  return {name,description,index,items,available,pending};
+ }).filter(g=>g.items.length);
+ const makeSection=(g,items,upcoming=false)=>{
   const slug=g.items[0].seriesSlug;
-  return '<section class="home-series-preview" data-series-name="'+escapeHTML(g.name)+'"><div class="home-series-heading"><div class="home-series-copy"><p class="eyebrow">EMMA BELLORI COLLECTION</p><h3>'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><div class="home-series-actions"><span class="home-series-count">'+g.items.length+' '+(g.items.length===1?'book':'books')+'</span><a class="home-explore-collection" href="collections/'+escapeHTML(slug)+'.html" aria-label="Explore '+escapeHTML(g.name)+' collection">Explore collection →</a></div></div><div class="home-book-grid">'+g.preview.map(homeCard).join('')+'</div></section>';
- }).join('');
- empty.hidden=groups.length>0;
+  const heading=upcoming?'COMING SOON SERIES':'EMMA BELLORI COLLECTION';
+  const label=upcoming?g.pending.length+' planned':g.available.length+' available';
+  return '<section class="home-series-preview'+(upcoming?' eb-series-upcoming':'')+'" data-series-name="'+escapeHTML(g.name)+'"><div class="home-series-heading"><div class="home-series-copy"><p class="eyebrow">'+heading+'</p><h3>'+escapeHTML(g.name)+'</h3><p>'+escapeHTML(g.description)+'</p></div><div class="home-series-actions"><span class="home-series-count">'+label+'</span><a class="home-explore-collection" href="collections/'+escapeHTML(slug)+'.html">Explore collection →</a></div></div><div class="home-book-grid">'+items.map(homeCard).join('')+'</div></section>';
+ };
+ const availableGroups=groups.filter(g=>g.available.length).sort((a,b)=>b.available.length-a.available.length||a.index-b.index);
+ seriesCatalog.innerHTML=availableGroups.map(g=>makeSection(g,rotatingPreview(g.available,Math.min(3,g.available.length)))).join('');
+ if(upcomingSeriesCatalog){
+  const pendingGroups=groups.filter(g=>g.pending.length).sort((a,b)=>b.available.length-a.available.length||a.index-b.index);
+  upcomingSeriesCatalog.innerHTML=pendingGroups.map(g=>makeSection(g,rotatingPreview(g.pending,1),true)).join('');
+ }
+ empty.hidden=availableGroups.length>0;
 }
 
 // Sticky free search with suggestions that update as the user types.
@@ -122,8 +125,10 @@ function searchDestination(b){return detailHref(b);}
 function renderSuggestions(){
  const q=normalize(searchInput.value);
  if(!q||!books.length){closeSuggestions();return;}
- const matches=books.filter(b=>normalize([b.title,b.series,b.theme,b.description].join(' ')).includes(q)).slice(0,8);
- if(!matches.length){suggestionBox.innerHTML='<div class="home-search-suggestion" role="option" aria-disabled="true"><span><strong>No matching titles</strong><small>Try a shorter title or collection name.</small></span></div>';suggestionBox.hidden=false;searchInput.setAttribute('aria-expanded','true');return;}
+ const searchAge={'Big Feelings, Real Problems':'4-8','Little Christmas Wonders':'4-8','Tiny Doors, Big Adventures':'6-9','Small Town, Many Hands':'5-8','Little Steps, Big Discoveries':'3-6','Junior Detectives':'6-9','My First Sports Adventures':'5-8','My First Earth Adventures':'5-8','Kawaii Coloring & Activities':'4-10','Little Money, Smart Choices':'5-8'};
+ const tags={'Big Feelings, Real Problems':'friendship feelings emotions mistakes bedtime confidence losing angry sad','My First Sports Adventures':'sports hockey soccer football basketball teamwork play','Junior Detectives':'nature science insects bugs outdoors curiosity','Kawaii Coloring & Activities':'coloring colors animals crafts art','Little Christmas Wonders':'christmas holiday winter kindness'};
+ const matches=books.filter(b=>normalize([b.title,b.series,b.theme,b.description,b.seriesDescription,searchAge[b.series],tags[b.series]].join(' ')).includes(q)).sort((a,b)=>(b.status==='published')-(a.status==='published')).slice(0,8);
+ if(!matches.length){suggestionBox.innerHTML='<div class="home-search-suggestion" role="option" aria-disabled="true"><span><strong>No matching titles</strong><small>Try a topic such as friendship, sports or coloring.</small></span></div>';suggestionBox.hidden=false;searchInput.setAttribute('aria-expanded','true');return;}
  suggestionBox.innerHTML=matches.map(b=>'<a class="home-search-suggestion" role="option" href="'+searchDestination(b)+'" data-search-book-id="'+escapeHTML(b.id)+'"><span><strong>'+escapeHTML(b.title)+'</strong><small>'+escapeHTML(b.series)+'</small></span><span class="home-search-status">'+(b.status==='published'?'Available now':'Coming Soon')+'</span></a>').join('');
  suggestionBox.hidden=false;searchInput.setAttribute('aria-expanded','true');
 }
