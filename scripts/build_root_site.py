@@ -351,6 +351,63 @@ def prerender_collection_counts() -> None:
     print(f"Synced collection counters for {len(counts)} series from catalog.json")
 
 
+def sync_published_sitemap() -> None:
+    """Include every live catalog landing page in the deployed root sitemap."""
+    catalog_path = DEST / "catalog.json"
+    sitemap_path = DEST / "sitemap.xml"
+    if not catalog_path.is_file() or not sitemap_path.is_file():
+        return
+    books = json.loads(catalog_path.read_text(encoding="utf-8"))
+    if not isinstance(books, list):
+        raise ValueError("catalog.json must be an array")
+    ns = "http://www.sitemaps.org/schemas/sitemap/0.9"
+    ET.register_namespace("", ns)
+    root = ET.parse(sitemap_path).getroot()
+    entries = {}
+    for url_el in root.findall(f"{{{ns}}}url"):
+        loc = url_el.find(f"{{{ns}}}loc")
+        if loc is not None and loc.text:
+            entries[loc.text.strip()] = url_el
+    changed = False
+
+    def ensure_url(relative: str, lastmod: str = "") -> None:
+        nonlocal changed
+        url = NEW_ROOT + relative
+        if url not in entries:
+            url_el = ET.SubElement(root, f"{{{ns}}}url")
+            ET.SubElement(url_el, f"{{{ns}}}loc").text = url
+            entries[url] = url_el
+            changed = True
+        if lastmod and len(lastmod) == 10 and lastmod[4] == "-" and lastmod[7] == "-":
+            lastmod_el = entries[url].find(f"{{{ns}}}lastmod")
+            if lastmod_el is None:
+                lastmod_el = ET.SubElement(entries[url], f"{{{ns}}}lastmod")
+            if not lastmod_el.text or lastmod_el.text < lastmod:
+                lastmod_el.text = lastmod
+                changed = True
+
+    for book in books:
+        if not isinstance(book, dict) or book.get("status") != "published":
+            continue
+        book_id = str(book.get("id") or "").strip()
+        if not book_id:
+            continue
+        page_slug = PUBLISHED_DETAIL_OVERRIDES.get(book_id, book_id)
+        page_path = f"books/{page_slug}.html"
+        if not (DEST / page_path).is_file():
+            raise ValueError(f"Published catalog book missing SEO detail page: {page_path}")
+        date = str(book.get("publishedOn") or "")
+        ensure_url(page_path, date)
+        series_slug = str(book.get("seriesSlug") or "")
+        collection_path = f"collections/{series_slug}.html"
+        if series_slug and (DEST / collection_path).is_file() and date:
+            ensure_url(collection_path, date)
+
+    if changed:
+        ET.ElementTree(root).write(sitemap_path, encoding="utf-8", xml_declaration=True)
+        print(f"Synchronized {len(entries)} sitemap URLs from published catalog")
+
+
 def redirect_document(target: str) -> str:
     escaped_target = html.escape(target, quote=True)
     js_target = json.dumps(target)
@@ -430,6 +487,7 @@ def main() -> None:
     rewrite_absolute_urls()
     prerender_homepage_catalog()
     prerender_collection_counts()
+    sync_published_sitemap()
     generate_legacy_redirects(redirects)
     generate_404()
     ensure_root_metadata_files()
