@@ -54,7 +54,11 @@ class StoreDiscoveryTests(unittest.TestCase):
 
     def test_context_tracking_requires_consent_aware_adapter(self):
         source = (ROOT / "conversion-tracking.js").read_text(encoding="utf-8")
-        self.assertIn("window.ebTrack('payhip_click_context'", source)
+        # One canonical event name per outbound destination; the same
+        # payload still preserves placement, source page and UTM attribution.
+        self.assertIn("window.ebTrack('payhip_click'", source)
+        self.assertIn("window.ebTrack('amazon_click'", source)
+        self.assertNotIn("window.ebTrack('amazon_click_context'", source)
         self.assertIn("typeof window.ebTrack!=='function'", source)
         self.assertIn("utm_source:", source)
         self.assertIn("utm_content:", source)
