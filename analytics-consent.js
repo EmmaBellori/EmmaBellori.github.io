@@ -201,8 +201,10 @@
   else createUI();
 })();
 
-/* Load the independent interior-preview module on every page that already uses the shared site script. */
+/* Load interior previews only where books/cards actually appear. Guides and
+   informational pages do not need a separate preview script or its JSON requests. */
 (function(){
+  if(!document.querySelector('#latest-grid,.collection-book,.detail-main,.home-book-card'))return;
   const current=document.currentScript;
   const src=current&&current.src?new URL('book-preview.js',current.src).href:new URL('book-preview.js',location.href).href;
   if(document.querySelector('script[data-eb-book-preview]'))return;
@@ -213,8 +215,9 @@
   document.head.appendChild(script);
 })();
 
-/* Normalize age/status presentation on every book detail page. */
+/* Age/status decoration is needed only on book/catalog surfaces. */
 (function(){
+  if(!document.querySelector('#latest-grid,.collection-book,.detail-main,.home-book-card'))return;
   const current=document.currentScript;
   const src=current&&current.src?new URL('detail-page-meta.js',current.src).href:new URL('detail-page-meta.js',location.href).href;
   if(document.querySelector('script[data-eb-detail-meta]'))return;
