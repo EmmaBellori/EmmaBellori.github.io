@@ -1,0 +1,60 @@
+name: Reader journey & SEO checks
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+    paths:
+      - "scripts/improve_reader_journey.py"
+      - "reader-journey.js"
+      - "reader-journey.css"
+      - "find-a-book.html"
+      - "about.html"
+      - "free-activity.html"
+      - "activity-club.js"
+      - "app.js"
+      - "scripts/build_root_site.py"
+      - "index.html"
+      - "tests/test_reader_journey.py"
+      - ".github/workflows/reader-journey-ci.yml"
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  reader-journey:
+    runs-on: ubuntu-latest
+    timeout-minutes: 12
+    steps:
+      - name: Checkout repository
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Verify changed JavaScript syntax
+        run: |
+          node --check app.js
+          node --check reader-journey.js
+          node --check activity-club.js
+          node --check conversion-tracking.js
+          node --check analytics-consent.js
+          node --check book-preview.js
+
+      - name: Build exact root Pages output
+        run: |
+          python3 scripts/build_root_site.py
+          python3 scripts/generate_growth_guides.py
+          python3 scripts/improve_reader_journey.py
+          python3 scripts/add_activity_club_privacy.py
+          python3 scripts/inject_conversion_tracking.py
+          python3 scripts/inject_activity_club.py
+          python3 scripts/harden_site.py
+
+      - name: Validate all seven reader improvements and links
+        run: python3 -m unittest discover -s tests -p 'test_reader_journey.py' -v
+
+      - name: Verify existing publication + collection stability
+        run: |
+          python3 -m unittest discover -s tests -p 'test_collection_stats.py' -v
+          python3 -m unittest discover -s tests -p 'test_publication_sync.py' -v
