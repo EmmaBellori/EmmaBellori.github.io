@@ -53,7 +53,7 @@ class ReaderJourneyTests(unittest.TestCase):
                 self.assertIn('data-placement="book_final_amazon"', markup)
                 self.assertIn('href="../free-activity.html"', markup)
                 self.assertIn(book["amazonUrl"].replace("&", "&amp;"), markup)
-                self.assertIn('href="../favicon.svg"', markup)
+                self.assertIn('href="../favicon.png"', markup)
                 self.assertIn('href="../reader-journey.css?v=1"', markup)
                 self.assertNotIn("Only $", markup)
 
@@ -88,7 +88,7 @@ class ReaderJourneyTests(unittest.TestCase):
                 text = path.read_text(encoding="utf-8")
                 self.assertIn('data-eb-related-books="true"', text)
                 self.assertIn('href="../free-activity.html"', text)
-                self.assertIn('href="../favicon.svg"', text)
+                self.assertIn('href="../favicon.png"', text)
 
     def test_new_pages_in_sitemap_and_have_canonicals(self):
         ns = "http://www.sitemaps.org/schemas/sitemap/0.9"
@@ -120,8 +120,17 @@ class ReaderJourneyTests(unittest.TestCase):
         self.assertIn('prefers-reduced-motion', css)
         self.assertIn('@media print', css)
         self.assertIn(':focus-visible', css)
-        self.assertTrue((SITE / "favicon.svg").is_file())
-        self.assertLess((SITE / "favicon.svg").stat().st_size, 10240)
+        self.assertTrue((SITE / "favicon.png").is_file())
+        self.assertFalse((SITE / "favicon.svg").exists())
+        for page in SITE.rglob("*.html"):
+            # Deployed legacy redirects are intentionally excluded from body
+            # inspection; the original PNG remains the only active icon.
+            markup = page.read_text(encoding="utf-8")
+            self.assertNotIn("favicon.svg", markup, page)
+        for path in ("index.html", "about.html", "find-a-book.html", "free-activity.html"):
+            markup = self.page(path)
+            self.assertIn("favicon.png", markup)
+            self.assertNotIn("favicon.svg", markup)
 
 
 if __name__ == "__main__":
