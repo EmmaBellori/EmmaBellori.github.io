@@ -136,6 +136,7 @@ def _published_card(book: dict) -> str:
     amazon_url = _esc(book.get("amazonUrl"))
     book_id = _esc(book.get("id"))
     theme_html = f'<p class="home-book-theme">{_esc(theme)}</p>' if theme else ""
+    format_html = f'<span>{_esc(_format_label(book.get("format")))}</span>' if book.get("format") else ""
     amazon_html = ""
     if amazon_url:
         amazon_html = (
@@ -149,7 +150,7 @@ def _published_card(book: dict) -> str:
         f'<a class="home-cover-wrap" href="{_esc(detail)}" aria-label="Discover {title}">'
         f'{_cover_html(book)}</a>'
         f'<div class="home-card-meta"><span>Available now</span>'
-        f'<span>{_esc(_format_label(book.get("format")))}</span></div>'
+        f'{format_html}</div>'
         f'<h3><a href="{_esc(detail)}">{title}</a></h3>{theme_html}'
         f'<div class="home-card-actions">{amazon_html}'
         f'<a class="home-card-details" href="{_esc(detail)}">Book details →</a></div>'
@@ -210,9 +211,30 @@ def prerender_homepage_catalog() -> None:
     start_here = [
         book for book in published if book.get("series") == "Big Feelings, Real Problems"
     ][:3]
-    latest = sorted(
-        published, key=lambda book: book.get("_catalogIndex", 0), reverse=True
-    )[:6]
+    # Match the Latest releases editorial module: dated releases first,
+    # then the previously featured titles, then other published entries.
+    eligible = [book for book in published if book["id"] not in {
+        "mad", "mistakes", "i-cant-sleep-without-you"
+    }]
+    dated = sorted(
+        [book for book in eligible if isinstance(book.get("publishedOn"), str)
+         and len(book["publishedOn"]) == 10
+         and book["publishedOn"][4:5] == "-" and book["publishedOn"][7:8] == "-"],
+        key=lambda book: (book["publishedOn"], book["_catalogIndex"]), reverse=True
+    )
+    latest = dated[:3]
+    for old_id in ("little-star-missed-christmas", "gingerbread-house", "cute-animals-bold-easy"):
+        if len(latest) >= 3:
+            break
+        book = next((item for item in eligible if item["id"] == old_id
+                     and item["id"] not in {b["id"] for b in latest}), None)
+        if book:
+            latest.append(book)
+    for book in sorted(eligible, key=lambda item: item["_catalogIndex"], reverse=True):
+        if len(latest) >= 3:
+            break
+        if book["id"] not in {item["id"] for item in latest}:
+            latest.append(book)
 
     # Keep first-seen collection order; show published titles first in each preview.
     groups: dict[str, list[dict]] = {}
