@@ -30,6 +30,7 @@ on:
       - "scripts/release_email_campaign.py"
       - "growth/release-email-state.json"
       - "tests/test_release_email.py"
+      - "tests/test_release_email_branch_safety.py"
       - ".github/workflows/new-release-email.yml"
 
 permissions:
@@ -49,6 +50,8 @@ jobs:
           python-version: '3.12'
       - name: Run deterministic unit tests
         run: python -m unittest discover -s tests -p 'test_release_email.py' -v
+      - name: Verify protected-main newsletter ledger isolation
+        run: python -m unittest discover -s tests -p 'test_release_email_branch_safety.py' -v
       - name: Produce a safe two-book layout preview
         run: python scripts/release_email_campaign.py --mode preview --preview-ids reindeer,cute-animals-bold-easy
       - name: Upload example newsletter for visual review
