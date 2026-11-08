@@ -1,0 +1,46 @@
+name: Static site security audit
+
+on:
+  pull_request:
+  push:
+    branches: [main]
+  schedule:
+    - cron: '35 5 * * 1'
+  workflow_dispatch:
+
+permissions:
+  contents: read
+
+jobs:
+  security:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - name: Checkout without persisted credentials
+        uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
+        with:
+          persist-credentials: false
+
+      - name: Reject credential-like files, tokens and insecure URLs
+        run: python3 scripts/harden_site.py --scan-only
+
+      - name: Build site without deployment credentials
+        run: python3 scripts/build_root_site.py
+
+      - name: Check rendered HTML and add conservative security directives
+        run: python3 scripts/harden_site.py
+
+      - name: Verify generated security metadata
+        run: |
+          python3 - <<'PY'
+          from pathlib import Path
+          root = Path('_site')
+          pages = [root / 'index.html', root / 'books/snowman.html',
+                   root / 'books/my-first-ice-hockey-adventure.html']
+          for page in pages:
+              html = page.read_text(encoding='utf-8')
+              assert 'http-equiv="Content-Security-Policy"' in html, page
+              assert "object-src 'none'; base-uri 'self'; upgrade-insecure-requests" in html, page
+              assert 'name="referrer" content="strict-origin-when-cross-origin"' in html, page
+          print('Security metadata confirmed in', len(pages), 'key pages.')
+          PY
