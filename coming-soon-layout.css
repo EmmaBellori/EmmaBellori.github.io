@@ -1,0 +1,316 @@
+/* Coming Soon: dedicated responsive collection cards.
+   Deliberately isolated from the larger, editorial published-books rows.
+   Parent styles include global !important grid rules from merchandising CSS. */
+.home-v12 #coming-soon{
+  background:#fcf8f1;
+  padding-top:48px!important;
+  padding-bottom:56px!important;
+}
+.home-v12 #coming-soon > .home-section-heading,
+.home-v12 #coming-soon > #upcoming-series-catalog{
+  width:min(1060px,100%);
+  max-width:1060px;
+  margin-left:auto;
+  margin-right:auto;
+}
+.home-v12 #coming-soon > .home-section-heading{
+  margin-bottom:26px;
+}
+.home-v12 #coming-soon .eb-coming-hint{
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  max-width:100%;
+  margin:14px 0 0!important;
+  padding:8px 13px;
+  border-radius:12px;
+  background:#f0eae1;
+  color:#44605b;
+  font-size:12px;
+  line-height:1.5;
+}
+.home-v12 #coming-soon #upcoming-series-catalog.home-series-catalog{
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  align-items:stretch;
+  gap:20px;
+}
+.home-v12 #coming-soon .home-series-preview.eb-series-upcoming{
+  display:flex;
+  flex-direction:column;
+  gap:17px;
+  min-width:0;
+  margin:0;
+  padding:24px!important;
+  border:1px solid #e5ded4;
+  border-radius:20px;
+  background:#fffdfa;
+  box-shadow:0 5px 20px rgba(38,61,64,.045);
+}
+.home-v12 #coming-soon .home-series-preview.eb-series-upcoming:first-child{
+  border-top:1px solid #e5ded4;
+  padding-top:24px!important;
+}
+.home-v12 #coming-soon .home-series-preview.eb-series-upcoming:nth-child(even)::before{
+  content:none!important;
+}
+.home-v12 #coming-soon .home-series-heading{
+  display:flex!important;
+  flex-direction:column!important;
+  align-items:stretch!important;
+  gap:15px!important;
+  grid-template-columns:none!important;
+  min-width:0;
+  margin:0!important;
+}
+.home-v12 #coming-soon .eb-series-cover-stack{
+  display:none!important;
+}
+.home-v12 #coming-soon .home-series-copy{
+  display:block;
+  width:100%;
+  min-width:0;
+}
+.home-v12 #coming-soon .home-series-copy .eyebrow{
+  display:block;
+  margin:0 0 8px;
+  font-size:10px;
+  font-weight:800;
+  line-height:1.3;
+  letter-spacing:.13em;
+  color:#996b5a;
+  white-space:normal;
+}
+.home-v12 #coming-soon .home-series-copy h3{
+  margin:0!important;
+  font:normal clamp(23px,2.35vw,29px)/1.18 Georgia,serif!important;
+  letter-spacing:-.018em;
+  overflow-wrap:normal;
+  word-break:normal;
+  hyphens:none;
+}
+.home-v12 #coming-soon .home-series-copy p:not(.eyebrow){
+  max-width:56ch;
+  margin:9px 0 0;
+  color:#566762;
+  font-size:13px;
+  line-height:1.55;
+}
+.home-v12 #coming-soon .home-series-actions{
+  display:flex!important;
+  flex-wrap:wrap;
+  align-items:center;
+  justify-content:flex-start!important;
+  gap:9px;
+  width:100%;
+  grid-column:auto!important;
+  min-width:0;
+}
+.home-v12 #coming-soon .home-series-count{
+  min-height:35px;
+  padding:7px 12px;
+  font-size:11px;
+}
+.home-v12 #coming-soon .home-explore-collection{
+  width:auto!important;
+  min-height:38px;
+  padding:8px 15px;
+  font-size:12px;
+  text-align:center;
+  white-space:normal;
+  line-height:1.25;
+}
+.home-v12 #coming-soon .home-book-grid{
+  display:block!important;
+  width:100%;
+  min-width:0;
+  margin-top:auto;
+}
+.home-v12 #coming-soon .home-book-card{
+  display:grid!important;
+  grid-template-columns:minmax(0,170px) minmax(0,1fr);
+  grid-template-rows:auto 1fr auto;
+  align-items:start;
+  gap:8px 16px;
+  width:100%;
+  max-width:none!important;
+  min-width:0;
+  min-height:260px;
+  padding:13px!important;
+  border:1px solid #e9e1d6;
+  border-radius:15px;
+  background:#faf6ef;
+  box-shadow:none;
+}
+.home-v12 #coming-soon .home-book-card > .home-cover-wrap,
+.home-v12 #coming-soon .home-book-card > .eb-cover-carousel{
+  grid-column:1!important;
+  grid-row:1/4!important;
+  display:block;
+  width:100%!important;
+  height:230px!important;
+  min-height:0;
+  margin:0!important;
+  align-self:center!important;
+  position:relative;
+}
+.home-v12 #coming-soon .home-book-card > .home-cover-wrap,
+.home-v12 #coming-soon .eb-cover-carousel > .home-cover-wrap{
+  width:100%!important;
+  height:100%!important;
+  padding:8px;
+  background:#fffdf9;
+  border-radius:10px;
+}
+.home-v12 #coming-soon .home-cover-wrap img{
+  width:100%;
+  height:100%;
+  object-fit:contain!important;
+  object-position:center!important;
+}
+.home-v12 #coming-soon .home-book-card > .home-card-status{
+  grid-column:2!important;
+  grid-row:1!important;
+  align-self:start;
+  justify-self:start;
+  margin:0!important;
+  padding:6px 10px;
+  font-size:10px;
+  line-height:1.3;
+}
+.home-v12 #coming-soon .home-book-card > h3{
+  grid-column:2!important;
+  grid-row:2!important;
+  align-self:start;
+  min-width:0;
+  margin:7px 0 0!important;
+  font:normal clamp(20px,2vw,23px)/1.25 Georgia,serif!important;
+  overflow-wrap:break-word;
+  word-break:normal;
+}
+.home-v12 #coming-soon .home-book-card > .home-card-actions{
+  grid-column:2!important;
+  grid-row:3!important;
+  display:flex!important;
+  justify-content:flex-start!important;
+  align-items:flex-end;
+  min-width:0;
+  width:100%;
+  margin:0!important;
+  padding:0;
+  text-align:left!important;
+}
+.home-v12 #coming-soon .home-book-card .home-card-details{
+  flex:0 1 auto!important;
+  display:inline-flex;
+  justify-content:center;
+  align-items:center;
+  width:auto!important;
+  min-width:0!important;
+  max-width:100%!important;
+  min-height:40px;
+  margin:0!important;
+  padding:9px 15px;
+  font-size:12px;
+  overflow-wrap:break-word;
+  white-space:normal;
+}
+.home-v12 #coming-soon .home-vote-button{
+  width:40px;
+  height:40px;
+  top:7px;
+  right:7px;
+}
+.home-v12 #coming-soon .eb-cover-prev{left:5px}
+.home-v12 #coming-soon .eb-cover-next{right:5px}
+.home-v12 #coming-soon a:focus-visible,
+.home-v12 #coming-soon button:focus-visible{
+  outline:3px solid #197d87;
+  outline-offset:3px;
+}
+@media(max-width:980px){
+  .home-v12 #coming-soon #upcoming-series-catalog.home-series-catalog{
+    grid-template-columns:minmax(0,1fr);
+  }
+  .home-v12 #coming-soon .home-series-preview.eb-series-upcoming{
+    padding:22px!important;
+  }
+  .home-v12 #coming-soon .home-book-card{
+    grid-template-columns:minmax(0,220px) minmax(0,1fr);
+  }
+}
+@media(max-width:620px){
+  .home-v12 #coming-soon{
+    padding-top:35px!important;
+    padding-bottom:40px!important;
+  }
+  .home-v12 #coming-soon #upcoming-series-catalog.home-series-catalog{
+    gap:14px;
+  }
+  .home-v12 #coming-soon .home-series-preview.eb-series-upcoming{
+    padding:17px!important;
+    gap:14px;
+  }
+  .home-v12 #coming-soon .home-series-preview.eb-series-upcoming:first-child{
+    padding-top:17px!important;
+  }
+  .home-v12 #coming-soon .home-series-heading{
+    gap:11px!important;
+  }
+  .home-v12 #coming-soon .home-series-copy h3{
+    font-size:25px!important;
+  }
+  .home-v12 #coming-soon .home-series-actions{
+    gap:8px;
+  }
+  .home-v12 #coming-soon .home-book-card{
+    grid-template-columns:minmax(0,145px) minmax(0,1fr);
+    gap:6px 12px;
+    min-height:226px;
+    padding:10px!important;
+  }
+  .home-v12 #coming-soon .home-book-card > .home-cover-wrap,
+  .home-v12 #coming-soon .home-book-card > .eb-cover-carousel{
+    height:205px!important;
+  }
+  .home-v12 #coming-soon .home-book-card > h3{
+    font-size:19px!important;
+  }
+  .home-v12 #coming-soon .home-card-actions .home-card-details{
+    font-size:11px;
+    padding:9px 10px;
+  }
+}
+@media(max-width:410px){
+  .home-v12 #coming-soon .home-book-card{
+    display:flex!important;
+    flex-direction:column;
+    align-items:stretch;
+    gap:10px;
+  }
+  .home-v12 #coming-soon .home-book-card > .home-cover-wrap,
+  .home-v12 #coming-soon .home-book-card > .eb-cover-carousel{
+    width:min(100%,235px)!important;
+    height:235px!important;
+    margin:0 auto!important;
+    align-self:center!important;
+  }
+  .home-v12 #coming-soon .home-book-card > .home-card-status{
+    margin:0!important;
+    align-self:flex-start;
+  }
+  .home-v12 #coming-soon .home-book-card > h3{
+    margin:0!important;
+    font-size:21px!important;
+  }
+  .home-v12 #coming-soon .home-book-card > .home-card-actions{
+    margin-top:4px!important;
+    align-items:stretch;
+  }
+  .home-v12 #coming-soon .home-card-actions .home-card-details{
+    width:100%!important;
+  }
+}
+@media(prefers-reduced-motion:reduce){
+  .home-v12 #coming-soon .home-vote-button:hover{transform:none}
+}

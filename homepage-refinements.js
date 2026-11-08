@@ -68,7 +68,14 @@
  function decorateSeries(){
   document.querySelectorAll('.home-series-preview').forEach(section=>{
    const heading=section.querySelector('.home-series-heading');
-   if(!heading||heading.querySelector('.eb-series-cover-stack'))return;
+   if(!heading)return;
+   // The compact Coming Soon cards already show a real book cover.
+   // Do not prepend decorative cover stacks: they squeeze headings into narrow columns.
+   if(section.closest('#coming-soon')){
+    heading.querySelector('.eb-series-cover-stack')?.remove();
+    return;
+   }
+   if(heading.querySelector('.eb-series-cover-stack'))return;
    const images=Array.from(section.querySelectorAll('.home-book-card .home-cover-wrap img')).slice(0,3);
    if(!images.length)return;
    const stack=document.createElement('div');stack.className='eb-series-cover-stack';stack.setAttribute('aria-hidden','true');
