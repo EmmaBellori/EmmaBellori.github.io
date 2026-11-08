@@ -97,7 +97,7 @@
     if(!amazon&&!payhip)return;
     if(typeof window.ebTrack!=='function')return;
     if(payhip){
-      window.ebTrack('payhip_click_context',{
+      window.ebTrack('payhip_click',{
         product_id:String(anchor.dataset.productId||url.pathname.split('/').pop()||'store').slice(0,100),
         page_type:pageType(),
         source_page:sourcePage(),
@@ -130,6 +130,6 @@
       utm_content:String(attribution.utm_content||'').slice(0,100),
       transport_type:'beacon'
     };
-    window.ebTrack('amazon_click_context',payload);
+    window.ebTrack('amazon_click',payload);
   },true);
 })();
