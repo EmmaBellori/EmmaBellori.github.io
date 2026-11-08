@@ -17,6 +17,7 @@ from __future__ import annotations
 import html
 import json
 import shutil
+import re
 from pathlib import Path
 import xml.etree.ElementTree as ET
 
@@ -278,6 +279,56 @@ def prerender_homepage_catalog() -> None:
         )
 
 
+def prerender_collection_counts() -> None:
+    """Keep each collection's visible counters in sync with catalog.json at deploy.
+
+    The client-side collection-vote.js additionally reconciles the actual book
+    cards after loading the catalog, including newly published or added books.
+    """
+    catalog_path = DEST / "catalog.json"
+    collection_dir = DEST / "collections"
+    if not catalog_path.is_file() or not collection_dir.is_dir():
+        return
+
+    books = json.loads(catalog_path.read_text(encoding="utf-8"))
+    if not isinstance(books, list):
+        raise ValueError("catalog.json must be an array")
+
+    counts: dict[str, dict[str, int]] = {}
+    for book in books:
+        if not isinstance(book, dict):
+            continue
+        slug = book.get("seriesSlug")
+        status = book.get("status")
+        if not isinstance(slug, str) or status not in ("published", "coming_soon"):
+            continue
+        tally = counts.setdefault(slug, {"total": 0, "published": 0, "upcoming": 0})
+        tally["total"] += 1
+        tally["published" if status == "published" else "upcoming"] += 1
+
+    patterns = (
+        (r"(<dt>Total books</dt>\s*<dd>)\d+(</dd>)", "total"),
+        (r"(<dt>Available now</dt>\s*<dd>)\d+(</dd>)", "published"),
+        (r"(<dt>Coming Soon</dt>\s*<dd>)\d+(</dd>)", "upcoming"),
+        (r'(<h2 id="available-heading">Available now <span>)\d+(</span>)', "published"),
+        (r'(<h2 id="upcoming-heading">Coming Soon <span>)\d+(</span>)', "upcoming"),
+    )
+    for page in collection_dir.glob("*.html"):
+        tally = counts.get(page.stem)
+        if not tally:
+            continue
+        markup = page.read_text(encoding="utf-8")
+        updated = markup
+        for pattern, key in patterns:
+            updated = re.sub(
+                pattern, lambda match: match.group(1) + str(tally[key]) + match.group(2),
+                updated, count=1
+            )
+        if updated != markup:
+            page.write_text(updated, encoding="utf-8")
+    print(f"Synced collection counters for {len(counts)} series from catalog.json")
+
+
 def redirect_document(target: str) -> str:
     escaped_target = html.escape(target, quote=True)
     js_target = json.dumps(target)
@@ -356,6 +407,7 @@ def main() -> None:
     copy_source()
     rewrite_absolute_urls()
     prerender_homepage_catalog()
+    prerender_collection_counts()
     generate_legacy_redirects(redirects)
     generate_404()
     ensure_root_metadata_files()

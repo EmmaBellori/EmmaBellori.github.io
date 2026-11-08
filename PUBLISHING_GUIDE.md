@@ -34,6 +34,8 @@ Do not copy these placeholder values into a real listing. Use the real Amazon UR
 
 **Minimum required catalog edits:** `status` and `amazonUrl`. The format, theme, and description are recommended for quality. Keep `id`, `series`, `seriesSlug` and `cover` unchanged to preserve identity and the original cover. Click **Commit changes**.
 
+The collection's **Total books**, **Available now** and **Coming Soon** counters are generated from `catalog.json` at each GitHub Pages deployment and synchronized in the browser along with book cards and voting. **Do not edit these numbers manually** in the collection HTML. A future publication only requires changing the canonical catalog and adding its published book page as described above.
+
 After GitHub Pages refreshes:
 - The title moves automatically into the published section of its collection and displays **View on Amazon**.
 - Homepage search, Start Here/Latest, collection synchronization and related-book links route published titles to their clean `books/...html` page.
