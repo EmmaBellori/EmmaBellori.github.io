@@ -354,8 +354,14 @@ def add_preferred_favicons_and_style() -> int:
         prefix = "../" * (len(relative.parts) - 1)
         if 'href="' + prefix + 'reader-journey.css' not in text and "</head>" in text:
             text = text.replace("</head>", f'<link rel="stylesheet" href="{prefix}reader-journey.css?v=1"></head>', 1)
-        if 'href="' + prefix + 'favicon.svg' not in text and "</head>" in text:
-            text = text.replace("</head>", f'<link rel="icon" href="{prefix}favicon.svg" type="image/svg+xml"></head>', 1)
+        # Keep the original illustrated favicon.png as the only browser icon.
+        # Do not add a competing icon to pages that already reference it.
+        text = re.sub(
+            r'<link\b[^>]*\bhref=["\\'][^"\\']*favicon\.svg["\\'][^>]*>\s*',
+            '', text, flags=re.IGNORECASE
+        )
+        if not re.search(r'<link\b[^>]*\bhref=["\\'][^"\\']*favicon\.png["\\']', text, flags=re.IGNORECASE) and "</head>" in text:
+            text = text.replace("</head>", f'<link rel="icon" href="{prefix}favicon.png" type="image/png"></head>', 1)
         if 'src="' + prefix + 'reader-journey.js' not in text and "</body>" in text:
             text = text.replace("</body>", f'<script defer src="{prefix}reader-journey.js?v=1"></script></body>', 1)
         page.write_text(text, encoding="utf-8")
