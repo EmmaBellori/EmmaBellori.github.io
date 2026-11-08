@@ -195,31 +195,8 @@
     else if(saved!=='no|'+consentVersion)showBanner();
     else syncBackToTopOffset();
   }
-  document.addEventListener('click',function(e){
-    const a=e.target.closest('a[href]');
-    if(!a || !consentGranted || !(loading || enabled) || typeof window.gtag!=='function')return;
-    let u;try{u=new URL(a.href,location.href);}catch(_){return;}
-    const isAmazon=/(^|\.)amazon\.[a-z.]+$/i.test(u.hostname);
-    const isPayhip=u.hostname==='payhip.com'||u.hostname.endsWith('.payhip.com');
-    if(!isAmazon&&!isPayhip)return;
-    if(isPayhip){
-      window.gtag('event','payhip_click',{
-        product_id:(a.dataset.productId||u.pathname.split('/').pop()||'store').slice(0,100),
-        source_page:location.pathname.slice(0,100),
-        placement:(a.dataset.placement||'other').slice(0,100),
-        link_host:u.hostname.slice(0,100),
-        transport_type:'beacon'
-      });
-      return;
-    }
-    const slug=location.pathname.match(/\/books\/([a-z0-9-]+)\.html$/);
-    window.gtag('event','amazon_click',{
-      book_id:a.dataset.bookId|| (slug?slug[1]:'homepage'),
-      link_host:u.hostname,
-      link_type:/\/dp\//.test(u.pathname)?'book_product':'author_page',
-      transport_type:'beacon'
-    });
-  },true);
+  // All Amazon/Payhip clicks are tracked once by conversion-tracking.js.
+
   if(document.readyState==='loading')document.addEventListener('DOMContentLoaded',createUI);
   else createUI();
 })();
