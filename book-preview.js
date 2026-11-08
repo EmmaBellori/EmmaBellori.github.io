@@ -216,9 +216,24 @@
   }
 
   function addDetailGallery(entries){
-    if(document.querySelector('.eb-inside-preview'))return;
     const id=detailBookId();if(!id)return;
     const book=entries.find(item=>item.id===id);const images=normalizedImages(book);if(!images.length)return;
+    // Build-time galleries provide real, crawlable preview links even without JS.
+    // Enhance those links into the existing accessible preview dialog when JS is ready.
+    const staticGallery=document.querySelector('.eb-inside-preview');
+    if(staticGallery){
+      staticGallery.querySelectorAll('[data-eb-preview-index]').forEach(anchor=>{
+        if(anchor.dataset.ebPreviewReady==='true')return;
+        anchor.dataset.ebPreviewReady='true';
+        anchor.addEventListener('click',event=>{
+          event.preventDefault();
+          const index=Number(anchor.dataset.ebPreviewIndex);
+          if(Number.isInteger(index)&&index>=0&&index<images.length)openPreview(book,index);
+          else window.open(anchor.href,'_blank','noopener');
+        });
+      });
+      return;
+    }
     const main=document.querySelector('.detail-main');if(!main)return;
     const section=document.createElement('section');
     section.className='eb-inside-preview';
