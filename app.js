@@ -52,7 +52,7 @@ function publishedCard(b){
  const theme=b.theme?'<p class="home-book-theme">'+escapeHTML(b.theme)+'</p>':'';
  return '<article class="home-book-card" data-book-id="'+escapeHTML(b.id)+'">'+
   '<a class="home-cover-wrap" href="'+detail+'" aria-label="Discover '+escapeHTML(b.title)+'">'+coverHTML(b)+'</a>'+
-  '<div class="home-card-meta"><span>Available now</span><span>'+escapeHTML(formatLabel(b.format))+'</span></div>'+
+  '<div class="home-card-meta"><span>Available now</span>'+(formatLabel(b.format)?'<span>'+escapeHTML(formatLabel(b.format))+'</span>':'')+'</div>'+
   '<h3><a href="'+detail+'">'+escapeHTML(b.title)+'</a></h3>'+theme+
   '<div class="home-card-actions"><a class="home-card-amazon" href="'+escapeHTML(b.amazonUrl)+'" target="_blank" rel="noopener noreferrer sponsored" data-book-id="'+escapeHTML(b.id)+'" aria-label="View '+escapeHTML(b.title)+' on Amazon (opens in new tab)">View on Amazon ↗</a><a class="home-card-details" href="'+detail+'">Book details →</a></div>'+
  '</article>';

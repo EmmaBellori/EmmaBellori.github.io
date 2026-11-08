@@ -14,7 +14,13 @@
    const eligible=published.filter(book=>!START_HERE_IDS.has(book.id));
    const byId=new Map(eligible.map(book=>[book.id,book]));
    const latest=[];
+   // New publication dates take priority, even for titles already listed as Coming Soon.
+   // Use catalog order as a deterministic tie-breaker for same-day releases.
+   const dated=eligible.filter(book=>/^\d{4}-\d{2}-\d{2}$/.test(book.publishedOn||''))
+    .sort((a,b)=>b.publishedOn.localeCompare(a.publishedOn)||b._catalogIndex-a._catalogIndex);
+   for(const book of dated.slice(0,3)){latest.push(book);byId.delete(book.id);}
    for(const id of LATEST_RELEASE_IDS){
+    if(latest.length>=3)break;
     const book=byId.get(id);
     if(book){latest.push(book);byId.delete(id);}
    }

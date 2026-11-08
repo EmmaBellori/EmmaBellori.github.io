@@ -34,7 +34,9 @@ Do not copy these placeholder values into a real listing. Use the real Amazon UR
 
 **Minimum required catalog edits:** `status` and `amazonUrl`. The format, theme, and description are recommended for quality. Keep `id`, `series`, `seriesSlug` and `cover` unchanged to preserve identity and the original cover. Click **Commit changes**.
 
-The collection's **Total books**, **Available now** and **Coming Soon** counters are generated from `catalog.json` at each GitHub Pages deployment and synchronized in the browser along with book cards and voting. **Do not edit these numbers manually** in the collection HTML. A future publication only requires changing the canonical catalog and adding its published book page as described above.
+For each new publication, also set `"publishedOn": "YYYY-MM-DD"` to the actual Amazon release date (for example, `"2026-11-08"`). This keeps the homepage **Latest releases** and its no-JavaScript version in chronological order. If you have not verified whether the edition is Kindle, paperback or another format, omit `format` rather than guessing; visitors can check formats on Amazon.
+
+The collection's **Total books**, **Available now** and **Coming Soon** counters are generated from `catalog.json` at each GitHub Pages deployment and synchronized in the browser along with book cards and voting. The deployed `sitemap.xml` also includes the published book's landing page and refreshes the related collection URL from `publishedOn`. **Do not edit these numbers manually** in the collection HTML. A future publication only requires changing the canonical catalog and adding its published book page as described above.
 
 After GitHub Pages refreshes:
 - The title moves automatically into the published section of its collection and displays **View on Amazon**.
