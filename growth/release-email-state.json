@@ -7,12 +7,25 @@
     "christmas-wish",
     "cute-animals-bold-easy",
     "door-teapot",
+    "gingerbread-house",
     "halloween",
     "i-cant-sleep-without-you",
+    "little-star-missed-christmas",
     "mad",
     "mistakes",
     "play",
     "reindeer"
   ],
-  "campaigns": []
+  "campaigns": [
+    {
+      "idempotency_key": "0a134c5b3c26",
+      "book_ids": [
+        "gingerbread-house",
+        "little-star-missed-christmas"
+      ],
+      "campaign_id": "01M6X9YWH9MCCNDJH9YM46C7WV",
+      "status": "send_job_queued",
+      "recorded_utc": "2026-11-08T10:06:18.674091+00:00"
+    }
+  ]
 }
