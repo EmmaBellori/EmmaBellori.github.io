@@ -30,6 +30,7 @@ on:
       - "scripts/release_email_campaign.py"
       - "growth/release-email-state.json"
       - "tests/test_release_email.py"
+      - "tests/test_release_email_branch_safety.py"
       - ".github/workflows/new-release-email.yml"
 
 permissions:
@@ -49,6 +50,8 @@ jobs:
           python-version: '3.12'
       - name: Run deterministic unit tests
         run: python -m unittest discover -s tests -p 'test_release_email.py' -v
+      - name: Verify protected-main newsletter ledger isolation
+        run: python -m unittest discover -s tests -p 'test_release_email_branch_safety.py' -v
       - name: Produce a safe two-book layout preview
         run: python scripts/release_email_campaign.py --mode preview --preview-ids reindeer,cute-animals-bold-easy
       - name: Upload example newsletter for visual review
@@ -95,6 +98,19 @@ jobs:
       - uses: actions/setup-python@a26af69be951a213d495a4c3e4e4022e16d87065 # v5
         with:
           python-version: '3.12'
+      - name: Load announcement ledger from separate automation branch
+        shell: bash
+        run: |
+          set -euo pipefail
+          git fetch --no-tags origin +refs/heads/automation/release-email-state:refs/remotes/origin/automation/release-email-state
+          git show refs/remotes/origin/automation/release-email-state:growth/release-email-state.json > growth/release-email-state.json
+          python - <<'PY'
+          import json
+          from pathlib import Path
+          state=json.loads(Path('growth/release-email-state.json').read_text(encoding='utf-8'))
+          assert isinstance(state.get('announced_ids'),list), 'Invalid announcement ledger'
+          print('Loaded isolated release-email state:',len(state['announced_ids']),'announced IDs')
+          PY
       - name: Build preview or Klaviyo campaign
         shell: bash
         run: |
@@ -113,14 +129,17 @@ jobs:
           path: artifacts/new-release-email/
           if-no-files-found: ignore
           retention-days: 14
-      - name: Save announcement ledger only after successful Klaviyo preparation
+      - name: Save announcement ledger to isolated branch (never to main)
         shell: bash
         run: |
           set -euo pipefail
-          git add growth/release-email-state.json
-          if ! git diff --cached --quiet; then
-            git config user.name "github-actions[bot]"
-            git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
-            git commit -m "Record drafted new-release newsletter [skip ci]"
-            git push
+          ledger_ref="refs/remotes/origin/automation/release-email-state"
+          if git show "$ledger_ref:growth/release-email-state.json" | cmp -s - growth/release-email-state.json; then
+            echo "No new release-email state to save."
+            exit 0
           fi
+          git worktree add --detach "$RUNNER_TEMP/release-email-ledger" "$ledger_ref"
+          cp growth/release-email-state.json "$RUNNER_TEMP/release-email-ledger/growth/release-email-state.json"
+          git -C "$RUNNER_TEMP/release-email-ledger" add growth/release-email-state.json
+          git -C "$RUNNER_TEMP/release-email-ledger" -c user.name="github-actions[bot]" -c user.email="41898282+github-actions[bot]@users.noreply.github.com" commit -m "Record new-release newsletter [skip ci]"
+          git -C "$RUNNER_TEMP/release-email-ledger" push origin HEAD:refs/heads/automation/release-email-state
