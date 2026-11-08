@@ -79,3 +79,14 @@
   .eb-activity-sheet{margin:14px 0!important;padding:15px!important;border:1px solid #999!important;break-inside:avoid}
   .eb-activity-step{break-inside:avoid}
 }
+
+/* Server-rendered interior previews: readable and clickable even without JS. */
+.eb-inside-preview{max-width:1060px;margin:28px auto;padding:25px clamp(16px,3vw,33px);border:1px solid #e7dfd3;border-radius:20px;background:#fffdf8}
+.eb-inside-preview h2{font-family:Georgia,serif;color:#25484a;font-size:clamp(1.4rem,2.3vw,1.9rem);margin:6px 0 10px}
+.eb-inside-preview p{color:#465b58;line-height:1.65}
+.eb-inside-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:16px;margin-top:18px}
+.eb-inside-thumb{display:flex;align-items:center;justify-content:center;min-width:0;max-height:310px;padding:9px;border-radius:13px;border:1px solid #e8dfd1;background:#fff;cursor:zoom-in}
+.eb-inside-thumb img{max-width:100%;max-height:292px;object-fit:contain;border-radius:4px}
+.eb-look-jump{display:inline-flex;margin:10px 0 0 13px;min-height:44px;align-items:center}
+.eb-inside-thumb:focus-visible{outline:3px solid #117986;outline-offset:3px}
+@media(max-width:540px){.eb-inside-grid{gap:7px}.eb-inside-thumb{padding:4px;max-height:175px}.eb-inside-thumb img{max-height:166px}.eb-look-jump{margin-left:0;margin-top:10px;width:100%}}
