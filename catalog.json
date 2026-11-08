@@ -107,7 +107,11 @@
     "cover": "images/coming-soon/The_Gingerbread_House_Next_Door_Front_800px.jpg",
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
-    "status": "coming_soon"
+    "status": "published",
+    "format": "Paperback",
+    "amazonUrl": "https://www.amazon.com/dp/B0HPZWR8H1",
+    "theme": "A Christmas story from the Little Christmas Wonders collection",
+    "description": "Now available in paperback as part of the Little Christmas Wonders collection."
   },
   {
     "id": "reindeer",
@@ -517,7 +521,11 @@
     "cover": "images/coming-soon/The_Little_Star_That_Missed_Christmas_Front_Cover.jpg",
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
-    "status": "coming_soon"
+    "status": "published",
+    "format": "Paperback",
+    "amazonUrl": "https://www.amazon.com/dp/B0HPZSQMT7",
+    "theme": "A Christmas story from the Little Christmas Wonders collection",
+    "description": "Now available in paperback as part of the Little Christmas Wonders collection."
   },
   {
     "id": "my-first-baseball-adventure",
