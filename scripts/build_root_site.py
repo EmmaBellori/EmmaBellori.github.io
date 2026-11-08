@@ -243,31 +243,39 @@ def prerender_homepage_catalog() -> None:
         groups.setdefault(series, []).append(book)
 
     series_sections: list[str] = []
-    for series, items in groups.items():
+    pending_sections: list[str] = []
+    ordered_groups = sorted(groups.items(), key=lambda pair: (-sum(
+        book.get("status") == "published" for book in pair[1]
+    ), list(groups).index(pair[0])))
+    for series, items in ordered_groups:
         available = [book for book in items if book.get("status") == "published"]
-        upcoming = [book for book in items if book.get("status") != "published"]
-        preview = (available + upcoming)[:3]
-        if not preview:
+        upcoming = [book for book in items if book.get("status") == "coming_soon"]
+        if not available and not upcoming:
             continue
         series_slug = str(items[0].get("seriesSlug") or "").strip()
         collection_link = (
             f'<a class="home-explore-collection" href="collections/{_esc(series_slug)}.html" '
             f'aria-label="Explore {_esc(series)} collection">Explore collection →</a>'
-            if series_slug
-            else ""
+            if series_slug else ""
         )
-        series_sections.append(
-            f'<section class="home-series-preview" data-series-name="{_esc(series)}">'
-            f'<div class="home-series-heading"><div class="home-series-copy">'
-            f'<p class="eyebrow">EMMA BELLORI COLLECTION</p>'
-            f'<h3>{_esc(series)}</h3>'
-            f'<p>Explore stories and activities in this Emma Bellori collection.</p>'
-            f'</div><div class="home-series-actions">'
-            f'<span class="home-series-count">{len(items)} {"book" if len(items) == 1 else "books"}</span>'
-            f'{collection_link}</div></div>'
-            f'<div class="home-book-grid">{"".join(_home_card(book) for book in preview)}</div>'
-            f'</section>'
-        )
+        def block(preview: list[dict], pending: bool = False) -> str:
+            label = f"{len(upcoming)} planned" if pending else f"{len(available)} available"
+            return (
+                f'<section class="home-series-preview{" eb-series-upcoming" if pending else ""}" '
+                f'data-series-name="{_esc(series)}"><div class="home-series-heading">'
+                f'<div class="home-series-copy"><p class="eyebrow">'
+                f'{"COMING SOON SERIES" if pending else "EMMA BELLORI COLLECTION"}'
+                f'</p><h3>{_esc(series)}</h3>'
+                f'<p>Explore stories and activities in this Emma Bellori collection.</p>'
+                f'</div><div class="home-series-actions"><span class="home-series-count">{label}</span>'
+                f'{collection_link}</div></div>'
+                f'<div class="home-book-grid">{"".join(_home_card(book) for book in preview)}</div>'
+                f'</section>'
+            )
+        if available:
+            series_sections.append(block(available[:3]))
+        if upcoming:
+            pending_sections.append(block(upcoming[:1], pending=True))
 
     replacements = {
         '<div id="start-here-grid" class="home-book-grid" aria-live="polite"></div>':
@@ -282,6 +290,9 @@ def prerender_homepage_catalog() -> None:
             '<div id="series-catalog" class="home-series-catalog">'
             + "".join(series_sections)
             + "</div>",
+        '<div id="upcoming-series-catalog" class="home-series-catalog" aria-live="polite"></div>':
+            '<div id="upcoming-series-catalog" class="home-series-catalog" aria-live="polite">'
+            + "".join(pending_sections) + "</div>",
     }
 
     text = index_path.read_text(encoding="utf-8")
