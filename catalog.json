@@ -131,7 +131,11 @@
     "cover": "images/coming-soon/The_Snowman_Who_Wanted_to_Stay_Front_800px.jpg",
     "series": "Little Christmas Wonders",
     "seriesSlug": "little-christmas-wonders",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HQW67MJ1",
+    "publishedOn": "2026-11-08",
+    "theme": "Cozy winter wonder and the magic of Christmas",
+    "description": "Meet The Snowman Who Wanted to Stay, a warm winter story in Emma Bellori's Little Christmas Wonders collection, made for cozy holiday reading."
   },
   {
     "id": "dont-want-to-share",
@@ -581,7 +585,11 @@
     "cover": "images/coming-soon/My_First_Ice_Hockey_Adventure_Front_800px.jpg",
     "series": "My First Sports Adventures",
     "seriesSlug": "my-first-sports-adventures",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HQW9H64W",
+    "publishedOn": "2026-11-08",
+    "theme": "Discovering ice hockey, teamwork and the joy of trying",
+    "description": "Discover the excitement of ice hockey with My First Ice Hockey Adventure, a child-friendly introduction to a new sport in Emma Bellori's My First Sports Adventures collection."
   },
   {
     "id": "my-first-lacrosse-adventure",
