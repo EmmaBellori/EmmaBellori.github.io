@@ -31,7 +31,9 @@ class ComingSoonLayoutTests(unittest.TestCase):
         self.assertEqual(portion.count("home-series-preview eb-series-upcoming"), len(groups))
         self.assertEqual(portion.count('class="home-series-heading"'), len(groups))
         self.assertEqual(portion.count('class="home-book-card"'), len(groups))
-        self.assertEqual(portion.count('class="home-vote-button'), len(groups))
+        # The server-rendered cards remain usable without JavaScript.
+        # Interactive hearts are inserted by app.js after catalog loading.
+        self.assertEqual(portion.count('class="home-card-status"'), len(groups))
         self.assertEqual(portion.count("Explore collection"), len(groups))
         self.assertIn("Tap the heart on a cover", page)
 
