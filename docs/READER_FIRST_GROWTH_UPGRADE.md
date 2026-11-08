@@ -10,7 +10,7 @@ This PR keeps the original branding, GitHub Pages, catalog.json, Supabase voting
 4. **Free Activity Club:** A truly free five-minute printable family play sheet is available without an email address, purchase or registration, and is linked from the signup area. The browser now records newsletter_signup_requested, which describes a confirmation request—not a verified subscription.
 5. **Trust:** A dedicated About page explains editorial intent, Amazon and Payhip destinations, contact, age guidance, privacy and the difference between available and future titles.
 6. **SEO and guide paths:** Related reading options were added to the free guides. The finder, About and free activity pages have canonical URLs and sitemap entries. Published book links are rendered into static HTML.
-7. **Performance and accessibility:** A lightweight SVG favicon, reduced non-book JSON fetching, progressive-enhanced images, visible focus, semantic filters, status updates and print/reduced-motion styles are added.
+7. **Performance and accessibility:** The original illustrated PNG favicon, reduced non-book JSON fetching, progressive-enhanced images, visible focus, semantic filters, status updates and print/reduced-motion styles are added.
 
 ## Ongoing publishing
 
