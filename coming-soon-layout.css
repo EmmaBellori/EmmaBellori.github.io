@@ -16,6 +16,19 @@
 .home-v12 #coming-soon > .home-section-heading{
   margin-bottom:26px;
 }
+.home-v12 #coming-soon .eb-coming-hint{
+  display:inline-flex;
+  align-items:center;
+  width:fit-content;
+  max-width:100%;
+  margin:14px 0 0!important;
+  padding:8px 13px;
+  border-radius:12px;
+  background:#f0eae1;
+  color:#44605b;
+  font-size:12px;
+  line-height:1.5;
+}
 .home-v12 #coming-soon #upcoming-series-catalog.home-series-catalog{
   display:grid;
   grid-template-columns:repeat(2,minmax(0,1fr));
