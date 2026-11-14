@@ -48,7 +48,7 @@
     .guide-footer-links{margin-top:24px;font-size:.9rem;color:#66716d}
     .guide-footer-links a{color:#365c59;font-weight:650}
     .guide-wrap a:focus-visible{outline:3px solid #146d78;outline-offset:3px}\n    /* Related guide links should read as separate, tappable destinations. */\n    .guide-wrap a:not(.amazon-cta):not(.guide-breadcrumb a){color:#244e4a;text-decoration:underline;text-decoration-thickness:1px;text-underline-offset:3px;font-weight:650}\n    .guide-wrap a[href*="/guides/"]:not(.guide-breadcrumb a){display:flex;align-items:center;gap:10px;width:fit-content;max-width:100%;margin:10px 0;padding:11px 15px;border:1px solid #d8cabb;border-radius:10px;background:#fffdf9;text-decoration:none;line-height:1.45;box-shadow:0 1px 2px #26383a0b}\n    .guide-wrap a[href*="/guides/"]:not(.guide-breadcrumb a)::after{content:"↗";flex:0 0 auto;margin-left:auto;color:#365c59;font-size:.95rem}\n    .guide-wrap a[href*="/guides/"]:not(.guide-breadcrumb a):hover{background:#f5ecdf;border-color:#bda98f;text-decoration:underline}
-    @media(max-width:520px){
+    @media(max-width:520px){\n      .related-guides{padding:20px 0 24px}\n      .related-guide-link{padding:13px 14px}
       .guide-wrap{padding:26px 19px 48px}
       .book-recommendation{grid-template-columns:88px 1fr;gap:16px;padding:16px;margin:22px 0 32px}
       .book-recommendation h2{font-size:1.05rem}
@@ -156,7 +156,19 @@
 
     <p class="guide-note"><strong>Every child is different.</strong> These general ideas are not a substitute for personalized professional support.</p>
 
-    <p class="guide-footer-links"><a href="../index.html#parenting-guides">Read another free family guide</a></p>
+    <div class="guide-end-marker" role="separator" aria-label="End of this guide">End of this guide</div>
+
+    <section class="related-guides" aria-labelledby="related-guides-title">
+      <h2 id="related-guides-title">Explore this topic further</h2>
+      <p class="related-intro">If you would like to keep exploring, these free guides cover other everyday challenges children may experience.</p>
+      <nav class="related-guide-list" aria-label="Related family guides">
+        <a class="related-guide-link" href="help-kids-learn-at-their-own-pace.html">How to Help Kids Learn at Their Own Pace</a>
+        <a class="related-guide-link" href="help-child-feel-left-out.html">How to Help a Child Who Feels Left Out</a>
+        <a class="related-guide-link" href="help-kids-handle-losing.html">How to Help Kids Handle Losing a Game</a>
+      </nav>
+    </section>
+
+    <p class="guide-footer-links"><a href="../index.html#parenting-guides">Browse all free family guides</a></p>
   </main>
 
   <footer>
