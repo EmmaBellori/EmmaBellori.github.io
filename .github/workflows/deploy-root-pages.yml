@@ -35,6 +35,9 @@ jobs:
       - name: Generate growth guide clusters
         run: python3 scripts/generate_growth_guides.py
 
+      - name: Standardize all free-guide endings and related cards
+        run: python3 scripts/standardize_free_guides.py
+
       - name: Render book-finder pages, interior galleries and reader journeys
         run: python3 scripts/improve_reader_journey.py
 
