@@ -48,7 +48,7 @@ BOOK_BY_GUIDE = {
 
 def plain_title(path: Path) -> str:
     source = path.read_text(encoding="utf-8")
-    match = re.search(r"<h1\\b[^>]*>(.*?)</h1>", source, flags=re.I | re.S)
+    match = re.search(r"<h1\b[^>]*>(.*?)</h1>", source, flags=re.I | re.S)
     return html.unescape(re.sub(r"<[^>]+>", "", match.group(1))).strip() if match else path.stem.replace("-", " ").title()
 
 def related_for(path: Path, generated: dict[str, dict], all_items: list[dict]) -> list[tuple[str, str]]:
@@ -94,13 +94,13 @@ def book_card(book: dict) -> str:
 def remove_legacy_ctas(source: str) -> str:
     # Remove old bottom-of-article product/story panels and their multiple-button rows.
     source = re.sub(
-        r'<section\\b[^>]*>(?:(?!</section>).)*?(?:class=["\'][^"\']*guide-links|Explore a related story|Discover the story behind the activities|Start with a story|printable activity kits|playful way to practice losing)(?:(?!</section>).)*?</section>',
+        r'<section\b[^>]*>(?:(?!</section>).)*?(?:class=["\'][^"\']*guide-links|Explore a related story|Discover the story behind the activities|Start with a story|printable activity kits|playful way to practice losing)(?:(?!</section>).)*?</section>',
         "",
         source, flags=re.I | re.S,
     )
-    source = re.sub(r'<section\\b[^>]*>\\s*<h2\\b[^>]*>\\s*(?:More ideas for families|More free family guides)\\s*</h2>[\\s\\S]*?</section>', "", source, flags=re.I)
-    source = re.sub(r'<div class=["\']guide-links["\'][^>]*>[\\s\\S]*?</div>', "", source, flags=re.I)
-    source = re.sub(r'<section class=["\']guide-extra guide-companion["\'][^>]*>[\\s\\S]*?</section>', "", source, flags=re.I)
+    source = re.sub(r'<section\b[^>]*>\s*<h2\b[^>]*>\s*(?:More ideas for families|More free family guides)\s*</h2>[\s\S]*?</section>', "", source, flags=re.I)
+    source = re.sub(r'<div class=["\']guide-links["\'][^>]*>[\s\S]*?</div>', "", source, flags=re.I)
+    source = re.sub(r'<section class=["\']guide-extra guide-companion["\'][^>]*>[\s\S]*?</section>', "", source, flags=re.I)
     return source
 
 def main() -> None:
@@ -118,8 +118,8 @@ def main() -> None:
             continue
         source = remove_legacy_ctas(source)
         # Replace prior standardized ending to make the build repeatable.
-        source = re.sub(r'<div class=["\']guide-end-marker["\'][^>]*>[\\s\\S]*?</section>\\s*', "", source, flags=re.I)
-        source = re.sub(r'<section class=["\']related-guides["\'][^>]*>[\\s\\S]*?</section>\\s*', "", source, flags=re.I)
+        source = re.sub(r'<div class=["\']guide-end-marker["\'][^>]*>[\s\S]*?</section>\s*', "", source, flags=re.I)
+        source = re.sub(r'<section class=["\']related-guides["\'][^>]*>[\s\S]*?</section>\s*', "", source, flags=re.I)
 
         slug = path.stem
         item = generated.get(slug, {})
@@ -127,9 +127,9 @@ def main() -> None:
         book = books.get(book_id)
         if book and not re.search(r'<aside class=["\']book-recommendation["\']', source, flags=re.I):
             card = book_card(book)
-            meta = re.search(r'(<p\\b[^>]*class=["\'][^"\']*guide-meta[^"\']*["\'][^>]*>[\\s\\S]*?</p>)', source, flags=re.I)
+            meta = re.search(r'(<p\b[^>]*class=["\'][^"\']*guide-meta[^"\']*["\'][^>]*>[\s\S]*?</p>)', source, flags=re.I)
             if meta:
-                source = source[:meta.end()] + "\\n\\n    " + card + source[meta.end():]
+                source = source[:meta.end()] + "\n\n    " + card + source[meta.end():]
             else:
                 source = source.replace("</main>", card + "</main>", 1)
 
@@ -146,7 +146,7 @@ def main() -> None:
                 '<p class="related-intro">If you would like to keep exploring, these free guides cover other everyday challenges children may experience.</p>'
                 f'<nav class="related-guide-list" aria-label="Related family guides">{links}</nav></section>'
             )
-            source = source.replace("</main>", block + '\\n  </main>', 1)
+            source = source.replace("</main>", block + '\n  </main>', 1)
 
         # One simple text link after the cards, matching the reference guide.
         if not re.search(r'class=["\']guide-footer-links["\']', source):
@@ -154,7 +154,7 @@ def main() -> None:
 
         # Load shared styles last so the reference layout is identical on every page.
         if "guide-related.css" in source:
-            source = re.sub(r'<link[^>]+href=["\'](?:\\./)?guide-related\\.css["\'][^>]*>', "", source, flags=re.I)
+            source = re.sub(r'<link[^>]+href=["\'](?:\./)?guide-related\.css["\'][^>]*>', "", source, flags=re.I)
         source = re.sub(r"</head>", '<link rel="stylesheet" href="guide-related.css"></head>', source, count=1, flags=re.I)
         path.write_text(source, encoding="utf-8")
         changed += 1
