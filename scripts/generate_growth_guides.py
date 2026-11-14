@@ -139,7 +139,14 @@ def add_hub_links(items: list[dict]) -> None:
         if not path.exists():
             continue
         text = path.read_text(encoding="utf-8")
-        if 'data-growth-cluster="true"' in text:
+        if (
+            'data-growth-cluster="true"' in text
+            or re.search(
+                r'<h2\b[^>]*>\s*Explore\s+this\s+topic\s+further\s*</h2>',
+                text,
+                flags=re.IGNORECASE,
+            )
+        ):
             continue
         links = "".join(f'<a href="{esc(x["slug"])}.html">{esc(x["title"])}</a>' for x in entries)
         block = f'<section class="guide-extra" data-growth-cluster="true"><h2>Explore this topic further</h2><p>Choose the situation that is closest to what your family is experiencing.</p><div class="guide-links">{links}</div></section>'
