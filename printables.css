@@ -50,3 +50,18 @@
 @media(max-width:650px){.kit-grid{grid-template-columns:1fr}.kit-card{padding:18px}.kit-hero{padding:34px 18px 27px}.kit-breadcrumb{padding:0 18px}.kit-section{padding:15px 18px 40px}.kit-cross-sell,.kit-free{padding:35px 22px;display:block}.kit-cross-sell .button,.kit-free .button{margin-top:14px}.kit-page .site-header{display:block}.kit-page .site-header .brand{margin-bottom:10px}.kit-page .site-header nav{justify-content:flex-start}}
 @media(max-width:375px){.kit-card-top{gap:12px}.kit-illustration{flex-basis:78px;height:115px}.kit-illustration img{height:100px}.kit-card h3{font-size:20px}}
 @media(prefers-reduced-motion:reduce){.kit-page a.button:hover,.kit-buy:hover{transform:none}}
+
+
+/* Keep Payhip's live purchase CTA compact and consistent across all printable cards. */
+.kit-card > .payhip-buy-button,
+.kit-card .payhip-buy-button{
+  display:inline-flex !important;
+  align-items:center;
+  justify-content:center;
+  align-self:flex-start;
+  box-sizing:border-box;
+  width:180px !important;
+  max-width:100% !important;
+  min-width:0;
+  margin:0;
+}
