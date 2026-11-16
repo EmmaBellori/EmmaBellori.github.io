@@ -144,7 +144,12 @@
     "cover": "images/coming-soon/I_Dont_Want_To_Share_Front_800px.jpg",
     "series": "Big Feelings, Real Problems",
     "seriesSlug": "big-feelings-real-problems",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HRSKCZYD",
+    "publishedOn": "2026-11-16",
+    "category": "feelings",
+    "theme": "Sharing, taking turns and friendship",
+    "description": "A gentle story for children learning to share, take turns and navigate the big feelings that can arise during play."
   },
   {
     "id": "bakery-before-breakfast",
@@ -192,7 +197,12 @@
     "cover": "images/coming-soon/I_Want_It_NOW_Front_800px.jpg",
     "series": "Big Feelings, Real Problems",
     "seriesSlug": "big-feelings-real-problems",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HRSFFXJY",
+    "publishedOn": "2026-11-16",
+    "category": "feelings",
+    "theme": "Patience, waiting and managing big feelings",
+    "description": "A relatable story about wanting something right away, handling impatience and learning small steps toward waiting."
   },
   {
     "id": "garden-fed-town",
