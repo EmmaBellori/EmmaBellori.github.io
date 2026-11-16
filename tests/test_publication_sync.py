@@ -12,8 +12,10 @@ from scripts import build_root_site
 
 ROOT = Path(__file__).resolve().parents[1]
 NEW_RELEASES = {
-    "snowman": ("little-christmas-wonders", "B0HQW67MJ1"),
-    "my-first-ice-hockey-adventure": ("my-first-sports-adventures", "B0HQW9H64W"),
+    "snowman": ("little-christmas-wonders", "B0HQW67MJ1", "2026-11-08"),
+    "my-first-ice-hockey-adventure": ("my-first-sports-adventures", "B0HQW9H64W", "2026-11-08"),
+    "dont-want-to-share": ("big-feelings-real-problems", "B0HRSKCZYD", "2026-11-16"),
+    "want-it-now": ("big-feelings-real-problems", "B0HRSFFXJY", "2026-11-16"),
 }
 
 
@@ -22,10 +24,10 @@ class PublicationSyncTests(unittest.TestCase):
         books = json.loads((ROOT / "catalog.json").read_text(encoding="utf-8"))
         items = {book["id"]: book for book in books}
         sitemap = (ROOT / "sitemap.xml").read_text(encoding="utf-8")
-        for book_id, (series_slug, asin) in NEW_RELEASES.items():
+        for book_id, (series_slug, asin, published_on) in NEW_RELEASES.items():
             book = items[book_id]
             self.assertEqual(book["status"], "published")
-            self.assertEqual(book["publishedOn"], "2026-11-08")
+            self.assertEqual(book["publishedOn"], published_on)
             self.assertEqual(book["amazonUrl"], f"https://www.amazon.com/dp/{asin}")
             self.assertEqual(book["seriesSlug"], series_slug)
             self.assertTrue((ROOT / book["cover"]).is_file(), book_id)
@@ -43,6 +45,7 @@ class PublicationSyncTests(unittest.TestCase):
         for slug, (published_count, upcoming_count) in {
             "little-christmas-wonders": (5, 0),
             "my-first-sports-adventures": (1, 15),
+            "big-feelings-real-problems": (6, 4),
         }.items():
             html = (ROOT / "collections" / f"{slug}.html").read_text(encoding="utf-8")
             series = [book for book in books if book.get("seriesSlug") == slug]
@@ -54,7 +57,7 @@ class PublicationSyncTests(unittest.TestCase):
             self.assertEqual(html.count('class="collection-book is-published"'), published_count)
             self.assertEqual(html.count('class="collection-book is-upcoming"'), upcoming_count)
         for book_id in NEW_RELEASES:
-            slug, _ = NEW_RELEASES[book_id]
+            slug, _, _ = NEW_RELEASES[book_id]
             html = (ROOT / "collections" / f"{slug}.html").read_text(encoding="utf-8")
             self.assertIn(f"../books/{book_id}.html", html)
             self.assertNotIn(f'data-vote-id="{book_id}"', html)
