@@ -57,7 +57,7 @@ class PublicationSyncTests(unittest.TestCase):
             self.assertEqual(html.count('class="collection-book is-published"'), published_count)
             self.assertEqual(html.count('class="collection-book is-upcoming"'), upcoming_count)
         for book_id in NEW_RELEASES:
-            slug, _ = NEW_RELEASES[book_id]
+            slug, _, _ = NEW_RELEASES[book_id]
             html = (ROOT / "collections" / f"{slug}.html").read_text(encoding="utf-8")
             self.assertIn(f"../books/{book_id}.html", html)
             self.assertNotIn(f'data-vote-id="{book_id}"', html)
