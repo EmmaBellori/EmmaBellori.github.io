@@ -6,6 +6,7 @@
     "christmas",
     "christmas-wish",
     "cute-animals-bold-easy",
+    "dont-want-to-share",
     "door-teapot",
     "gingerbread-house",
     "halloween",
@@ -16,7 +17,8 @@
     "my-first-ice-hockey-adventure",
     "play",
     "reindeer",
-    "snowman"
+    "snowman",
+    "want-it-now"
   ],
   "campaigns": [
     {
@@ -38,6 +40,16 @@
       "campaign_id": "01M6ZX20PER5KRDCGEX2B370KS",
       "status": "send_job_queued",
       "recorded_utc": "2026-11-09T10:18:33.092081+00:00"
+    },
+    {
+      "idempotency_key": "f9449412a3f3",
+      "book_ids": [
+        "dont-want-to-share",
+        "want-it-now"
+      ],
+      "campaign_id": "01M7JY41JZBGW97TQ0F6M1174N",
+      "status": "send_job_queued",
+      "recorded_utc": "2026-11-16T19:42:42.708784+00:00"
     }
   ]
 }
