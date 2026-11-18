@@ -243,7 +243,7 @@ def prerender_homepage_catalog() -> None:
         groups.setdefault(series, []).append(book)
 
     series_sections: list[str] = []
-    pending_sections: list[str] = []
+    pending_items: list[dict] = []
     ordered_groups = sorted(groups.items(), key=lambda pair: (-sum(
         book.get("status") == "published" for book in pair[1]
     ), list(groups).index(pair[0])))
@@ -275,7 +275,7 @@ def prerender_homepage_catalog() -> None:
         if available:
             series_sections.append(block(available[:3]))
         if upcoming:
-            pending_sections.append(block(upcoming[:1], pending=True))
+            pending_items.extend(upcoming)
 
     replacements = {
         '<div id="start-here-grid" class="home-book-grid" aria-live="polite"></div>':
@@ -290,9 +290,15 @@ def prerender_homepage_catalog() -> None:
             '<div id="series-catalog" class="home-series-catalog">'
             + "".join(series_sections)
             + "</div>",
-        '<div id="upcoming-series-catalog" class="home-series-catalog upcoming-carousel-track" aria-live="polite"></div>':
-            '<div id="upcoming-series-catalog" class="home-series-catalog upcoming-carousel-track" aria-live="polite">'
-            + "".join(pending_sections) + "</div>",
+        '<div id="upcoming-series-catalog" class="upcoming-single-slide" aria-live="polite"></div>':
+            '<div id="upcoming-series-catalog" class="upcoming-single-slide" aria-live="polite">'
+            + (('<article class="upcoming-single-card" data-series-name="' + _esc(pending_items[0].get("series")) + '">'
+               + '<div class="upcoming-single-cover">' + _cover_html(pending_items[0]) + '</div>'
+               + '<div class="upcoming-single-copy"><p class="eyebrow">' + _esc(pending_items[0].get("series")) + '</p>'
+               + '<span class="home-card-status">Coming Soon</span><h3><a href="' + _esc(_book_detail_href(pending_items[0])) + '">' + _esc(pending_items[0].get("title")) + '</a></h3>'
+               + '<a class="upcoming-single-collection" href="collections/' + _esc(pending_items[0].get("seriesSlug")) + '.html">Explore collection →</a></div></article>')
+               if pending_items else '<p class="upcoming-empty">New books are on the way. Check back soon.</p>')
+            + "</div>",
     }
 
     text = index_path.read_text(encoding="utf-8")
