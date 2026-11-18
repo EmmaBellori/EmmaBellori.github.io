@@ -19,23 +19,31 @@ class ComingSoonLayoutTests(unittest.TestCase):
         if not (OUT / "index.html").is_file():
             raise RuntimeError("Build the site before testing Coming Soon")
 
-    def test_all_upcoming_series_render_with_readable_headings_and_actions(self):
+    def test_homepage_uses_one_compact_coming_soon_carousel(self):
         books = json.loads((OUT / "catalog.json").read_text(encoding="utf-8"))
         upcoming = [book for book in books if book.get("status") == "coming_soon"]
-        groups = {book["series"] for book in upcoming}
+        self.assertGreater(len(upcoming), 1)
         page = (OUT / "index.html").read_text(encoding="utf-8")
+        app = (OUT / "app.js").read_text(encoding="utf-8")
         self.assertIn('id="upcoming-series-catalog"', page)
         portion = page.split('id="upcoming-series-catalog"', 1)[1].split(
             'id="parenting-guides"', 1
         )[0]
-        self.assertEqual(portion.count("home-series-preview eb-series-upcoming"), len(groups))
-        self.assertEqual(portion.count('class="home-series-heading"'), len(groups))
-        self.assertEqual(portion.count('class="home-book-card"'), len(groups))
-        # The server-rendered cards remain usable without JavaScript.
-        # Interactive hearts are inserted by app.js after catalog loading.
-        self.assertEqual(portion.count('class="home-card-status"'), len(groups))
-        self.assertEqual(portion.count("Explore collection"), len(groups))
-        self.assertIn("Tap the heart on a cover", page)
+        # Only one upcoming book is server-rendered: the page stays short and
+        # remains useful to crawlers and visitors without JavaScript.
+        self.assertEqual(portion.count('class="upcoming-single-card"'), 1)
+        self.assertEqual(portion.count('class="home-card-status">Coming Soon</span>'), 1)
+        self.assertEqual(portion.count("upcoming-single-collection"), 1)
+        # Prominent, accessible previous/next buttons browse individual titles.
+        self.assertIn('data-carousel-direction="-1"', page)
+        self.assertIn('data-carousel-direction="1"', page)
+        self.assertIn("Previous upcoming book", page)
+        self.assertIn("Next upcoming book", page)
+        self.assertIn("upcomingCarouselIndex", app)
+        self.assertIn("renderUpcomingCarousel()", app)
+        self.assertIn("upcomingCarouselIndex+=Number(button.dataset.carouselDirection)||1", app)
+        self.assertIn("const items=upcoming.slice()", app)
+        self.assertIn("data-vote-id", app)
 
     def test_scoped_responsive_styles_prevent_old_narrow_column_layout(self):
         css = (OUT / "coming-soon-layout.css").read_text(encoding="utf-8")
