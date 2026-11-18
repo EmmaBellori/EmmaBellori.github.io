@@ -290,8 +290,8 @@ def prerender_homepage_catalog() -> None:
             '<div id="series-catalog" class="home-series-catalog">'
             + "".join(series_sections)
             + "</div>",
-        '<div id="upcoming-series-catalog" class="home-series-catalog" aria-live="polite"></div>':
-            '<div id="upcoming-series-catalog" class="home-series-catalog" aria-live="polite">'
+        '<div id="upcoming-series-catalog" class="home-series-catalog upcoming-carousel-track" aria-live="polite"></div>':
+            '<div id="upcoming-series-catalog" class="home-series-catalog upcoming-carousel-track" aria-live="polite">'
             + "".join(pending_sections) + "</div>",
     }
 
