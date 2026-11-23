@@ -2,6 +2,7 @@
   "schema_version": 1,
   "baseline_utc": "2026-11-04T12:00:00Z",
   "announced_ids": [
+    "bakery-before-breakfast",
     "bugs",
     "christmas",
     "christmas-wish",
@@ -15,6 +16,7 @@
     "mad",
     "mistakes",
     "my-first-ice-hockey-adventure",
+    "parcel-crossed-town",
     "play",
     "reindeer",
     "snowman",
@@ -50,6 +52,16 @@
       "campaign_id": "01M7JY41JZBGW97TQ0F6M1174N",
       "status": "send_job_queued",
       "recorded_utc": "2026-11-16T19:42:42.708784+00:00"
+    },
+    {
+      "idempotency_key": "6b759c0e87fc",
+      "book_ids": [
+        "bakery-before-breakfast",
+        "parcel-crossed-town"
+      ],
+      "campaign_id": "01M85575CQ6D8H7YEP0FWSPPQQ",
+      "status": "send_job_queued",
+      "recorded_utc": "2026-11-23T21:33:05.539273+00:00"
     }
   ]
 }
