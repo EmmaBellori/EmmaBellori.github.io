@@ -16,6 +16,8 @@ NEW_RELEASES = {
     "my-first-ice-hockey-adventure": ("my-first-sports-adventures", "B0HQW9H64W", "2026-11-08"),
     "dont-want-to-share": ("big-feelings-real-problems", "B0HRSKCZYD", "2026-11-16"),
     "want-it-now": ("big-feelings-real-problems", "B0HRSFFXJY", "2026-11-16"),
+    "bakery-before-breakfast": ("small-town-many-hands", "B0HSLMTFDC", "2026-11-22"),
+    "parcel-crossed-town": ("small-town-many-hands", "B0HSLK4T7K", "2026-11-22"),
 }
 
 
@@ -46,6 +48,7 @@ class PublicationSyncTests(unittest.TestCase):
             "little-christmas-wonders": (5, 0),
             "my-first-sports-adventures": (1, 15),
             "big-feelings-real-problems": (6, 4),
+            "small-town-many-hands": (2, 3),
         }.items():
             html = (ROOT / "collections" / f"{slug}.html").read_text(encoding="utf-8")
             series = [book for book in books if book.get("seriesSlug") == slug]
