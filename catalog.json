@@ -157,7 +157,12 @@
     "cover": "images/coming-soon/The_Bakery_Before_Breakfast_Front_800px.jpg",
     "series": "Small Town, Many Hands",
     "seriesSlug": "small-town-many-hands",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HSLMTFDC",
+    "publishedOn": "2026-11-22",
+    "category": "community",
+    "theme": "Community, local work and the magic of a bakery",
+    "description": "A warm story celebrating the early-morning work, care and community behind a neighborhood bakery."
   },
   {
     "id": "dont-like-changes",
@@ -226,7 +231,12 @@
     "cover": "images/coming-soon/The_Parcel_That_Crossed_Town_Front_800px.jpg",
     "series": "Small Town, Many Hands",
     "seriesSlug": "small-town-many-hands",
-    "status": "coming_soon"
+    "status": "published",
+    "amazonUrl": "https://www.amazon.com/dp/B0HSLK4T7K",
+    "publishedOn": "2026-11-22",
+    "category": "community",
+    "theme": "Community, local connections and everyday journeys",
+    "description": "A story celebrating the people and everyday connections that help a parcel make its way across town."
   },
   {
     "id": "door-teapot",
